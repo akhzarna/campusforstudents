@@ -5,13 +5,42 @@ const styles = StyleSheet.create({
         justifyContent:"center",
         alignItems:"center",
     },
+
+    // section 1 filters
     filtersWrapper:{
         flex: 0.6,
-        justifyContent:"center",
+        justifyContent:"flex-start",
         alignItems:"center",
-        // backgroundColor:"blue",
+        // backgroundColor:"green",
         height:"100%",
         width:"100%",
+    },
+    mainHeadingWrapper:{
+        flex:0.07,
+        backgroundColor:"yellow",
+        justifyContent:"center",
+        alignItems:"center",
+        height:"100%",
+        width:"100%",
+    },
+    mainHeadingText:{
+        fontSize:24,
+        fontWeight:"700",
+    },
+    filters:{
+        flex:0.93,
+        backgroundColor:"green",
+        justifyContent:"flex-start",
+        alignItems:"center",
+        height:"100%",
+        width:"100%",
+    },
+    filter:{
+        flex:0.9,
+        backgroundColor:"yellow",
+        height:"100%",
+        width:"100%",
+        alignItems:'center'
     },
 
 

@@ -5,13 +5,74 @@ import styles from './AdvanceFilterStyle'
 
 export default class AdvanceFilter extends Component {
   state = {
-    selectedLanguage : 'Select'
+      Value : 'Select'
   }
   render() {
     return (
       <SafeAreaView style={styles.container}>
+
         <View style={styles.filtersWrapper}>
-        <Picker></Picker>
+
+          <View style={styles.mainHeadingWrapper}>
+            <Text style={styles.mainHeadingText}>Find Best Match</Text>
+          </View>
+
+          <View style={styles.filters}>
+            
+            <Picker  style={{height:"100%",width:"100%"}}>
+              <Picker.Item label="Select Study Level" />
+              <Picker.Item label="JavaScript" value="js" />
+              <Picker.Item label="JavaScript" value="js" />
+              <Picker.Item label="JavaScript" value="js" />
+              <Picker.Item label="JavaScript" value="js" />
+            </Picker>
+          
+            
+            {/* <Picker  style={{ width: 350}}>
+              <Picker.Item label="Select Study Level" />
+              <Picker.Item label="JavaScript" value="js" />
+              <Picker.Item label="JavaScript" value="js" />
+              <Picker.Item label="JavaScript" value="js" />
+              <Picker.Item label="JavaScript" value="js" />
+            </Picker> */}
+            {/* <Picker selectedValue={'java'} style={{height: 80, width: 350}}>
+              <Picker.Item label="Select Study Level" value="java" />
+              <Picker.Item label="JavaScript" value="js" />
+            </Picker>
+            <Picker selectedValue={'java'} style={{height: 80, width: 350}}>
+              <Picker.Item label="Select Study Level" value="java" />
+              <Picker.Item label="JavaScript" value="js" />
+            </Picker>
+            <Picker selectedValue={'java'} style={{height: 80, width: 350}}>
+              <Picker.Item label="Select Study Level" value="java" />
+              <Picker.Item label="JavaScript" value="js" />
+            </Picker> */}
+            
+            {/* <Picker selectedValue={'java'} style={{height: 50, width: 350,borderWidth:2,borderColor:"red"}}>
+              <Picker.Item label="Select Study Level" value="java" />
+              <Picker.Item label="JavaScript" value="js" />
+            </Picker>
+
+            <Picker selectedValue={'java'} style={{height: 100, width: 350}}>
+              <Picker.Item label="Program Name(Degree Name)" value="java" />
+              <Picker.Item label="JavaScript" value="js" />
+            </Picker>
+            
+            <Picker selectedValue={'java'} style={{height: 100, width: 350}}>
+              <Picker.Item label="Select City" value="java" />
+              <Picker.Item label="JavaScript" value="js" />
+            </Picker>
+
+            <Picker selectedValue={'java'} style={{height: 100, width: 350}}>
+              <Picker.Item label="Select Ranking" value="java" />
+              <Picker.Item label="JavaScript" value="js" />
+            </Picker> */}
+
+          </View>
+        {/* <Picker selectedValue={'java'} style={{height: 100, width: 100}}>
+          <Picker.Item label="Java" value="java" />
+          <Picker.Item label="JavaScript" value="js" />
+        </Picker> */}
         </View>
 
         <View style={styles.inputFieldsWrapper}>
