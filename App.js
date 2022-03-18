@@ -7,8 +7,9 @@ import IntroScreen2 from './scr/Screens/introScreen/IntroScreen2'
 import IntroScreen3 from './scr/Screens/introScreen/IntroScreen3'
 import AdvanceFilter from './scr/Screens/homeScreen/AdvanceFilter'
 import Universities from './scr/Screens/homeScreen/Universities'
-
+import SingleUniversity from './scr/Screens/homeScreen/SingleUniversity'
 import Home from './scr/Screens/homeScreen/Home'
+
 export default class App extends Component {
   render() {
     return (
@@ -18,7 +19,9 @@ export default class App extends Component {
         // <IntroScreen3 />
         // <AdvanceFilter />
         // <Universities />
-        <Home/>
+        // <Home/>
+        <SingleUniversity />
+        
     )
   }
 }

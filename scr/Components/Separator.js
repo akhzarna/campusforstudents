@@ -12,8 +12,8 @@ const styles = StyleSheet.create({
     itemSeparator:{
         flex: 1,
         height: 1,
-        backgroundColor: '#444',
+        backgroundColor: 'lightgray',
         width:"85%",
-        marginLeft:"15%",
+        marginLeft:"7%",
     }
 })
