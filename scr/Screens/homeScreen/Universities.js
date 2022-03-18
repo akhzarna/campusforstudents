@@ -1,8 +1,7 @@
 import { Text, View,SafeAreaView,Image,FlatList,TouchableOpacity } from 'react-native'
 import React, { Component } from 'react'
 import styles from './UniversitiesStyle';
-
-const Separator = () => <View style={styles.itemSeparator} />;
+import Separator from '../../Components/Separator'
 
 export default class Universities extends Component {
     state = {
@@ -127,33 +126,7 @@ export default class Universities extends Component {
             </View>
             )}
             ItemSeparatorComponent={() => <Separator />}
-        /> 
-
-           {/* <View key={item.key} style={styles.singleUniversity}>
-               <View style={styles.rankingTextWrapper}>
-                   <Text style={styles.rankingText}>Ranking 1</Text>
-                </View>
-
-                <View style={{flex:0.85,flexDirection:"row"}}>
-                    <View style={styles.imageWrapper}>
-                        <Image
-                            style={{height:"90%",width:"90%"}}
-                            source = {require('../../Assets/images/COMSATS.jpeg')}
-                            />
-                    </View>
-                    <View style={styles.universityDetailWrapper}>
-                        <Text style={styles.universityDetailText}>University of Punjab</Text>
-                        <Text style={styles.universityDetailText}>Fee : 20000</Text>
-                        <Text style={styles.universityDetailText}>Admission : Open</Text>
-                        
-                        <View style={styles.locAndPhoneWrapper}>
-                        <Text style={styles.universityDetailText}>Location : Lahore</Text>
-                        <Text style={styles.phone}>Phon</Text>
-                        </View>
-                    </View>
-                   </View>
-            </View> */}
-           
+        />    
        </View>
       </SafeAreaView>
     )
