@@ -7,8 +7,8 @@ import CityModal from './CityModal';
 
 export default class Home extends Component {
   state = { level: "Becholars" , Degree:"Chemical Engineering", City:"Lahore",  show:false
+};
 
-  };
 
 
   render() {
@@ -20,6 +20,7 @@ export default class Home extends Component {
 
           <View style={style.picker}>
             <Picker
+            mode={'dropdown'}
               selectedValue={this.state.level}
               onValueChange={(itemValue, itemIndex) =>
                 this.setState({ level: itemValue })
@@ -32,6 +33,7 @@ export default class Home extends Component {
 
           <View style={style.picker}>
             <Picker
+               mode={'dropdown'}
               selectedValue={this.state.Degree}
               onValueChange={(itemValue, itemIndex) =>
                 this.setState({ Degree: itemValue })
@@ -47,6 +49,7 @@ export default class Home extends Component {
           <View style={style.picker} >
             <Picker
               selectedValue={this.state.City}
+              mode={'dropdown'}
               onValueChange={(itemValue, itemIndex) =>
                 this.setState({ City: itemValue })
               }>
@@ -100,7 +103,7 @@ export default class Home extends Component {
           <Text style={style.footerElements}>Invite Friends</Text>
          </TouchableOpacity>
         </View>
-        <CityModal show ={this.state.show}/>
+        <CityModal show ={this.state.show} />
       </ScrollView>
 
 

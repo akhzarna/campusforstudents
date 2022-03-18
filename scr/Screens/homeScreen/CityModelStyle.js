@@ -24,23 +24,59 @@ export const style = StyleSheet.create({
     heading: {
         marginTop: 10,
         marginLeft: 10,
-        fontSize: 19
+        fontSize: 19,
+        fontSize:22
+        
     },
     currentCity: {
         marginLeft: 10,
+        marginVertical:2,
+
         color: "green"
+        ,fontSize:18
     },
     searchBar: {
         width: "90%",
         borderWidth: 2,
-        height:"40%",
+        height:"45%",
         marginHorizontal:5,
-        borderRadius: 20
+        borderRadius: 20,
+        marginBottom:5
     },
 
     popularCities:{
-        flex:0.22,
-      
+        flex:0.32,
+        justifyContent:"center",
+        borderBottomColor:"lightgrey",
+        borderBottomWidth:1
+    },
+    cityImg:{
+        width:100,
+        height:100
+     ,
+     backgroundColor:"lightgrey",
+        borderRadius:50,
+        borderWidth:20
+    },
+    cityNames:{
+    marginLeft:10,
+    marginTop:6,
+    color:"black",
+    fontSize:20,
 
+    }
+
+
+    ,cityNameContainer:{
+        flex:0.9,
+        alignItems:"center"
+    },
+    RecentCities:{
+        flex:0.20,
+    
+    },
+
+    allCities:{
+        flex:0.32,
     }
 })
