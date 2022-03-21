@@ -11,13 +11,12 @@ const styles = StyleSheet.create({
         flex: 0.6,
         justifyContent:"flex-start",
         alignItems:"center",
-        // backgroundColor:"green",
+
         height:"100%",
         width:"100%",
     },
     mainHeadingWrapper:{
         flex:0.07,
-        backgroundColor:"yellow",
         justifyContent:"center",
         alignItems:"center",
         height:"100%",
@@ -29,19 +28,26 @@ const styles = StyleSheet.create({
     },
     filters:{
         flex:0.93,
-        backgroundColor:"green",
-        justifyContent:"flex-start",
         alignItems:"center",
         height:"100%",
         width:"100%",
     },
     filter:{
         flex:0.9,
-        backgroundColor:"yellow",
+  
         height:"100%",
         width:"100%",
         alignItems:'center'
     },
+    picker:{
+        height:"12%",
+        borderWidth:1,
+        marginTop:20,
+        width:"85%",
+        flex:0.50,
+        justifyContent:'center'
+    },
+
 
 
 // sextion 2 Input fields 
@@ -82,7 +88,7 @@ const styles = StyleSheet.create({
     },
     applyFilterButton: {
         alignItems: "center",
-        backgroundColor: "green",
+        backgroundColor: "red",
         padding: 10,
         width:"50%",
         borderRadius:15

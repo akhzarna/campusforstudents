@@ -17,10 +17,10 @@ export default class App extends Component {
         // <IntroScreen1 />
         // <IntroScreen2 />
         // <IntroScreen3 />
-        // <AdvanceFilter />
+        <AdvanceFilter />
         // <Universities />
         // <Home/>
-        <SingleUniversity />
+        // <SingleUniversity />
         
     )
   }
