@@ -1,6 +1,4 @@
 import { StyleSheet } from 'react-native';
-import {Text, SafeAreaView, ScrollView, StatusBar } from 'react-native';
-
 
 const styles = StyleSheet.create({
     container: {
