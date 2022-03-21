@@ -43,30 +43,30 @@ export default class SingleUniversity extends Component {
   render() {
     return (
       <ScrollView style={styles.container}>
-
-         <View style={styles.pictureWrapper}>
+            {/* header image */}
+        <View style={styles.pictureWrapper}>
            <Image
              style={{height:"100%",width:"100%"}}
              source={require('../../Assets/images/uni1.jpg')}
            />
-         </View> 
+       </View> 
+            {/* University name heading after picture */}
+        <View style={styles.headerWrapper}>
+          <Text style={styles.headerText}>University of The Punjap</Text>
+        </View>
 
-          <View style={styles.headerWrapper}>
-              <Text style={styles.headerText}>University of the punjap</Text>
+          {/* University details like type,status, Ranking */}
+        <View style={styles.detailsWrapper}>
+          <View style={styles.detail}>
+            <Text style={styles.detailText1}>Type</Text>
+            <Text style={styles.detailText2}>University</Text>
+        </View>
+        <View style={styles.verticalSeperator}></View>
+          <View style={styles.detail}>
+            <Text style={styles.detailText1}>Status</Text>
+            <Text style={styles.detailText2}>Public</Text>
           </View>
-
-
-          <View style={styles.detailsWrapper}>
-            <View style={styles.detail}>
-              <Text style={styles.detailText1}>Type</Text>
-              <Text style={styles.detailText2}>University</Text>
-            </View>
-            <View style={styles.horizontalSeperator}></View>
-            <View style={styles.detail}>
-              <Text style={styles.detailText1}>Status</Text>
-              <Text style={styles.detailText2}>Public</Text>
-            </View>
-            <View style={styles.horizontalSeperator}></View>
+          <View style={styles.verticalSeperator}></View>
             <View style={styles.detail}>
               <Text style={styles.detailText1}>Ranking</Text>
               <Text style={styles.detailText2}>1</Text>
@@ -75,23 +75,25 @@ export default class SingleUniversity extends Component {
           
           <Seperator />
 
+             {/* University details like Location,fee, Admission */}
           <View style={styles.detailsWrapper}>
             <View style={styles.detail}>
               <Text style={styles.detailText1}>Location</Text>
               <Text style={styles.detailText2}>Lahore</Text>
             </View>
-            <View style={styles.horizontalSeperator}></View>
+            <View style={styles.verticalSeperator}></View>
             <View style={styles.detail}>
               <Text style={styles.detailText1}>Fee</Text>
               <Text style={styles.detailText2}>250,000</Text>
             </View>
-            <View style={styles.horizontalSeperator}></View>
+            <View style={styles.verticalSeperator}></View>
             <View style={styles.detail}>
               <Text style={styles.detailText1}>Admission</Text>
               <Text style={[styles.detailText2,styles.greenColor]}>Open</Text>
             </View>
           </View>
 
+            {/* university Address */}
           <View style={styles.addressWrapper}>
             <View style={styles.seperatorWrapper}>
               <Seperator />
@@ -102,6 +104,7 @@ export default class SingleUniversity extends Component {
             </View>
           </View>
 
+            {/* website link and map link */}
           <View style={styles.mapWrapper}>
             <View style={styles.seperatorWrapper}>
               <Seperator />
@@ -144,13 +147,14 @@ export default class SingleUniversity extends Component {
               <Seperator />
           </View>
 
+            {/* menu heading section*/}
           <View style={styles.menu}>
             <View style={styles.menuHeadingWrapper}>
                 <Text style={styles.headerText}>Menu</Text>
             </View>
 
            
-             
+                  {/* menu  section*/}
               <FlatList
                 nestedScrollEnabled={true}
                 data={this.state.menu}

@@ -2,6 +2,7 @@ import { Text, View, SafeAreaView, TextInput, TouchableWithoutFeedback } from 'r
 import React, { Component } from 'react'
 import { Picker } from '@react-native-picker/picker';
 import styles from './AdvanceFilterStyle'
+import constStyle from '../../Constants/ConstantStyle'
 
 export default class AdvanceFilter extends Component {
   state = {
@@ -105,7 +106,7 @@ export default class AdvanceFilter extends Component {
 
         <View style={styles.btnWrapper}>
           <TouchableWithoutFeedback>
-            <View style={styles.applyFilterButton}>
+            <View style={[styles.applyFilterButton,constStyle.buttonColor]}>
               <Text style={styles.btnText}>Apply Filter</Text>
             </View>
           </TouchableWithoutFeedback>

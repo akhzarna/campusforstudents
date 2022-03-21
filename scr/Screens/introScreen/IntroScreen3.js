@@ -1,6 +1,7 @@
 import { Text, View, SafeAreaView,Image,TouchableWithoutFeedback } from 'react-native'
 import React, { Component } from 'react'
 import styles from './style'
+import constStyle from '../../Constants/ConstantStyle'
 
 export default class IntroScreen1 extends Component {
   render() {
@@ -30,7 +31,7 @@ export default class IntroScreen1 extends Component {
 
         <View style={styles.skipButtonWrapper}>
         <TouchableWithoutFeedback>
-          <View style={styles.skipButton}>
+          <View style={[styles.skipButton,constStyle.buttonColor]}>
               <Text style={styles.btnText}>Skip</Text>
           </View>
         </TouchableWithoutFeedback>
