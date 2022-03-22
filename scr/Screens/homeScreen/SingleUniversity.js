@@ -10,32 +10,32 @@ export default class SingleUniversity extends Component {
         {
           id: "bd7acbea-c1b1-46c2-aed5-3ad53abb28ba",
           title: "Major",
-          imageUrl:require('../../Assets/images/intro1.jpg')
+          imageUrl:require('../../../assets/images/intro2.jpg')
         },
         {
           id: "3ac68afc-c605-48d3-a4f8-fbd91aa97f63",
           title: "Scholarships",
-          imageUrl:require('../../Assets/images/intro2.jpg')
+          imageUrl:require('../../../assets/images/intro2.jpg')
         },
         {
           id: "58694a0f-3da1-471f-bd96-145571e29d72",
           title: "Merit Calculator",
-          imageUrl:require('../../Assets/images/intro3.jpg')
+          imageUrl:require('../../../assets/images/intro3.jpg')
         },
         {
           id: "58694a0f-3da1-471f-bd96-145571e29d72",
           title: "Closing Merit",
-          imageUrl:require('../../Assets/images/intro1.jpg')
+          imageUrl:require('../../../assets/images/intro2.jpg')
         },
         {
           id: "58694a0f-3da1-471f-bd96-145571e29d72",
           title: "Review",
-          imageUrl:require('../../Assets/images/intro2.jpg')
+          imageUrl:require('../../../assets/images/intro2.jpg')
         },
         {
           id: "58694a0f-3da1-471f-bd96-145571e29d72",
           title: "Status",
-          imageUrl:require('../../Assets/images/intro3.jpg')
+          imageUrl:require('../../../assets/images/intro3.jpg')
         },
       ],
     }
@@ -47,7 +47,7 @@ export default class SingleUniversity extends Component {
         <View style={styles.pictureWrapper}>
            <Image
              style={{height:"100%",width:"100%"}}
-             source={require('../../Assets/images/uni1.jpg')}
+             source={require('../../../assets/images/uni1.jpg')}
            />
        </View> 
             {/* University name heading after picture */}
@@ -113,7 +113,7 @@ export default class SingleUniversity extends Component {
               <View style={styles.linkIconWrapper}>
               <Image
                 style={{height:"100%",width:"100%",resizeMode: "contain"}}
-                source={require('../../Assets/images/map.png')}
+                source={require('../../../assets/images/map.png')}
            />
               </View>
               <View style={styles.linkTextWrapper}>
@@ -132,7 +132,7 @@ export default class SingleUniversity extends Component {
               <View style={styles.linkIconWrapper}>
               <Image
                 style={{height:"100%",width:"100%",resizeMode: "center"}}
-                source={require('../../Assets/images/website.png')}
+                source={require('../../../assets/images/website.png')}
               />
               </View>
               <View style={styles.linkTextWrapper}>

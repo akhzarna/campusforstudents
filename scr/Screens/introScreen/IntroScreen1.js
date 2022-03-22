@@ -1,32 +1,34 @@
 import { Text, View, SafeAreaView,Image,TouchableWithoutFeedback } from 'react-native'
 import React, { Component } from 'react'
-import styles from './style'
-import constStyle from '../../Constants/ConstantStyle';
+ import styles from './style' 
+import constStyle from '../../Constants/ConstantStyle'
+
 
 export default class IntroScreen1 extends Component {
   render() {
     return (
       <SafeAreaView style={styles.container}>
-        
+        <Image
+          style={styles.blobDesign}
+          source={require('../../../assets/images/b1.png')}
+        />
+        <Image
+          style={styles.blobDesigntwo}
+          source={require('../../../assets/images/b2.png')}
+        />
         <View style={styles.imageWrapper}>
         <Image
           style={styles.introImage}
-          source={require('../../Assets/images/intro1.jpg')}
+          source={require('../../../assets/images/introo1.png')}
         />
         </View>
 
         <View style={styles.textIntroWrapper}>
           <Text style={styles.introText}>
-            Lorem Ipsum is simply dummy text of the printing and typesetting 
-            industry. Lorem Ipsum has been the industry's standard dummy text 
-            ever since the 1500s, when an unknown printer took a galley of type 
-            and scrambled it to make a type specimen book. It has survived not 
-            only five centuries, but also the leap into electronic typesetting, 
-            remaining essentially unchanged. It was popularised in the 1960s with 
-            the release of Letraset sheets containing Lorem Ipsum passages, and more 
-            recently with desktop publishing software like Aldus PageMaker including v
-            ersions of Lorem Ipsum.
+           PAKISTAN'S LARGEST 
           </Text>
+           <Text style={styles.detailText}> EDUCATIONAL</Text> 
+            <Text style={styles.detailTextSecond}>DATABASE</Text> 
         </View>
 
         <View style={styles.skipButtonWrapper}>
@@ -50,3 +52,5 @@ export default class IntroScreen1 extends Component {
     )
   }
 }
+
+

@@ -10,7 +10,7 @@ export default class IntroScreen extends Component {
         <View style={styles.logoWrapper}>
         <Image
           style={styles.logo}
-          source={require('../../Assets/images/COMSATS.jpeg')}
+          source={require('../../../assets/images/COMSATS.jpeg')}
         />
         </View>
 

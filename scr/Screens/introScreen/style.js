@@ -1,11 +1,16 @@
-import {StyleSheet} from 'react-native';
+import {StyleSheet, Dimensions} from 'react-native';
+import { ThemeColor } from '../../Constants/ThemeColor';
+const { height, width} = Dimensions.get('window')
+
 const styles = StyleSheet.create({
     // for 1st screen 
     container: {
-        flex: 1,
+        height:height,
+        width:width,
         justifyContent:"center",
         alignItems:"center",
-        // backgroundColor:"red"
+        backgroundColor:'#fff',
+        position:'relative'
     },
     logoWrapper:{
         flex:0.5, 
@@ -29,73 +34,120 @@ const styles = StyleSheet.create({
 
 
     // introscreen 1
-
+   //design Purpose 
+   blobDesign:{
+       position:'absolute',
+       top:'-15%',
+       right:'-20%',
+       opacity:0.35
+   },
+   blobDesigntwo:{
+       position:'absolute',
+       bottom:'-10%',
+       left:'-10%',
+       opacity:0.45
+   },
     //section 1 
     // image section
     imageWrapper:{
-        flex:0.3,
-        justifyContent:"center",
-        alignItems:"center",
-        height:"100%",
-        width:"100%"
+       
+        marginVertical:10,
+        height:height*0.40,
+        width:width*0.85,
+        justifyContent:'flex-end'
     },
     introImage:{
-        height:"90%",
+        height:"75%",
         width:"90%",
-        borderRadius:10
+        alignSelf:'center'
+      
     },
 
     // section 2 
     // text section
 
     textIntroWrapper:{
-        flex:0.5,
-        justifyContent:"flex-start",
-        alignItems:"center",
-        height:"100%",
-        width:"100%"
+        
+        marginVertical:15,
+        alignItems:'center',
+        justifyContent:'center',
+        width:width*0.70,
+        height:height*0.20,
+        
     },
     introText:{
-        padding:20,
-        fontSize:14,
-        textAlign:'justify',
-        fontWeight:"500"
+        fontFamily:'Bungee-Regular',
+        fontSize:22,
+        color:ThemeColor.primary,
+        textShadowColor:ThemeColor.lightText,
+        textShadowOffset:{width: 0.5, height: 0.5},
+        textShadowRadius:1,
+        marginVertical:-10,
+    },
+    detailText:{
+        fontFamily:'Bungee-Regular',
+        textAlign:'center',
+        fontSize:22,
+        color:ThemeColor.primary,
+        textShadowColor:ThemeColor.lightText,
+        textShadowOffset:{width: 0.5, height: 0.5},
+        textShadowRadius:1,
+        marginVertical:-10,
+    },
+    detailTextSecond:{
+        fontFamily:'Bungee-Regular',
+        textAlign:'center',
+        fontSize:26,
+        color:'#FBB03B',
+        textShadowColor:ThemeColor.lightText,
+        textShadowOffset:{width: 0.5, height: 0.5},
+        textShadowRadius:1,
+        marginVertical:-10,
     },
     // section 3
     // button section
     skipButtonWrapper:{
-        flex:0.1,
-        justifyContent:"center",
+       width:width*0.50,
+       height:height*.15,
+     
+        justifyContent:'flex-end',
         alignItems:"center",
-        height:"100%",
-        width:"100%",
+       
+        
+        
 
     },
     skipButton: {
         alignItems: "center",
-        backgroundColor: "green",
-        padding: 10,
-        width:"50%",
-        borderRadius:15
+        backgroundColor:ThemeColor.dark,
+        justifyContent:'center',
+        width:"100%",
+        height:50,
+        borderRadius:30
       },
       btnText:{
           color:"white",
           fontSize:18,
-          fontWeight:"bold"
+          fontFamily:'Poppins-SemiBold',
+          marginTop:5,
       },
+      introImageThird:{
+        height:"100%",
+        width:"70%",
+        alignSelf:'center'
+      }
 
 
       // section 4
       // navigation
-    navigationIntroWrapper:{
-        flex:0.1,
+  /*  navigationIntroWrapper:{
+       
         flexDirection:"row",
         justifyContent:"center",
         alignItems:"center",
-        height:"100%",
-        width:"100%"
+        
     },
-    navCircle:{
+     navCircle:{
         height:10,
         width:10,
         borderWidth: 1,
@@ -115,7 +167,7 @@ const styles = StyleSheet.create({
         borderRadius:20,
         justifyContent:"center",
         alignItems:"center"
-    },
+    }, */
 });
 
 export default styles;

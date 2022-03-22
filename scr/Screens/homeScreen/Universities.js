@@ -35,6 +35,15 @@ export default class Universities extends Component {
             },
             {
               id: "58694a0f-3da1-471f-bd96-145571e29d72o",
+          
+              title: "Admission",
+            },
+            {
+              id: "58694a0f-3da1-471f-bd96-145571e29d74",
+              title: "Status",
+            },
+            {
+              id: "58694a0f-3da1-471f-bd96-145571e29d76",
               title: "Location",
             },
           ],
@@ -112,7 +121,7 @@ export default class Universities extends Component {
                     <View style={styles.imageWrapper}>
                         <Image
                             style={{height:"90%",width:"90%"}}
-                            source = {require('../../Assets/images/COMSATS.jpeg')}
+                            source = {require('../../../assets/images/COMSATS.jpeg')}
                             />
                     </View>
                     <View style={styles.universityDetailWrapper}>

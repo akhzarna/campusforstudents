@@ -8,19 +8,22 @@ import IntroScreen3 from './scr/Screens/introScreen/IntroScreen3'
 import AdvanceFilter from './scr/Screens/homeScreen/AdvanceFilter'
 import Universities from './scr/Screens/homeScreen/Universities'
 import SingleUniversity from './scr/Screens/homeScreen/SingleUniversity'
-import Home from './scr/Screens/homeScreen/Home'
+// import Home from './scr/Screens/homeScreen/Home'
 import TempScreen from './scr/Screens/introScreen/TempScreen'
+import Home from './scr/Screens/homeScreen/Home' 
+import FontCheck from './scr/Screens/homeScreen/FontCheck'
 
 export default class App extends Component {
   render() {
     return (
       // <IntroScreen />
-        <IntroScreen1 />
+        //  <IntroScreen1 />
         // <IntroScreen2 />
         // <IntroScreen3 />
         // <AdvanceFilter />
         // <Universities />
         // <TempScreen/>
+        <Home/>
         // <SingleUniversity />
         
     )

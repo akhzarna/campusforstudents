@@ -8,8 +8,9 @@ export const style = StyleSheet.create({
     },
     subcontainer: {
         flex: 1,
-        height: 750,
+        height:1500
     },
+
     navbar: {
         flex: 1,
         justifyContent: "center",
