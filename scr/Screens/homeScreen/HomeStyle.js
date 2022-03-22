@@ -21,13 +21,15 @@ export const style = StyleSheet.create({
         margin: 25,
         borderRadius: 20
     },
-    picker: {
-        borderWidth: 1,
-        marginHorizontal: 25,
-        marginVertical: 5,
-        width: "80%",
-        height: 50
+    picker:{
+        height:"12%",
+        borderWidth:1,
+        marginTop:5,
+        width:"85%",
+        flex:0.50,
+        justifyContent:'center'
     },
+
     searchBtn: {
         backgroundColor: "red",
         paddingHorizontal: 20,
@@ -38,13 +40,14 @@ export const style = StyleSheet.create({
         marginTop: 5
     },
     recommendation:{
-        flex:0.25,
+        flex:0.30,
         borderBottomWidth:1,},
     recommendationContainer:{
         flex:0.10,
         flexDirection:"row"
         ,justifyContent:"space-between",
-        marginHorizontal:"10%"
+        marginHorizontal:"10%",
+        marginVertical:"5%"
     },
 
     campusImg:{
@@ -57,12 +60,10 @@ export const style = StyleSheet.create({
 
     footer:{
         flex:0.20,
-        justifyContent:"space-evenly",
-     
     },
     footerElements:{
         marginHorizontal:"10%",
-        marginVertical:"1%"
+        marginVertical:"2%"
     }
  
 })

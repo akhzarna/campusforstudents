@@ -52,11 +52,10 @@ export const style = StyleSheet.create({
     },
     cityImg:{
         width:100,
-        height:100
-     ,
+        height:100,
      backgroundColor:"lightgrey",
         borderRadius:50,
-        borderWidth:20
+     
     },
     cityNames:{
     marginLeft:10,

@@ -2,36 +2,39 @@ import { Text, View,SafeAreaView,Image,FlatList,TouchableOpacity } from 'react-n
 import React, { Component } from 'react'
 import styles from './UniversitiesStyle';
 import Separator from '../../Components/Separator'
+import FeeModal from '../filterModalScreens/FeeModal';
 
 export default class Universities extends Component {
     state = {
+      show: false
+      ,
         filters : [
             {
-              id: "bd7acbea-c1b1-46c2-aed5-3ad53abb28ba",
+              id: "bd7acbea-c1b1-46c2-aed5-3ad53abb28baa",
               title: "Fee",
             },
             {
-              id: "3ac68afc-c605-48d3-a4f8-fbd91aa97f63",
+              id: "3ac68afc-c605-48d3-a4f8-fbd91aa97f63f",
               title: "Ranking",
             },
             {
-              id: "58694a0f-3da1-471f-bd96-145571e29d72",
+              id: "58694a0f-3da1-471f-bd96-145571e29d72g",
               title: "Merit",
             },
             {
-              id: "58694a0f-3da1-471f-bd96-145571e29d72",
+              id: "58694a0f-3da1-471f-bd96-145571e29d72h",
               title: "Type",
             },
             {
-              id: "58694a0f-3da1-471f-bd96-145571e29d72",
+              id: "58694a0f-3da1-471f-bd96-145571e29d72k",
               title: "Admission",
             },
             {
-              id: "58694a0f-3da1-471f-bd96-145571e29d72",
+              id: "58694a0f-3da1-471f-bd96-145571e29d726",
               title: "Status",
             },
             {
-              id: "58694a0f-3da1-471f-bd96-145571e29d72",
+              id: "58694a0f-3da1-471f-bd96-145571e29d72o",
               title: "Location",
             },
           ],
@@ -88,7 +91,7 @@ export default class Universities extends Component {
             data={this.state.filters}
             renderItem={({item})=>(
                 <View key={item.key} style={styles.singleFilter}> 
-                <TouchableOpacity
+                <TouchableOpacity onPress={()=>{this.setState({show:true})}}
                     style={styles.filter}>
                     <Text>{item.title}</Text>
                 </TouchableOpacity>
@@ -119,7 +122,7 @@ export default class Universities extends Component {
                         
                         <View style={styles.locAndPhoneWrapper}>
                         <Text style={styles.universityDetailText}>Location : {item.location}</Text>
-                        <Text style={styles.phone}>Phon</Text>
+                        <Text style={styles.phone}>Phone</Text>
                         </View>
                     </View>
                    </View>
@@ -128,6 +131,7 @@ export default class Universities extends Component {
             ItemSeparatorComponent={() => <Separator />}
         />    
        </View>
+       <FeeModal />
       </SafeAreaView>
     )
   }
