@@ -4,66 +4,103 @@ import { StyleSheet } from "react-native"
 export const style = StyleSheet.create({
     container: {
         flex: 1,
+
+    },
+    subcontainer: {
+        flex: 1,
+        height: 750,
+    },
+    navbar: {
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+        width: "100%",
+        height: "100%",
+
     },
 
     header: {
-        flex: .55,
+        flex: .70,
         alignItems: "center"
     },
     heading: {
         textAlign: "center",
         marginTop: 10,
-        fontSize: 20
+        fontSize: 20,
+        color: "white",
+        fontWeight: "bold"
     },
     searchBar: {
         width: "90%",
         borderWidth: 2,
         margin: 25,
-        borderRadius: 20
-    },
-    picker:{
-        height:"12%",
-        borderWidth:1,
-        marginTop:5,
-        width:"85%",
-        flex:0.50,
-        justifyContent:'center'
-    },
+        borderRadius: 20,
+        borderColor: "white",
+        textAlign: "center",
 
-    searchBtn: {
-        backgroundColor: "red",
-        paddingHorizontal: 20,
+    },
+    picker: {
+        borderRadius: 25,
+        borderWidth: 1.5,
+        marginVertical: 5,
+        width: "85%",
+        flex: 0.30,
+        justifyContent: 'center'
+    },
+    citypicker:{
+      marginTop:-10
+    },
+    inputFieldWrapper: {
+        width: "100%",
+        flex: 0.50
+        , justifyContent: "space-evenly",
+        alignItems: "center",
+        flexDirection: "row",
+
+    },
+    inputStyle: {
+        borderWidth: 1.5,
+        width: "25%",
+        borderRadius: 20,
+        fontSize:18,
+     
+    },
+    searchBtn: { 
+        backgroundColor:"red",
+        width:"30%",
+        paddingHorizontal: 10,
         paddingVertical: 10,
         color: "white",
         textAlign: "center",
         borderRadius: 10,
         marginTop: 5
     },
-    recommendation:{
-        flex:0.30,
-        borderBottomWidth:1,},
-    recommendationContainer:{
-        flex:0.10,
-        flexDirection:"row"
-        ,justifyContent:"space-between",
-        marginHorizontal:"10%",
-        marginVertical:"5%"
+    recommendation: {
+        flex: 0.30,
+        width: "100%",
+        marginTop: 10
+    },
+    recommendationContainer: {
+        flex: 0.10,
+        flexDirection: "row"
+        , justifyContent: "space-between",
+        marginHorizontal: "10%",
+        marginVertical: "5%",
     },
 
-    campusImg:{
-        width:"100%"
-        ,height:100
+    campusImg: {
+        width: "100%"
+        , height: 110,
+        borderRadius: 50
     },
-        recommendationHeading:{
-        marginHorizontal:"10%"
+    recommendationHeading: {
+        backgroundColor: "lightgrey",
+        width: "100%",
+        paddingLeft:15,
+        height: "15%",
+        fontSize: 20,
+        fontWeight:"bold"
     },
 
-    footer:{
-        flex:0.20,
-    },
-    footerElements:{
-        marginHorizontal:"10%",
-        marginVertical:"2%"
-    }
- 
+
 })
