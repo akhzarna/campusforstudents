@@ -72,7 +72,9 @@ export default class Home extends Component {
               <Picker.Item label="Peshawar" value="Peshawar" />
             </Picker>
           </View>
-          <TouchableOpacity style={[style.searchBtn]}  onPress={()=>this.setState({ show: true })}><Text style={{ color: "white", textAlign: 'center', fontWeight:"bold" }} >Apply</Text></TouchableOpacity>
+          <TouchableOpacity style={[style.searchBtn]}onPress={() =>
+        this.props.navigation.navigate('AdvanceFilter')
+      }><Text style={{ color: "white", textAlign: 'center', fontWeight:"bold" }} >Apply</Text></TouchableOpacity>
       
         </View>
 

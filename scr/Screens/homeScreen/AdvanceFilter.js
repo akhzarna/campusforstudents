@@ -1,4 +1,4 @@
-import { Text, View, SafeAreaView, TextInput, TouchableWithoutFeedback, ScrollView } from 'react-native'
+import { Text, View, SafeAreaView, TextInput, TouchableOpacity, ScrollView } from 'react-native'
 import React, { Component } from 'react'
 import { Picker } from '@react-native-picker/picker';
 import styles from './AdvanceFilterStyle'
@@ -107,11 +107,13 @@ export default class AdvanceFilter extends Component {
         </View>
 
         <View style={styles.btnWrapper}>
-          <TouchableWithoutFeedback>
+          <TouchableOpacity onPress={() =>
+        this.props.navigation.navigate('Universities')
+      }>
             <View style={[styles.applyFilterButton,constStyle.buttonColor]}>
               <Text style={styles.btnText}>Apply Filter</Text>
             </View>
-          </TouchableWithoutFeedback>
+          </TouchableOpacity>
         </View>
       </SafeAreaView>
  

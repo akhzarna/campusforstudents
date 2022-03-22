@@ -12,6 +12,7 @@ import SingleUniversity from './scr/Screens/homeScreen/SingleUniversity'
 import TempScreen from './scr/Screens/introScreen/TempScreen'
 import Home from './scr/Screens/homeScreen/Home' 
 import FontCheck from './scr/Screens/homeScreen/FontCheck'
+import Route from './scr/Navigation/Route'
 
 export default class App extends Component {
   render() {
@@ -23,8 +24,9 @@ export default class App extends Component {
         // <AdvanceFilter />
         // <Universities />
         // <TempScreen/>
-        <Home/>
+        // <Home/>
         // <SingleUniversity />
+        <Route />
         
     )
   }

@@ -116,31 +116,32 @@ export default class Universities extends Component {
                <View style={styles.rankingTextWrapper}>
                    <Text style={styles.rankingText}>Ranking {item.ranking}</Text>
                 </View>
-
-                <View style={{flex:0.85,flexDirection:"row"}}>
-                    <View style={styles.imageWrapper}>
-                        <Image
-                            style={{height:"90%",width:"90%"}}
-                            source = {require('../../../assets/images/COMSATS.jpeg')}
-                            />
-                    </View>
-                    <View style={styles.universityDetailWrapper}>
-                        <Text style={styles.universityDetailText}>{item.name}</Text>
-                        <Text style={styles.universityDetailText}>Fee : {item.fee}</Text>
-                        <Text style={styles.universityDetailText}>Admission : {item.admission}</Text>
-                        
-                        <View style={styles.locAndPhoneWrapper}>
-                        <Text style={styles.universityDetailText}>Location : {item.location}</Text>
-                        <Text style={styles.phone}>Phone</Text>
-                        </View>
-                    </View>
-                   </View>
+                <TouchableOpacity onPress={() =>this.props.navigation.navigate('University')}>
+                    <View style={{flex:0.85,flexDirection:"row"}}>
+                      <View style={styles.imageWrapper}>
+                          <Image
+                              style={{height:"90%",width:"90%"}}
+                              source = {require('../../../assets/images/COMSATS.jpeg')}
+                              />
+                      </View>
+                      <View style={styles.universityDetailWrapper}>
+                          <Text style={styles.universityDetailText}>{item.name}</Text>
+                          <Text style={styles.universityDetailText}>Fee : {item.fee}</Text>
+                          <Text style={styles.universityDetailText}>Admission : {item.admission}</Text>
+                          
+                          <View style={styles.locAndPhoneWrapper}>
+                          <Text style={styles.universityDetailText}>Location : {item.location}</Text>
+                          <Text style={styles.phone}>Phone</Text>
+                          </View>
+                      </View>
+                  </View>
+                </TouchableOpacity>
             </View>
             )}
             ItemSeparatorComponent={() => <Separator />}
         />    
        </View>
-       <FeeModal />
+       {/* <FeeModal /> */}
       </SafeAreaView>
     )
   }
