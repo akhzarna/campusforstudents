@@ -1,6 +1,4 @@
 import { StyleSheet } from 'react-native';
-import {Text, SafeAreaView, ScrollView, StatusBar } from 'react-native';
-
 
 const styles = StyleSheet.create({
     container: {
@@ -57,7 +55,7 @@ const styles = StyleSheet.create({
     greenColor:{
         color:"green"
     },
-    horizontalSeperator:{
+    verticalSeperator:{
         width:2,
         height:"60%",
         backgroundColor:"lightgray"
