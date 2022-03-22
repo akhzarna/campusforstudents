@@ -1,6 +1,4 @@
 import { StyleSheet } from 'react-native';
-import {Text, SafeAreaView, ScrollView, StatusBar } from 'react-native';
-
 
 const styles = StyleSheet.create({
     container: {
@@ -57,7 +55,7 @@ const styles = StyleSheet.create({
     greenColor:{
         color:"green"
     },
-    horizontalSeperator:{
+    verticalSeperator:{
         width:2,
         height:"60%",
         backgroundColor:"lightgray"
@@ -114,7 +112,7 @@ const styles = StyleSheet.create({
         borderRadius:20,
         justifyContent:"center",
         alignItems:"center",
-        backgroundColor:"red",
+        // backgroundColor:"red",
         marginLeft:15
     },
     linkTextWrapper:{
@@ -142,7 +140,8 @@ const styles = StyleSheet.create({
 
 
     menu:{
-        height:283
+        height:283,
+        // backgroundColor:"yellow"
     },
     menuHeadingWrapper:{
         display:"flex",
@@ -156,25 +155,17 @@ const styles = StyleSheet.create({
         fontSize:16,
         fontWeight:"600"
     },
-    menuIcons:{
-        height:110,
-        flexDirection:"row",
-        justifyContent:"space-evenly"
-    },
     menuIcon:{
-        flex:0.2,
-        height:"100%",
-        width:"100%",
-        backgroundColor:"lightgray",
+        flex:1,
+        marginTop:3,
+        height:100,
         alignItems:"center",
         justifyContent:"center",
-        // borderRadius:50
     },
     menuIconWrapper:{
-        flex:0.8,
+        flex:0.7,
         height:"100%",
         width:"100%",
-        backgroundColor:"blue",
         alignItems:"center",
         justifyContent:"center",
     },
@@ -182,7 +173,7 @@ const styles = StyleSheet.create({
         flex:0.2,
         height:"100%",
         width:"100%",
-        backgroundColor:"red",
+        marginTop:5,
         alignItems:"center",
         justifyContent:"center",
     }

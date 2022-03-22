@@ -14,15 +14,14 @@ import FontCheck from './scr/Screens/homeScreen/FontCheck'
 export default class App extends Component {
   render() {
     return (
-        /* <IntroScreen /> */ 
-         /* <IntroScreen1 /> */
-        /*  <IntroScreen2 /> */
-         <IntroScreen3 />
-       /*  <AdvanceFilter /> */
-       /*  <FontCheck/> */
-        /*  <Universities /> */
-        /*  <Home/> */
-         /* <SingleUniversity /> */
+      // <IntroScreen />
+        // <IntroScreen1 />
+        // <IntroScreen2 />
+        // <IntroScreen3 />
+        // <AdvanceFilter />
+        // <Universities />
+        // <Home/>
+        <SingleUniversity />
         
     )
   }

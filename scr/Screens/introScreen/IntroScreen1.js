@@ -33,7 +33,7 @@ export default class IntroScreen1 extends Component {
 
         <View style={styles.skipButtonWrapper}>
         <TouchableWithoutFeedback>
-          <View style={styles.skipButton}>
+          <View style={[styles.skipButton,constStyle.buttonColor]}>
               <Text style={styles.btnText}>Skip</Text>
           </View>
         </TouchableWithoutFeedback>

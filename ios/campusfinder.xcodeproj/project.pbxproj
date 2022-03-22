@@ -192,7 +192,6 @@
 				52E8487855E1308B1E4E606F /* Pods-campusfinder-campusfinderTests.debug.xcconfig */,
 				39C867EE282EC31283DC4F4D /* Pods-campusfinder-campusfinderTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -586,6 +585,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = LWF2R6U2AY;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = campusfinder/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -612,6 +612,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = LWF2R6U2AY;
 				INFOPLIST_FILE = campusfinder/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
