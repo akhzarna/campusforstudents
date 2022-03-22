@@ -17,11 +17,11 @@ export default class CityModal extends Component {
             { key: 9, name: 'Rawalpindi', },
         ],
         popupalarCities: [
-            { key: 0, name: 'Lahore', url: require("../../Assets/images/Lahore.png")},
-            { key: 1, name: 'Karachi', url: require("../../Assets/images/Karachi.png") },
-            { key: 2, name: 'Islamabad',url: require("../../Assets/images/Islamabad.png") },
-            { key: 3, name: 'Peshawar', url: require("../../Assets/images/peshawar.png")},
-            { key: 4, name: 'Quetta', url: require("../../Assets/images/Lahore.png")},
+            { key: 0, name: 'Lahore', url: require("../../../assets/images/Lahore.png")},
+            { key: 1, name: 'Karachi', url: require("../../../assets/images/Karachi.png") },
+            { key: 2, name: 'Islamabad',url: require("../../../assets/images/Islamabad.png") },
+            { key: 3, name: 'Peshawar', url: require("../../../assets/images/peshawar.png")},
+            { key: 4, name: 'Quetta', url: require("../../../assets/images/Lahore.png")},
         ],
         recentCities: [
             { key: 0, name: 'Lahore', },

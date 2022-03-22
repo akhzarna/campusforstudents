@@ -25,6 +25,7 @@ const styles = StyleSheet.create({
     mainHeadingText:{
         fontSize:24,
         fontWeight:"700",
+       
     },
     filters:{
         flex:0.93,

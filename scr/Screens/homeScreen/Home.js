@@ -68,7 +68,7 @@ export default class Home extends Component {
 
           <View style={style.recommendationContainer}>
             <View >
-              <Image style={style.campusImg} source={require('../../Assets/images/COMSATS.jpeg')} />
+              <Image style={style.campusImg} source={require('../../../assets/images/COMSATS.jpeg')} />
               <View >
                 <Text>Name:Comsats</Text>
                 <Text>Admissions:Open</Text>
@@ -77,7 +77,7 @@ export default class Home extends Component {
             </View>
 
             <View>
-              <Image style={style.campusImg} source={require('../../Assets/images/COMSATS.jpeg')} />
+              <Image style={style.campusImg} source={require('../../../assets/images/COMSATS.jpeg')} />
               <View >
                 <Text>Name:Comsats</Text>
                 <Text>Admissions:Open</Text>

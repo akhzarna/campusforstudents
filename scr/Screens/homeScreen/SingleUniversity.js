@@ -13,7 +13,7 @@ export default class SingleUniversity extends Component {
          <View style={styles.pictureWrapper}>
            <Image
              style={{height:"100%",width:"100%"}}
-             source={require('../../Assets/images/uni1.jpg')}
+             source={require('../../../assets/images/uni1.jpg')}
            />
          </View> 
 
