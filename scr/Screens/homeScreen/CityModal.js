@@ -1,6 +1,9 @@
 import { Text, View, Modal, Button, TextInput, FlatList , ScrollView, Image, TouchableOpacity} from 'react-native'
 import React, { Component } from 'react'
 import { style } from './CityModelStyle';
+import { StackActions} from "@react-navigation/native"
+const popAction =StackActions.pop();
+
 
 export default class CityModal extends Component {
     state = {
@@ -27,7 +30,7 @@ export default class CityModal extends Component {
             { key: 0, name: 'Lahore', },
             { key: 1, name: 'Karachi', },
         ],
-        showClose:false
+    
         
     }
  
@@ -39,7 +42,14 @@ export default class CityModal extends Component {
                     <View style={style.modelContainer}>
 
                         <View style={style.header}>
+
+                            <View style={style.title}>
                             <Text  style={style.heading} >Search City</Text>
+                            <TouchableOpacity onPress={()=>this.props.navigation.dispatch(popAction)} 
+                             style={style.cancelImgStyle}>
+                            <Image style={style.cancelImg} source={require("../../../assets/images/cancel.png")}/>
+                            </TouchableOpacity>
+                            </View>
                             <Text style={style.currentCity}>Current:Lahore</Text>
                             <TextInput  style={style.searchBar} placeholder='Find Best Match For You' />
                         </View>

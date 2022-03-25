@@ -100,8 +100,7 @@ export default class Universities extends Component {
             data={this.state.filters}
             renderItem={({item})=>(
                 <View key={item.key} style={styles.singleFilter}> 
-                <TouchableOpacity onPress={()=>{this.setState({show:true})}}
-                    style={styles.filter}>
+                <TouchableOpacity style={styles.filter} onPress={()=>{this.setState({show:true})}}>
                     <Text>{item.title}</Text>
                 </TouchableOpacity>
                 </View>
@@ -141,7 +140,7 @@ export default class Universities extends Component {
             ItemSeparatorComponent={() => <Separator />}
         />    
        </View>
-       {/* <FeeModal /> */}
+       <FeeModal show={this.state.show} navigation={this.props.navigation} />
       </SafeAreaView>
     )
   }

@@ -2,13 +2,21 @@ import { StyleSheet } from "react-native"
 
 
 export const style = StyleSheet.create({
-
+    
 
     container: {
         backgroundColor: "#000000aa",
         flex: 1,
         borderWidth: 2
     },
+    title:{
+        flex:1, flexDirection:"row" , alignItems:"center" , justifyContent:"space-between"
+    },
+    cancelImg:{
+        width:"70%", height:40, backgroundColor:"#F5F5F5",marginRight:"15%",  marginTop:20, borderRadius:50, 
+        
+    },
+   
 
     modelContainer: {
         backgroundColor: "#ffffff",
