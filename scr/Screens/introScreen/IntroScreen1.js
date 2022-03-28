@@ -31,13 +31,13 @@ export default class IntroScreen1 extends Component {
             <Text style={styles.detailTextSecond}>DATABASE</Text> 
         </View>
 
-        <View style={styles.skipButtonWrapper}>
+        {/* <View style={styles.skipButtonWrapper}>
         <TouchableWithoutFeedback>
           <View style={[styles.skipButton,constStyle.buttonColor]}>
               <Text style={styles.btnText}>Skip</Text>
           </View>
         </TouchableWithoutFeedback>
-        </View>
+        </View> */}
 
         <View style={styles.navigationIntroWrapper}>
           <View style={styles.navCircleBorderBorder}>

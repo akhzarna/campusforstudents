@@ -31,13 +31,13 @@ export default class IntroScreen1 extends Component {
             <Text style={styles.detailTextSecond}>PAKISTAN</Text> 
         </View>
 
-        <View style={styles.skipButtonWrapper}>
+        {/* <View style={styles.skipButtonWrapper}>
         <TouchableWithoutFeedback>
           <View style={styles.skipButton}>
               <Text style={styles.btnText}>GET STARTED </Text>
           </View>
         </TouchableWithoutFeedback>
-        </View>
+        </View> */}
 
         <View style={styles.navigationIntroWrapper}>    
           <View style={[styles.navCircle,styles.navCircleMargin]}></View>

@@ -68,11 +68,12 @@ const styles = StyleSheet.create({
 
     textIntroWrapper:{
         
-        marginVertical:15,
+        marginVertical:25,
         alignItems:'center',
         justifyContent:'center',
         width:width*0.70,
         height:height*0.20,
+        marginBottom:150
         
     },
     introText:{
@@ -82,7 +83,7 @@ const styles = StyleSheet.create({
         textShadowColor:ThemeColor.lightText,
         textShadowOffset:{width: 0.5, height: 0.5},
         textShadowRadius:1,
-        marginVertical:-10,
+        marginVertical:-20,
     },
     detailText:{
         fontFamily:'Bungee-Regular',

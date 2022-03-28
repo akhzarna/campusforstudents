@@ -8,11 +8,14 @@ import Universities from '../Screens/homeScreen/Universities'
 import SingleUniversity from '../Screens/homeScreen/SingleUniversity'
 import CityModal from '../Screens/homeScreen/CityModal';
 import FeeModal from '../Screens/filterModalScreens/FeeModal';
-
+import MainIntro from '../Screens/introScreen/MainIntro';
 export default function Route() {
   return (
-    <NavigationContainer>
-        <Stack.Navigator>
+    <NavigationContainer >
+        <Stack.Navigator screenOptions={{
+    headerShown: false
+  }}>
+           <Stack.Screen name="MainIntro" component={MainIntro} />
             <Stack.Screen name="Home" component={Home} />
             <Stack.Screen name="FeeModal" component={FeeModal} />
             <Stack.Screen name="AdvanceFilter" component={AdvanceFilter} />
