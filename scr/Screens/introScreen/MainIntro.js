@@ -75,7 +75,6 @@ export default class MainIntro extends Component {
         <View>
             <Text style={[styles.btnStyle, styles.getStartedBtn]} >Get Started</Text>
         </View>
-    
     }
 
       renderNextButton={()=>

@@ -36,8 +36,17 @@ const styles = StyleSheet.create({
         borderRadius:5,
         width:100,
     },
-
-
+    usiversityName:{
+        color:"white",
+        backgroundColor:"#F75656",
+        padding:5,
+        borderTopLeftRadius:10
+    },
+    DeadlineText:{
+        color:"#F75656"
+        , fontWeight:"300",
+        fontSize:19
+    },
 
     universitiesWrapper:{
         flex: 0.9,
@@ -49,6 +58,10 @@ const styles = StyleSheet.create({
         flex: 0.25,
         height:"100%",
         width:"100%",
+        borderWidth:0.1,
+        marginVertical:5,
+        
+        
     },
     rankingTextWrapper:{
         flex: 0.15,
@@ -68,18 +81,21 @@ const styles = StyleSheet.create({
         justifyContent:"center",
         alignItems:"center",
         height:"100%",
-        width:"100%"
+        width:"100%",
+        borderRadius:50, 
     },
     universityDetailWrapper:{
         flex: 0.70,
         height:"100%",
-        width:"100%"
+        width:"100%",
+        
     },
     universityDetailText:{
         fontSize:17,
         marginLeft:15,
         fontWeight:"500",
-        marginTop:12
+        marginBottom:5,
+        marginTop:5
     },
     locAndPhoneWrapper:{
        flexDirection:'row',

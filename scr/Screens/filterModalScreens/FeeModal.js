@@ -5,6 +5,7 @@ import { StackActions} from "@react-navigation/native"
 const popAction =StackActions.pop();
 export default class FeeModal extends Component {
     render() {
+        
         return (
             <Modal transparent={true} visible={this.props.show} >
                 <View style={styles.container}>
@@ -17,6 +18,7 @@ export default class FeeModal extends Component {
                    <TextInput style ={styles.inputStyle}  placeholder='Maximum'/>
                 </View>
                 <TouchableOpacity 
+
                 style={styles.ApplyBtn} >
                     <Text style={{color:"white" , fontSize:18}}>Apply Filter</Text>
                 </TouchableOpacity>

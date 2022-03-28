@@ -8,7 +8,7 @@ export const style = StyleSheet.create({
     },
     subcontainer: {
         flex: 1,
-        height:1500
+        height:1550
     },
 
     navbar: {
@@ -73,8 +73,8 @@ export const style = StyleSheet.create({
      
     },
     searchBtn: { 
-        backgroundColor:"red",
-        width:"30%",
+        backgroundColor:"#F75656",
+        width:"35%",
         paddingHorizontal: 10,
         paddingVertical: 10,
         color: "white",
