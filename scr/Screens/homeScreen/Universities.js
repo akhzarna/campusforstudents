@@ -4,6 +4,9 @@ import styles from './UniversitiesStyle';
 import Separator from '../../Components/Separator'
 import FeeModal from '../filterModalScreens/FeeModal';
 
+import database from '@react-native-firebase/database';
+import { firebase } from '@react-native-firebase/database';
+
 export default class Universities extends Component {
   state = {
     show: false
@@ -47,6 +50,7 @@ export default class Universities extends Component {
         title: "Location",
       },
     ],
+    
     universities: [
       {
         id: "1",
@@ -96,6 +100,54 @@ export default class Universities extends Component {
     ],
   }
 
+  componentDidMount(){
+
+    // console.log('Testing');
+    // const reference1 = database().ref('/university_listing/');
+    // // console.log(reference1);
+    //
+    // const reference = firebase
+    // .app()
+    // .database('https://campusfinder-6c74d-default-rtdb.asia-southeast1.firebasedatabase.app')
+    // .ref('/university_listing/');
+    //
+    // console.log(reference);
+
+    database()
+    .ref('/university_listing/')
+    .once('value')
+    .then(snapshot => {
+      console.log('User data: ', snapshot.val());
+    });
+
+    // database()
+    // .ref('/university_listing/')
+    // .once('value')
+    // .then(snapshot => {
+    //   console.log('User data: ', snapshot.val());
+    // });
+
+    // database()
+    // .ref('/university_listing/')
+    // .on('value', snapshot => {
+    // console.log('User data: ', snapshot.val());
+    // });
+
+  // database()
+  // .ref('/university_listing/')
+  // .once('value')
+  // .then(snapshot => {
+  //   console.log('User data: ', snapshot.val());
+  // });
+
+  // const reference1 = database
+  // .app()
+  // .database('https://campusfinder-6c74d-default-rtdb.asia-southeast1.firebasedatabase.app/')
+  // .ref('/university_listing/');
+  //
+  // console.log(reference1);
+
+}
 
   render() {
     return (
