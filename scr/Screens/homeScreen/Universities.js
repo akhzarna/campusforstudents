@@ -5,7 +5,7 @@ import Separator from '../../Components/Separator'
 import FeeModal from '../filterModalScreens/FeeModal';
 
 import database from '@react-native-firebase/database';
-import { firebase } from '@react-native-firebase/database';
+// import { firebase } from '@react-native-firebase/database';
 
 export default class Universities extends Component {
   state = {
@@ -50,7 +50,7 @@ export default class Universities extends Component {
         title: "Location",
       },
     ],
-    
+
     universities: [
       {
         id: "1",
@@ -111,14 +111,37 @@ export default class Universities extends Component {
     // .database('https://campusfinder-6c74d-default-rtdb.asia-southeast1.firebasedatabase.app')
     // .ref('/university_listing/');
     //
-    // console.log(reference);
+    console.log('reference');
 
-    database()
-    .ref('/university_listing/')
-    .once('value')
-    .then(snapshot => {
-      console.log('User data: ', snapshot.val());
-    });
+
+  // database()
+  // .ref('/university_listing/')
+  // .on('value', snapshot => {
+  //   console.log('User data: ', snapshot.val());
+  // });
+
+
+  // database()
+  // .ref('/university_listing/')
+  // .once('value')
+  // .then(snapshot => {
+  //   console.log('User data: ', snapshot.val());
+  // });
+
+  database()
+  .ref('/university_listing/')
+  .on('value', snapshot => {
+    console.log('User data: ', snapshot.val());
+    this.setState({universities:snapshot.val()});
+  });
+
+
+    // database()
+    // .ref('/university_listing/')
+    // .once('value')
+    // .then(snapshot => {
+    //   console.log('User data: ', snapshot.val());
+    // });
 
     // database()
     // .ref('/university_listing/')
@@ -184,7 +207,7 @@ export default class Universities extends Component {
                       />
                     </View>
                     <View style={styles.universityDetailWrapper}>
-                      <Text style={[styles.universityDetailText, styles.usiversityName]}>{item.name}</Text>
+                      <Text style={[styles.universityDetailText, styles.usiversityName]}>{item.degree}</Text>
                       <Text style={styles.universityDetailText}>Fee : {item.fee}</Text>
                       <Text style={styles.universityDetailText}>Admission : {item.admission}</Text>
 
