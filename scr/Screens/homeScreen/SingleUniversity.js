@@ -6,6 +6,7 @@ import Seperator from '../../Components/Separator';
 export default class SingleUniversity extends Component {
 
   state = {
+    university:{},
     menu : [
         {
           id: "bd7acbea-c1b1-46c2-aed5-3ad53abb28ba",
@@ -40,6 +41,12 @@ export default class SingleUniversity extends Component {
       ],
     }
 
+  componentDidMount(){
+      console.log('University Detail is = ', this.props.route.params.university_detail);
+      this.setState({university:this.props.route.params.university_detail});
+
+  }
+
   render() {
     return (
       <ScrollView style={styles.container}>
@@ -49,7 +56,7 @@ export default class SingleUniversity extends Component {
              style={{height:"100%",width:"100%"}}
              source={require('../../../assets/images/uni1.jpg')}
            />
-       </View> 
+       </View>
             {/* University name heading after picture */}
         <View style={styles.headerWrapper}>
           <Text style={styles.headerText}>University of The Punjap</Text>
@@ -59,37 +66,37 @@ export default class SingleUniversity extends Component {
         <View style={styles.detailsWrapper}>
           <View style={styles.detail}>
             <Text style={styles.detailText1}>Type</Text>
-            <Text style={styles.detailText2}>University</Text>
+            <Text style={styles.detailText2}>{this.state.university.type}</Text>
         </View>
         <View style={styles.verticalSeperator}></View>
           <View style={styles.detail}>
             <Text style={styles.detailText1}>Status</Text>
-            <Text style={styles.detailText2}>Public</Text>
+            <Text style={styles.detailText2}>{this.state.university.status}</Text>
           </View>
           <View style={styles.verticalSeperator}></View>
             <View style={styles.detail}>
               <Text style={styles.detailText1}>Ranking</Text>
-              <Text style={styles.detailText2}>1</Text>
+              <Text style={styles.detailText2}>{this.state.university.ranking}</Text>
             </View>
           </View>
-          
+
           <Seperator />
 
              {/* University details like Location,fee, Admission */}
           <View style={styles.detailsWrapper}>
             <View style={styles.detail}>
               <Text style={styles.detailText1}>Location</Text>
-              <Text style={styles.detailText2}>Lahore</Text>
+              <Text style={styles.detailText2}>{this.state.university.location}</Text>
             </View>
             <View style={styles.verticalSeperator}></View>
             <View style={styles.detail}>
               <Text style={styles.detailText1}>Fee</Text>
-              <Text style={styles.detailText2}>250,000</Text>
+              <Text style={styles.detailText2}>{this.state.university.fee}</Text>
             </View>
             <View style={styles.verticalSeperator}></View>
             <View style={styles.detail}>
               <Text style={styles.detailText1}>Admission</Text>
-              <Text style={[styles.detailText2,styles.greenColor]}>Open</Text>
+              <Text style={[styles.detailText2,styles.greenColor]}>{this.state.university.admissions}</Text>
             </View>
           </View>
 
@@ -100,7 +107,7 @@ export default class SingleUniversity extends Component {
             </View>
             <View style={styles.DetailWrapper}>
               <Text style={styles.addressText1}>Addess:</Text>
-              <Text style={styles.addressText2}>Canal Rd, Quaid-i-Azam Campus, Lahore, Punjab</Text>
+              <Text style={styles.addressText2}>{this.state.university.address}</Text>
             </View>
           </View>
 
@@ -137,12 +144,12 @@ export default class SingleUniversity extends Component {
               </View>
               <View style={styles.linkTextWrapper}>
                 <TouchableOpacity>
-                  <Text style={styles.linksStyles}>WWW.GOOGLE.COM</Text>
+                  <Text style={styles.linksStyles}>{this.state.university.web}</Text>
                 </TouchableOpacity>
               </View>
             </View>
           </View>
-          
+
           <View style={{height:1}}>
               <Seperator />
           </View>
@@ -153,18 +160,18 @@ export default class SingleUniversity extends Component {
                 <Text style={styles.headerText}>Menu</Text>
             </View>
 
-           
+
                   {/* menu  section*/}
               <FlatList
                 nestedScrollEnabled={true}
-                data={this.state.menu}
+                data={this.state.university.menu}
                 numColumns={3}
                 renderItem={({item})=>(
                   <View style={styles.menuIcon}>
                   <View style={styles.menuIconWrapper}>
                     <Image
                       style={{height:"90%",width:"45%",borderRadius: 50}}
-                      source={item.imageUrl}
+                      source={{uri: item.url}}
                     />
                   </View>
                   <View style={styles.menuIconText}>
@@ -173,11 +180,11 @@ export default class SingleUniversity extends Component {
                 </View>
                 )}
                 style={{height:"100%"}}
-              />    
+              />
         </View>
-       
+
       </ScrollView>
-       
+
     )
   }
 }

@@ -198,7 +198,7 @@ export default class Universities extends Component {
                 <View style={styles.rankingTextWrapper}>
                   {/* <Text style={styles.rankingText}>Ranking {item.ranking}</Text> */}
                 </View>
-                <TouchableOpacity onPress={() => this.props.navigation.navigate('University')}>
+                <TouchableOpacity onPress={() => this.props.navigation.navigate('University', {university_detail:item.detail})}>
                   <View style={{ flex: 0.85, flexDirection: "row" }}>
                     <View style={styles.imageWrapper} >
                       <Image
@@ -209,13 +209,13 @@ export default class Universities extends Component {
                     <View style={styles.universityDetailWrapper}>
                       <Text style={[styles.universityDetailText, styles.usiversityName]}>{item.degree}</Text>
                       <Text style={styles.universityDetailText}>Fee : {item.fee}</Text>
-                      <Text style={styles.universityDetailText}>Admission : {item.admission}</Text>
+                      <Text style={styles.universityDetailText}>Admission : {item.admissions}</Text>
 
                       <View style={styles.locAndPhoneWrapper}>
                         <Text style={styles.universityDetailText}>Location : {item.location}</Text>
                         {/* <Text style={styles.phone}>Phone</Text> */}
                       </View>
-                      <Text style={[styles.universityDetailText, styles.DeadlineText]}>Deadline : {item.Deadline}</Text>
+                      <Text style={[styles.universityDetailText, styles.DeadlineText]}>Deadline : {item.deadline}</Text>
                     </View>
                   </View>
                 </TouchableOpacity>
