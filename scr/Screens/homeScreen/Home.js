@@ -11,6 +11,16 @@ export default class Home extends Component {
     level: "Becholars", Degree: "Chemical Engineering", City: "Lahore", show: false
   };
 
+  constructor(props) {
+    super(props)
+
+    this.updatesState = this.updatesState.bind(this)
+  }
+
+
+  updatesState() {
+    this.setState({ show: false })
+  }
 
 
   render() {
@@ -64,7 +74,7 @@ export default class Home extends Component {
 
 
 
-            <TouchableOpacity onPress={() => this.props.navigation.navigate('CityModal')}>
+            <TouchableOpacity onPress={()=>this.setState({show:true})}>
               <View style={style.citypicker}>
                 <Text style={{ color: "#c14643", }}>Select City</Text>
               </View>
@@ -101,7 +111,7 @@ export default class Home extends Component {
 
             </View>
           </View>
-          <CityModal show={this.state.show} />
+          <CityModal show={this.state.show} update={this.updatesState}/>
         </View>
       </ScrollView>
 

@@ -7,6 +7,19 @@ const styles = StyleSheet.create({
         height:"100%",
         width:"100%"
     },
+    header:{
+        flex:0.05,
+        width:"100%",
+        justifyContent:'center'
+        ,alignItems:  "center",
+        borderWidth:0.1 ,
+        padding:15     
+    },
+    headerTxt:{
+        fontSize:20,
+        color:"grey"
+
+    },
     itemSeparator: {
         flex: 1,
         height: 1,
@@ -58,7 +71,7 @@ const styles = StyleSheet.create({
         flex: 0.25,
         height:"100%",
         width:"100%",
-        borderWidth:0.1,
+        borderWidth:0.3,
         marginVertical:5,
         
         
