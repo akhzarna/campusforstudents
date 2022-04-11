@@ -1,14 +1,14 @@
-import { StyleSheet } from "react-native"
-
+import { StyleSheet, Dimensions } from "react-native"
+const { height, width} = Dimensions.get('window')
 
 export const style = StyleSheet.create({
     container: {
         flex: 1,
+        height:height+100
 
     },
     subcontainer: {
         flex: 1,
-        height:1550
     },
 
     navbar: {
@@ -16,7 +16,7 @@ export const style = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
         width: "100%",
-        height: "100%",
+        height: 200,
         
 
     },
@@ -70,6 +70,7 @@ export const style = StyleSheet.create({
         width: "25%",
         borderRadius: 20,
         fontSize:18,
+        marginVertical:20
      
     },
     searchBtn: { 
@@ -80,12 +81,13 @@ export const style = StyleSheet.create({
         color: "white",
         textAlign: "center",
         borderRadius: 10,
-        marginTop: 5
+        marginTop: 10
     },
     recommendation: {
         flex: 0.30,
         width: "100%",
-        marginTop: 10
+        marginTop: 10,
+        
     },
     recommendationContainer: {
         flex: 0.10,
@@ -93,6 +95,8 @@ export const style = StyleSheet.create({
         , justifyContent: "space-between",
         marginHorizontal: "10%",
         marginVertical: "5%",
+     
+
     },
 
     campusImg: {

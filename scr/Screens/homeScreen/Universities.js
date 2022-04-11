@@ -100,7 +100,7 @@ export default class Universities extends Component {
     ],
   }
 
-  componentDidMount(){
+  componentDidMount() {
 
     // console.log('Testing');
     // const reference1 = database().ref('/university_listing/');
@@ -114,26 +114,26 @@ export default class Universities extends Component {
     console.log('reference');
 
 
-  // database()
-  // .ref('/university_listing/')
-  // .on('value', snapshot => {
-  //   console.log('User data: ', snapshot.val());
-  // });
+    // database()
+    // .ref('/university_listing/')
+    // .on('value', snapshot => {
+    //   console.log('User data: ', snapshot.val());
+    // });
 
 
-  // database()
-  // .ref('/university_listing/')
-  // .once('value')
-  // .then(snapshot => {
-  //   console.log('User data: ', snapshot.val());
-  // });
+    // database()
+    // .ref('/university_listing/')
+    // .once('value')
+    // .then(snapshot => {
+    //   console.log('User data: ', snapshot.val());
+    // });
 
-  database()
-  .ref('/university_listing/')
-  .on('value', snapshot => {
-    console.log('User data: ', snapshot.val());
-    this.setState({universities:snapshot.val()});
-  });
+    database()
+      .ref('/university_listing/')
+      .on('value', snapshot => {
+        console.log('University List is : ', snapshot.val());
+        this.setState({ universities: snapshot.val() });
+      });
 
 
     // database()
@@ -156,26 +156,46 @@ export default class Universities extends Component {
     // console.log('User data: ', snapshot.val());
     // });
 
-  // database()
-  // .ref('/university_listing/')
-  // .once('value')
-  // .then(snapshot => {
-  //   console.log('User data: ', snapshot.val());
-  // });
+    // database()
+    // .ref('/university_listing/')
+    // .once('value')
+    // .then(snapshot => {
+    //   console.log('User data: ', snapshot.val());
+    // });
 
-  // const reference1 = database
-  // .app()
-  // .database('https://campusfinder-6c74d-default-rtdb.asia-southeast1.firebasedatabase.app/')
-  // .ref('/university_listing/');
-  //
-  // console.log(reference1);
+    // const reference1 = database
+    // .app()
+    // .database('https://campusfinder-6c74d-default-rtdb.asia-southeast1.firebasedatabase.app/')
+    // .ref('/university_listing/');
+    //
+    // console.log(reference1);
 
-}
+  }
+
+  constructor(props) {
+    super(props)
+
+    this.updatesState = this.updatesState.bind(this)
+  }
+
+
+  updatesState() {
+    this.setState({ show: false })
+  }
 
   render() {
     return (
       <SafeAreaView style={styles.container}>
+
+        <View style={styles.header} elevation={5}>
+          <Text style={styles.headerTxt}>150</Text>
+          <Text style={styles.headerTxt}>institutes in Lahore</Text>
+        </View>
+
         <View style={styles.filterWrapper}>
+        <TouchableOpacity style={styles.filter} onPress={() => this.props.navigation.navigate("AdvanceFilter")}>
+            <Text>Filters</Text>
+          </TouchableOpacity>
           <FlatList
             horizontal={true}
             showsHorizontalScrollIndicator={false}
@@ -189,16 +209,19 @@ export default class Universities extends Component {
             )}
           />
         </View>
+
+
         <View style={styles.universitiesWrapper}>
           <FlatList
             data={this.state.universities}
             renderItem={({ item }) => (
 
-              <View key={item.key} style={styles.singleUniversity} elevation={5}>
+              <View key={item.key} style={styles.singleUniversity} elevation={4}>
                 <View style={styles.rankingTextWrapper}>
                   {/* <Text style={styles.rankingText}>Ranking {item.ranking}</Text> */}
                 </View>
-                <TouchableOpacity onPress={() => this.props.navigation.navigate('University', {id:item.key})}>
+              
+                <TouchableOpacity onPress={() => this.props.navigation.navigate('University', { id: item.key })}>
                   <View style={{ flex: 0.85, flexDirection: "row" }}>
                     <View style={styles.imageWrapper} >
                       <Image
@@ -225,7 +248,7 @@ export default class Universities extends Component {
           // ItemSeparatorComponent={() => <Separator />}
           />
         </View>
-        <FeeModal show={this.state.show} />
+        <FeeModal show={this.state.show} update={this.updatesState} />
       </SafeAreaView>
     )
   }

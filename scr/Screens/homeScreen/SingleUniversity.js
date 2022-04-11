@@ -53,7 +53,7 @@ export default class SingleUniversity extends Component {
       database()
       .ref(indexfordata)
       .on('value', snapshot => {
-        console.log('Detail Data is : ', snapshot.val());
+        console.log('Detail Data is ::: ', snapshot.val());
         this.setState({university:snapshot.val()});
       });
 

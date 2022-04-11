@@ -38,9 +38,10 @@ const slides = [
         borderRadius:10, 
         fontSize:20, 
         fontWeight:"bold",
-        marginRight:"39%"
+        marginLeft:"40%"
     },
     getStartedBtn:{
+        marginLeft:0,
         marginRight:"30%",
         backgroundColor:"#8b0f1c" ,
     }
@@ -63,13 +64,17 @@ export default class MainIntro extends Component {
       _onDone = () => {
         this.props.navigation.navigate("Home")
       }
+      _onSkip = () => {
+        this.props.navigation.navigate("Home")
+      }
 
   render() {
     return <AppIntroSlider 
     dotStyle={{ backgroundColor:"lightgrey",width:30, marginBottom:100}}
       activeDotStyle={{backgroundColor:"red", width:30, marginBottom:100}}
       renderItem={this._renderItem}
-      
+      showSkipButton={true}
+      onSkip={this._onSkip}
       data={slides} onDone={this._onDone} 
       renderDoneButton={()=>
         <View>
@@ -77,7 +82,7 @@ export default class MainIntro extends Component {
         </View>
     }
 
-      renderNextButton={()=>
+      renderSkipButton={()=>
             <Text style={styles.btnStyle} >Skip</Text>
       
     
