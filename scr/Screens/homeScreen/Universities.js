@@ -132,7 +132,11 @@ export default class Universities extends Component {
     database()
       .ref('/university_listing/')
       .on('value', snapshot => {
+
         // console.log('User data: ', snapshot.val());
+
+        // console.log('University List is : ', snapshot.val());
+
         this.setState({ universities: snapshot.val() });
         this.setState({fee:this.state.universities});
         // this.state.universities.forEach(element => console.log(element.detail ));
@@ -179,6 +183,7 @@ export default class Universities extends Component {
     // console.log(reference1);
 
   }
+
   constructor(props) {
     super(props)
     this.updatesState = this.updatesState.bind(this)
@@ -227,7 +232,6 @@ export default class Universities extends Component {
         </View>
 
 
-
         <View style={styles.universitiesWrapper}>
           <FlatList
             data={this.state.universities}
@@ -237,7 +241,8 @@ export default class Universities extends Component {
                 <View style={styles.rankingTextWrapper}>
                   {/* <Text style={styles.rankingText}>Ranking {item.ranking}</Text> */}
                 </View>
-                <TouchableOpacity onPress={() => this.props.navigation.navigate('University', { university_detail: item.detail })}>
+              
+                <TouchableOpacity onPress={() => this.props.navigation.navigate('University', { id: item.key })}>
                   <View style={{ flex: 0.85, flexDirection: "row" }}>
                     <View style={styles.imageWrapper} >
                       <Image

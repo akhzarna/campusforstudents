@@ -3,6 +3,8 @@ import React, { Component } from 'react'
 import styles from './SingleUniversityStyle'
 import Seperator from '../../Components/Separator';
 
+import database from '@react-native-firebase/database';
+
 export default class SingleUniversity extends Component {
 
   state = {
@@ -42,8 +44,18 @@ export default class SingleUniversity extends Component {
     }
 
   componentDidMount(){
-      console.log('University Detail is = ', this.props.route.params.university_detail);
-      this.setState({university:this.props.route.params.university_detail});
+      console.log('University Detail is = ', this.props.route.params.id);
+      this.setState({university:this.props.route.params.id});
+
+      var indexfordata = '/university_detail/' + this.props.route.params.id;
+      console.log('indexfordata == ' , indexfordata);
+
+      database()
+      .ref(indexfordata)
+      .on('value', snapshot => {
+        console.log('Detail Data is ::: ', snapshot.val());
+        this.setState({university:snapshot.val()});
+      });
 
   }
 
@@ -59,7 +71,7 @@ export default class SingleUniversity extends Component {
        </View>
             {/* University name heading after picture */}
         <View style={styles.headerWrapper}>
-          <Text style={styles.headerText}>University of The Punjap</Text>
+          <Text style={styles.headerText}> {this.state.university.title} </Text>
         </View>
 
           {/* University details like type,status, Ranking */}
