@@ -98,6 +98,7 @@ export default class Universities extends Component {
 
       },
     ],
+    fee:[]
   }
 
   componentDidMount() {
@@ -131,9 +132,16 @@ export default class Universities extends Component {
     database()
       .ref('/university_listing/')
       .on('value', snapshot => {
-        console.log('User data: ', snapshot.val());
+        // console.log('User data: ', snapshot.val());
         this.setState({ universities: snapshot.val() });
+        this.setState({fee:this.state.universities});
+        // this.state.universities.forEach(element => console.log(element.detail ));
+        // console.log(this.state.universities);
       });
+
+    
+
+      
 
 
     // database()
@@ -173,9 +181,17 @@ export default class Universities extends Component {
   }
   constructor(props) {
     super(props)
-
     this.updatesState = this.updatesState.bind(this)
   }
+
+  SortByFee() {
+  var t;
+  this.state.fee.sort(function(a,b){
+    return t=a.fee-b.fee
+ })
+  this.setState({universities:this.state.fee})
+    
+}
 
 
   updatesState() {
@@ -194,14 +210,15 @@ export default class Universities extends Component {
         <View style={styles.filterWrapper}>
         <TouchableOpacity style={styles.filter} onPress={() => this.props.navigation.navigate("AdvanceFilter")}>
             <Text>Filters</Text>
-          </TouchableOpacity>
+        </TouchableOpacity>
           <FlatList
             horizontal={true}
             showsHorizontalScrollIndicator={false}
             data={this.state.filters}
             renderItem={({ item }) => (
               <View key={item.key} style={styles.singleFilter}>
-                <TouchableOpacity style={styles.filter} onPress={() => { this.setState({ show: true }) }}>
+                {/* onPress={() => { this.setState({ show: true }) }} */}
+                <TouchableOpacity style={styles.filter} onPress={()=>this.SortByFee()}>
                   <Text>{item.title}</Text>
                 </TouchableOpacity>
               </View>
