@@ -1,22 +1,23 @@
-import { Text, View, SafeAreaView, TextInput, TouchableOpacity, ScrollView,  } from 'react-native'
+import { Text, View, SafeAreaView, TextInput, TouchableOpacity, ScrollView, } from 'react-native'
 import React, { Component } from 'react'
 import { Picker } from '@react-native-picker/picker';
 import styles from './AdvanceFilterStyle'
 import constStyle from '../../Constants/ConstantStyle'
-import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scrollview'
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scrollview'
 
 export default class AdvanceFilter extends Component {
   state = {
     Value: 'Select',
-    level:"Select Study Level",
-    ProgramName:"Program Name (Degree Name)",
-    ranking:"Select Ranking",
-    city:"Select City",
-    type:"Select Type",
-    status:"Select Status",
-    min: "",
-    max:"",
-    percentage:""
+    level: "Select Study Level",
+    ProgramName: "Program Name (Degree Name)",
+    ranking: "Select Ranking",
+    city: "Select City",
+    type: "Select Type",
+    status: "Select Status",
+    min: 0,
+    max: 0,
+    percentage: "",
+
   }
   render() {
     return (
@@ -30,10 +31,10 @@ export default class AdvanceFilter extends Component {
 
             < View style={styles.picker}>
               <Picker mode="dropdown"
-              selectedValue={this.state.level}
-              value={this.state.level}
-              onValueChange={(itemValue, itemIndex) => 
-                this.setState({level:itemValue})}
+                selectedValue={this.state.level}
+                value={this.state.level}
+                onValueChange={(itemValue, itemIndex) =>
+                  this.setState({ level: itemValue })}
               >
                 <Picker.Item label="Select Study Level" />
                 <Picker.Item label="BS" value="BS" />
@@ -44,10 +45,10 @@ export default class AdvanceFilter extends Component {
             </View>
             <View style={styles.picker}>
               <Picker mode="dropdown"
-              selectedValue={this.state.ProgramName}
-              value={this.state.ProgramName}
-              onValueChange={(itemValue, itemIndex) => 
-                this.setState({ProgramName:itemValue})}
+                selectedValue={this.state.ProgramName}
+                value={this.state.ProgramName}
+                onValueChange={(itemValue, itemIndex) =>
+                  this.setState({ ProgramName: itemValue })}
               >
                 <Picker.Item label="Program Name (Degree Name)" />
                 <Picker.Item label="BS Software Engineering" value="BS Software Engineering" />
@@ -59,10 +60,10 @@ export default class AdvanceFilter extends Component {
 
             <View style={styles.picker}>
 
-              <Picker mode="dropdown" 
+              <Picker mode="dropdown"
                 selectedValue={this.state.city}
-                 onValueChange={(itemValue, itemIndex) => 
-                  this.setState({city:itemValue})}
+                onValueChange={(itemValue, itemIndex) =>
+                  this.setState({ city: itemValue })}
               >
                 <Picker.Item label="City" />
                 <Picker.Item label="Lahore" value="Lahore" />
@@ -74,10 +75,10 @@ export default class AdvanceFilter extends Component {
 
 
             <View style={styles.picker}>
-              <Picker mode="dropdown" 
-                   selectedValue={this.state.ranking}
-                   onValueChange={(itemValue, itemIndex) => 
-                    this.setState({ranking:itemValue})}
+              <Picker mode="dropdown"
+                selectedValue={this.state.ranking}
+                onValueChange={(itemValue, itemIndex) =>
+                  this.setState({ ranking: itemValue })}
               >
                 <Picker.Item label="Select Ranking" />
                 <Picker.Item label="Top 10" value="Top 10" />
@@ -88,9 +89,9 @@ export default class AdvanceFilter extends Component {
             </View>
             <View style={styles.picker}>
               <Picker mode="dropdown"
-                   selectedValue={this.state.type}
-                   onValueChange={(itemValue, itemIndex) => 
-                    this.setState({type:itemValue})}
+                selectedValue={this.state.type}
+                onValueChange={(itemValue, itemIndex) =>
+                  this.setState({ type: itemValue })}
               >
                 <Picker.Item label="Type" />
                 <Picker.Item label="Goverment" value="Goverment" />
@@ -101,9 +102,9 @@ export default class AdvanceFilter extends Component {
 
             <View style={styles.picker}>
               <Picker mode="dropdown"
-                   selectedValue={this.state.status}
-                   onValueChange={(itemValue, itemIndex) => 
-                    this.setState({status:itemValue})}
+                selectedValue={this.state.status}
+                onValueChange={(itemValue, itemIndex) =>
+                  this.setState({ status: itemValue })}
               >
                 <Picker.Item label="Status" />
                 <Picker.Item label="Admission Open" value="Admission Open" />
@@ -123,22 +124,22 @@ export default class AdvanceFilter extends Component {
               style={styles.inputFeild}
               placeholder="Minimum"
               placeholderTextColor="black"
-              onChangeText={(value)=>this.setState({min:value})}
+              onChangeText={(value) => this.setState({ min: value })}
               value={this.state.min}
             />
             <TextInput
               style={styles.inputFeild}
               placeholder="Maximum"
               placeholderTextColor="black"
-              onChangeText={(value)=>this.setState({max:value})}
+              onChangeText={(value) => this.setState({ max: value })}
               value={this.state.max}
-           
+
             />
             <TextInput
               style={styles.inputFeild}
               placeholder="%"
               placeholderTextColor="black"
-              onChangeText={(value)=>this.setState({percentage:value})}
+              onChangeText={(value) => this.setState({ percentage: value })}
               value={this.state.percentage}
             />
           </View>
@@ -146,20 +147,22 @@ export default class AdvanceFilter extends Component {
 
 
         <View style={[styles.btnWrapper]} elevation={0.4} >
-        <TouchableOpacity style={styles.resetBtn} 
-        onPress={()=>this.setState({level:"", ProgramName:"", status:"", city:"",type:"", ranking:"", min:"", max:"", percentage:""})}>
-          <Text style={[styles.btnText, styles.resetBtntxt ]}>Reset</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={[styles.applyBtn,constStyle.buttonColor]} onPress={()=>this.props.navigation.navigate("Universities")} >
-          <Text style={styles.btnText}>Apply Filter</Text>
-        </TouchableOpacity>
-      
+          <TouchableOpacity style={styles.resetBtn}
+            onPress={() => this.setState({ level: "", ProgramName: "", status: "", city: "", type: "", ranking: "", min: "", max: "", percentage: "" })}>
+            <Text style={[styles.btnText, styles.resetBtntxt]}>Reset</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={[styles.applyBtn, constStyle.buttonColor]} onPress={() => this.props.navigation.navigate("Universities")}
+
+          >
+            <Text style={styles.btnText}>Apply Filter</Text>
+          </TouchableOpacity>
+
 
         </View>
 
 
       </KeyboardAwareScrollView>
- 
+
     )
   }
 }
