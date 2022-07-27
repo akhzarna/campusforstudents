@@ -6,10 +6,12 @@ import FeeModal from '../filterModalScreens/FeeModal';
 import CityModal from "./CityModal"
 import database from '@react-native-firebase/database';
 // import { firebase } from '@react-native-firebase/database';
-
+import firestore from "@react-native-firebase/firestore"
+import { DocumentSnapshot, QuerySnapshot } from '@firebase/firestore';
 export default class Universities extends Component {
   state = {
     show: false,
+    showCityModal: false,
     filters: [
       {
         id: "bd7acbea-c1b1-46c2-aed5-3ad53abb28baa",
@@ -53,54 +55,55 @@ export default class Universities extends Component {
     ],
 
 
-    universities: [
-      {
-        id: "1",
-        name: "University of Punjab",
-        fee: 2000,
-        admission: 'Open',
-        location: "Lahore",
-        Deadline: "22-3-2022"
+    // universities: [
+    //   {
+    //     id: "1",
+    //     name: "University of Punjab",
+    //     fee: 2000,
+    //     admission: 'Open',
+    //     location: "Lahore",
+    //     Deadline: "22-3-2022"
 
-      },
-      {
-        id: "2",
-        name: "Comsats",
-        fee: 12000,
-        admission: 'Close',
-        location: "Islamabad",
-        Deadline: "22-3-2022"
+    //   },
+    //   {
+    //     id: "2",
+    //     name: "Comsats",
+    //     fee: 12000,
+    //     admission: 'Close',
+    //     location: "Islamabad",
+    //     Deadline: "22-3-2022"
 
-      },
-      {
-        id: "3",
-        name: "Comsats",
-        fee: 15000,
-        admission: 'Close',
-        location: "Faislabad",
-        Deadline: "22-3-2022"
+    //   },
+    //   {
+    //     id: "3",
+    //     name: "Comsats",
+    //     fee: 15000,
+    //     admission: 'Close',
+    //     location: "Faislabad",
+    //     Deadline: "22-3-2022"
 
-      },
-      {
-        id: "4",
-        name: "Comsats",
-        fee: 16000,
-        admission: 'Close',
-        location: "Islamabad",
-        Deadline: "22-3-2022"
+    //   },
+    //   {
+    //     id: "4",
+    //     name: "Comsats",
+    //     fee: 16000,
+    //     admission: 'Close',
+    //     location: "Islamabad",
+    //     Deadline: "22-3-2022"
 
-      },
-      {
-        id: "5",
-        name: "Fast",
-        fee: 17000,
-        admission: 'Close',
-        location: "Lahore",
-        Deadline: "22-3-2022"
+    //   },
+    //   {
+    //     id: "5",
+    //     name: "Fast",
+    //     fee: 17000,
+    //     admission: 'Close',
+    //     location: "Lahore",
+    //     Deadline: "22-3-2022"
 
-      },
-    ],
+    //   },
+    // ],
     filter: [],
+    firestoreData: [],
 
   }
 
@@ -108,17 +111,38 @@ export default class Universities extends Component {
     database()
       .ref('/university_listing/')
       .on('value', snapshot => {
-        console.log('User data: ', snapshot.val());
+        // console.log('User data: ', snapshot.val());
         this.setState({ universities: snapshot.val() });
         this.setState({ filter: this.state.universities });
-
       });
+
+    var newArr = [];
+    firestore()
+      .collection('universities').get().then(querySnapshot => {
+        querySnapshot.forEach(documentSnapshot => {
+          newArr.push(documentSnapshot.data())
+        })
+      }).then(testing => {
+        this.setState({ firestoreData: newArr });
+        // console.log(this.state.firestoreData);
+      })
+
+
+
+
   }
+
 
   constructor(props) {
     super(props)
     this.updatesState = this.updatesState.bind(this)
     this.SortByFee = this.SortByFee.bind(this)
+  }
+
+  SortByFireStore() {
+
+    this.setState({ universities: this.state.firestoreData })
+
   }
 
   SortByMerit() {
@@ -129,6 +153,7 @@ export default class Universities extends Component {
     this.setState({ universities: this.state.filter })
 
   }
+
 
   SortByStatus() {
     var t;
@@ -164,14 +189,23 @@ export default class Universities extends Component {
   }
 
   updatesState() {
+    this.setState({ showCityModal: false })
     this.setState({ show: false })
   }
   showModal() {
     this.setState({ show: true })
   }
+  showCityModal() {
+    this.setState({ showCityModal: true })
+  }
+  // updateFeeState() {
+  //   // this.setState({ show: false })
+  //   console.log(this.state.show);
+  // }
+
 
   render() {
-    console.log(this.state.universities)
+    // console.log(this.state.universities)
     return (
       <SafeAreaView style={styles.container}>
 
@@ -194,7 +228,7 @@ export default class Universities extends Component {
                 <TouchableOpacity style={styles.filter} onPress={() => {
                   if (item.title == "Merit") {
                     this.SortByMerit();
-                    Alert.alert("hello")
+                    // Alert.alert("hello")
                   }
                   else if (item.title == "Ranking") {
                     this.SortByRanking();
@@ -204,6 +238,10 @@ export default class Universities extends Component {
                   }
                   else if (item.title == "Status") {
                     this.SortByStatus();
+                  }
+                  else if (item.title == "Location") {
+                    // this.showCityModal();
+                    this.SortByFireStore();
                   }
 
                 }}>
@@ -255,6 +293,7 @@ export default class Universities extends Component {
         </View>
 
         <FeeModal show={this.state.show} update={this.updatesState} sortFilter={this.SortByFee} />
+        <CityModal show={this.state.showCityModal} update={this.updatesState} />
       </SafeAreaView>
     )
   }

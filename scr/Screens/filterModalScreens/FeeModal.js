@@ -1,4 +1,4 @@
-import { Text, View, Modal, TextInput, TouchableOpacity } from 'react-native'
+import { Text, View, Modal, TextInput, TouchableOpacity, Image } from 'react-native'
 import React, { Component } from 'react'
 import { styles } from './FeeModalStyle'
 import { StackActions } from "@react-navigation/native"
@@ -18,6 +18,10 @@ export default class FeeModal extends Component {
             <Modal transparent={true} visible={this.props.show} >
                 <View style={styles.container}>
                     <View style={styles.subContainer}>
+                        <TouchableOpacity onPress={this.props.update}
+                            style={styles.cancelImgStyle}>
+                            <Image style={styles.cancelImg} source={require("../../../assets/images/cancelcross.png")} />
+                        </TouchableOpacity>
                         <Text style={styles.txtStyle}>Sort By:</Text>
                         <View style={styles.inputFieldWrapper}>
                             <Text style={styles.txtStyle}>From:</Text>

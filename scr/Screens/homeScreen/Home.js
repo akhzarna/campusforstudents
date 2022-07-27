@@ -8,7 +8,7 @@ import CityModal from './CityModal';
 
 export default class Home extends Component {
   state = {
-    level: "Becholars", Degree: "Chemical Engineering", City: "Lahore", show: false
+    level: "Becholars", Degree: "Chemical Engineering", City: "Lahore", showCityModal: false
   };
 
   constructor(props) {
@@ -19,7 +19,7 @@ export default class Home extends Component {
 
 
   updatesState() {
-    this.setState({ show: false })
+    this.setState({ showCityModal: false })
   }
 
 
@@ -74,7 +74,7 @@ export default class Home extends Component {
 
 
 
-            <TouchableOpacity onPress={()=>this.setState({show:true})}>
+            <TouchableOpacity onPress={() => this.setState({ showCityModal: true })}>
               <View style={style.citypicker}>
                 <Text style={{ color: "#c14643", }}>Select City</Text>
               </View>
@@ -111,7 +111,7 @@ export default class Home extends Component {
 
             </View>
           </View>
-          <CityModal show={this.state.show} update={this.updatesState}/>
+          <CityModal show={this.state.showCityModal} update={this.updatesState} />
         </View>
       </ScrollView>
 

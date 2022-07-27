@@ -3,6 +3,8 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
+    "build": "(cd android/ && ./gradlew assembleDebug)",
+    "bundle-android": "react-native bundle --platform android --dev false --entry-file index.android.js --bundle-output android/app/src/main/assets/index.android.bundle --sourcemap-output android/app/src/main/assets/index.android.map --assets-dest android/app/src/main/res/",
     "android": "react-native run-android",
     "ios": "react-native run-ios",
     "start": "react-native start",
@@ -10,11 +12,14 @@
     "lint": "eslint ."
   },
   "dependencies": {
-    "@react-native-firebase/app": "^14.7.0",
+    "@firebase/firestore": "^3.4.13",
+    "@react-native-firebase/app": "^14.11.1",
     "@react-native-firebase/database": "^14.7.0",
+    "@react-native-firebase/firestore": "^15.2.0",
     "@react-native-picker/picker": "^2.4.0",
     "@react-navigation/native": "^6.0.8",
     "@react-navigation/native-stack": "^6.5.0",
+    "firebase": "^9.9.1",
     "react": "17.0.2",
     "react-native": "0.67.3",
     "react-native-app-intro-slider": "^4.0.4",

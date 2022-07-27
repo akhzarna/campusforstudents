@@ -38,8 +38,8 @@ export default class CityModal extends Component {
 
     render() {
         return (
-            <ScrollView>
-                <Modal transparent={true} visible={this.props.show}>
+            <Modal transparent={true} visible={this.props.show}>
+                <ScrollView>
                     <View style={style.container}>
                         <View style={style.modelContainer}>
 
@@ -122,8 +122,8 @@ export default class CityModal extends Component {
 
                         </View>
                     </View>
-                </Modal>
-            </ScrollView>
+                </ScrollView>
+            </Modal>
         )
     }
 }
