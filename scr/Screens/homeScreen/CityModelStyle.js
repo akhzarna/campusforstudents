@@ -2,8 +2,6 @@ import { StyleSheet } from "react-native"
 
 
 export const style = StyleSheet.create({
-    
-
     container: {
         backgroundColor: "#000000aa",
         flex: 1,
@@ -13,11 +11,17 @@ export const style = StyleSheet.create({
         flex:1, flexDirection:"row" , alignItems:"center" , justifyContent:"space-between"
     },
     cancelImg:{
-        width:"70%", height:40, backgroundColor:"#F5F5F5",marginRight:"15%",  marginTop:20, borderRadius:50, 
-        
+        height:30, 
+        width:30,
+        margin:5, 
+        backgroundColor:"#F5F5F5",
+        borderRadius:50, 
     },
-   
-
+    cancelImgStyle:{
+        margin:5,
+        width:40,
+        height:40,
+    },
     modelContainer: {
         backgroundColor: "#ffffff",
         marginTop: "12%",
@@ -59,30 +63,25 @@ export const style = StyleSheet.create({
         borderBottomWidth:1
     },
     cityImg:{
-        width:100,
-        height:100,
-     backgroundColor:"lightgrey",
+        width:70,
+        height:70,
+        backgroundColor:"lightgrey",
         borderRadius:50,
      
     },
     cityNames:{
-    marginLeft:10,
+    // marginLeft:10,
     marginTop:6,
     color:"black",
-    fontSize:20,
-
-    }
-
-
-    ,cityNameContainer:{
-        flex:0.9,
+    fontSize:16,
+    },
+    cityNameContainer:{
+        flex:1.0,
         alignItems:"center"
     },
     RecentCities:{
         flex:0.20,
-    
     },
-
     allCities:{
         flex:0.32,
     }

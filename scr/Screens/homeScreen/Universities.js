@@ -109,9 +109,10 @@ export default class Universities extends Component {
 
   componentDidMount() {
     database()
-      .ref('/university_listing/')
+    // .ref('/university_listing/')
+      .ref('/zeeshan_listing/')
       .on('value', snapshot => {
-        // console.log('User data: ', snapshot.val());
+        console.log('User data: ', snapshot.val().length);
         this.setState({ universities: snapshot.val() });
         this.setState({ filter: this.state.universities });
       });
@@ -126,10 +127,6 @@ export default class Universities extends Component {
         this.setState({ firestoreData: newArr });
         // console.log(this.state.firestoreData);
       })
-
-
-
-
   }
 
 
@@ -267,8 +264,8 @@ export default class Universities extends Component {
                   <View style={{ flex: 0.85, flexDirection: "row" }}>
                     <View style={styles.imageWrapper} >
                       <Image
-                        style={{ height: "75%", width: "100%", borderRadius: 50, marginLeft: 5 }}
-                        source={require('../../../assets/images/COMSATS.jpeg')}
+                        style={{ height: "75%", width: "100%", resizeMode:'contain', borderRadius: 50, marginLeft: 5 }}
+                        source={{uri: item.logo,}}
                       />
                     </View>
                     <View style={styles.universityDetailWrapper}>
@@ -278,7 +275,7 @@ export default class Universities extends Component {
                       <Text style={styles.universityDetailText}>Admission : {item.admissions}</Text>
                       <Text style={styles.universityDetailText}>Merit : {item.merit}</Text>
                       <View style={styles.locAndPhoneWrapper}>
-                        <Text style={styles.universityDetailText}>Location : {item.location}</Text>
+                      <Text style={styles.universityDetailText}>Location : {item.city}</Text>
                         {/* <Text style={styles.phone}>Phone</Text> */}
                       </View>
                       <Text style={[styles.universityDetailText, styles.DeadlineText]}>Deadline : {item.deadline}</Text>

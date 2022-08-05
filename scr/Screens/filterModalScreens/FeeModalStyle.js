@@ -18,8 +18,8 @@ export const styles = StyleSheet.create({
     }
     , inputFieldWrapper: {
         width: "100%",
-        flex: 0.50
-        , justifyContent: "space-evenly",
+        flex: 0.50, 
+        justifyContent: "space-evenly",
         alignItems: "center",
         flexDirection: "row",
 
@@ -37,17 +37,16 @@ export const styles = StyleSheet.create({
         textAlign: "center",
         borderRadius: 10,
         marginTop: 5,
-    }, txtStyle: {
+    }, 
+    txtStyle: {
         fontSize: 18
-
-    }
-    ,
-
+    },
     cancelImg: {
         height: 40,
         marginLeft: "75%",
         width: 50
     }
+
     // cancelImg: {
     //     width: "70%",
     //     height: 40,
@@ -57,10 +56,7 @@ export const styles = StyleSheet.create({
     //     borderRadius: 50,
 
     // },
-    ,
-    cancelImgStyle: {
-        flex: 0.10
 
-    }
+   
 
 });
