@@ -4,9 +4,9 @@ import { style } from './CityModelStyle';
 import { StackActions } from "@react-navigation/native"
 const popAction = StackActions.pop();
 
-
 export default class CityModal extends Component {
     state = {
+        
         allCities: [
             { key: 0, name: 'Abbottabad', },
             { key: 1, name: 'Ahmadpur East', },
@@ -77,6 +77,7 @@ export default class CityModal extends Component {
             { key: 66, name: 'Wah Cantt', },
             { key: 67, name: 'Wazirabad', }
         ],
+
         popupalarCities: [
             { key: 0, name: 'Karachi', url: require("../../../assets/images/Karachi.png") },
             { key: 1, name: 'Lahore', url: require("../../../assets/images/Lahore.png") },
@@ -84,17 +85,13 @@ export default class CityModal extends Component {
             { key: 3, name: 'Peshawar', url: require("../../../assets/images/peshawar.png") },
             { key: 4, name: 'Quetta', url: require("../../../assets/images/Lahore.png") },
         ],
+
         recentCities: [
             { key: 0, name: 'Lahore', },
             { key: 1, name: 'Karachi', },
         ],
-        selectedCity:''
-    }
 
-    checkFunction=()=>{
-        // Alert.alert('Hello');
-        // console.log('In the name of Allah');
-        // this.props.update
+        selectedCity:''
     }
 
     render() {

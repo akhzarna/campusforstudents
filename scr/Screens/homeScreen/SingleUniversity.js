@@ -44,19 +44,17 @@ export default class SingleUniversity extends Component {
     }
 
   componentDidMount(){
-      console.log('University Detail is = ', this.props.route.params.id);
-      this.setState({university:this.props.route.params.id});
+      console.log('University Detail is = ', this.props.route.params.obj);
 
-      var indexfordata = '/university_detail/' + this.props.route.params.id;
-      console.log('indexfordata == ' , indexfordata);
-
-      database()
-      .ref(indexfordata)
-      .on('value', snapshot => {
-        console.log('Detail Data is ::: ', snapshot.val());
-        this.setState({university:snapshot.val()});
-      });
-
+      // this.setState({university:this.props.route.params.id});
+      // var indexfordata = '/university_detail/' + this.props.route.params.id;
+      // console.log('indexfordata == ' , indexfordata);
+      // database()
+      // .ref(indexfordata)
+      // .on('value', snapshot => {
+      //   console.log('Detail Data is ::: ', snapshot.val());
+      //   this.setState({university:snapshot.val()});
+      // });
   }
 
   render() {
@@ -71,24 +69,24 @@ export default class SingleUniversity extends Component {
        </View>
             {/* University name heading after picture */}
         <View style={styles.headerWrapper}>
-          <Text style={styles.headerText}> {this.state.university.title} </Text>
+          <Text style={styles.headerText}> {this.props.route.params.obj.title} </Text>
         </View>
 
           {/* University details like type,status, Ranking */}
         <View style={styles.detailsWrapper}>
           <View style={styles.detail}>
             <Text style={styles.detailText1}>Type</Text>
-            <Text style={styles.detailText2}>{this.state.university.type}</Text>
+            <Text style={styles.detailText2}>{this.props.route.params.obj.type}</Text>
         </View>
         <View style={styles.verticalSeperator}></View>
           <View style={styles.detail}>
             <Text style={styles.detailText1}>Status</Text>
-            <Text style={styles.detailText2}>{this.state.university.status}</Text>
+            <Text style={styles.detailText2}>{this.props.route.params.obj.status}</Text>
           </View>
           <View style={styles.verticalSeperator}></View>
             <View style={styles.detail}>
               <Text style={styles.detailText1}>Ranking</Text>
-              <Text style={styles.detailText2}>{this.state.university.ranking}</Text>
+              <Text style={styles.detailText2}>{this.props.route.params.obj.ranking}</Text>
             </View>
           </View>
 
@@ -98,17 +96,17 @@ export default class SingleUniversity extends Component {
           <View style={styles.detailsWrapper}>
             <View style={styles.detail}>
               <Text style={styles.detailText1}>Location</Text>
-              <Text style={styles.detailText2}>{this.state.university.location}</Text>
+              <Text style={styles.detailText2}>{this.props.route.params.obj.city}</Text>
             </View>
             <View style={styles.verticalSeperator}></View>
             <View style={styles.detail}>
               <Text style={styles.detailText1}>Fee</Text>
-              <Text style={styles.detailText2}>{this.state.university.fee}</Text>
+              <Text style={styles.detailText2}>{this.props.route.params.obj.fee}</Text>
             </View>
             <View style={styles.verticalSeperator}></View>
             <View style={styles.detail}>
               <Text style={styles.detailText1}>Admission</Text>
-              <Text style={[styles.detailText2,styles.greenColor]}>{this.state.university.admissions}</Text>
+              <Text style={[styles.detailText2,styles.greenColor]}>{this.props.route.params.obj.admissions}</Text>
             </View>
           </View>
 
@@ -119,7 +117,7 @@ export default class SingleUniversity extends Component {
             </View>
             <View style={styles.DetailWrapper}>
               <Text style={styles.addressText1}>Addess:</Text>
-              <Text style={styles.addressText2}>{this.state.university.address}</Text>
+              <Text style={styles.addressText2}>{this.props.route.params.obj.map.address}</Text>
             </View>
           </View>
 
@@ -156,7 +154,7 @@ export default class SingleUniversity extends Component {
               </View>
               <View style={styles.linkTextWrapper}>
                 <TouchableOpacity>
-                  <Text style={styles.linksStyles}>{this.state.university.web}</Text>
+                  <Text style={styles.linksStyles}>{this.props.route.params.obj.web}</Text>
                 </TouchableOpacity>
               </View>
             </View>
@@ -176,7 +174,7 @@ export default class SingleUniversity extends Component {
                   {/* menu  section*/}
               <FlatList
                 nestedScrollEnabled={true}
-                data={this.state.university.menu}
+                data={this.props.route.params.obj.menu}
                 numColumns={3}
                 renderItem={({item})=>(
                   <View style={styles.menuIcon}>

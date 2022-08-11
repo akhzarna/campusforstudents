@@ -12,6 +12,11 @@ const styles = StyleSheet.create({
         backgroundColor:'#fff',
         position:'relative'
     },
+      horizontal: {
+        flexDirection: "row",
+        justifyContent: "space-around",
+        padding: 10
+      },
     logoWrapper:{
         flex:0.5, 
         justifyContent:"flex-end",

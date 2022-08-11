@@ -1,4 +1,4 @@
-import { Text, View, SafeAreaView, Image, FlatList, TouchableOpacity, Alert, Modal, TextInput } from 'react-native'
+import { ActivityIndicator, Text, View, SafeAreaView, Image, FlatList, TouchableOpacity, Alert, Modal, TextInput } from 'react-native'
 import React, { Component } from 'react'
 import styles from './UniversitiesStyle';
 import Separator from '../../Components/Separator';
@@ -10,6 +10,7 @@ import firestore from "@react-native-firebase/firestore"
 import { DocumentSnapshot, QuerySnapshot } from '@firebase/firestore';
 export default class Universities extends Component {
   state = {
+    activityindicator: true,
     show: false,
     showCityModal: false,
     filters: [
@@ -115,6 +116,7 @@ export default class Universities extends Component {
         console.log('User data: ', snapshot.val().length);
         this.setState({ universities: snapshot.val() });
         this.setState({ filter: this.state.universities });
+        this.setState({activityindicator:false});
       });
 
     var newArr = [];
@@ -205,11 +207,10 @@ export default class Universities extends Component {
     // console.log(this.state.universities)
     return (
       <SafeAreaView style={styles.container}>
-
-        <View style={styles.header} elevation={5}>
-          <Text style={styles.headerTxt}>150</Text>
-          <Text style={styles.headerTxt}>institutes in Lahore</Text>
-        </View>
+      
+      <View style={styles.header} elevation={5}>
+          <Text style={styles.headerTxt}>Institutes in Lahore</Text>
+      </View>
 
         <View style={styles.filterWrapper}>
           <TouchableOpacity style={styles.filter} onPress={() => this.props.navigation.navigate("AdvanceFilter")}>
@@ -240,7 +241,6 @@ export default class Universities extends Component {
                     // this.showCityModal();
                     this.SortByFireStore();
                   }
-
                 }}>
                   <Text >{item.title}</Text>
                 </TouchableOpacity>
@@ -248,19 +248,22 @@ export default class Universities extends Component {
             )}
           />
         </View>
-
-
+        {this.state.activityindicator?
+        (<View style={[styles.horizontal]}>
+          <ActivityIndicator size="large" />
+          </View>):
+        (null)
+        }
+        
         <View style={styles.universitiesWrapper}>
           <FlatList
             data={this.state.universities}
             renderItem={({ item }) => (
-
               <View key={item.key} style={styles.singleUniversity} elevation={4}>
                 <View style={styles.rankingTextWrapper}>
                   {/* <Text style={styles.rankingText}>Ranking {item.ranking}</Text> */}
                 </View>
-
-                <TouchableOpacity onPress={() => this.props.navigation.navigate('University', { id: item.key })}>
+                <TouchableOpacity onPress={() => this.props.navigation.navigate('University', { obj: item })}>
                   <View style={{ flex: 0.85, flexDirection: "row" }}>
                     <View style={styles.imageWrapper} >
                       <Image
@@ -270,12 +273,12 @@ export default class Universities extends Component {
                     </View>
                     <View style={styles.universityDetailWrapper}>
                       <Text style={[styles.universityDetailText, styles.usiversityName]}>{item.title}</Text>
-                      <Text style={styles.universityDetailText}>Fee : {item.fee}</Text>
-                      <Text style={styles.universityDetailText}>Ranking : {item.ranking}</Text>
-                      <Text style={styles.universityDetailText}>Admission : {item.admissions}</Text>
-                      <Text style={styles.universityDetailText}>Merit : {item.merit}</Text>
+                      <Text style={styles.universityDetailText}>Fee: {item.fee}</Text>
+                      <Text style={styles.universityDetailText}>Ranking: {item.ranking}</Text>
+                      <Text style={styles.universityDetailText}>Admission: {item.admissions}</Text>
+                      <Text style={styles.universityDetailText}>Merit: {item.merit}</Text>
                       <View style={styles.locAndPhoneWrapper}>
-                      <Text style={styles.universityDetailText}>Location : {item.city}</Text>
+                      <Text style={styles.universityDetailText}>Location: {item.city}</Text>
                         {/* <Text style={styles.phone}>Phone</Text> */}
                       </View>
                       <Text style={[styles.universityDetailText, styles.DeadlineText]}>Deadline : {item.deadline}</Text>
@@ -284,7 +287,6 @@ export default class Universities extends Component {
                 </TouchableOpacity>
               </View>
             )}
-
           // ItemSeparatorComponent={() => <Separator />}
           />
         </View>
