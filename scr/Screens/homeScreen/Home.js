@@ -250,9 +250,9 @@ export default class Home extends Component {
                             style={{ flex: 0.5,height: 100, width: 100,resizeMode:'contain', borderRadius: 50}}
                             source={{uri: item.logo}} />
                       <View style={{flex:0.5,marginTop:12,alignItems:"center"}}>   
-                        <Text style={{marginBottom:5,fontSize:18}}> <Text style={style.bold_text}>Name:</Text>{item.title}</Text>
-                        <Text style={{marginBottom:5,fontSize:18}}><Text style={style.bold_text}>Admissions:</Text>{item.admissions}</Text>
-                        <Text style={{marginBottom:5,fontSize:18}}> <Text style={style.bold_text}>City:</Text>{item.city}</Text>
+                        <Text style={{marginBottom:5,fontSize:17}}> <Text style={style.bold_text}>Name:</Text>{item.title}</Text>
+                        <Text style={{marginBottom:5,fontSize:17}}><Text style={style.bold_text}>Admissions:</Text>{item.admissions}</Text>
+                        <Text style={{marginBottom:5,fontSize:17}}> <Text style={style.bold_text}>City:</Text>{item.city}</Text>
                         {/* <Text style={{}}> <Text style={style.bold_text}>Deadline:</Text>{item.deadline}</Text> */}
                       </View>
                      </View>
