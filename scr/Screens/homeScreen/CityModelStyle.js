@@ -7,6 +7,12 @@ export const style = StyleSheet.create({
         flex: 1,
         borderWidth: 2
     },
+    mb10:{
+        marginBottom:10,
+    },
+    ml10:{
+        marginLeft:10,
+    },
     title:{
         flex:1, flexDirection:"row" , alignItems:"center" , justifyContent:"space-between"
     },
@@ -37,7 +43,8 @@ export const style = StyleSheet.create({
         marginTop: 10,
         marginLeft: 10,
         fontSize: 19,
-        fontSize:22
+        fontSize:22,
+        fontWeight:"bold",
         
     },
     currentCity: {
@@ -67,17 +74,15 @@ export const style = StyleSheet.create({
         height:70,
         backgroundColor:"lightgrey",
         borderRadius:50,
-     
     },
     cityNames:{
-    // marginLeft:10,
     marginTop:6,
     color:"black",
     fontSize:16,
     },
     cityNameContainer:{
         flex:1.0,
-        alignItems:"center"
+        alignItems:"center",
     },
     RecentCities:{
         flex:0.20,

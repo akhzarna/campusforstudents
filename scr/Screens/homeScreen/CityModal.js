@@ -83,6 +83,7 @@ export default class CityModal extends Component {
             { key: 2, name: 'Islamabad', url: require("../../../assets/images/Islamabad.png") },
             { key: 3, name: 'Peshawar', url: require("../../../assets/images/peshawar.png") },
             { key: 4, name: 'Quetta', url: require("../../../assets/images/Lahore.png") },
+            { key: 5, name: 'Bahawalpur', url: require("../../../assets/images/bahawalpur.png") },
         ],
         recentCities: [
             { key: 0, name: 'Lahore', },
@@ -111,12 +112,12 @@ export default class CityModal extends Component {
                                         <Image style={style.cancelImg} source={require("../../../assets/images/cancel.png")} />
                                     </TouchableOpacity>
                                 </View>
-                                <Text style={style.currentCity}>Current:Lahore</Text>
-                                <TextInput style={style.searchBar} placeholder='Find Best Match For You' />
+                                {/* <Text style={style.currentCity}>Current:Lahore</Text> */}
+                                {/* <TextInput style={style.searchBar} placeholder='Find Best Match For You' /> */}
                             </View>
 
                             <View style={style.popularCities}>
-                                <Text style={style.heading}>Popular Cities</Text>
+                            <Text style={[style.heading,style.mb10]}>Popular Cities</Text>
                                 <FlatList
                                     horizontal={true}
                                     numColumns={1}
@@ -139,7 +140,7 @@ export default class CityModal extends Component {
 
                             <View style={style.RecentCities}>
                                 <Text style={style.heading}>Recent Cities</Text>
-                                <Text style={style.currentCity}>Current:Lahore</Text>
+                                {/* <Text style={style.currentCity}>Current:Lahore</Text> */}
                                 <FlatList
                                     numColumns={1}
                                     keyExtractor={(item) => item.key}
@@ -149,7 +150,7 @@ export default class CityModal extends Component {
                                         ({ item }) =>
                                             <View style={{flex:1.0}}>
                                                   <TouchableOpacity onPress={this.props.update}>
-                                                  <Text style={style.cityNames}>{item.name}</Text>
+                                                  <Text style={[style.cityNames,style.ml10]}>{item.name}</Text>
                                                 </TouchableOpacity>
                                             </View>
                                     }
@@ -167,7 +168,7 @@ export default class CityModal extends Component {
                                         ({ item }) =>
                                         <View style={{flex:1.0}}>
                                             <TouchableOpacity onPress={this.props.update}>
-                                            <Text style={style.cityNames}>{item.name}</Text>
+                                            <Text style={[style.cityNames,style.ml10]}>{item.name}</Text>
                                             </TouchableOpacity>
                                         </View>
                                     }

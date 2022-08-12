@@ -86,31 +86,32 @@ export const style = StyleSheet.create({
     recommendation: {
         flex: 0.30,
         width: "100%",
-        marginTop: 10,
-        
+        marginTop: 10,  
     },
     recommendationContainer: {
         flex: 0.10,
-        flexDirection: "row"
-        , justifyContent: "space-between",
+        flexDirection: "row",
+        justifyContent: "space-between",
         marginHorizontal: "10%",
         marginVertical: "5%",
-     
-
     },
-
+    bold_text:{
+        fontWeight:"bold",
+        fontSize:19,
+    },
     campusImg: {
-        width: "100%"
-        , height: 110,
-        borderRadius: 50
+        width: "100%",
+        height: 110,
+        borderRadius: 50,
     },
     recommendationHeading: {
         backgroundColor: "lightgrey",
         width: "100%",
         paddingLeft:15,
-        height: "15%",
+        height: "8%",
         fontSize: 20,
-        fontWeight:"bold"
+        fontWeight:"bold",
+        alignContent:"center",
     },
 
 
