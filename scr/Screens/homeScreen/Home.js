@@ -21,6 +21,7 @@ export default class Home extends Component {
   UniState = {
     show: false,
     showCityModal: false,
+    universities:[],
     filters: [
       {
         id: "bd7acbea-c1b1-46c2-aed5-3ad53abb28baa",
@@ -141,10 +142,8 @@ export default class Home extends Component {
       location: "Lahore",
       Deadline: "22-3-2022"
     },
-
   ]
   
-
   constructor(props) {
     super(props)
     this.updateState = this.updateState.bind(this)
@@ -173,8 +172,8 @@ export default class Home extends Component {
         this.setState({ firestoreData: newArr });
         // console.log(this.state.firestoreData);
       })
-
   }
+
   render() {
     return (
       <ScrollView style={style.container}  >
@@ -241,25 +240,25 @@ export default class Home extends Component {
           <View style={style.recommendation}>
             <Text style={style.recommendationHeading}>Recommendations</Text>
 
-   
-                <View>
+            <View>
                   <FlatList
                     data={this.state.universities}
                     numColumns={2}
                     renderItem={({ item }) => (
-                     <View style={{flex:1}}>   
-                      <Image
-                            style={{ flex: 0.5,height: 200, width: 200, resizeMode:'contain', borderRadius: 50, }}
-                            source={{uri: item.logo,}} />
-                      <View style={{flex:0.5}}>   
-                        <Text> <Text style={style.bold_text}>Name:</Text>  {item.title}</Text>
-                        <Text> <Text style={style.bold_text}>Fee:</Text> {item.fee}</Text>
-                        <Text> <Text style={style.bold_text}>Admissions: </Text>{item.admissions}</Text>
-                        <Text> <Text style={style.bold_text}> City: </Text>{item.city}</Text>
-                        <Text> <Text style={style.bold_text}> Deadline:</Text> {item.deadline}</Text>
+                     
+                     
+                     
+<View style={{flex:1,marginLeft:5,alignItems:'center',marginTop:12,marginBottom:10}}>   
+                        <Image
+                            style={{ flex: 0.5,height: 100, width: 100,resizeMode:'contain', borderRadius: 50}}
+                            source={{uri: item.logo}} />
+                      <View style={{flex:0.5,marginTop:12,alignItems:"center"}}>   
+                        <Text style={{marginBottom:5,fontSize:17}}> <Text style={style.bold_text}>Name:</Text>{item.title}</Text>
+                        <Text style={{marginBottom:5,fontSize:17}}><Text style={style.bold_text}>Admissions:</Text>{item.admissions}</Text>
+                        <Text style={{marginBottom:5,fontSize:17}}> <Text style={style.bold_text}>City:</Text>{item.city}</Text>
                       </View>
+                     </View>
 
-                      </View>
                     )}
                   />
       

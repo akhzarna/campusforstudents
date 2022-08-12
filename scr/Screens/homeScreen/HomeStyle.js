@@ -108,7 +108,7 @@ export const style = StyleSheet.create({
         backgroundColor: "lightgrey",
         width: "100%",
         paddingLeft:15,
-        height: "15%",
+        height: "6%",
         fontSize: 20,
         fontWeight:"bold"
     },
