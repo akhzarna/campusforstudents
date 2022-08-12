@@ -271,13 +271,3 @@ export default class Home extends Component {
     )
   }
 }
-
-
-{/* <View style={{margin:10, alignItems:'center'}}>   
-                        <Image style={style.campusImg} source={require('../../../assets/images/COMSATS.jpeg')} />
-                        <Text style={{alignContent:'center'}}>{element.item.name}</Text>
-                        <Text style={{textAlign:'center'}}>{element.item.fee}</Text>
-                        <Text style={{textAlign:"center"}}>{element.item.admission}</Text>
-                        <Text>{element.item.location}</Text>
-                        <Text>{element.item.Deadline}</Text>
-                      </View> */}
