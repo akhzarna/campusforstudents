@@ -15,44 +15,34 @@ export default class Universities extends Component {
     showCityModal: false,
     filters: [
       {
+        id: "58694a0f-3da1-471f-bd96-145571e29d72o",
+        title: "Admission",
+      },
+      {
         id: "bd7acbea-c1b1-46c2-aed5-3ad53abb28baa",
         title: "Fee",
-
       },
       {
         id: "3ac68afc-c605-48d3-a4f8-fbd91aa97f63f",
-        title: "Ranking",
-
-      },
-      {
-        id: "58694a0f-3da1-471f-bd96-145571e29d72g",
-        title: "Merit",
-      },
-      {
-        id: "58694a0f-3da1-471f-bd96-145571e29d72h",
-        title: "Type",
-      },
-      {
-        id: "58694a0f-3da1-471f-bd96-145571e29d72k",
-        title: "Admission",
-      },
-      {
-        id: "58694a0f-3da1-471f-bd96-145571e29d726",
-        title: "Status",
-      },
-      {
-        id: "58694a0f-3da1-471f-bd96-145571e29d72o",
-
-        title: "Admission",
-      },
-      {
-        id: "58694a0f-3da1-471f-bd96-145571e29d74",
-        title: "Status",
+        title: "Ranking", 
       },
       {
         id: "58694a0f-3da1-471f-bd96-145571e29d76",
-        title: "Location",
+        title: "Location", 
       },
+      { 
+        id: "58694af1-3da1-471f-bd96-145571e29d76",
+        title: "Type", // Public or Private
+      }
+
+      // {
+      //   id: "58694a0f-3da1-471f-bd96-145571e29d72g",
+      //   title: "Merit",
+      // },
+      // {
+      //   id: "58694a0f-3da1-471f-bd96-145571e29d72h",
+      //   title: "Type",
+      // },
     ],
 
 
@@ -103,15 +93,16 @@ export default class Universities extends Component {
 
     //   },
     // ],
+
     filter: [],
     firestoreData: [],
-
   }
 
   componentDidMount() {
     database()
     // .ref('/university_listing/')
-      .ref('/zeeshan_listing/')
+    // limitToFirst(3)
+      .ref('/zeeshan_listing/').limitToFirst(10)
       .on('value', snapshot => {
         console.log('User data: ', snapshot.val().length);
         this.setState({ universities: snapshot.val() });
@@ -131,7 +122,6 @@ export default class Universities extends Component {
       })
   }
 
-
   constructor(props) {
     super(props)
     this.updatesState = this.updatesState.bind(this)
@@ -139,41 +129,53 @@ export default class Universities extends Component {
   }
 
   SortByFireStore() {
-
     this.setState({ universities: this.state.firestoreData })
-
   }
 
-  SortByMerit() {
-    var t;
-    this.state.filter.sort(function (a, b) {
-      return t = a.merit - b.merit
-    })
-    this.setState({ universities: this.state.filter })
+  // SortByMerit() {
+  //   var t;
+  //   this.state.filter.sort(function (a, b) {
+  //     return t = a.merit - b.merit
+  //   })
+  //   this.setState({ universities: this.state.filter })
+  // }
 
-  }
-
-
-  SortByStatus() {
+  SortByAdmission() {
+    // Alert.alert('Admissions');
     var t;
     t = this.state.filter
       .sort(function (a, b) {
         return a.admissions == "Closed"
       })
     this.setState({ universities: this.state.filter })
-
+    console.log(this.state.universities.length);
   }
+
+  // SortByStatus() {
+  //   var t;
+  //   t = this.state.filter
+  //     .sort(function (a, b) {
+  //       return a.admissions == "Closed"
+  //     })
+  //   this.setState({ universities: this.state.filter })
+  // }
 
   SortByRanking() {
     var t;
-    this.state.filter.sort(function (a, b) {
-      return t = a.ranking - b.ranking
+    t = this.state.filter.sort(function (a, b) {
+      return a.ranking - b.ranking
     })
     this.setState({ universities: this.state.filter })
-
   }
 
   SortByFee(min, max) {
+    console.log("Min and Max is = ",min, max)
+    // this.state.filter.filter(function (a) {
+    //   return a.fee >= min &&
+    //     a.fee <= max;
+    // })
+    // this.setState({ universities: this.state.filter })
+
     this.setState({
       universities: this.state.filter.filter(function (a) {
         return a.fee >= min &&
@@ -183,8 +185,7 @@ export default class Universities extends Component {
 
     this.setState({ show: false })
     // Alert.alert("Hh")
-    // console.log(this.state.universities)
-
+    console.log('Sort By Fee', this.state.universities.length)
   }
 
   updatesState() {
@@ -202,6 +203,17 @@ export default class Universities extends Component {
   //   console.log(this.state.show);
   // }
 
+  loadMore=()=>{
+    console.log('loadMore', this.state.universities.length);
+    // database()
+    //   .ref('/zeeshan_listing/').limitToFirst(this.state.universities.length+10)
+    //   .on('value', snapshot => {
+    //     console.log('loadMore data: ', snapshot.val().length);
+    //     this.setState({ universities: snapshot.val() });
+    //     this.setState({ filter: this.state.universities });
+    //     this.setState({activityindicator:false});
+    //   });
+  }
 
   render() {
     // console.log(this.state.universities)
@@ -224,23 +236,23 @@ export default class Universities extends Component {
               <View key={item.key} style={styles.singleFilter}>
                 {/* onPress={() => { this.setState({ show: true }) }} */}
                 <TouchableOpacity style={styles.filter} onPress={() => {
-                  if (item.title == "Merit") {
-                    this.SortByMerit();
-                    // Alert.alert("hello")
-                  }
-                  else if (item.title == "Ranking") {
-                    this.SortByRanking();
+                  // Admission, Fee, Ranking Location and Type
+                  if (item.title == "Admission") {
+                    this.SortByAdmission();
                   }
                   else if (item.title == "Fee") {
                     this.showModal();
                   }
-                  else if (item.title == "Status") {
-                    this.SortByStatus();
+                  else if (item.title == "Ranking") {
+                    this.SortByRanking();
                   }
                   else if (item.title == "Location") {
                     // this.showCityModal();
                     this.SortByFireStore();
                   }
+                  // else if (item.title == "Status") {
+                  //   this.SortByStatus();
+                  // }
                 }}>
                   <Text >{item.title}</Text>
                 </TouchableOpacity>
@@ -258,6 +270,7 @@ export default class Universities extends Component {
         <View style={styles.universitiesWrapper}>
           <FlatList
             data={this.state.universities}
+            onEndReached={this.loadMore}
             renderItem={({ item }) => (
               <View key={item.key} style={styles.singleUniversity} elevation={4}>
                 <View style={styles.rankingTextWrapper}>
@@ -274,7 +287,9 @@ export default class Universities extends Component {
                     <View style={styles.universityDetailWrapper}>
                       <Text style={[styles.universityDetailText, styles.usiversityName]}>{item.title}</Text>
                       <Text style={styles.universityDetailText}>Fee: {item.fee}</Text>
-                      <Text style={styles.universityDetailText}>Ranking: {item.ranking}</Text>
+
+                      <Text style={styles.universityDetailText}>Ranking: { item.ranking === 100000 ? "N/A": item.ranking } </Text>
+
                       <Text style={styles.universityDetailText}>Admission: {item.admissions}</Text>
                       <Text style={styles.universityDetailText}>Merit: {item.merit}</Text>
                       <View style={styles.locAndPhoneWrapper}>
@@ -297,5 +312,3 @@ export default class Universities extends Component {
     )
   }
 }
-
-
