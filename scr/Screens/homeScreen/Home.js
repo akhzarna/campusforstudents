@@ -252,7 +252,7 @@ export default class Home extends Component {
                             source={{uri: item.logo}} />
                         <View style={{flex:0.5,marginTop:12,alignItems:"center"}}>   
                           <Text style={{marginBottom:5,fontSize:16}}>{item.title}</Text>
-                          <Text style={{marginBottom:5,fontSize:16}}><Text style={style.bold_text}>Admissions:</Text>{item.admissions}</Text>
+                          <Text style={{marginBottom:5,fontSize:16}}><Text style={style.bold_text}>Admissions:  </Text>{item.admissions}</Text>
                           <Text style={{marginBottom:5,fontSize:16}}> <Text style={style.bold_text}>City:</Text>{item.city}</Text>
                       </View>
                   </View>
