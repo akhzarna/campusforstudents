@@ -103,6 +103,7 @@ export default class Universities extends Component {
     // .ref('/university_listing/')
     // limitToFirst(3)
     // testing
+    
       .ref('/zeeshan_listing/').limitToFirst(5)
       .on('value', snapshot => {
         console.log('User data: ', snapshot.val().length);
