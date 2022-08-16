@@ -35,7 +35,6 @@ export default class FeeModal extends Component {
                             <Text style={{ color: "white", fontSize: 18 }}>Apply Filter</Text>
                         </TouchableOpacity>
                     </View>
-
                 </View>
             </Modal>
         )

@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
         backgroundColor: "#DDDDDD",
         padding: 10,
         borderRadius:5,
-        width:100,
+        // width:100,
     },
     usiversityName:{
         color:"white",

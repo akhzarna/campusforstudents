@@ -8,97 +8,96 @@ export default class CityModal extends Component {
     state = {
         
         allCities: [
-            { key: 0, name: 'Abbottabad', },
-            { key: 1, name: 'Ahmadpur East', },
-            { key: 2, name: 'Bahawalnagar', },
-            { key: 3, name: 'Bahawalpur', },
-            { key: 4, name: 'Burewala', },
-            { key: 5, name: 'Chakdara', },
-            { key: 6, name: 'Chakwal', },
-            { key: 7, name: 'Chaman', },
-            { key: 8, name: 'Chiniot', },
-            { key: 9, name: 'Chishtian', },
-            { key: 10, name: 'Dadu', },
-            { key: 11, name: 'Daska', },
-            { key: 12, name: 'Dera Ghazi Khan', },
-            { key: 13, name: 'Dera Ismail Khan', },
-            { key: 14, name: 'Gojra', },
-            { key: 15, name: 'Gujranwala', },
-            { key: 16, name: 'Gujrat', },
-            { key: 17, name: 'Hafizabad', },
-            { key: 18, name: 'Hyderabad', },
-            { key: 19, name: 'Islamabad', },
-            { key: 20, name: 'Jacobabad', },
-            { key: 21, name: 'Jaranwala', },
-            { key: 22, name: 'Jhang', },
-            { key: 23, name: 'Jehlum', },
-            { key: 24, name: 'Kamalia', },
-            { key: 25, name: 'Kamoke', },
-            { key: 26, name: 'Kandhkot', },
-            { key: 27, name: 'Karachi', },
-            { key: 28, name: 'Kasur', },
-            { key: 29, name: 'Khairpur', },
-            { key: 30, name: 'Khanewal', },
-            { key: 31, name: 'Khanpur', },
-            { key: 32, name: 'Khushab', },
-            { key: 33, name: 'Khuzdar', },
-            { key: 34, name: 'Kohat', },
-            { key: 35, name: 'Kot Adu', },
-            { key: 36, name: 'Lahore', },
-            { key: 37, name: 'Larkana', },
-            { key: 38, name: 'Mandi Bahauddin', },
-            { key: 39, name: 'Mardan', },
-            { key: 40, name: 'Mingora', },
-            { key: 41, name: 'Mirpur Khas', },
-            { key: 42, name: 'Multan', },
-            { key: 43, name: 'Muridke', },
-            { key: 44, name: 'Muzaffargarh', },
-            { key: 45, name: 'Nawabshah', },
-            { key: 46, name: 'Nowshera', },
-            { key: 47, name: 'Okara', },
-            { key: 48, name: 'Pakpattan', },
-            { key: 49, name: 'Peshawar', },
-            { key: 50, name: 'Quetta', },
-            { key: 51, name: 'Rahim Yar Khan', },
-            { key: 52, name: 'Rawalpindi', },
-            { key: 53, name: 'Sadiqabad', },
-            { key: 54, name: 'Sahiwal', },
-            { key: 55, name: 'Sargodha', },
-            { key: 56, name: 'Sheikhupura', },
-            { key: 57, name: 'Shikarpur', },
-            { key: 58, name: 'Sialkot', },
-            { key: 59, name: 'Sukkur', },
-            { key: 60, name: 'Swabi', },
-            { key: 61, name: 'Tando Allahyar', },
-            { key: 62, name: 'Taxila', },
-            { key: 63, name: 'Timergara', },
-            { key: 64, name: 'Toba Tek Singh', },
-            { key: 65, name: 'Vehari', },
-            { key: 66, name: 'Wah Cantt', },
-            { key: 67, name: 'Wazirabad', }
+            { key: 0, title: 'Abbottabad', },
+            { key: 1, title: 'Ahmadpur East', },
+            { key: 2, title: 'Bahawalnagar', },
+            { key: 3, title: 'Bahawalpur', },
+            { key: 4, title: 'Burewala', },
+            { key: 5, title: 'Chakdara', },
+            { key: 6, title: 'Chakwal', },
+            { key: 7, title: 'Chaman', },
+            { key: 8, title: 'Chiniot', },
+            { key: 9, title: 'Chishtian', },
+            { key: 10, title: 'Dadu', },
+            { key: 11, title: 'Daska', },
+            { key: 12, title: 'Dera Ghazi Khan', },
+            { key: 13, title: 'Dera Ismail Khan', },
+            { key: 14, title: 'Gojra', },
+            { key: 15, title: 'Gujranwala', },
+            { key: 16, title: 'Gujrat', },
+            { key: 17, title: 'Hafizabad', },
+            { key: 18, title: 'Hyderabad', },
+            { key: 19, title: 'Islamabad', },
+            { key: 20, title: 'Jacobabad', },
+            { key: 21, title: 'Jaranwala', },
+            { key: 22, title: 'Jhang', },
+            { key: 23, title: 'Jehlum', },
+            { key: 24, title: 'Kamalia', },
+            { key: 25, title: 'Kamoke', },
+            { key: 26, title: 'Kandhkot', },
+            { key: 27, title: 'Karachi', },
+            { key: 28, title: 'Kasur', },
+            { key: 29, title: 'Khairpur', },
+            { key: 30, title: 'Khanewal', },
+            { key: 31, title: 'Khanpur', },
+            { key: 32, title: 'Khushab', },
+            { key: 33, title: 'Khuzdar', },
+            { key: 34, title: 'Kohat', },
+            { key: 35, title: 'Kot Adu', },
+            { key: 36, title: 'Lahore', },
+            { key: 37, title: 'Larkana', },
+            { key: 38, title: 'Mandi Bahauddin', },
+            { key: 39, title: 'Mardan', },
+            { key: 40, title: 'Mingora', },
+            { key: 41, title: 'Mirpur Khas', },
+            { key: 42, title: 'Multan', },
+            { key: 43, title: 'Muridke', },
+            { key: 44, title: 'Muzaffargarh', },
+            { key: 45, title: 'Nawabshah', },
+            { key: 46, title: 'Nowshera', },
+            { key: 47, title: 'Okara', },
+            { key: 48, title: 'Pakpattan', },
+            { key: 49, title: 'Peshawar', },
+            { key: 50, title: 'Quetta', },
+            { key: 51, title: 'Rahim Yar Khan', },
+            { key: 52, title: 'Rawalpindi', },
+            { key: 53, title: 'Sadiqabad', },
+            { key: 54, title: 'Sahiwal', },
+            { key: 55, title: 'Sargodha', },
+            { key: 56, title: 'Sheikhupura', },
+            { key: 57, title: 'Shikarpur', },
+            { key: 58, title: 'Sialkot', },
+            { key: 59, title: 'Sukkur', },
+            { key: 60, title: 'Swabi', },
+            { key: 61, title: 'Tando Allahyar', },
+            { key: 62, title: 'Taxila', },
+            { key: 63, title: 'Timergara', },
+            { key: 64, title: 'Toba Tek Singh', },
+            { key: 65, title: 'Vehari', },
+            { key: 66, title: 'Wah Cantt', },
+            { key: 67, title: 'Wazirabad', }
         ],
 
         popupalarCities: [
-            { key: 0, name: 'Karachi', url: require("../../../assets/images/Karachi.png") },
-            { key: 1, name: 'Lahore', url: require("../../../assets/images/Lahore.png") },
-            { key: 2, name: 'Islamabad', url: require("../../../assets/images/Islamabad.png") },
-            { key: 3, name: 'Peshawar', url: require("../../../assets/images/peshawar.png") },
-            { key: 4, name: 'Quetta', url: require("../../../assets/images/Lahore.png") },
-            { key: 5, name: 'Bahawalpur', url: require("../../../assets/images/bahawalpur.png") },
+            { key: 0, title: 'Karachi', url: require("../../../assets/images/Karachi.png") },
+            { key: 1, title: 'Lahore', url: require("../../../assets/images/Lahore.png") },
+            { key: 2, title: 'Islamabad', url: require("../../../assets/images/Islamabad.png") },
+            { key: 3, title: 'Peshawar', url: require("../../../assets/images/peshawar.png") },
+            { key: 4, title: 'Quetta', url: require("../../../assets/images/Lahore.png") },
+            { key: 5, title: 'Bahawalpur', url: require("../../../assets/images/bahawalpur.png") },
         ],
 
         recentCities: [
-            { key: 0, name: 'Lahore', },
-            { key: 1, name: 'Karachi', },
+            { key: 0, title: 'Lahore', },
+            { key: 1, title: 'Karachi', },
         ],
 
-        selectedCity:''
     }
 
     render() {
         return (
             <Modal transparent={true} visible={this.props.show}>
-                <ScrollView>
+                 <ScrollView>
                     <View style={style.container}>
                         <View style={style.modelContainer}>
                             <View style={style.header}>
@@ -125,10 +124,10 @@ export default class CityModal extends Component {
                                         ({ item }) =>
                                             <View style={{ marginLeft: 10 }}>
                                                 <View style={style.cityNameContainer}>
-                                                <TouchableOpacity onPress={this.props.update}>
+                                                <TouchableOpacity onPress={() => this.props.sortCity(item.title)}>
                                                     <Image style={style.cityImg} source={item.url} />
                                                 </TouchableOpacity>
-                                                <Text style={style.cityNames}>{item.name}</Text>
+                                                <Text style={style.cityNames}>{item.title}</Text>
                                                 </View>
                                             </View>
                                     }
@@ -146,8 +145,8 @@ export default class CityModal extends Component {
                                     renderItem={
                                         ({ item }) =>
                                             <View style={{flex:1.0}}>
-                                                  <TouchableOpacity onPress={this.props.update}>
-                                                  <Text style={[style.cityNames,style.ml10]}>{item.name}</Text>
+                                                  <TouchableOpacity onPress={() => this.props.sortCity(item.title)}>
+                                                  <Text style={[style.cityNames,style.ml10]}>{item.title}</Text>
                                                 </TouchableOpacity>
                                             </View>
                                     }
@@ -164,8 +163,8 @@ export default class CityModal extends Component {
                                     renderItem={
                                         ({ item }) =>
                                         <View style={{flex:1.0}}>
-                                            <TouchableOpacity onPress={this.props.update}>
-                                            <Text style={[style.cityNames,style.ml10]}>{item.name}</Text>
+                                            <TouchableOpacity onPress={() => this.props.sortCity(item.title)}>
+                                            <Text style={[style.cityNames,style.ml10]}>{item.title}</Text>
                                             </TouchableOpacity>
                                         </View>
                                     }
