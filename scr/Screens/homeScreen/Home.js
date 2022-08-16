@@ -176,7 +176,7 @@ export default class Home extends Component {
 
   render() {  
     return (
-      <ScrollView style={style.container}  >
+      <ScrollView style={style.container} >
         <View style={style.subcontainer}>
           <View style={style.header}>
 
