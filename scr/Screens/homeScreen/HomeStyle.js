@@ -87,28 +87,25 @@ export const style = StyleSheet.create({
         flex: 0.30,
         width: "100%",
         marginTop: 10,
-        
     },
     recommendationContainer: {
         flex: 0.10,
-        flexDirection: "row"
-        , justifyContent: "space-between",
+        flexDirection: "row",
+        justifyContent: "space-between",
         marginHorizontal: "10%",
         marginVertical: "5%",
-     
-
     },
 
     campusImg: {
-        width: "100%"
-        , height: 110,
+        width: "100%",
+        height: 110,
         borderRadius: 50
     },
     recommendationHeading: {
         backgroundColor: "lightgrey",
         width: "100%",
         paddingLeft:15,
-        height: "6%",
+        height: "15%",
         fontSize: 20,
         fontWeight:"bold"
     },
