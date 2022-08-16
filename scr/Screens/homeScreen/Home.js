@@ -174,9 +174,9 @@ export default class Home extends Component {
       })
   }
 
-  render() {  
+  render() {
     return (
-      <ScrollView style={style.container} >
+      <ScrollView style={style.container}  >
         <View style={style.subcontainer}>
           <View style={style.header}>
 
@@ -243,23 +243,26 @@ export default class Home extends Component {
             <View>
                   <FlatList
                     data={this.state.universities}
-                    horizontal
-                    renderItem={({ item }) => (     
-                <TouchableOpacity onPress={() => this.props.navigation.navigate('University', { obj: item })}>
-                  <View style={{flex:1,marginLeft:15,alignItems:'center',marginTop:12,marginBottom:10}}>   
+                    numColumns={2}
+                    renderItem={({ item }) => (
+                     
+                     
+                     
+<View style={{flex:1,marginLeft:5,alignItems:'center',marginTop:12,marginBottom:10}}>   
                         <Image
                             style={{ flex: 0.5,height: 100, width: 100,resizeMode:'contain', borderRadius: 50}}
                             source={{uri: item.logo}} />
-                        <View style={{flex:0.5,marginTop:12,alignItems:"center"}}>   
-                          <Text style={{marginBottom:5,fontSize:16}}>{item.title}</Text>
-                          <Text style={{marginBottom:5,fontSize:16}}><Text style={style.bold_text}>Admissions:</Text>{item.admissions}</Text>
-                          <Text style={{marginBottom:5,fontSize:16}}> <Text style={style.bold_text}>City:</Text>{item.city}</Text>
+                      <View style={{flex:0.5,marginTop:12,alignItems:"center"}}>   
+                        <Text style={{marginBottom:5,fontSize:17}}> <Text style={style.bold_text}>Name:</Text>{item.title}</Text>
+                        <Text style={{marginBottom:5,fontSize:17}}><Text style={style.bold_text}>Admissions:</Text>{item.admissions}</Text>
+                        <Text style={{marginBottom:5,fontSize:17}}> <Text style={style.bold_text}>City:</Text>{item.city}</Text>
                       </View>
-                  </View>
-                </TouchableOpacity>                
+                     </View>
 
-                  )}
+                    )}
                   />
+      
+
             </View>
           </View>
           <CityModal show={this.state.showCityModal} update={this.updateState} />
