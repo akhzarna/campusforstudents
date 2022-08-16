@@ -152,15 +152,12 @@ export default class AdvanceFilter extends Component {
             <Text style={[styles.btnText, styles.resetBtntxt]}>Reset</Text>
           </TouchableOpacity>
           <TouchableOpacity style={[styles.applyBtn, constStyle.buttonColor]} onPress={() => this.props.navigation.navigate("Universities")}
-
           >
             <Text style={styles.btnText}>Apply Filter</Text>
           </TouchableOpacity>
 
-
         </View>
-
-
+        
       </KeyboardAwareScrollView>
 
     )
