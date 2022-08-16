@@ -22,7 +22,7 @@ export default class FeeModal extends Component {
                             style={styles.cancelImgStyle}>
                             <Image style={styles.cancelImg} source={require("../../../assets/images/cancelcross.png")} />
                         </TouchableOpacity>
-                        <Text style={styles.txtStyle}>Sort By:</Text>
+                        <Text style={[styles.txtStyle]}>Sort By:</Text>
                         <View style={styles.inputFieldWrapper}>
                             <Text style={styles.txtStyle}>From:</Text>
                             <TextInput style={styles.inputStyle} placeholder='Minimum' value={this.state.min.toString()} onChangeText={(value) => this.setState({ min: value })} />

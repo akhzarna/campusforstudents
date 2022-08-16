@@ -4,13 +4,12 @@ export const styles = StyleSheet.create({
     container: {
         backgroundColor: "#000000aa",
         flex: 1,
-
-        justifyContent: "flex-end"
+        justifyContent: "flex-end",
     },
 
     subContainer: {
         backgroundColor: "#ffffff",
-        flex: 0.30,
+        flex: 0.40,
         borderTopLeftRadius: 20,
         borderTopRightRadius: 20,
         alignItems: "center",
@@ -18,17 +17,25 @@ export const styles = StyleSheet.create({
     }
     , inputFieldWrapper: {
         width: "100%",
-        flex: 0.50, 
+        flex: 0.60, 
         justifyContent: "space-evenly",
         alignItems: "center",
         flexDirection: "row",
-
     },
     inputStyle: {
         borderWidth: 1.5,
         width: "30%",
-        textAlign: "center"
+        textAlign: "center",
+        height: 40,
+        margin: 15,
+        marginTop: 10,
+        borderWidth: 2,
+        padding: 10,
+        borderRadius: 10,
+        color: "black",
+        fontSize: 16,
     },
+    
     ApplyBtn: {
         backgroundColor: "red",
         paddingHorizontal: 20,
@@ -39,7 +46,7 @@ export const styles = StyleSheet.create({
         marginTop: 5,
     }, 
     txtStyle: {
-        fontSize: 18
+        fontSize: 18,
     },
     cancelImg: {
         height: 40,
