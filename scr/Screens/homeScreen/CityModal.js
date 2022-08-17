@@ -2,6 +2,7 @@ import { Text, View, Modal, Button, TextInput, FlatList, ScrollView, Image, Touc
 import React, { Component } from 'react'
 import { style } from './CityModelStyle';
 import { StackActions } from "@react-navigation/native"
+import { Picker } from '@react-native-picker/picker';
 const popAction = StackActions.pop();
 
 export default class CityModal extends Component {

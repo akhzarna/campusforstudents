@@ -197,7 +197,7 @@ export default class Home extends Component {
                 selectedValue={this.state.studylevel}
                 >
                 <Picker.Item label="Select the study Level" color="#c14643" />
-                {/* <Picker.Item label="Masters" value="Masters" /> */}
+                <Picker.Item label="Masters" value="Masters" />
                 <Picker.Item label="Becholars" value="Becholars" />
               </Picker>
 
