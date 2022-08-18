@@ -155,7 +155,7 @@ export default class Universities extends Component {
             renderItem={({ item }) => (
               <View key={item.key} style={styles.singleFilter}>
                 {/* onPress={() => { this.setState({ show: true }) }} */}
-                <TouchableOpacity style={styles.filter} onPress={() => {
+                <TouchableOpacity style={styles.filter} onPress={() => {  
                   // Admission, Fee, Ranking Location and Type
                   if (item.title == "Admission") {
                     this.SortByAdmission();

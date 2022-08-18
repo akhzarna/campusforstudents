@@ -19,7 +19,30 @@ export default class AdvanceFilter extends Component {
     percentage: "",
 
   }
+
+  SortByAdmission() {    
+    this.setState({ universities: this.state.filter.sort((a, b) => b.admissions - a.admissions) }) 
+  }
+  SortByRanking() {
+    this.setState({ universities: this.state.filter.sort((a, b) => a.ranking - b.ranking) })
+  }
+
+  ApplyFilters=()=>{
+    console.log(this.state.level);
+    console.log(this.state.ProgramName);
+    console.log(this.state.ranking);
+    console.log(this.state.city);
+    console.log(this.state.type);
+    console.log(this.state.status);
+    console.log(this.state.min);
+    console.log(this.state.max);
+    console.log(this.state.percentage);
+
+    this.props.navigation.pop();
+ }
+  
   render() {
+    // console.log("selectedState",this.selectedState)
     return (
       <KeyboardAwareScrollView style={styles.container}>
         <View style={styles.filtersWrapper}>
@@ -36,6 +59,7 @@ export default class AdvanceFilter extends Component {
                 onValueChange={(itemValue, itemIndex) =>
                   this.setState({ level: itemValue })}
               >
+              
                 <Picker.Item label="Select Study Level" />
                 <Picker.Item label="BS" value="BS" />
                 <Picker.Item label="MS" value="MS" />
@@ -61,7 +85,7 @@ export default class AdvanceFilter extends Component {
             <View style={styles.picker}>
 
               <Picker mode="dropdown"
-                selectedValue={this.state.city}
+                selectedValue={this.state.city} 
                 onValueChange={(itemValue, itemIndex) =>
                   this.setState({ city: itemValue })}
               >
@@ -151,10 +175,10 @@ export default class AdvanceFilter extends Component {
             onPress={() => this.setState({ level: "", ProgramName: "", status: "", city: "", type: "", ranking: "", min: "", max: "", percentage: "" })}>
             <Text style={[styles.btnText, styles.resetBtntxt]}>Reset</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={[styles.applyBtn, constStyle.buttonColor]} onPress={() => this.props.navigation.navigate("Universities")}
+          <TouchableOpacity style={[styles.applyBtn, constStyle.buttonColor]} onPress={this.ApplyFilters}
           >
             <Text style={styles.btnText}>Apply Filter</Text>
-          </TouchableOpacity>
+            </TouchableOpacity>
 
         </View>
         
@@ -162,4 +186,5 @@ export default class AdvanceFilter extends Component {
 
     )
   }
+  
 }
