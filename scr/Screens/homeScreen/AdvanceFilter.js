@@ -9,7 +9,7 @@ export default class AdvanceFilter extends Component {
   state = {
     Value: 'Select',
     level: "Select Study Level",
-    ProgramName: "Program Name (Degree Name)",
+    programname: "Program Name (Degree Name)",
     ranking: "Select Ranking",
     city: "Select City",
     type: "Select Type",
@@ -19,6 +19,22 @@ export default class AdvanceFilter extends Component {
     percentage: "",
 
   }
+
+  ApplyFilters = () =>{ 
+    var filters = {
+      level: this.state.level,
+      programname:this.state.programname,
+      ranking:this.state.ranking,
+      city:this.state.city,
+      type:this.state.type,
+      status:this.state.status,
+      min: this.state.min,
+      max: this.state.max,
+      percentage:this.state.percentage
+    }
+    this.props.navigation.navigate('Universities',{ filters: filters });
+  }
+
   render() {
     return (
       <KeyboardAwareScrollView style={styles.container}>
@@ -45,10 +61,10 @@ export default class AdvanceFilter extends Component {
             </View>
             <View style={styles.picker}>
               <Picker mode="dropdown"
-                selectedValue={this.state.ProgramName}
-                value={this.state.ProgramName}
+                selectedValue={this.state.programname}
+                value={this.state.programname}
                 onValueChange={(itemValue, itemIndex) =>
-                  this.setState({ ProgramName: itemValue })}
+                  this.setState({ programname: itemValue })}
               >
                 <Picker.Item label="Program Name (Degree Name)" />
                 <Picker.Item label="BS Software Engineering" value="BS Software Engineering" />
@@ -148,10 +164,10 @@ export default class AdvanceFilter extends Component {
 
         <View style={[styles.btnWrapper]} elevation={0.4} >
           <TouchableOpacity style={styles.resetBtn}
-            onPress={() => this.setState({ level: "", ProgramName: "", status: "", city: "", type: "", ranking: "", min: "", max: "", percentage: "" })}>
+            onPress={() => this.setState({ level: "", programname: "", status: "", city: "", type: "", ranking: "", min: "", max: "", percentage: "" })}>
             <Text style={[styles.btnText, styles.resetBtntxt]}>Reset</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={[styles.applyBtn, constStyle.buttonColor]} onPress={() => this.props.navigation.navigate("Universities")}
+          <TouchableOpacity style={[styles.applyBtn, constStyle.buttonColor]} onPress={this.ApplyFilters}
           >
             <Text style={styles.btnText}>Apply Filter</Text>
           </TouchableOpacity>

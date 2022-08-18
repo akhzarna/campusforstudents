@@ -44,7 +44,6 @@ export default class SingleUniversity extends Component {
     }
 
   componentDidMount(){
-      console.log('University Detail is = ', this.props.route.params.obj);
       // this.setState({university:this.props.route.params.id});
       // var indexfordata = '/university_detail/' + this.props.route.params.id;
       // console.log('indexfordata == ' , indexfordata);

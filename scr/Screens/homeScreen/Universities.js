@@ -15,50 +15,34 @@ export default class Universities extends Component {
     this.updatesState = this.updatesState.bind(this)
     this.SortByFee = this.SortByFee.bind(this)
     this.SortByCity = this.SortByCity.bind(this)
-
     this.state = {
       activityindicator: true,
       showFeeModal: false,
       showCityModal: false,
-      filter: [],
+      filtersArray: [],
       firestoreData: [],
-      filters: [
+      allFilters: [
         {
-          id: "58694a0f-3da1-471f-bd96-145571e29d72o",
           title: "Admission",
           status:-1,
-        },
-        {
-          id: "bd7acbea-c1b1-46c2-aed5-3ad53abb28baa",
+          key:0,
+        },{
           title: "Fee",
           status:-1,
-        },
-        {
-          id: "3ac68afc-c605-48d3-a4f8-fbd91aa97f63f",
+          key:1,
+        },{
           title: "Ranking", 
           status:-1,
-        },
-        {
-          id: "58694a0f-3da1-471f-bd96-145571e29d76",
+          key:2,
+        },{
           title: "Location",
           status:-1,
-        },
-        { 
-          id: "58694af1-3da1-471f-bd96-145571e29d76",
-          title: "Type",
+          key:3,
+        },{ 
+          title: "Status",
           status:-1,
-          // Public or Private
+          key:4,
         }
-  
-        // {
-        //   id: "58694a0f-3da1-471f-bd96-145571e29d72g",
-        //   title: "Merit",
-        // },
-        // {
-        //   id: "58694a0f-3da1-471f-bd96-145571e29d72h",
-        //   title: "Type",
-        // },
-  
       ],
     }
   }
@@ -72,7 +56,7 @@ export default class Universities extends Component {
       .on('value', snapshot => {
         console.log('User data: ', snapshot.val().length);
         this.setState({ universities: snapshot.val() });
-        this.setState({ filter: this.state.universities });
+        this.setState({ filtersArray: this.state.universities });
         this.setState({activityindicator:false});
       });
 
@@ -86,27 +70,40 @@ export default class Universities extends Component {
         this.setState({ firestoreData: newArr });
         // console.log(this.state.firestoreData);
       })
+     
+      this.focusListener = this.props.navigation.addListener('focus', () => {
+        this.AppltAllFilters(this.props.route.params.filters);
+      });
+  }
+
+  componentWillUnmount() {
+    this.focusListener();
+  }
+
+  AppltAllFilters(filters){
+      console.log('We are successfull',filters);
   }
 
   SortByFireStore() {
     this.setState({ universities: this.state.firestoreData })
   }
 
-  SortByAdmission() {    
-    this.setState({ universities: this.state.filter.sort((a, b) => b.admissions - a.admissions) })
+  SortByAdmission(item) {  
+    console.log(item)  
+    this.setState({ universities: this.state.filtersArray.sort((a, b) => b.admissions - a.admissions) })
   }
 
   SortByFee(min, max) {
-    this.setState({ universities: this.state.filter.filter((item)=> item.fee>=min && item.fee<=max).sort((a,b)=>a.fee - b.fee) })
+    this.setState({ universities: this.state.filtersArray.filter((item)=> item.fee>=min && item.fee<=max).sort((a,b)=>a.fee - b.fee) })
     this.setState({ showFeeModal: false })
   }
 
   SortByRanking() {
-    this.setState({ universities: this.state.filter.sort((a, b) => a.ranking - b.ranking) })
+    this.setState({ universities: this.state.filtersArray.sort((a, b) => a.ranking - b.ranking) })
   }
 
   SortByCity(cityName) {
-    console.log('My Log', cityName)
+    this.setState({ universities: this.state.filtersArray.filter((a) => a.city==cityName) })
     this.setState({ showCityModal: false })
   }
 
@@ -123,6 +120,10 @@ export default class Universities extends Component {
     this.setState({ showCityModal: true })
   }
 
+  SortByStatus(){
+      this.setState({ universities: this.state.filtersArray.sort((a, b) => b.status - a.status) })
+  }
+
   loadMore=()=>{
     console.log('loadMore', this.state.universities.length);
     // database()
@@ -130,7 +131,7 @@ export default class Universities extends Component {
     //   .on('value', snapshot => {
     //     console.log('loadMore data: ', snapshot.val().length);
     //     this.setState({ universities: snapshot.val() });
-    //     this.setState({ filter: this.state.universities });
+    //     this.setState({ filtersArray: this.state.universities });
     //     this.setState({activityindicator:false});
     //   });
   }
@@ -141,7 +142,7 @@ export default class Universities extends Component {
       <SafeAreaView style={styles.container}>
       
       <View style={styles.header} elevation={5}>
-          <Text style={styles.headerTxt}>Institutes in Lahore</Text>
+          <Text style={styles.headerTxt}>Institutes</Text>
       </View>
 
         <View style={styles.filterWrapper}>
@@ -151,30 +152,24 @@ export default class Universities extends Component {
           <FlatList
             horizontal={true}
             showsHorizontalScrollIndicator={false}
-            data={this.state.filters}
+            data={this.state.allFilters}
             renderItem={({ item }) => (
               <View key={item.key} style={styles.singleFilter}>
                 {/* onPress={() => { this.setState({ show: true }) }} */}
                 <TouchableOpacity style={styles.filter} onPress={() => {
-                  // Admission, Fee, Ranking Location and Type
                   if (item.title == "Admission") {
-                    this.SortByAdmission();
-                  }
-                  else if (item.title == "Fee") {
+                    this.SortByAdmission(item);
+                  }else if (item.title == "Fee") {
                     this.showFeeModal();
-                  }
-                  else if (item.title == "Ranking") {
+                  }else if (item.title == "Ranking") {
                     this.SortByRanking();
-                  }
-                  else if (item.title == "Location") {
+                  }else if (item.title == "Location") {
                     this.showCityModal();
-                    // this.SortByFireStore();
+                  }else if (item.title == "Status") {
+                    this.SortByStatus();
                   }
-                  // else if (item.title == "Status") {
-                  //   this.SortByStatus();
-                  // }
                 }}>
-                  <Text >{item.title}</Text>
+                  <Text>{item.title}</Text>
                 </TouchableOpacity>
               </View>
             )}
@@ -196,7 +191,7 @@ export default class Universities extends Component {
                 <View style={styles.rankingTextWrapper}>
                   {/* <Text style={styles.rankingText}>Ranking {item.ranking}</Text> */}
                 </View>
-                <TouchableOpacity onPress={() => this.props.navigation.navigate('University', { obj: item })}>
+                <TouchableOpacity onPress={() => this.props.navigation.navigate('UniversityDetail', { obj: item })}>
                   <View style={{ flex: 0.85, flexDirection: "row" }}>
                     <View style={styles.imageWrapper} >
                       <Image
@@ -206,10 +201,9 @@ export default class Universities extends Component {
                     </View>
                     <View style={styles.universityDetailWrapper}>
                       <Text style={[styles.universityDetailText, styles.usiversityName]}>{item.title}</Text>
+                      <Text style={styles.universityDetailText}>Status: {item.status?'Public':'Private'}</Text>
                       <Text style={styles.universityDetailText}>Fee: {item.fee}</Text>
-
                       <Text style={styles.universityDetailText}>Ranking: { item.ranking === 100000 ? "N/A": item.ranking } </Text>
-
                       <Text style={styles.universityDetailText}>Admission: {item.admissions?'Open':'Closed'}</Text>
                       <Text style={styles.universityDetailText}>Merit: {item.merit}</Text>
                       <View style={styles.locAndPhoneWrapper}>
