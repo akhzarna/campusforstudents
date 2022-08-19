@@ -662,16 +662,24 @@ export default class Universities extends Component {
     }
   }
 
+  setAllValues(allrecords){
+    this.setState({ universities: allrecords });
+    this.setState({ filtersArray: allrecords }, function () {
+      this.state.cloneArray = this.state.universities;
+      this.ApplyAllFilters();
+    });
+  }
+
   componentDidMount() {
 
-    // database()
+    database()
     // .ref('/university_listing/')
     // limitToFirst(3)
     // testing
-    // .ref('/zeeshan_listing/').limitToFirst(5)
-    //  .on('value', snapshot => {
-    //    this.setAllValues(snapshot.val());
-    //  });
+    .ref('/zeeshan_listing/').limitToFirst(239)
+     .on('value', snapshot => {
+       this.setAllValues(snapshot.val());
+     });
 
     // var newArr = [];
     // firestore()
@@ -684,12 +692,14 @@ export default class Universities extends Component {
     //     // console.log(this.state.firestoreData);
     //   })
     
-    this.setState({filtersArray:this.state.allUniversitiesDummyData});
-    this.setState({universities:this.state.allUniversitiesDummyData}, function () {
-      this.state.cloneArray = this.state.universities;
-      this.ApplyAllFilters();
-    });
-    this.setState({activityindicator:false});
+    // this.setState({filtersArray:this.state.allUniversitiesDummyData});
+    // this.setState({universities:this.state.allUniversitiesDummyData}, function () {
+    //   this.state.cloneArray = this.state.universities;
+    //   this.ApplyAllFilters();
+    // });
+
+    // this.setState({activityindicator:false});
+
     // this.ApplyAllFilters();
       // To call function on pop()
     this.focusListener = this.props.navigation.addListener('focus', () => {
@@ -717,19 +727,29 @@ export default class Universities extends Component {
       // console.log('clone Array is =', this.state.cloneArray.length);
       var afterFilters = this.state.cloneArray.filter((a) => a.discipline==allFilters.discipline)
       this.state.cloneArray=afterFilters;
-        console.log('clone Array is =', this.state.cloneArray.length);
-        console.log('afterFilters Array is =', afterFilters);
+        // console.log('clone Array is =', this.state.cloneArray.length);
+        // console.log('afterFilters Array is =', afterFilters);
     }
     if(allFilters.hasOwnProperty('min')){
-      console.log('hasOwnProperty is min');
+      // console.log('hasOwnProperty is min');
+      var afterFilters = this.state.cloneArray.filter((a) => a.fee>=allFilters.min)
+      this.state.cloneArray=afterFilters;
+        // console.log('clone Array is =', this.state.cloneArray.length);
+        // console.log('afterFilters Array is =', afterFilters);
     }
     if(allFilters.hasOwnProperty('max')){
-      console.log('hasOwnProperty is max');
+      // console.log('hasOwnProperty is max');
+      var afterFilters = this.state.cloneArray.filter((a) => a.fee<=allFilters.max)
+      this.state.cloneArray=afterFilters;
+        console.log('clone Array is =', this.state.cloneArray.length);
+        // console.log('afterFilters Array is =', afterFilters);
     }
 
-    // console.log('Hello', this.state.universities);
-    // console.log('Hello', this.state.filtersArray);
 
+    // console.log('Hello', this.state.universities);
+    this.setState({universities:this.state.cloneArray}, function(){
+      console.log('Total CS Records', this.state.universities.length);
+    });
     this.setState({activityindicator:false});
 
     // database()
@@ -745,14 +765,6 @@ export default class Universities extends Component {
     // this.setState({ universities: this.state.filtersArray.filter((item)=> item.fee>=allFilters.min && item.fee<=allFilters.max && item.city==allFilters.city && item.degree==allFilters.studylevel) })
     // this.setState({activityindicator:false});
     // console.log('We are successfull',this.props.route.params.filters);
-  }
-
-  setAllValues(allrecords){
-    // console.log('We are successfull',this.props.route.params.filters);
-    // console.log('User data: ', allrecords.length);
-    this.setState({ universities: allrecords });
-    this.setState({ filtersArray: allrecords });
-    // this.ApplyAllFilters();
   }
 
   SortByFireStore() {

@@ -64,11 +64,13 @@ export default class Home extends Component {
   }
 
   ApplyFilters=()=>{
+    
     // studylevel: this.state.studylevel,
     // discipline: this.state.discipline,
     // city: this.state.city,
     // min: this.state.min,
     // max: this.state.max
+
     var filters =  {}
     if(this.state.discipline!="Select discipline"){
       filters.discipline=this.state.discipline;
