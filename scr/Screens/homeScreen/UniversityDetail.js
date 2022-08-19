@@ -65,9 +65,9 @@ export default class SingleUniversity extends Component {
  };
 
  handleClick = () => {
-  Linking.canOpenURL(this.props.route.params.obj.web).then(supported => {
+  Linking.canOpenURL(this.props.route.params.obj.map.address).then(supported => {
     if (supported) {
-      Linking.openURL(this.props.route.params.obj.web);
+      Linking.openURL(this.props.route.params.obj.map.address);
     } else {
       console.log("Don't know how to open URI: " + this.props.route.params.obj.web);
     }
