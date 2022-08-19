@@ -65,9 +65,9 @@ export default class SingleUniversity extends Component {
  };
 
  handleClick = () => {
-  Linking.canOpenURL(this.props.route.params.obj.map.address).then(supported => {
+  Linking.canOpenURL(this.props.route.params.obj.web).then(supported => {
     if (supported) {
-      Linking.openURL(this.props.route.params.obj.map.address);
+      Linking.openURL(this.props.route.params.obj.web);
     } else {
       console.log("Don't know how to open URI: " + this.props.route.params.obj.web);
     }
@@ -81,9 +81,13 @@ export default class SingleUniversity extends Component {
       <ScrollView style={styles.container}>
             {/* header image */}
         <View style={styles.pictureWrapper}>
-           <Image
+           {/* <Image
              style={{height:"100%",width:"100%"}}
              source={require('../../../assets/images/uni1.jpg')}
+           /> */}
+           <Image
+            style={{height:"100%",width:"100%"}}
+            source={{ uri: `${this.props.route.params.obj.logo}` }}
            />
        </View>
             {/* University name heading after picture */}
