@@ -59,11 +59,10 @@ export const style = StyleSheet.create({
     },
     inputFieldWrapper: {
         width: "100%",
-        flex: 0.50
-        , justifyContent: "space-evenly",
+        flex: 0.50, 
+        justifyContent: "space-evenly",
         alignItems: "center",
         flexDirection: "row",
-
     },
     inputStyle: {
         borderWidth: 1.5,

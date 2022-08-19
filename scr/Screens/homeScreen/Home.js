@@ -9,150 +9,39 @@ import firestore from "@react-native-firebase/firestore"
 import styles from './UniversitiesStyle';
 
 export default class Home extends Component {
-  state = {
-    studylevel: "Becholars", 
-    degreelevel: "Computer", 
-    Degree: "Chemical Engineering", 
-    City: "Lahore", 
-    showCityModal: false,
-    filters:{level:'BS', programname:'BS CS', min:10000, max:100000, city:'Lahore'}
-  };
-
-  UniState = {
-    show: false,
-    showCityModal: false,
-    universities:[],
-    filters: [
-      {
-        id: "bd7acbea-c1b1-46c2-aed5-3ad53abb28baa",
-        title: "Fee",
-
-      },
-      {
-        id: "3ac68afc-c605-48d3-a4f8-fbd91aa97f63f",
-        title: "Ranking",
-
-      },
-      {
-        id: "58694a0f-3da1-471f-bd96-145571e29d72g",
-        title: "Merit",
-      },
-      {
-        id: "58694a0f-3da1-471f-bd96-145571e29d72h",
-        title: "Type",
-      },
-      {
-        id: "58694a0f-3da1-471f-bd96-145571e29d72k",
-        title: "Admission",
-      },
-      {
-        id: "58694a0f-3da1-471f-bd96-145571e29d726",
-        title: "Status",
-      },
-      {
-        id: "58694a0f-3da1-471f-bd96-145571e29d72o",
-
-        title: "Admission",
-      },
-      {
-        id: "58694a0f-3da1-471f-bd96-145571e29d74",
-        title: "Status",
-      },
-      {
-        id: "58694a0f-3da1-471f-bd96-145571e29d76",
-        title: "Location",
-      },
-    ],
-
-
-    // universities: [
-    //   {
-    //     id: "1",
-    //     name: "University of Punjab",
-    //     fee: 2000,
-    //     admission: 'Open',
-    //     location: "Lahore",
-    //     Deadline: "22-3-2022"
-
-    //   },
-    //   {
-    //     id: "2",
-    //     name: "Comsats",
-    //     fee: 12000,
-    //     admission: 'Close',
-    //     location: "Islamabad",
-    //     Deadline: "22-3-2022"
-
-    //   },
-    //   {
-    //     id: "3",
-    //     name: "Comsats",
-    //     fee: 15000,
-    //     admission: 'Close',
-    //     location: "Faislabad",
-    //     Deadline: "22-3-2022"
-
-    //   },
-    //   {
-    //     id: "4",
-    //     name: "Comsats",
-    //     fee: 16000,
-    //     admission: 'Close',
-    //     location: "Islamabad",
-    //     Deadline: "22-3-2022"
-
-    //   },
-    //   {
-    //     id: "5",
-    //     name: "Fast",
-    //     fee: 17000,
-    //     admission: 'Close',
-    //     location: "Lahore",
-    //     Deadline: "22-3-2022"
-
-    //   },
-    // ],
-    filter: [],
-    firestoreData: [],
-
-  }
-
-  uni=[
-    {
-      id: "1",
-      name: "University of Punjab",
-      fee: 2000,
-      admission: 'Open',
-      location: "Lahore",
-      Deadline: "22-3-2022"
-    },
-    {
-      id: "2",
-      name: "University of Punjab",
-      fee: 2000,
-      admission: 'Open',
-      location: "Lahore",
-      Deadline: "22-3-2022"
-    },
-    {
-      id: "3",
-      name: "University of Punjab",
-      fee: 2000,
-      admission: 'Open',
-      location: "Lahore",
-      Deadline: "22-3-2022"
-    },
-  ]
-  
   constructor(props) {
     super(props)
     this.updateState = this.updateState.bind(this)
+    this.SortByCity = this.SortByCity.bind(this)
+    this.state={
+      studylevel: "BS", 
+      discipline: "Computer Science", 
+      city: '', 
+      min:'',
+      max:'',
+      filters:{},
+      show: false,
+      showCityModal: false,
+      universities:[],
+      filter: [],
+      firestoreData: [],
+    }
   }
+
+  // UniState = {
+   
+  // }
 
   updateState() {
     // Alert.alert('YES Man Alert');
     this.setState({ showCityModal: false })
   }
+
+  SortByCity(cityName) {
+    // console.log(cityName);
+    this.setState({ showCityModal: false, city:cityName })
+  }
+
   componentDidMount(){
     database()
     .ref('/university_recommendations/')
@@ -174,6 +63,34 @@ export default class Home extends Component {
       })
   }
 
+  ApplyFilters=()=>{
+    // studylevel: this.state.studylevel,
+    // discipline: this.state.discipline,
+    // city: this.state.city,
+    // min: this.state.min,
+    // max: this.state.max
+    var filters =  {}
+    if(this.state.discipline!="Select discipline"){
+      filters.discipline=this.state.discipline;
+    }
+    if(this.state.city!=''){
+      filters.city=this.state.city;
+    }
+    if(this.state.min!=''){
+      filters.min=this.state.min;
+    }
+    if(this.state.max!=''){
+      filters.max=this.state.max;
+    }
+    console.log("filters are = " , filters);
+    // console.log("max is" , filters);
+
+    // this.setState(
+    //     {filters:filters}
+    //   );
+    this.props.navigation.navigate('Universities', {filters:filters, fromHomeScreen:true});
+  }
+
   render() {  
     return (
       <ScrollView style={style.container} >
@@ -181,7 +98,7 @@ export default class Home extends Component {
           <View style={style.header}>
 
             <ImageBackground source={require("../../../assets/images/NavbarHome.png")} style={style.navbar}>
-              <Text style={style.heading}>Campus Finder City Name = {this.state.City} </Text>
+              <Text style={style.heading}> Campus Finder </Text>
               <Pressable onPress={() => this.props.navigation.navigate("AdvanceFilter")}>
                 <View pointerEvents="none" style={{ width: "100%", paddingHorizontal: 90 }}>
                   <TextInput style={style.searchBar} placeholder='Find Best Match For You' placeholderTextColor="white" />
@@ -197,9 +114,9 @@ export default class Home extends Component {
                 }
                 selectedValue={this.state.studylevel}
                 >
-                <Picker.Item label="Select the study Level" color="#c14643" />
+                <Picker.Item label="Select the study level" color="#c14643" />
+                <Picker.Item label="BS" value="BS" />
                 {/* <Picker.Item label="Masters" value="Masters" /> */}
-                <Picker.Item label="Becholars" value="Becholars" />
               </Picker>
 
             </View>
@@ -208,12 +125,12 @@ export default class Home extends Component {
               <Picker
                 mode={'dropdown'}
                 onValueChange={(itemValue, itemIndex) =>
-                  this.setState({ degreelevel: itemValue })
+                  this.setState({ discipline: itemValue })
                 }
-                selectedValue={this.state.degreelevel}
+                selectedValue={this.state.discipline}
                 >
-                <Picker.Item label="Select the degree Level" color="#c14643" />
-                <Picker.Item label="Computer" value="Computer" />
+                <Picker.Item label="Select discipline" color="#c14643" />
+                <Picker.Item label="Computer Science" value="Computer Science" />
                 {/* <Picker.Item label="Others" value="Others" /> */}
               </Picker>
             </View>
@@ -221,20 +138,28 @@ export default class Home extends Component {
             <Text style={{ marginTop: 5 }}>Tuition Fee (Enter your budget for 1 semester fee)</Text>
 
             <View style={style.inputFieldWrapper}>
-              <TextInput style={style.inputStyle} placeholder='Min' placeholderTextColor="#c14643" textAlign='center' />
-              <TextInput style={style.inputStyle} placeholder='Max' placeholderTextColor="#c14643" textAlign='center' />
+              <TextInput style={style.inputStyle} placeholder='Min' 
+                placeholderTextColor="#c14643" 
+                textAlign='center' 
+                value={this.state.min} 
+                onChangeText={(value)=>this.setState({min:value})}
+                />
+              <TextInput style={style.inputStyle} placeholder='Max' 
+                placeholderTextColor="#c14643"
+                textAlign='center' 
+                value={this.state.max} 
+                onChangeText={(value)=>this.setState({max:value})}/>
             </View>
 
             <TouchableOpacity onPress={() => this.setState({ showCityModal: true })}>
               <View style={style.citypicker}>
-                <Text style={{ color: "#c14643", }}>Select City</Text>
+                <Text style={{ color: "#c14643", }}> Location {this.state.city} </Text>
               </View>
             </TouchableOpacity>
 
-            <TouchableOpacity style={[style.searchBtn]} onPress={() =>
-              this.props.navigation.navigate('Universities', {filters:this.state.filters})
-            }><Text style={{ color: "white", textAlign: 'center', fontWeight: "bold" }} >Apply</Text></TouchableOpacity>
-
+            <TouchableOpacity style={[style.searchBtn]} onPress={this.ApplyFilters}>
+              <Text style={{ color: "white", textAlign: 'center', fontWeight: "bold" }} > Apply </Text>
+            </TouchableOpacity>
           </View>
 
           <View style={style.recommendation}>
@@ -262,7 +187,7 @@ export default class Home extends Component {
                   />
             </View>
           </View>
-          <CityModal show={this.state.showCityModal} update={this.updateState} />
+          <CityModal show={this.state.showCityModal} update={this.updateState} sortCity={this.SortByCity} />
         </View>
       </ScrollView>
     )
