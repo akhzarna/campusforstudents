@@ -39,15 +39,16 @@ const styles = StyleSheet.create({
         flex:0.3,
         flexDirection:"row",
         height:40,
-        // width:80,
-        marginLeft:10
+        // width:100,
     },
     filter:{
         alignItems: "center",
         backgroundColor: "#DDDDDD",
         padding: 10,
         borderRadius:5,
-        // width:100,
+        width:100,
+        marginLeft:5,
+        marginRight:5,
     },
     usiversityName:{
         color:"white",
@@ -60,7 +61,6 @@ const styles = StyleSheet.create({
         , fontWeight:"300",
         fontSize:19
     },
-
     universitiesWrapper:{
         flex: 0.9,
         justifyContent:"flex-start",
@@ -73,8 +73,6 @@ const styles = StyleSheet.create({
         width:"100%",
         borderWidth:0.3,
         marginVertical:5,
-        
-        
     },
     rankingTextWrapper:{
         flex: 0.15,
@@ -101,7 +99,6 @@ const styles = StyleSheet.create({
         flex: 0.70,
         height:"100%",
         width:"100%",
-        
     },
     universityDetailText:{
         fontSize:17,
@@ -120,7 +117,6 @@ const styles = StyleSheet.create({
         fontWeight:"500",
         marginTop:12
     }
-    
 });
 
 export default styles;

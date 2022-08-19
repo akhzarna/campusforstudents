@@ -14,7 +14,8 @@ export default class Home extends Component {
     degreelevel: "Computer", 
     Degree: "Chemical Engineering", 
     City: "Lahore", 
-    showCityModal: false
+    showCityModal: false,
+    filters:{level:'BS', programname:'BS CS', min:10000, max:100000, city:'Lahore'}
   };
 
   UniState = {
@@ -231,7 +232,7 @@ export default class Home extends Component {
             </TouchableOpacity>
 
             <TouchableOpacity style={[style.searchBtn]} onPress={() =>
-              this.props.navigation.navigate('Universities')
+              this.props.navigation.navigate('Universities', {filters:this.state.filters})
             }><Text style={{ color: "white", textAlign: 'center', fontWeight: "bold" }} >Apply</Text></TouchableOpacity>
 
           </View>
