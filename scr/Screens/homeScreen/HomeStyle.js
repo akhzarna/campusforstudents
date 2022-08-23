@@ -106,8 +106,18 @@ export const style = StyleSheet.create({
         paddingLeft:15,
         height: "15%",
         fontSize: 20,
-        fontWeight:"bold"
+        fontWeight:"bold",
     },
+    admissionText:{
+        marginBottom:5,
+        fontSize:16
+    },
+    redText:{
+        color:"red",
+    },
+    greenText:{
+        color:"green",
+    }
 
 
 })

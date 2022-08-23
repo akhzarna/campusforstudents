@@ -1,5 +1,5 @@
 import { Picker } from '@react-native-picker/picker';
-import { View, TextInput, TouchableOpacity, Text, Image, ScrollView, ImageBackground, Pressable, Alert, FlatList } from "react-native"
+import { View, TextInput,ReadMore, TouchableOpacity, Text, Image, ScrollView, ImageBackground, Pressable, Alert, FlatList } from "react-native"
 import React, { Component } from 'react'
 import { style } from './HomeStyle';
 import CityModal from './CityModal';
@@ -7,6 +7,7 @@ import database from '@react-native-firebase/database';
 import Universities from './Universities';
 import firestore from "@react-native-firebase/firestore"
 import styles from './UniversitiesStyle';
+import { ActivityIndicator } from 'react-native';
 
 export default class Home extends Component {
   constructor(props) {
@@ -14,6 +15,7 @@ export default class Home extends Component {
     this.updateState = this.updateState.bind(this)
     this.SortByCity = this.SortByCity.bind(this)
     this.state={
+      activityindicator:true,
       studylevel: "BS", 
       discipline: "Computer Science", 
       city: '', 
@@ -43,14 +45,17 @@ export default class Home extends Component {
   }
 
   componentDidMount(){
+    this.setState({activityindicator:true});
     database()
     .ref('/university_recommendations/')
     .on('value', snapshot => {
       console.log('User data: ', snapshot.val().length);
       this.setState({ universities: snapshot.val() });
       this.setState({ filter: this.state.universities });
+      this.setState({activityindicator:false});
     });
-
+    
+    
     var newArr = [];
     firestore()
       .collection('universities').get().then(querySnapshot => {
@@ -62,6 +67,7 @@ export default class Home extends Component {
         // console.log(this.state.firestoreData);
       })
   }
+  
 
   ApplyFilters=()=>{
     
@@ -91,7 +97,11 @@ export default class Home extends Component {
     //     {filters:filters}
     //   );
     this.props.navigation.navigate('Universities', {filters:filters, fromHomeScreen:true});
+    
   }
+
+  
+  
 
   render() {  
     return (
@@ -169,6 +179,12 @@ export default class Home extends Component {
             </TouchableOpacity>
           </View>
 
+          {this.state.activityindicator?
+        (<View style={[styles.horizontal]}>
+          <ActivityIndicator size="large" />
+          </View>):
+        (null)
+        }     
           <View style={style.recommendation}>
             <Text style={style.recommendationHeading}>Recommendations</Text>
 
@@ -177,16 +193,18 @@ export default class Home extends Component {
                     data={this.state.universities}
                     horizontal
                     renderItem={({ item }) => (     
-                <TouchableOpacity onPress={() => this.props.navigation.navigate('University', { obj: item })}>
-                  <View style={{flex:1,marginLeft:15,alignItems:'center',marginTop:12,marginBottom:10}}>   
+                <TouchableOpacity onPress={() => this.props.navigation.navigate('UniversityDetail', { obj: item })}>
+                  <View style={{flex:1,marginLeft:15,marginTop:12,marginBottom:10}}>   
                         <Image
                             style={{ flex: 0.5,height: 100, width: 100,resizeMode:'contain', borderRadius: 50}}
                             source={{uri: item.logo}} />
-                        <View style={{flex:0.5,marginTop:12,alignItems:"center"}}>   
-                          <Text style={{marginBottom:5,fontSize:16}}>{item.title}</Text>
-                          <Text style={{marginBottom:5,fontSize:16}}><Text style={style.bold_text}>Admissions:  </Text>{item.admissions}</Text>
+                        <View style={{flex:0.5,marginTop:12}}>   
+                          <Text numberOfLines={1} style={{marginBottom:5,fontSize:16,width:150}}>{item.title}</Text>
+                          {/* <Text style={{marginBottom:5,fontSize:16}}><Text style={[style.bold_text,item.admissions=='Open'?color:"green":'red']}>Admissions:  </Text>{item.admissions}</Text> */}
+                          <Text style={[style.admissionText, item.admissions=='Open' ? style.greenText : style.redText]}>Admissions: {item.admissions}</Text>
                           <Text style={{marginBottom:5,fontSize:16}}> <Text style={style.bold_text}>City:</Text>{item.city}</Text>
                       </View>
+                      
                   </View>
                 </TouchableOpacity>                
 

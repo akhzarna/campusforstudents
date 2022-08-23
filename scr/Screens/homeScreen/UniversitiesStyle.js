@@ -10,8 +10,8 @@ const styles = StyleSheet.create({
     header:{
         flex:0.05,
         width:"100%",
-        justifyContent:'center'
-        ,alignItems:  "center",
+        justifyContent:'center',
+        alignItems:  "center",
         borderWidth:0.1 ,
         padding:15     
     },
@@ -50,6 +50,15 @@ const styles = StyleSheet.create({
         marginLeft:5,
         marginRight:5,
     },
+    appliedfilters:{
+        alignItems: "center",
+        backgroundColor:"#F75656",
+        padding: 10,
+        borderRadius:5,
+        // width:100,
+        marginLeft:5,
+        marginRight:5,
+    },
     usiversityName:{
         color:"white",
         backgroundColor:"#F75656",
@@ -62,7 +71,7 @@ const styles = StyleSheet.create({
         fontSize:19
     },
     universitiesWrapper:{
-        flex: 0.9,
+        flex: 1,
         justifyContent:"flex-start",
         height:"100%",
         width:"100%"
@@ -116,7 +125,16 @@ const styles = StyleSheet.create({
         marginRight:15,
         fontWeight:"500",
         marginTop:12
-    }
+    },
+    linksStyles:{
+        color:"blue",
+        fontWeight:"500",
+        textDecorationLine: 'underline',
+        fontSize:17,
+        marginLeft:15,
+        marginBottom:10,
+        marginTop:5
+    },
 });
 
 export default styles;
