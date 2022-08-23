@@ -16,8 +16,8 @@ export default class Home extends Component {
     this.SortByCity = this.SortByCity.bind(this)
     this.state={
       activityindicator:true,
-      studylevel: "BS", 
-      discipline: "Computer Science", 
+      studylevel: "Select the study level", 
+      discipline: "Select discipline", 
       city: '', 
       min:'',
       max:'',
@@ -70,15 +70,9 @@ export default class Home extends Component {
   
 
   ApplyFilters=()=>{
-    
-    // studylevel: this.state.studylevel,
-    // discipline: this.state.discipline,
-    // city: this.state.city,
-    // min: this.state.min,
-    // max: this.state.max
-
     var filters =  {}
-    if(this.state.discipline!="Select discipline"){
+    if(this.state.discipline!='Select discipline'){
+      console.log("Idhar are = " , this.state.discipline);
       filters.discipline=this.state.discipline;
     }
     if(this.state.city!=''){
@@ -131,7 +125,7 @@ export default class Home extends Component {
                 <Picker.Item label="Masters" value="Masters" />
                 <Picker.Item label="Becholars" value="Becholars" /> */}
 
-                <Picker.Item label="Select the study level" color="#c14643" />
+                <Picker.Item label="Select the study level" value="Select the study level" color="#c14643" />
                 <Picker.Item label="BS" value="BS" />
                 {/* <Picker.Item label="Masters" value="Masters" /> */}
               </Picker>
@@ -146,7 +140,7 @@ export default class Home extends Component {
                 }
                 selectedValue={this.state.discipline}
                 >
-                <Picker.Item label="Select discipline" color="#c14643" />
+                <Picker.Item label="Select discipline" value="Select discipline" color="#c14643" />
                 <Picker.Item label="Computer Science" value="Computer Science" />
                 {/* <Picker.Item label="Others" value="Others" /> */}
               </Picker>
@@ -201,7 +195,7 @@ export default class Home extends Component {
                         <View style={{flex:0.5,marginTop:12}}>   
                           <Text numberOfLines={1} style={{marginBottom:5,fontSize:16,width:150}}>{item.title}</Text>
                           {/* <Text style={{marginBottom:5,fontSize:16}}><Text style={[style.bold_text,item.admissions=='Open'?color:"green":'red']}>Admissions:  </Text>{item.admissions}</Text> */}
-                          <Text style={[style.admissionText, item.admissions=='Open' ? style.greenText : style.redText]}>Admissions: {item.admissions}</Text>
+                          <Text style={[style.admissionText,style.bold_text, item.admissions=='Open' ? style.greenText : style.redText]}>Admissions: {item.admissions}</Text>
                           <Text style={{marginBottom:5,fontSize:16}}> <Text style={style.bold_text}>City:</Text>{item.city}</Text>
                       </View>
                       
