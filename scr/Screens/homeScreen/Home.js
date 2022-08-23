@@ -14,8 +14,8 @@ export default class Home extends Component {
     this.updateState = this.updateState.bind(this)
     this.SortByCity = this.SortByCity.bind(this)
     this.state={
-      studylevel: "BS", 
-      discipline: "Computer Science", 
+      studylevel: "Select the study level", 
+      discipline: "Select discipline", 
       city: '', 
       min:'',
       max:'',
@@ -64,15 +64,9 @@ export default class Home extends Component {
   }
 
   ApplyFilters=()=>{
-    
-    // studylevel: this.state.studylevel,
-    // discipline: this.state.discipline,
-    // city: this.state.city,
-    // min: this.state.min,
-    // max: this.state.max
-
     var filters =  {}
-    if(this.state.discipline!="Select discipline"){
+    if(this.state.discipline!='Select discipline'){
+      console.log("Idhar are = " , this.state.discipline);
       filters.discipline=this.state.discipline;
     }
     if(this.state.city!=''){
@@ -90,7 +84,7 @@ export default class Home extends Component {
     // this.setState(
     //     {filters:filters}
     //   );
-    this.props.navigation.navigate('Universities', {filters:filters, fromHomeScreen:true});
+    this.props.navigation.navigate('Universities', {filters:filters});
   }
 
   render() {  
@@ -116,7 +110,12 @@ export default class Home extends Component {
                 }
                 selectedValue={this.state.studylevel}
                 >
-                <Picker.Item label="Select the study level" color="#c14643" />
+
+                {/* <Picker.Item label="Select the study Level" color="#c14643" />
+                <Picker.Item label="Masters" value="Masters" />
+                <Picker.Item label="Becholars" value="Becholars" /> */}
+
+                <Picker.Item label="Select the study level" value="Select the study level" color="#c14643" />
                 <Picker.Item label="BS" value="BS" />
                 {/* <Picker.Item label="Masters" value="Masters" /> */}
               </Picker>
@@ -131,7 +130,7 @@ export default class Home extends Component {
                 }
                 selectedValue={this.state.discipline}
                 >
-                <Picker.Item label="Select discipline" color="#c14643" />
+                <Picker.Item label="Select discipline" value="Select discipline" color="#c14643" />
                 <Picker.Item label="Computer Science" value="Computer Science" />
                 {/* <Picker.Item label="Others" value="Others" /> */}
               </Picker>

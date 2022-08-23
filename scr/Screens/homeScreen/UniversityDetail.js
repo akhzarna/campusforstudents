@@ -2,6 +2,7 @@ import { Text, View, ScrollView,FlatList, Image,TouchableOpacity } from 'react-n
 import React, { Component } from 'react'
 import styles from './SingleUniversityStyle'
 import Seperator from '../../Components/Separator';
+import { Linking } from 'react-native';
 
 import database from '@react-native-firebase/database';
 
@@ -54,8 +55,28 @@ export default class SingleUniversity extends Component {
       //   this.setState({university:snapshot.val()});
       // });
   }
+  
+  dialCall = (number) => {
+    number=this.props.route.params.obj.contact;
+    let phoneNumber = '';
+    if (Platform.OS === 'android') { phoneNumber = `tel:${number}`; }
+    else {phoneNumber = `telprompt:${number}`; }
+    Linking.openURL(phoneNumber);
+ };
+
+ handleClick = () => {
+  Linking.canOpenURL(this.props.route.params.obj.map.address).then(supported => {
+    if (supported) {
+      Linking.openURL(this.props.route.params.obj.map.address);
+    } else {
+      console.log("Don't know how to open URI: " + this.props.route.params.obj.web);
+    }
+  });
+};
+
 
   render() {
+    
     return (
       <ScrollView style={styles.container}>
             {/* header image */}
@@ -79,7 +100,7 @@ export default class SingleUniversity extends Component {
         <View style={styles.verticalSeperator}></View>
           <View style={styles.detail}>
             <Text style={styles.detailText1}>Status</Text>
-            <Text style={styles.detailText2}>{this.props.route.params.obj.status}</Text>
+            <Text style={styles.detailText2}>{this.props.route.params.obj.status?'Public':'Private'}</Text>
           </View>
           <View style={styles.verticalSeperator}></View>
             <View style={styles.detail}>
@@ -104,7 +125,7 @@ export default class SingleUniversity extends Component {
             <View style={styles.verticalSeperator}></View>
             <View style={styles.detail}>
               <Text style={styles.detailText1}>Admission</Text>
-              <Text style={[styles.detailText2,styles.greenColor]}>{this.props.route.params.obj.admissions}</Text>
+              <Text style={[styles.detailText2,styles.greenColor]}>{this.props.route.params.obj.admissions?'Open':'Closed'}</Text>
             </View>
           </View>
 
@@ -132,8 +153,8 @@ export default class SingleUniversity extends Component {
            />
               </View>
               <View style={styles.linkTextWrapper}>
-                <TouchableOpacity>
-                  <Text style={styles.linksStyles}>See On Map</Text>
+                <TouchableOpacity >
+                  <Text onPress={() => Linking.openURL('google.navigation:q=100+101')} style={styles.linksStyles}>See On Map</Text>
                 </TouchableOpacity>
               </View>
             </View>
@@ -151,12 +172,54 @@ export default class SingleUniversity extends Component {
               />
               </View>
               <View style={styles.linkTextWrapper}>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={this.handleClick}>
                   <Text style={styles.linksStyles}>{this.props.route.params.obj.web}</Text>
                 </TouchableOpacity>
               </View>
             </View>
           </View>
+
+          <View style={styles.mapWrapper}>
+            <View style={styles.seperatorWrapper}>
+              <Seperator />
+            </View>
+            <View style={styles.detailLinksWrapper}>
+              <View style={styles.linkIconWrapper}>
+              <Image
+                style={{height:"100%",width:"100%",resizeMode: "contain"}}
+                source={require('../../../assets/images/deadline-icon.jpg')}
+           />
+              </View>
+              <View style={styles.linkTextWrapper}>
+                <TouchableOpacity>
+                  <Text style={{color:"red",fontSize:16}}> Deadline:  {this.props.route.params.obj.deadline} </Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+          </View>
+                   {/* Call-Button: */}
+          <View style={styles.mapWrapper}>
+            <View style={styles.seperatorWrapper}>
+              <Seperator />
+            </View>
+            <View style={styles.detailLinksWrapper}>
+              <View style={styles.linkIconWrapper}>
+              <Image
+                style={{height:"100%",width:"100%",resizeMode: "contain"}}
+                source={require('../../../assets/images/call-icon.jpg')}
+           />
+              </View>
+              <View style={styles.linkTextWrapper}> 
+                <TouchableOpacity onPress={() => this.dialCall()}>
+                  
+                  <Text
+                   style={styles.linksStyles}>{this.props.route.params.obj.contact}</Text>
+                </TouchableOpacity>
+              </View>
+            </View> 
+          </View>
+
+          
 
           <View style={{height:1}}>
               <Seperator />
