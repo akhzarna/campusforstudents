@@ -50,6 +50,15 @@ const styles = StyleSheet.create({
         marginLeft:5,
         marginRight:5,
     },
+    appliedfilters:{
+        alignItems: "center",
+        backgroundColor:"#F75656",
+        padding: 10,
+        borderRadius:5,
+        // width:100,
+        marginLeft:5,
+        marginRight:5,
+    },
     usiversityName:{
         color:"white",
         backgroundColor:"#F75656",
