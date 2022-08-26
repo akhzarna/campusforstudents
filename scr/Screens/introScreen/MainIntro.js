@@ -49,6 +49,7 @@ const slides = [
 
   });
 
+  
 
 
 export default class MainIntro extends Component {
@@ -84,8 +85,6 @@ export default class MainIntro extends Component {
 
       renderSkipButton={()=>
             <Text style={styles.btnStyle} >Skip</Text>
-      
-    
         }
       />;
   }

@@ -125,7 +125,7 @@ const styles = StyleSheet.create({
         fontSize:17,
         marginRight:15,
         fontWeight:"500",
-        marginTop:12
+        marginTop:12,
     },
     linksStyles:{
         color:"blue",

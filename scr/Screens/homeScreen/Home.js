@@ -164,7 +164,8 @@ export default class Home extends Component {
 
             <TouchableOpacity onPress={() => this.setState({ showCityModal: true })}>
               <View style={style.citypicker}>
-                <Text style={{ color: "#c14643", }}> Location {this.state.city} </Text>
+                {/* <Text style={{ color: "#c14643", }}> Location {this.state.city} </Text> */}
+                <Text  style={{ color: "#c14643" }}> {this.state.city.length==0?<Text> Location </Text> : <Text>{this.state.city} </Text> }</Text>
               </View>
             </TouchableOpacity>
 
