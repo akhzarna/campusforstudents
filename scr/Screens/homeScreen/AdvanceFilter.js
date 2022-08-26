@@ -89,21 +89,6 @@ export default class AdvanceFilter extends Component {
 
           <View style={styles.filters}>
 
-            < View style={styles.picker}>
-              <Picker mode="dropdown"
-                selectedValue={this.state.studylevel}
-                value={this.state.studylevel}
-                onValueChange={(itemValue, itemIndex) =>
-                  this.setState({ studylevel: itemValue })}
-              >
-              
-                <Picker.Item label="Select the study level" value="Select the study level" color="#c14643" />
-                <Picker.Item label="BS" value="BS" />
-                {/* <Picker.Item label="MS" value="MS" /> */}
-
-              </Picker>
-
-            </View>
             <View style={styles.picker}>
               <Picker mode="dropdown"
                 selectedValue={this.state.discipline}
@@ -200,7 +185,7 @@ export default class AdvanceFilter extends Component {
           </View>
         </View>
 
-        <View style={[styles.btnWrapper]} elevation={0.4} >
+        <View style={styles.btnWrapper}>
           <TouchableOpacity style={styles.resetBtn}
             onPress={this.setStateToItsOriginalPosition}>
             <Text style={[styles.btnText, styles.resetBtntxt]}>Reset</Text>
@@ -209,7 +194,6 @@ export default class AdvanceFilter extends Component {
           >
             <Text style={styles.btnText}>Apply Filter</Text>
             </TouchableOpacity>
-
         </View>
         
       </KeyboardAwareScrollView>
