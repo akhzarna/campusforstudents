@@ -223,43 +223,43 @@ export default class SingleUniversity extends Component {
             </View> 
           </View>
 
-          
-
           <View style={{height:1}}>
               <Seperator />
           </View>
-
-            {/* menu heading section*/}
-          <View style={styles.menu}>
-            <View style={styles.menuHeadingWrapper}>
-                <Text style={styles.headerText}>Menu</Text>
-            </View>
-
-
-                  {/* menu  section*/}
-              <FlatList
-                nestedScrollEnabled={true}
-                data={this.props.route.params.obj.menu}
-                numColumns={3}
-                renderItem={({item})=>(
-                  <View style={styles.menuIcon}>
-                  <View style={styles.menuIconWrapper}>
-                    <Image
-                      style={{height:"90%",width:"45%",borderRadius: 50}}
-                      source={{uri: item.url}}
-                    />
-                  </View>
-                  <View style={styles.menuIconText}>
-                    <Text>{item.title}</Text>
-                  </View>
-                </View>
-                )}
-                style={{height:"100%"}}
-              />
-        </View>
 
       </ScrollView>
 
     )
   }
 }
+
+
+
+ {/* menu heading section*/}
+//  <View style={styles.menu}>
+//  <View style={styles.menuHeadingWrapper}>
+//      <Text style={styles.headerText}>Menu</Text>
+//  </View>
+
+
+//        {/* menu  section*/}
+//    <FlatList
+//      nestedScrollEnabled={true}
+//      data={this.props.route.params.obj.menu}
+//      numColumns={3}
+//      renderItem={({item})=>(
+//        <View style={styles.menuIcon}>
+//        <View style={styles.menuIconWrapper}>
+//          <Image
+//            style={{height:"90%",width:"45%",borderRadius: 50}}
+//            source={{uri: item.url}}
+//          />
+//        </View>
+//        <View style={styles.menuIconText}>
+//          <Text>{item.title}</Text>
+//        </View>
+//      </View>
+//      )}
+//      style={{height:"100%"}}
+//    />
+// </View>

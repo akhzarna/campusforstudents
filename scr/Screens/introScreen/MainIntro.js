@@ -20,38 +20,8 @@ const slides = [
     },
   ];
 
-  const styles = StyleSheet.create({
-    buttonCircle: {
-      width: 40,
-      height: 40,
-      backgroundColor: 'rgba(0, 0, 0, .2)',
-      borderRadius: 20,
-      justifyContent: 'center',
-      alignItems: 'center',
-    },
-    btnStyle:{
-        textAlign:"center",
-        backgroundColor:"#F75656" ,
-        color:"white" , 
-        paddingVertical:10 ,
-        paddingHorizontal:35 , 
-        borderRadius:10, 
-        fontSize:20, 
-        fontWeight:"bold",
-        marginLeft:"40%"
-    },
-    getStartedBtn:{
-        marginLeft:0,
-        marginRight:"30%",
-        backgroundColor:"#8b0f1c" ,
-    }
-
-
-  });
 
   
-
-
 export default class MainIntro extends Component {
 
     _renderItem = ({ item }) => {
@@ -65,6 +35,7 @@ export default class MainIntro extends Component {
       _onDone = () => {
         this.props.navigation.navigate("Home")
       }
+
       _onSkip = () => {
         this.props.navigation.navigate("Home")
       }
@@ -76,16 +47,43 @@ export default class MainIntro extends Component {
       renderItem={this._renderItem}
       showSkipButton={true}
       onSkip={this._onSkip}
-      data={slides} onDone={this._onDone} 
+      data={slides} 
+      onDone={this._onDone} 
       renderDoneButton={()=>
         <View>
             <Text style={[styles.btnStyle, styles.getStartedBtn]} >Get Started</Text>
         </View>
     }
-
       renderSkipButton={()=>
-            <Text style={styles.btnStyle} >Skip</Text>
+            <Text style={styles.btnStyle}>Skip</Text>
         }
       />;
   }
 }
+
+const styles = StyleSheet.create({
+  buttonCircle: {
+    width: 40,
+    height: 40,
+    backgroundColor: 'rgba(0, 0, 0, .2)',
+    borderRadius: 20,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  btnStyle:{
+      textAlign:"center",
+      backgroundColor:"#F75656" ,
+      color:"white" , 
+      paddingVertical:10 ,
+      paddingHorizontal:35 , 
+      borderRadius:10, 
+      fontSize:20, 
+      fontWeight:"bold",
+      marginLeft:"40%"
+  },
+  getStartedBtn:{
+      marginLeft:0,
+      marginRight:"30%",
+      backgroundColor:"#8b0f1c" ,
+  }
+});

@@ -22,17 +22,12 @@ export default class Home extends Component {
       min:'',
       max:'',
       filters:{},
-      show: false,
       showCityModal: false,
       universities:[],
       filter: [],
       firestoreData: [],
     }
   }
-
-  // UniState = {
-   
-  // }
 
   updateState() {
     // Alert.alert('YES Man Alert');
@@ -98,6 +93,17 @@ export default class Home extends Component {
   
 
   render() {  
+
+    const render_text=()=>{
+      switch(this.state.city){
+        case '':
+          return 'Location';
+        default:
+          return this.state.city;
+      }
+
+    }
+
     return (
       <ScrollView style={style.container} >
         <View style={style.subcontainer}>
@@ -112,25 +118,7 @@ export default class Home extends Component {
               </Pressable>
             </ImageBackground>
 
-            <View style={style.picker}>
-              <Picker
-                mode={'dropdown'}
-                onValueChange={(itemValue, itemIndex) =>
-                  this.setState({ studylevel: itemValue })
-                }
-                selectedValue={this.state.studylevel}
-                >
-
-                {/* <Picker.Item label="Select the study Level" color="#c14643" />
-                <Picker.Item label="Masters" value="Masters" />
-                <Picker.Item label="Becholars" value="Becholars" /> */}
-
-                <Picker.Item label="Select the study level" value="Select the study level" color="#c14643" />
-                <Picker.Item label="BS" value="BS" />
-                {/* <Picker.Item label="Masters" value="Masters" /> */}
-              </Picker>
-
-            </View>
+            
 
             <View style={style.picker}>
               <Picker
@@ -164,8 +152,7 @@ export default class Home extends Component {
 
             <TouchableOpacity onPress={() => this.setState({ showCityModal: true })}>
               <View style={style.citypicker}>
-                {/* <Text style={{ color: "#c14643", }}> Location {this.state.city} </Text> */}
-                <Text  style={{ color: "#c14643" }}> {this.state.city.length==0?<Text> Location </Text> : <Text>{this.state.city} </Text> }</Text>
+                <Text style={{ color: "#c14643", }}> {render_text()} </Text>
               </View>
             </TouchableOpacity>
 

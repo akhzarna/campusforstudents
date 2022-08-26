@@ -1,4 +1,4 @@
-import { ActivityIndicator, Text, View, SafeAreaView, Image, FlatList, TouchableOpacity, Alert, Modal, TextInput } from 'react-native'
+import { ActivityIndicator, Text, View, SafeAreaView, Image, FlatList, TouchableOpacity, Alert, Modal, TextInput, StyleSheet } from 'react-native'
 import React, { Component } from 'react'
 import styles from './UniversitiesStyle';
 import Separator from '../../Components/Separator';
@@ -48,6 +48,8 @@ export default class Universities extends Component {
         }
       ],
       finalFiltersArray:[],
+      norecordfoundtext:'',
+      norecordfoundsubtext:'',
       // allUniversitiesDummyData : [
       //     {
       //       "admissions": 1,
@@ -665,8 +667,8 @@ export default class Universities extends Component {
   }
 
   // setAllValues(allrecords){
-  //   this.setState({ universities: allrecords });
-  //   this.setState({ filtersArray: allrecords }, function () {
+  //   this.setState({universities: allrecords });
+  //   this.setState({filtersArray: allrecords }, function () {
   //     this.state.cloneArray = this.state.universities;
   //     this.ApplyFiltersofHomeScreen();
   //   });
@@ -713,6 +715,7 @@ export default class Universities extends Component {
     this.focusListener = this.props.navigation.addListener('focus', () => {
       // this.firstFetchAllRecords();
       // console.log('Always Call or Not');
+      this.setState({norecordfoundtext:'', norecordfoundsubtext:''});
       if(this.props.route.params.fromAdvanceFilters){
         // console.log('Always Call or Not fromAdvanceFilters');
         // this.ApplyAllFilters();
@@ -735,13 +738,12 @@ export default class Universities extends Component {
     this.setState({activityindicator:true});
     database()
       .ref('/zeeshan_listing/')
-      .limitToFirst(20)
+      // .limitToFirst(20)
       .on('value', snapshot => {
-      this.setState({ universities: snapshot.val() });
-      this.setState({ filtersArray: snapshot.val() }, function () {
+      this.setState({universities: snapshot.val(), filtersArray: snapshot.val() }, function () {
         this.state.cloneArray = this.state.universities;
         this.ApplyAllFilters();
-      });     
+      });
     });
   }
 
@@ -749,8 +751,8 @@ export default class Universities extends Component {
     if(this.props.route.params.fromAdvanceFilters==1){
       console.log('from Advance Filters Screen is =',this.props.route.params.filters)
       this.props.route.params.fromAdvanceFilters=0;
-      this.setState({universities:[]});
-      this.setState({filtersArray:[]});
+      this.setState({universities:[],filtersArray:[], norecordfoundtext:'', norecordfoundsubtext:''});
+      // this.setState({filtersArray:[]});
       // this.firstFetchAllRecords();
       var allFilters = this.props.route.params.filters;
       if(allFilters.hasOwnProperty('discipline')){
@@ -787,6 +789,15 @@ export default class Universities extends Component {
       }
       this.setState({universities:this.state.cloneArray}, function(){
         console.log('Total CS Records', this.state.universities.length);
+        if(this.state.universities.length==0){
+          this.setState({
+            norecordfoundtext:'No Results Found', 
+            norecordfoundsubtext:'We cannot find any item matching your search.',});
+        }else{
+          this.setState({
+            norecordfoundtext:'', 
+            norecordfoundsubtext:'',});
+        }
       });
     }else{
       console.log('from Home Screen is =',this.props.route.params.filters)
@@ -810,6 +821,15 @@ export default class Universities extends Component {
       }
       this.setState({universities:this.state.cloneArray}, function(){
         console.log('Total CS Records', this.state.universities.length);
+        if(this.state.universities.length==0){
+          this.setState({
+            norecordfoundtext:'No Results Found', 
+            norecordfoundsubtext:'We cannot find any item matching your search.',});
+        }else{
+          this.setState({
+            norecordfoundtext:'', 
+            norecordfoundsubtext:'',});
+        }
       });
     }
 
@@ -825,6 +845,15 @@ export default class Universities extends Component {
       }
       finalFiltersArray.push(filterObject);
     }
+    if(finalFiltersArray.length){
+      // Add Last Object Clear All Filters
+      keyValue++;
+      var filterObject = {
+        title:'Clear All',
+        key:keyValue
+      }
+      finalFiltersArray.push(filterObject);
+    }
     this.setState({finalFiltersArray:finalFiltersArray},()=>{
       console.log('Final Filters Array is = ',this.state.finalFiltersArray);
     })
@@ -833,25 +862,75 @@ export default class Universities extends Component {
   }
 
   SortByFireStore() {
-    this.setState({ universities: this.state.firestoreData })
+    this.setState({universities: this.state.firestoreData }, function(){
+      if(this.state.universities.length==0){
+        this.setState({
+          norecordfoundtext:'No Results Found', 
+          norecordfoundsubtext:'We cannot find any item matching your search.',});
+      }else{
+        this.setState({
+          norecordfoundtext:'', 
+          norecordfoundsubtext:'',});
+      }
+    })
   }
 
   SortByAdmission(item) {  
     console.log(item)  
-    this.setState({ universities: this.state.filtersArray.sort((a, b) => b.admissions - a.admissions) })
+    this.setState({universities: this.state.filtersArray.sort((a, b) => b.admissions - a.admissions) }, function(){
+      if(this.state.universities.length==0){
+        this.setState({
+          norecordfoundtext:'No Results Found', 
+          norecordfoundsubtext:'We cannot find any item matching your search.',});
+      }else{
+        this.setState({
+          norecordfoundtext:'', 
+          norecordfoundsubtext:'',});
+      }
+    })
   }
 
   SortByFee(min, max) {
-    this.setState({ universities: this.state.filtersArray.filter((item)=> item.fee>=min && item.fee<=max).sort((a,b)=>a.fee - b.fee) })
+    this.setState({universities: this.state.filtersArray.filter((item)=> item.fee>=min && item.fee<=max).sort((a,b)=>a.fee - b.fee) }, function(){
+      if(this.state.universities.length==0){
+        this.setState({
+          norecordfoundtext:'No Results Found', 
+          norecordfoundsubtext:'We cannot find any item matching your search.',});
+      }else{
+        this.setState({
+          norecordfoundtext:'', 
+          norecordfoundsubtext:'',});
+      }
+    })
     this.setState({ showFeeModal: false })
   }
 
   SortByRanking() {
-    this.setState({ universities: this.state.filtersArray.sort((a, b) => a.ranking - b.ranking) })
+    this.setState({universities: this.state.filtersArray.sort((a, b) => a.ranking - b.ranking) }, function(){
+      if(this.state.universities.length==0){
+        this.setState({
+          norecordfoundtext:'No Results Found', 
+          norecordfoundsubtext:'We cannot find any item matching your search.',});
+      }else{
+        this.setState({
+          norecordfoundtext:'', 
+          norecordfoundsubtext:'',});
+      }
+    })
   }
 
   SortByCity(cityName) {
-    this.setState({ universities: this.state.filtersArray.filter((a) => a.city==cityName) })
+    this.setState({universities: this.state.filtersArray.filter((a) => a.city==cityName) }, function(){
+      if(this.state.universities.length==0){
+        this.setState({
+          norecordfoundtext:'No Results Found', 
+          norecordfoundsubtext:'We cannot find any item matching your search.',});
+      }else{
+        this.setState({
+          norecordfoundtext:'', 
+          norecordfoundsubtext:'',});
+      }
+    })
     this.setState({ showCityModal: false })
   }
 
@@ -869,7 +948,17 @@ export default class Universities extends Component {
   }
 
   SortByStatus(){
-      this.setState({ universities: this.state.filtersArray.sort((a, b) => b.status - a.status) })
+      this.setState({universities: this.state.filtersArray.sort((a, b) => b.status - a.status) }, function(){
+        if(this.state.universities.length==0){
+          this.setState({
+            norecordfoundtext:'No Results Found', 
+            norecordfoundsubtext:'We cannot find any item matching your search.',});
+        }else{
+          this.setState({
+            norecordfoundtext:'', 
+            norecordfoundsubtext:'',});
+        }
+      })
   }
 
   loadMore=()=>{
@@ -878,8 +967,8 @@ export default class Universities extends Component {
     //   .ref('/zeeshan_listing/').limitToFirst(this.state.universities.length+10)
     //   .on('value', snapshot => {
     //     console.log('loadMore data: ', snapshot.val().length);
-    //     this.setState({ universities: snapshot.val() });
-    //     this.setState({ filtersArray: this.state.universities });
+    //     this.setState({universities: snapshot.val() });
+    //     this.setState({filtersArray: this.state.universities });
     //     this.setState({activityindicator:false});
     //   });
   }
@@ -892,12 +981,92 @@ export default class Universities extends Component {
      else {phoneNumber = `telprompt:${number}`; }
      Linking.openURL(phoneNumber);
   };
+
   email(item){
    Linking.openURL(`mailto:${item.info}`);
- }
+  }
 
+  ApplyNewFilters(item){
+    this.setState({ finalFiltersArray: this.state.finalFiltersArray.filter((a) => a!=item)}, function(){
+      if(this.state.finalFiltersArray.length==1){
+        this.setState({finalFiltersArray:[]});
+      }
+    });
+    this.setState({universities:[], filtersArray:[], norecordfoundtext:'', norecordfoundsubtext:''});
+    // this.firstFetchAllRecords();
+    var allFilters = this.props.route.params.filters;
+    delete allFilters[item.title];
+    console.log('Check All Filters Again',allFilters)
+
+    if(allFilters.hasOwnProperty('discipline')){
+      var afterFilters = this.state.cloneArray.filter((a) => a.discipline==allFilters.discipline)
+      this.state.cloneArray=afterFilters;
+    }
+    if(allFilters.hasOwnProperty('ranking')){
+      var afterFilters = this.state.cloneArray.filter((a) => a.ranking<=Number(allFilters.ranking)).sort((a,b)=>a.ranking - b.ranking)
+      this.state.cloneArray=afterFilters;
+    }
+    if(allFilters.hasOwnProperty('city')){
+      var afterFilters = this.state.cloneArray.filter((a) => a.city==allFilters.city)
+      this.state.cloneArray=afterFilters;
+    }
+    if(allFilters.hasOwnProperty('admissions')){
+      var afterFilters = this.state.cloneArray.filter((a) => a.admissions==Number(allFilters.admissions))
+      this.state.cloneArray=afterFilters;
+    }
+    if(allFilters.hasOwnProperty('status')){
+      var afterFilters = this.state.cloneArray.filter((a) => a.status==Number(allFilters.status))
+      this.state.cloneArray=afterFilters;
+    }
+    if(allFilters.hasOwnProperty('min')){
+      var afterFilters = this.state.cloneArray.filter((a) => a.fee>=allFilters.min)
+      this.state.cloneArray=afterFilters;
+    }
+    if(allFilters.hasOwnProperty('max')){
+      var afterFilters = this.state.cloneArray.filter((a) => a.fee<=allFilters.max)
+      this.state.cloneArray=afterFilters;
+    }
+    if(allFilters.hasOwnProperty('merit')){
+      var afterFilters = this.state.cloneArray.filter((a) => a.merit>=allFilters.merit)
+      this.state.cloneArray=afterFilters;
+    }
+    this.setState({universities:this.state.cloneArray}, function(){
+      console.log('Total CS Records', this.state.universities.length);
+      
+    });
+    this.setState({activityindicator:false});
+  }
+
+  clearAllFilters(item){
+    console.log('Clear all Filters = ',item);
+    console.log(item.title);
+    this.setState({activityindicator:true});
+    this.setState({finalFiltersArray:[]});
+    database()
+      .ref('/zeeshan_listing/')
+      // .limitToFirst(20)
+      .on('value', snapshot => {
+      this.setState({universities: snapshot.val(), filtersArray: snapshot.val() }, function () {
+        this.setState({activityindicator:false});
+      });
+    });
+  }
+
+  deleteFilters(item){
+    console.log('Delete Filters');
+    this.setState({activityindicator:true});
+    database()
+      .ref('/zeeshan_listing/')
+      // .limitToFirst(20)
+      .on('value', snapshot => {
+      this.setState({universities: snapshot.val(), filtersArray: snapshot.val()}, function () {
+        this.state.cloneArray = this.state.universities;
+        this.ApplyNewFilters(item);
+      });
+    });
+  }
+  
   render() {
-
     const render_txt=(item)=>{
       switch(item.title){
         case "admissions":
@@ -914,145 +1083,273 @@ export default class Universities extends Component {
             case "0":
               return item.title.charAt(0).toUpperCase() + item.title.slice(1) + ': Private';
           }
+        case "Clear All":
+          return item.title.charAt(0).toUpperCase() + item.title.slice(1);
         default:
           return item.title.charAt(0).toUpperCase() + item.title.slice(1) + ': ' + item.value;
       }
     }
 
     // console.log(this.state.universities)
-    return (
-      <SafeAreaView style={styles.container}>
-      
-      <View style={styles.header} elevation={5}>
-          <Text style={styles.headerTxt}>Institutes</Text>
-      </View>
-
-        <View style={styles.filterWrapper}>
-          <TouchableOpacity style={styles.filter} onPress={() => this.props.navigation.navigate("AdvanceFilter")}>
-            <Text>Filters</Text>
-          </TouchableOpacity>
-          <FlatList
-            horizontal={true}
-            showsHorizontalScrollIndicator={false}
-            data={this.state.allFilters}
-            renderItem={({ item }) => (
-              <View key={item.key} style={styles.singleFilter}>
-                {/* onPress={() => { this.setState({ show: true }) }} */}
-                <TouchableOpacity style={styles.filter} onPress={() => {
-                  if (item.title == "Admission") {
-                    this.SortByAdmission(item);
-                  }else if (item.title == "Fee") {
-                    this.showFeeModal();
-                  }else if (item.title == "Ranking") {
-                    this.SortByRanking();
-                  }else if (item.title == "Location") {
-                    this.showCityModal();
-                  }else if (item.title == "Status") {
-                    this.SortByStatus();
-                  }
-                }}>
-                  <Text>{item.title}</Text>
-                </TouchableOpacity>
-              </View>
-            )}
-          />
-      </View>
-
-      {this.state.finalFiltersArray.length?<View style={styles.filterWrapper}>
-          {/* <TouchableOpacity style={styles.filter} onPress={() => this.props.navigation.navigate("AdvanceFilter")}>
-            <Text>Filters</Text>
-          </TouchableOpacity> */}
-          <FlatList
-            horizontal={true}
-            showsHorizontalScrollIndicator={false}
-            data={this.state.finalFiltersArray}
-            renderItem={({ item }) => (
-              <View key={item.key} style={styles.singleFilter}>
-                {/* onPress={() => { this.setState({ show: true }) }} */}
-                <TouchableOpacity style={styles.appliedfilters} onPress={() => {
-                  if (item.title == "Admission") {
-                    this.SortByAdmission(item);
-                  }else if (item.title == "Fee") {
-                    this.showFeeModal();
-                  }else if (item.title == "Ranking") {
-                    this.SortByRanking();
-                  }else if (item.title == "Location") {
-                    this.showCityModal();
-                  }else if (item.title == "Status") {
-                    this.SortByStatus();
-                  }
-                }}>
-                  <Text style={{color:'white', fontSize:16, fontWeight:'bold'}}>
-                    {/* {item.title.charAt(0).toUpperCase() + item.title.slice(1)}: {item.value} */}
-                    {render_txt(item)} 
-                  </Text>
-                </TouchableOpacity>
-              </View>
-            )}
-          />
-      </View>
-    :(null)}
-      
-        {this.state.activityindicator?
-        (<View style={[styles.horizontal]}>
-          <ActivityIndicator size="large" />
-          </View>):
-        (null)
-        }
-        
-        <View style={styles.universitiesWrapper}>
-          <FlatList
-            data={this.state.universities}
-            onEndReached={this.loadMore}
-            renderItem={({ item }) => (
-              <View key={item.key} style={styles.singleUniversity} elevation={4}>
-                <View style={styles.rankingTextWrapper}>
-                  {/* <Text style={styles.rankingText}>Ranking {item.ranking}</Text> */}
-                </View>
-                <TouchableOpacity onPress={() => this.props.navigation.navigate('UniversityDetail', {obj:item})}>
-                  <View style={{ flex: 0.85, flexDirection: "row" }}>
-                    <View style={styles.imageWrapper} >
-                      <Image
-                        style={{ height: "75%", width: "100%", resizeMode:'contain', borderRadius: 50, marginLeft: 5 }}
-                        source={{uri: item.logo,}}
-                      />
-                    </View>
-                    <View style={styles.universityDetailWrapper}>
-                      <Text style={[styles.universityDetailText, styles.usiversityName]}>{item.title}</Text>
-                      <Text style={styles.universityDetailText}>Status: {item.status?'Public':'Private'}</Text>
-                      <Text style={styles.universityDetailText}>Fee: {item.fee}</Text>
-                      <Text style={styles.universityDetailText}>Ranking: { item.ranking === 100000 ? "N/A": item.ranking } </Text>
-                      <Text style={styles.universityDetailText}>Admission: {item.admissions?'Open':'Closed'}</Text>
-                      <Text style={styles.universityDetailText}>Merit: {item.merit}</Text>
-                      <View style={styles.locAndPhoneWrapper}>
-                      <Text style={styles.universityDetailText}>Location: {item.city}</Text>
-                        {/* <Text style={styles.phone}>Phone</Text> */}
-                      </View>
-                      <Text style={[styles.universityDetailText, styles.DeadlineText]}>Deadline : {item.deadline}</Text>
-
-                      <View style={{}}>
-                          <TouchableOpacity onPress={() => this.email(item)} style={{flex:0.5}}>
-                          <Text style={styles.linksStyles}>Email: {item.info}</Text>
-                          </TouchableOpacity>
-                       </View>
-
-                      <View style={{}}>
-                          <TouchableOpacity style={{flex:0.5}} onPress={() => this.dialCall(item)}>
-                          <Text style={styles.linksStyles}>Phone: {item.contact}</Text>
-                          </TouchableOpacity>
-                       </View>
-
-                    </View>
+      if(this.state.norecordfoundtext.length!='' && this.state.norecordfoundsubtext.length!='' && this.state.universities.length==0){
+        return (
+          <SafeAreaView style={styles.container}>
+          <View style={styles.header} elevation={5}>
+              <Text style={styles.headerTxt}>Total Institutes: {this.state.universities.length} </Text>
+          </View>
+            <View style={styles.filterWrapper}>
+              <TouchableOpacity style={styles.filter} onPress={() => this.props.navigation.navigate("AdvanceFilter")}>
+                <Text>Filters</Text>
+              </TouchableOpacity>
+              <FlatList
+                horizontal={true}
+                showsHorizontalScrollIndicator={false}
+                data={this.state.allFilters}
+                renderItem={({ item }) => (
+                  <View key={item.key} style={styles.singleFilter}>
+                    {/* onPress={() => { this.setState({ show: true }) }} */}
+                    <TouchableOpacity style={styles.filter} onPress={() => {
+                      if (item.title == "Admission") {
+                        this.SortByAdmission(item);
+                      }else if (item.title == "Fee") {
+                        this.showFeeModal();
+                      }else if (item.title == "Ranking") {
+                        this.SortByRanking();
+                      }else if (item.title == "Location") {
+                        this.showCityModal();
+                      }else if (item.title == "Status") {
+                        this.SortByStatus();
+                      }
+                    }
+                    }>
+                      <Text>{item.title}</Text>
+                    </TouchableOpacity>
                   </View>
+                )}
+              />
+          </View>
+          
+          {this.state.finalFiltersArray.length?
+          <View style={styles.appliedfiltersWrapper}>
+              {/* <TouchableOpacity style={styles.filter} onPress={() => this.props.navigation.navigate("AdvanceFilter")}>
+                <Text>Filters</Text>
+              </TouchableOpacity> */}
+              <FlatList
+                horizontal={true}
+                showsHorizontalScrollIndicator={false}
+                data={this.state.finalFiltersArray}
+                renderItem={({ item }) => (
+                  <View key={item.key} style={styles.singleFilter}>
+                    {/* onPress={() => { this.setState({ show: true }) }} */}
+                    <TouchableOpacity style={styles.appliedfilters} onPress={
+                      () => {
+                      if (item.title == "Clear All") {
+                        this.clearAllFilters(item);
+                      }
+                    }
+                    }>
+                      <Text style={{color:'white', fontSize:16, fontWeight:'bold', marginRight:10}}>
+                        {/* {item.title.charAt(0).toUpperCase() + item.title.slice(1)}: {item.value} */}
+                        {render_txt(item)}
+                      </Text>
+                    </TouchableOpacity>
+                    
+                {(item.title=="Clear All")?(null):
+                  <TouchableOpacity style={{
+                      // ...StyleSheet.absoluteFillObject,
+                      // alignSelf: 'flex-end',
+                      // marginTop: -5,
+                      // position: 'absolute',
+                      position: 'absolute',
+                      right:0,
+                      }}
+                      onPress={() => {
+                          console.log(item.title);
+                          this.deleteFilters(item);
+                        }
+                      }
+                      >
+                    <Image
+                      style={{width: 22, height: 22}}
+                      source={require("../../../assets/images/cross.png")}
+                    />
+                  </TouchableOpacity>
+                    }
+                    
+                  </View>
+                )}
+              />
+          </View>
+        :(null)}
+          
+            {this.state.activityindicator?
+            (<View style={[styles.horizontal]}>
+              <ActivityIndicator size="large" />
+              </View>):
+            (null)
+            }
+          
+          <View style={{flex:0.60,flexDirection:'column', alignItems:'center', justifyContent:'center'}}>
+            <Text style={{fontSize:24, marginBottom:10}}>{this.state.norecordfoundtext}</Text>
+            <Text style={{fontSize:16}}>{this.state.norecordfoundsubtext}</Text>
+          </View>
+
+            <FeeModal show={this.state.showFeeModal} update={this.updatesState} sortFilter={this.SortByFee} />
+            <CityModal show={this.state.showCityModal} update={this.updatesState} sortCity={this.SortByCity} />
+          </SafeAreaView>
+        )
+      }else{
+        return (
+          <SafeAreaView style={styles.container}>
+          <View style={styles.header} elevation={5}>
+              <Text style={styles.headerTxt}>Total Institutes: {this.state.universities.length} </Text>
+          </View>
+            <View style={styles.filterWrapper}>
+              <TouchableOpacity style={styles.filter} onPress={() => this.props.navigation.navigate("AdvanceFilter")}>
+                <Text>Filters</Text>
+              </TouchableOpacity>
+              <FlatList
+                horizontal={true}
+                showsHorizontalScrollIndicator={false}
+                data={this.state.allFilters}
+                renderItem={({ item }) => (
+                  <View key={item.key} style={styles.singleFilter}>
+                    {/* onPress={() => { this.setState({ show: true }) }} */}
+                    <TouchableOpacity style={styles.filter} onPress={() => {
+                      if (item.title == "Admission") {
+                        this.SortByAdmission(item);
+                      }else if (item.title == "Fee") {
+                        this.showFeeModal();
+                      }else if (item.title == "Ranking") {
+                        this.SortByRanking();
+                      }else if (item.title == "Location") {
+                        this.showCityModal();
+                      }else if (item.title == "Status") {
+                        this.SortByStatus();
+                      }
+                    }
+                    }>
+                      <Text>{item.title}</Text>
+                    </TouchableOpacity>
+                  </View>
+                )}
+              />
+          </View>
+          
+          {this.state.finalFiltersArray.length?
+          <View style={styles.appliedfiltersWrapper}>
+              {/* <TouchableOpacity style={styles.filter} onPress={() => this.props.navigation.navigate("AdvanceFilter")}>
+                <Text>Filters</Text>
+              </TouchableOpacity> */}
+              <FlatList
+                horizontal={true}
+                showsHorizontalScrollIndicator={false}
+                data={this.state.finalFiltersArray}
+                renderItem={({ item }) => (
+                  <View key={item.key} style={styles.singleFilter}>
+                    {/* onPress={() => { this.setState({ show: true }) }} */}
+                    <TouchableOpacity style={styles.appliedfilters} onPress={
+                      () => {
+                      if (item.title == "Clear All") {
+                        this.clearAllFilters(item);
+                      }
+                    }
+                    }>
+                      <Text style={{color:'white', fontSize:16, fontWeight:'bold', marginRight:10}}>
+                        {/* {item.title.charAt(0).toUpperCase() + item.title.slice(1)}: {item.value} */}
+                        {render_txt(item)}
+                      </Text>
+                    </TouchableOpacity>
+                    
+                    {(item.title=="Clear All")?(null):
+                    <TouchableOpacity style={{
+                      // ...StyleSheet.absoluteFillObject,
+                      // alignSelf: 'flex-end',
+                      // marginTop: -5,
+                      // position: 'absolute',
+                      position: 'absolute',
+                      right:0,
+                      }}
+                      onPress={() => {
+                          console.log('Console ',item.title);
+                          this.deleteFilters(item);
+                        }
+                      }
+                      >
+                    <Image
+                      style={{width: 22, height: 22}}
+                      source={require("../../../assets/images/cross.png")}
+                    />
                 </TouchableOpacity>
-              </View>
-            )}
-          // ItemSeparatorComponent={() => <Separator />}
-          />
-        </View>
-        <FeeModal show={this.state.showFeeModal} update={this.updatesState} sortFilter={this.SortByFee} />
-        <CityModal show={this.state.showCityModal} update={this.updatesState} sortCity={this.SortByCity} />
-      </SafeAreaView>
-    )
+                    }
+                    
+                  </View>
+                )}
+              />
+          </View>
+        :(null)}
+          
+            {this.state.activityindicator?
+            (<View style={[styles.horizontal]}>
+              <ActivityIndicator size="large" />
+              </View>):
+            (null)
+            }
+            
+            <View style={styles.universitiesWrapper}>
+              <FlatList
+                data={this.state.universities}
+                onEndReached={this.loadMore}
+                renderItem={({ item }) => (
+                  <View key={item.key} style={styles.singleUniversity} elevation={4}>
+                    <View style={styles.rankingTextWrapper}>
+                      {/* <Text style={styles.rankingText}>Ranking {item.ranking}</Text> */}
+                    </View>
+                    <TouchableOpacity onPress={() => this.props.navigation.navigate('UniversityDetail', {obj:item})}>
+                      <View style={{ flex: 0.85, flexDirection: "row" }}>
+                        <View style={styles.imageWrapper} >
+                          <Image
+                            style={{ height: "75%", width: "100%", resizeMode:'contain', borderRadius: 50, marginLeft: 5 }}
+                            source={{uri: item.logo,}}
+                          />
+                        </View>
+                        <View style={styles.universityDetailWrapper}>
+                          <Text style={[styles.universityDetailText, styles.usiversityName]}>{item.title}</Text>
+                          <Text style={styles.universityDetailText}>Status: {item.status?'Public':'Private'}</Text>
+                          <Text style={styles.universityDetailText}>Fee: {item.fee}</Text>
+                          <Text style={styles.universityDetailText}>Ranking: { item.ranking === 100000 ? "N/A": item.ranking } </Text>
+                          <Text style={styles.universityDetailText}>Admission: {item.admissions?'Open':'Closed'}</Text>
+                          <Text style={styles.universityDetailText}>Merit: {item.merit}</Text>
+                          <View style={styles.locAndPhoneWrapper}>
+                          <Text style={styles.universityDetailText}>Location: {item.city}</Text>
+                            {/* <Text style={styles.phone}>Phone</Text> */}
+                          </View>
+                          <Text style={[styles.universityDetailText, styles.DeadlineText]}>Deadline : {item.deadline}</Text>
+    
+                          <View style={{}}>
+                              <TouchableOpacity onPress={() => this.email(item)} style={{flex:0.5}}>
+                              <Text style={styles.linksStyles}>Email: {item.info}</Text>
+                              </TouchableOpacity>
+                           </View>
+    
+                          <View style={{}}>
+                              <TouchableOpacity style={{flex:0.5}} onPress={() => this.dialCall(item)}>
+                              <Text style={styles.linksStyles}>Phone: {item.contact}</Text>
+                              </TouchableOpacity>
+                           </View>
+    
+                        </View>
+                      </View>
+                    </TouchableOpacity>
+                  </View>
+                )}
+              // ItemSeparatorComponent={() => <Separator />}
+              />
+            </View>
+            <FeeModal show={this.state.showFeeModal} update={this.updatesState} sortFilter={this.SortByFee} />
+            <CityModal show={this.state.showCityModal} update={this.updatesState} sortCity={this.SortByCity} />
+          </SafeAreaView>
+        )
+      }
   }
 }

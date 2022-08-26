@@ -3,7 +3,9 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         // justifyContent: "center",
+        // height:"100%",
         // alignItems: "center",
+        // backgroundColor:"red",
     },
 
     // section 1 filters
@@ -11,8 +13,6 @@ const styles = StyleSheet.create({
         flex: 0.6,
         justifyContent: "flex-start",
         alignItems: "center",
-
-
         height: "100%",
         width: "100%",
     },
@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
         height: "100%",
         width: "100%",
-        marginTop:20
+        marginTop:20,
     },
     mainHeadingText: {
         fontSize: 24,
@@ -49,6 +49,14 @@ const styles = StyleSheet.create({
         width: "85%",
         flex: 0.50,
         justifyContent: 'center'
+    },
+    cityPicker:{
+        height:"30%",
+        marginTop:18,
+        marginLeft:13,  
+        width: "85%",
+        flex: 0.50,
+        justifyContent: 'center' 
     },
 
 
@@ -83,18 +91,26 @@ const styles = StyleSheet.create({
         fontSize: 16,
       
     },
+    citypicker:{
+        marginTop:-10
+        ,borderWidth:1.5,
+        padding:"4%",
+        paddingHorizontal:"33%",
+        borderRadius:50
+      },
 
     // section 3 button
     btnWrapper: {
+        // backgroundColor:"magenta",
         flex: 0.10,
         justifyContent: "center",
         alignItems: "center",
         height: "100%",
         width: "100%",
- 
-        flexDirection: "row",
-        justifyContent: "flex-end"
-
+        flexDirection: 'row',
+        justifyContent: "flex-end", 
+        marginTop:82,
+        // flexDirection:"column-reverse",
     },
     applyFilterButton: {
         flex: 1,
@@ -119,8 +135,8 @@ const styles = StyleSheet.create({
         marginRight: "5%",
         paddingVertical: 10,
         paddingHorizontal: 50,
-        borderRadius: 5
-    },
+        borderRadius: 5,
+    },  
     resetBtntxt: {
         color: "#666666",
         fontSize: 25,
