@@ -20,6 +20,8 @@ const slides = [
     },
   ];
 
+
+  
 export default class MainIntro extends Component {
 
     _renderItem = ({ item }) => {

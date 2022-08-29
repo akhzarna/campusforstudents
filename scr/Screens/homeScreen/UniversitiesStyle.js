@@ -35,19 +35,10 @@ const styles = StyleSheet.create({
         height:"100%",
         width:"100%"
     },
-    appliedfiltersWrapper:{
-        flex: 0.1,
-        flexDirection:"row",
-        justifyContent:"center",
-        alignItems:"center",
-        height:"100%",
-        width:"100%"
-    },
     singleFilter:{
         flex:0.3,
         flexDirection:"row",
         height:40,
-        // marginRight:40,
         // width:100,
     },
     filter:{
@@ -60,14 +51,13 @@ const styles = StyleSheet.create({
         marginRight:5,
     },
     appliedfilters:{
-        // alignItems: "center",
+        alignItems: "center",
         backgroundColor:"#F75656",
         padding: 10,
         borderRadius:5,
         // width:100,
         marginLeft:5,
         marginRight:5,
-        flexDirection:'row'
     },
     usiversityName:{
         color:"white",
@@ -134,7 +124,7 @@ const styles = StyleSheet.create({
         fontSize:17,
         marginRight:15,
         fontWeight:"500",
-        marginTop:12
+        marginTop:12,
     },
     linksStyles:{
         color:"blue",

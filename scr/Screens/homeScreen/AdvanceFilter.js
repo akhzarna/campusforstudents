@@ -1,6 +1,7 @@
 import { Text, View, SafeAreaView, TextInput, TouchableOpacity, ScrollView, } from 'react-native'
 import React, { Component } from 'react'
 import { Picker } from '@react-native-picker/picker';
+import CityModal from './CityModal';
 import styles from './AdvanceFilterStyle'
 import constStyle from '../../Constants/ConstantStyle'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scrollview'
@@ -9,17 +10,30 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scrollview'
 // Admission:'Open':'Closed'
 
 export default class AdvanceFilter extends Component {
-  state = {
-    // Value: 'Select',
-    studylevel: "Select the study level",
-    discipline: "Select discipline",
-    ranking: "Select Ranking",
-    city: "Select City",
-    status: "Status",
-    admissions: "Admissions",
-    min: '',
-    max: '',
-    merit: '',
+  constructor(props){
+    super(props)
+    this.updateState = this.updateState.bind(this)
+    this.SortByCity = this.SortByCity.bind(this)
+    this.state = {
+      studylevel: "Select the study level",
+      discipline: "Select discipline",
+      ranking: "Select Ranking",
+      city: "Select City",
+      status: "Status",
+      admissions: "Admissions",
+      min: '',
+      max: '',
+      merit: '',
+      showCityModal:false,
+    }
+  }
+ 
+
+  updateState() {
+    this.setState({ showCityModal: false })
+  }
+  SortByCity(cityName) {
+    this.setState({ showCityModal: false, city:cityName })
   }
   
   // SortByAdmission() {    
@@ -80,6 +94,15 @@ export default class AdvanceFilter extends Component {
   
   render() {
     // console.log("selectedState",this.selectedState)
+    const render_text=()=>{
+      switch(this.state.city){
+        case '':
+          return 'Location';
+        default:
+          return this.state.city;
+      }
+
+    }
     return (
       <KeyboardAwareScrollView style={styles.container}>
         <View style={styles.filtersWrapper}>
@@ -100,20 +123,13 @@ export default class AdvanceFilter extends Component {
                 <Picker.Item label="Computer Science" value="Computer Science" />
               </Picker>
             </View>
-
+            {/* City  Modal: */}
             <View style={styles.picker}>
-
-              <Picker mode="dropdown"
-                selectedValue={this.state.city} 
-                onValueChange={(itemValue, itemIndex) =>
-                  this.setState({ city: itemValue })}
-              >
-                <Picker.Item label="City" value="City" color="#c14643" />
-                <Picker.Item label="Lahore" value="Lahore" />
-                <Picker.Item label="Karachi" value="Karachi" />
-                <Picker.Item label="Peshawar" value="Peshawar" />
-                <Picker.Item label="Islamabad" value="Islamabad" />
-              </Picker>
+                <TouchableOpacity onPress={() => this.setState({ showCityModal: true })}>
+                <View style={styles.cityPicker}>
+                  <Text style={{ color: "#c14643",fontSize:15,marginBottom:16}}> {render_text()} </Text>
+                  </View>
+              </TouchableOpacity>
             </View>
 
             <View style={styles.picker}>
@@ -157,6 +173,8 @@ export default class AdvanceFilter extends Component {
           </View>
         </View>
 
+         <CityModal show={this.state.showCityModal} update={this.updateState} sortCity={this.SortByCity} />
+
         <View style={styles.inputFieldsWrapper}>
           <Text style={styles.inputFieldSectionText}>Tution Fee (Enter your budget for complete degree)</Text>
           <View style={styles.inputFeilds}>
@@ -184,17 +202,21 @@ export default class AdvanceFilter extends Component {
             />
           </View>
         </View>
-
+        <View style={{}}>
         <View style={styles.btnWrapper}>
           <TouchableOpacity style={styles.resetBtn}
-            onPress={this.setStateToItsOriginalPosition}>
+            onPress={this.setStateToItsOriginalPosition}> 
             <Text style={[styles.btnText, styles.resetBtntxt]}>Reset</Text>
           </TouchableOpacity>
           <TouchableOpacity style={[styles.applyBtn, constStyle.buttonColor]} onPress={this.ApplyFilters}
           >
             <Text style={styles.btnText}>Apply Filter</Text>
             </TouchableOpacity>
+            
         </View>
+        </View>
+        
+        
         
       </KeyboardAwareScrollView>
 

@@ -48,17 +48,12 @@ export default class Home extends Component {
       min:'',
       max:'',
       filters:{},
-      show: false,
       showCityModal: false,
       universities:[],
       filter: [],
       firestoreData: [],
     }
   }
-
-  // UniState = {
-   
-  // }
 
   updateState() {
     // Alert.alert('YES Man Alert');
