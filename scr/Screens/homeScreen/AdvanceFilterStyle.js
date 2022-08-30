@@ -1,20 +1,42 @@
 import { StyleSheet } from 'react-native';
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
+        flex: 1.0,
+        flexDirection:'column',
         // justifyContent: "center",
         // height:"100%",
         // alignItems: "center",
-        // backgroundColor:"red",
+        // backgroundColor:"grey",
     },
-
     // section 1 filters
     filtersWrapper: {
         flex: 0.6,
+        flexDirection:'column',
         justifyContent: "flex-start",
         alignItems: "center",
         height: "100%",
         width: "100%",
+        // backgroundColor:'red'
+    },
+     // sextion 2 Input fields 
+     inputFieldsWrapper: {
+        flex: 0.3,
+        flexDirection:'column',
+        // height: "100%",
+        // width: "100%",
+        // backgroundColor:'green'
+    },
+    // section 3 button
+    btnWrapper: {
+        flex: 0.1,
+        justifyContent: "center",
+        alignItems: "center",
+        height: "100%",
+        width: "100%",
+        flexDirection: 'row',
+        justifyContent: "flex-end", 
+        marginBottom:0,
+        // backgroundColor:"blue",
     },
     mainHeadingWrapper: {
         flex: 0.07,
@@ -37,7 +59,6 @@ const styles = StyleSheet.create({
     },
     filter: {
         flex: 0.9,
-
         height: "100%",
         width: "100%",
         alignItems: 'center'
@@ -48,7 +69,9 @@ const styles = StyleSheet.create({
         marginTop: 20,
         width: "85%",
         flex: 0.50,
-        justifyContent: 'center'
+        justifyContent: 'center',
+        // alignContent:'center'
+        // backgroundColor:'grey'
     },
     cityPicker:{
         height:"30%",
@@ -56,16 +79,8 @@ const styles = StyleSheet.create({
         marginLeft:13,  
         width: "85%",
         flex: 0.50,
-        justifyContent: 'center' 
-    },
-
-
-
-    // sextion 2 Input fields 
-    inputFieldsWrapper: {
-        flex: 0.3,
-        height: "100%",
-        width: "100%",
+        justifyContent: 'center' ,
+        // backgroundColor:'grey'
     },
     inputFieldSectionText: {
         padding: 20,
@@ -98,20 +113,6 @@ const styles = StyleSheet.create({
         paddingHorizontal:"33%",
         borderRadius:50
       },
-
-    // section 3 button
-    btnWrapper: {
-        // backgroundColor:"magenta",
-        flex: 0.10,
-        justifyContent: "center",
-        alignItems: "center",
-        height: "100%",
-        width: "100%",
-        flexDirection: 'row',
-        justifyContent: "flex-end", 
-        marginTop:82,
-        // flexDirection:"column-reverse",
-    },
     applyFilterButton: {
         flex: 1,
         flexDirection: 'row',

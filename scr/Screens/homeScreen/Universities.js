@@ -738,7 +738,7 @@ export default class Universities extends Component {
     this.setState({activityindicator:true});
     database()
       .ref('/zeeshan_listing/')
-      // .limitToFirst(20)
+      .limitToFirst(10)
       .on('value', snapshot => {
       this.setState({universities: snapshot.val(), filtersArray: snapshot.val() }, function () {
         this.state.cloneArray = this.state.universities;
@@ -1044,7 +1044,7 @@ export default class Universities extends Component {
     this.setState({finalFiltersArray:[]});
     database()
       .ref('/zeeshan_listing/')
-      // .limitToFirst(20)
+      .limitToFirst(10)
       .on('value', snapshot => {
       this.setState({universities: snapshot.val(), filtersArray: snapshot.val() }, function () {
         this.setState({activityindicator:false});
@@ -1057,7 +1057,7 @@ export default class Universities extends Component {
     this.setState({activityindicator:true});
     database()
       .ref('/zeeshan_listing/')
-      // .limitToFirst(20)
+      .limitToFirst(10)
       .on('value', snapshot => {
       this.setState({universities: snapshot.val(), filtersArray: snapshot.val()}, function () {
         this.state.cloneArray = this.state.universities;

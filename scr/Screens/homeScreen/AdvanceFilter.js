@@ -4,7 +4,7 @@ import { Picker } from '@react-native-picker/picker';
 import CityModal from './CityModal';
 import styles from './AdvanceFilterStyle'
 import constStyle from '../../Constants/ConstantStyle'
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scrollview'
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 // Status:'Public':'Private'
 // Admission:'Open':'Closed'
@@ -28,7 +28,6 @@ export default class AdvanceFilter extends Component {
     }
   }
  
-
   updateState() {
     this.setState({ showCityModal: false })
   }
@@ -104,123 +103,124 @@ export default class AdvanceFilter extends Component {
 
     }
     return (
-      <KeyboardAwareScrollView style={styles.container}>
-        <View style={styles.filtersWrapper}>
-          <View style={styles.mainHeadingWrapper}>
-            <Text style={styles.mainHeadingText}>Find Best Match</Text>
-          </View>
 
-          <View style={styles.filters}>
+<KeyboardAwareScrollView contentContainerStyle={{flex: 1}}>
 
-            <View style={styles.picker}>
-              <Picker mode="dropdown"
-                selectedValue={this.state.discipline}
-                value={this.state.discipline}
-                onValueChange={(itemValue, itemIndex) =>
-                  this.setState({ discipline: itemValue })}
-              >
-                <Picker.Item label="Select discipline" value="Select discipline" color="#c14643" />
-                <Picker.Item label="Computer Science" value="Computer Science" />
-              </Picker>
-            </View>
-            {/* City  Modal: */}
-            <View style={styles.picker}>
-                <TouchableOpacity onPress={() => this.setState({ showCityModal: true })}>
-                <View style={styles.cityPicker}>
-                  <Text style={{ color: "#c14643",fontSize:15,marginBottom:16}}> {render_text()} </Text>
-                  </View>
-              </TouchableOpacity>
-            </View>
+<View style={styles.filtersWrapper}>
+  <View style={styles.mainHeadingWrapper}>
+    <Text style={styles.mainHeadingText}>Find Best Match</Text>
+  </View>
 
-            <View style={styles.picker}>
-              <Picker mode="dropdown"
-                selectedValue={this.state.ranking}
-                onValueChange={(itemValue, itemIndex) =>
-                  this.setState({ ranking: itemValue })}
-              >
-                <Picker.Item label="Select Ranking" value="Select Ranking" color="#c14643" />
-                <Picker.Item label="Top 10" value="10" />
-                <Picker.Item label="Top 20" value="20" />
-                <Picker.Item label="Top 50" value="50" />
-                <Picker.Item label="Top 100" value="100" />
-              </Picker>
-            </View>
-            <View style={styles.picker}>
-              <Picker mode="dropdown"
-                selectedValue={this.state.admissions}
-                onValueChange={(itemValue, itemIndex) =>
-                  this.setState({ admissions: itemValue })}
-              >
-                <Picker.Item label="Admissions" value="Admissions" color="#c14643" />
-                <Picker.Item label="Open" value="1" />
-                <Picker.Item label="Closed" value="0" />
+  <View style={styles.filters}>
 
-              </Picker>
-            </View>
+    <View style={styles.picker}>
+      <Picker mode="dropdown"
+        selectedValue={this.state.discipline}
+        value={this.state.discipline}
+        onValueChange={(itemValue, itemIndex) =>
+          this.setState({ discipline: itemValue })}
+      >
+        <Picker.Item label="Select discipline" value="Select discipline" color="#c14643" />
+        <Picker.Item label="Computer Science" value="Computer Science" />
+      </Picker>
+    </View>
+    {/* City  Modal: */}
+    <View style={styles.picker}>
+        <TouchableOpacity style={{flex:1.0, justifyContent:'center', marginLeft:10}} onPress={() => this.setState({ showCityModal: true })}>
+        {/* <View style={styles.cityPicker}> */}
+          <Text style={{ 
+            color: "#c14643",
+            }}> {render_text()} </Text>
+        {/* </View> */}
+      </TouchableOpacity>
+    </View>
 
-            <View style={styles.picker}>
-              <Picker mode="dropdown"
-                selectedValue={this.state.status}
-                onValueChange={(itemValue, itemIndex) =>
-                  this.setState({ status: itemValue })}
-              >
-                <Picker.Item label="Status" value="Status" color="#c14643" />
-                <Picker.Item label="Public" value="1" />
-                <Picker.Item label="Private" value="0" />
-              </Picker>
-            </View>
+    <View style={styles.picker}>
+      <Picker mode="dropdown"
+        selectedValue={this.state.ranking}
+        onValueChange={(itemValue, itemIndex) =>
+          this.setState({ ranking: itemValue })}
+      >
+        <Picker.Item label="Select Ranking" value="Select Ranking" color="#c14643" />
+        <Picker.Item label="Top 10" value="10" />
+        <Picker.Item label="Top 20" value="20" />
+        <Picker.Item label="Top 50" value="50" />
+        <Picker.Item label="Top 100" value="100" />
+      </Picker>
+    </View>
+    <View style={styles.picker}>
+      <Picker mode="dropdown"
+        selectedValue={this.state.admissions}
+        onValueChange={(itemValue, itemIndex) =>
+          this.setState({ admissions: itemValue })}
+      >
+        <Picker.Item label="Admissions" value="Admissions" color="#c14643" />
+        <Picker.Item label="Open" value="1" />
+        <Picker.Item label="Closed" value="0" />
 
-          </View>
-        </View>
+      </Picker>
+    </View>
 
-         <CityModal show={this.state.showCityModal} update={this.updateState} sortCity={this.SortByCity} />
+    <View style={styles.picker}>
+      <Picker mode="dropdown"
+        selectedValue={this.state.status}
+        onValueChange={(itemValue, itemIndex) =>
+          this.setState({ status: itemValue })}
+      >
+        <Picker.Item label="Status" value="Status" color="#c14643" />
+        <Picker.Item label="Public" value="1" />
+        <Picker.Item label="Private" value="0" />
+      </Picker>
+    </View>
 
-        <View style={styles.inputFieldsWrapper}>
-          <Text style={styles.inputFieldSectionText}>Tution Fee (Enter your budget for complete degree)</Text>
-          <View style={styles.inputFeilds}>
-            <TextInput
-              style={styles.inputFeild}
-              placeholder="Minimum"
-              placeholderTextColor="black"
-              onChangeText={(value) => this.setState({ min: value })}
-              value={this.state.min}
-            />
-            <TextInput
-              style={styles.inputFeild}
-              placeholder="Maximum"
-              placeholderTextColor="black"
-              onChangeText={(value) => this.setState({ max: value })}
-              value={this.state.max}
+  </View>
+</View>
 
-            />
-            <TextInput
-              style={styles.inputFeild}
-              placeholder="%"
-              placeholderTextColor="black"
-              onChangeText={(value) => this.setState({ merit: value })}
-              value={this.state.merit}
-            />
-          </View>
-        </View>
-        <View style={{}}>
-        <View style={styles.btnWrapper}>
-          <TouchableOpacity style={styles.resetBtn}
-            onPress={this.setStateToItsOriginalPosition}> 
-            <Text style={[styles.btnText, styles.resetBtntxt]}>Reset</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={[styles.applyBtn, constStyle.buttonColor]} onPress={this.ApplyFilters}
-          >
-            <Text style={styles.btnText}>Apply Filter</Text>
-            </TouchableOpacity>
-            
-        </View>
-        </View>
-        
-        
-        
-      </KeyboardAwareScrollView>
+ <CityModal show={this.state.showCityModal} update={this.updateState} sortCity={this.SortByCity} />
+
+<View style={styles.inputFieldsWrapper}>
+  <Text style={styles.inputFieldSectionText}>Tution Fee (Enter your budget for complete degree)</Text>
+  <View style={styles.inputFeilds}>
+    <TextInput
+      style={styles.inputFeild}
+      placeholder="Minimum"
+      placeholderTextColor="black"
+      onChangeText={(value) => this.setState({ min: value })}
+      value={this.state.min}
+    />
+    <TextInput
+      style={styles.inputFeild}
+      placeholder="Maximum"
+      placeholderTextColor="black"
+      onChangeText={(value) => this.setState({ max: value })}
+      value={this.state.max}
+
+    />
+    <TextInput
+      style={styles.inputFeild}
+      placeholder="%"
+      placeholderTextColor="black"
+      onChangeText={(value) => this.setState({ merit: value })}
+      value={this.state.merit}
+    />
+  </View>
+</View>
+
+<View style={styles.btnWrapper}>
+  <TouchableOpacity style={styles.resetBtn}
+    onPress={this.setStateToItsOriginalPosition}> 
+    <Text style={[styles.btnText, styles.resetBtntxt]}>Reset</Text>
+  </TouchableOpacity>
+  <TouchableOpacity style={[styles.applyBtn, constStyle.buttonColor]} onPress={this.ApplyFilters}
+  >
+    <Text style={styles.btnText}>Apply Filter</Text>
+    </TouchableOpacity>
+    
+</View>        
+
+</KeyboardAwareScrollView>
+
 
     )
   }
-  
 }
