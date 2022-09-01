@@ -17,6 +17,15 @@ export default class Universities extends Component {
     this.SortByFee = this.SortByFee.bind(this)
     this.SortByCity = this.SortByCity.bind(this)
     this.state = {
+      studylevel: "Select the study level",
+      discipline: "Select discipline",
+      ranking: "Select Ranking",
+      city: "Select City",
+      status: "Status",
+      admissions: "Admissions",
+      min: '',
+      max: '',
+      merit: '',
       activityindicator: true,
       showFeeModal: false,
       showCityModal: false,
@@ -24,13 +33,14 @@ export default class Universities extends Component {
       universities: [],
       firestoreData: [],
       cloneArray:[],
+      fromFiltersScreen:this.props.route.params.filters,
       allFilters: [
         {
-          title: "Admission",
+          title: "Discipline",
           status:-1,
           key:0,
         },{
-          title: "Fee",
+          title: "City",
           status:-1,
           key:1,
         },{
@@ -38,13 +48,21 @@ export default class Universities extends Component {
           status:-1,
           key:2,
         },{
-          title: "Location",
+          title: "Admissions",
           status:-1,
           key:3,
         },{ 
           title: "Status",
           status:-1,
           key:4,
+        },{
+          title: "Fee",
+          status:-1,
+          key:5,
+        },{
+          title: "Merit",
+          status:-1,
+          key:6,
         }
       ],
       finalFiltersArray:[],
@@ -706,9 +724,9 @@ export default class Universities extends Component {
     // this.ApplyAllFilters();
       // To call function on pop()
     
-    console.log('Did Mount');
+    // console.log('Did Mount');
     if(!this.props.route.params.fromAdvanceFilters){
-      // console.log('Not from Advance Filter');
+      // console.log('1- Not from Advance Filter');
       this.firstFetchAllRecords();
     }
 
@@ -717,7 +735,7 @@ export default class Universities extends Component {
       // console.log('Always Call or Not');
       this.setState({norecordfoundtext:'', norecordfoundsubtext:''});
       if(this.props.route.params.fromAdvanceFilters){
-        // console.log('Always Call or Not fromAdvanceFilters');
+        // console.log('2- Always Call or Not fromAdvanceFilters');
         // this.ApplyAllFilters();
         this.firstFetchAllRecords();
       }
@@ -738,7 +756,7 @@ export default class Universities extends Component {
     this.setState({activityindicator:true});
     database()
       .ref('/zeeshan_listing/')
-      .limitToFirst(10)
+      // .limitToFirst(10)
       .on('value', snapshot => {
       this.setState({universities: snapshot.val(), filtersArray: snapshot.val() }, function () {
         this.state.cloneArray = this.state.universities;
@@ -749,43 +767,59 @@ export default class Universities extends Component {
 
   ApplyAllFilters(){
     if(this.props.route.params.fromAdvanceFilters==1){
-      console.log('from Advance Filters Screen is =',this.props.route.params.filters)
+      console.log('from Advance Filters -- Screen is =',this.state.fromFiltersScreen)
       this.props.route.params.fromAdvanceFilters=0;
       this.setState({universities:[],filtersArray:[], norecordfoundtext:'', norecordfoundsubtext:''});
       // this.setState({filtersArray:[]});
       // this.firstFetchAllRecords();
-      var allFilters = this.props.route.params.filters;
-      if(allFilters.hasOwnProperty('discipline')){
-        var afterFilters = this.state.cloneArray.filter((a) => a.discipline==allFilters.discipline)
+      // var allFilters = this.props.route.params.filters;
+      if(this.state.fromFiltersScreen.hasOwnProperty('discipline')){
+        var afterFilters = this.state.cloneArray.filter((a) => a.discipline==this.state.fromFiltersScreen.discipline)
         this.state.cloneArray=afterFilters;
+        this.state.allFilters[0].status=1;
+        // console.log('Check Status of allFilters is = ', this.state.allFilters);
       }
-      if(allFilters.hasOwnProperty('ranking')){
-        var afterFilters = this.state.cloneArray.filter((a) => a.ranking<=Number(allFilters.ranking)).sort((a,b)=>a.ranking - b.ranking)
+      if(this.state.fromFiltersScreen.hasOwnProperty('city')){
+        // console.log('city');
+        var afterFilters = this.state.cloneArray.filter((a) => a.city==this.state.fromFiltersScreen.city)
         this.state.cloneArray=afterFilters;
+        this.state.allFilters[1].status=1;
       }
-      if(allFilters.hasOwnProperty('city')){
-        var afterFilters = this.state.cloneArray.filter((a) => a.city==allFilters.city)
+      if(this.state.fromFiltersScreen.hasOwnProperty('ranking')){
+        // console.log('ranking');
+        var afterFilters = this.state.cloneArray.filter((a) => a.ranking<=Number(this.state.fromFiltersScreen.ranking)).sort((a,b)=>a.ranking - b.ranking)
         this.state.cloneArray=afterFilters;
+        this.state.allFilters[2].status=1;
       }
-      if(allFilters.hasOwnProperty('admissions')){
-        var afterFilters = this.state.cloneArray.filter((a) => a.admissions==Number(allFilters.admissions))
+      if(this.state.fromFiltersScreen.hasOwnProperty('admissions')){
+        // console.log('admissions');
+        var afterFilters = this.state.cloneArray.filter((a) => a.admissions==Number(this.state.fromFiltersScreen.admissions))
         this.state.cloneArray=afterFilters;
+        this.state.allFilters[3].status=1;
       }
-      if(allFilters.hasOwnProperty('status')){
-        var afterFilters = this.state.cloneArray.filter((a) => a.status==Number(allFilters.status))
+      if(this.state.fromFiltersScreen.hasOwnProperty('status')){
+        // console.log('status');
+        var afterFilters = this.state.cloneArray.filter((a) => a.status==Number(this.state.fromFiltersScreen.status))
         this.state.cloneArray=afterFilters;
+        this.state.allFilters[4].status=1;
       }
-      if(allFilters.hasOwnProperty('min')){
-        var afterFilters = this.state.cloneArray.filter((a) => a.fee>=allFilters.min)
+      if(this.state.fromFiltersScreen.hasOwnProperty('min')){
+        // console.log('min');
+        var afterFilters = this.state.cloneArray.filter((a) => a.fee>=this.state.fromFiltersScreen.min)
         this.state.cloneArray=afterFilters;
+        this.state.allFilters[5].status=1;
       }
-      if(allFilters.hasOwnProperty('max')){
-        var afterFilters = this.state.cloneArray.filter((a) => a.fee<=allFilters.max)
+      if(this.state.fromFiltersScreen.hasOwnProperty('max')){
+        // console.log('max');
+        var afterFilters = this.state.cloneArray.filter((a) => a.fee<=this.state.fromFiltersScreen.max)
         this.state.cloneArray=afterFilters;
+        this.state.allFilters[5].status=1;
       }
-      if(allFilters.hasOwnProperty('merit')){
-        var afterFilters = this.state.cloneArray.filter((a) => a.merit>=allFilters.merit)
+      if(this.state.fromFiltersScreen.hasOwnProperty('merit')){
+        // console.log('merit');
+        var afterFilters = this.state.cloneArray.filter((a) => a.merit>=this.state.fromFiltersScreen.merit)
         this.state.cloneArray=afterFilters;
+        this.state.allFilters[6].status=1;
       }
       this.setState({universities:this.state.cloneArray}, function(){
         console.log('Total CS Records', this.state.universities.length);
@@ -794,28 +828,29 @@ export default class Universities extends Component {
             norecordfoundtext:'No Results Found', 
             norecordfoundsubtext:'We cannot find any item matching your search.',});
         }else{
+          // console.log('Length is not zero');
           this.setState({
             norecordfoundtext:'', 
             norecordfoundsubtext:'',});
         }
       });
     }else{
-      console.log('from Home Screen is =',this.props.route.params.filters)
-      var allFilters = this.props.route.params.filters;
-      if(allFilters.hasOwnProperty('city')){
-        var afterFilters = this.state.cloneArray.filter((a) => a.city==allFilters.city)
+      // console.log('from Home Screen is =',this.props.route.params.filters)
+      // var allFilters = this.props.route.params.filters;
+      if(this.state.fromFiltersScreen.hasOwnProperty('city')){
+        var afterFilters = this.state.cloneArray.filter((a) => a.city==this.state.fromFiltersScreen.city)
         this.state.cloneArray=afterFilters;
       }
-      if(allFilters.hasOwnProperty('discipline')){
-        var afterFilters = this.state.cloneArray.filter((a) => a.discipline==allFilters.discipline)
+      if(this.state.fromFiltersScreen.hasOwnProperty('discipline')){
+        var afterFilters = this.state.cloneArray.filter((a) => a.discipline==this.state.fromFiltersScreen.discipline)
         this.state.cloneArray=afterFilters;
       }
-      if(allFilters.hasOwnProperty('min')){
-        var afterFilters = this.state.cloneArray.filter((a) => a.fee>=allFilters.min)
+      if(this.state.fromFiltersScreen.hasOwnProperty('min')){
+        var afterFilters = this.state.cloneArray.filter((a) => a.fee>=this.state.fromFiltersScreen.min)
         this.state.cloneArray=afterFilters;
       }
-      if(allFilters.hasOwnProperty('max')){
-        var afterFilters = this.state.cloneArray.filter((a) => a.fee<=allFilters.max)
+      if(this.state.fromFiltersScreen.hasOwnProperty('max')){
+        var afterFilters = this.state.cloneArray.filter((a) => a.fee<=this.state.fromFiltersScreen.max)
         this.state.cloneArray=afterFilters;
           // console.log('clone Array is =', this.state.cloneArray.length);
       }
@@ -835,12 +870,12 @@ export default class Universities extends Component {
 
     var finalFiltersArray=[];
     var keyValue=-1;
-    for (var KEYS in this.props.route.params.filters){
+    for (var KEYS in this.state.fromFiltersScreen){
       keyValue++;
       var filterObject = {
-        [KEYS]:this.props.route.params.filters[KEYS],
+        [KEYS]:this.state.fromFiltersScreen[KEYS],
         title:KEYS,
-        value:this.props.route.params.filters[KEYS],
+        value:this.state.fromFiltersScreen[KEYS],
         key:keyValue
       }
       finalFiltersArray.push(filterObject);
@@ -855,9 +890,8 @@ export default class Universities extends Component {
       finalFiltersArray.push(filterObject);
     }
     this.setState({finalFiltersArray:finalFiltersArray},()=>{
-      console.log('Final Filters Array is = ',this.state.finalFiltersArray);
+      // console.log('Final Filters Array is === ',this.state.finalFiltersArray.length);
     })
-    
     this.setState({activityindicator:false});
   }
 
@@ -876,7 +910,7 @@ export default class Universities extends Component {
   }
 
   SortByAdmission(item) {  
-    console.log(item)  
+    // console.log(item)  
     this.setState({universities: this.state.filtersArray.sort((a, b) => b.admissions - a.admissions) }, function(){
       if(this.state.universities.length==0){
         this.setState({
@@ -920,18 +954,19 @@ export default class Universities extends Component {
   }
 
   SortByCity(cityName) {
-    this.setState({universities: this.state.filtersArray.filter((a) => a.city==cityName) }, function(){
-      if(this.state.universities.length==0){
-        this.setState({
-          norecordfoundtext:'No Results Found', 
-          norecordfoundsubtext:'We cannot find any item matching your search.',});
-      }else{
-        this.setState({
-          norecordfoundtext:'', 
-          norecordfoundsubtext:'',});
-      }
-    })
-    this.setState({ showCityModal: false })
+    console.log(cityName);
+    // this.setState({universities: this.state.filtersArray.filter((a) => a.city==cityName) }, function(){
+    //   if(this.state.universities.length==0){
+    //     this.setState({
+    //       norecordfoundtext:'No Results Found', 
+    //       norecordfoundsubtext:'We cannot find any item matching your search.',});
+    //   }else{
+    //     this.setState({
+    //       norecordfoundtext:'', 
+    //       norecordfoundsubtext:'',});
+    //   }
+    // })
+    this.setState({ showCityModal: false });
   }
 
   updatesState() {
@@ -975,7 +1010,7 @@ export default class Universities extends Component {
 
   dialCall = (item) => {
     var  number=item.contact;
-     console.log("Item is :",item)
+    //  console.log("Item is :",item)
      let phoneNumber = '';
      if (Platform.OS === 'android') { phoneNumber = `tel:${number}`; }
      else {phoneNumber = `telprompt:${number}`; }
@@ -994,9 +1029,8 @@ export default class Universities extends Component {
     });
     this.setState({universities:[], filtersArray:[], norecordfoundtext:'', norecordfoundsubtext:''});
     // this.firstFetchAllRecords();
-    var allFilters = this.props.route.params.filters;
+    var allFilters = this.state.fromFiltersScreen;
     delete allFilters[item.title];
-    console.log('Check All Filters Again',allFilters)
 
     if(allFilters.hasOwnProperty('discipline')){
       var afterFilters = this.state.cloneArray.filter((a) => a.discipline==allFilters.discipline)
@@ -1032,32 +1066,50 @@ export default class Universities extends Component {
     }
     this.setState({universities:this.state.cloneArray}, function(){
       console.log('Total CS Records', this.state.universities.length);
-      
     });
-    this.setState({activityindicator:false});
+     // Change Value of Upper Filter Array
+     let allFiltersCloneArray = this.state.allFilters.map(element=>
+      element.title===this.capitalizeFirstLetter(item.title) ? {...element, status:-1} : element
+    );
+    // console.log('this.state.allFilters',allFiltersCloneArray);
+    this.setState({allFilters:allFiltersCloneArray,activityindicator:false});
+  }
+
+  capitalizeFirstLetter(string) {
+    switch(string){
+      case 'min':
+        return 'Fee';
+      case 'max':
+        return 'Fee';
+      default:
+        return string.charAt(0).toUpperCase() + string.slice(1);
+    }
   }
 
   clearAllFilters(item){
-    console.log('Clear all Filters = ',item);
-    console.log(item.title);
-    this.setState({activityindicator:true});
-    this.setState({finalFiltersArray:[]});
+    // console.log('Clear all Filters = ',item);
+    // console.log(item.title);
+    let allFiltersCloneArray = this.state.allFilters.map(element=>
+      element.status===1 ? {...element, status:-1} : element
+    );
+    this.setState({finalFiltersArray:[], activityindicator:true});
+    
     database()
       .ref('/zeeshan_listing/')
-      .limitToFirst(10)
+      //.limitToFirst(10)
       .on('value', snapshot => {
       this.setState({universities: snapshot.val(), filtersArray: snapshot.val() }, function () {
-        this.setState({activityindicator:false});
+        this.setState({allFilters:allFiltersCloneArray, activityindicator:false});
       });
     });
   }
 
   deleteFilters(item){
-    console.log('Delete Filters');
+    // console.log('Delete Filters');
     this.setState({activityindicator:true});
     database()
       .ref('/zeeshan_listing/')
-      .limitToFirst(10)
+      // .limitToFirst(10)
       .on('value', snapshot => {
       this.setState({universities: snapshot.val(), filtersArray: snapshot.val()}, function () {
         this.state.cloneArray = this.state.universities;
@@ -1066,6 +1118,162 @@ export default class Universities extends Component {
     });
   }
   
+  smallFirstLetter(string) {
+      return string.charAt(0).toLowerCase() + string.slice(1);
+  }
+
+  SortByFunction=(item)=>{
+      console.log('Button Pressed',item);
+      var mykey = this.smallFirstLetter(item.title);
+      if(mykey=='discipline'){
+        this.state.fromFiltersScreen[mykey]='Computer Science';
+      }else if(mykey=='city'){
+        this.showCityModal();
+        // this.state.fromFiltersScreen[mykey]='Karachi';
+      }else if(mykey=='ranking'){
+        this.state.fromFiltersScreen[mykey]='100';
+      }else if(mykey=='admissions'){
+        this.state.fromFiltersScreen[mykey]='1';
+      }else if(mykey=='status'){
+        this.state.fromFiltersScreen[mykey]='1';
+      }else if(mykey=='merit'){
+        this.state.fromFiltersScreen[mykey]=50;
+      }
+
+      if(mykey=='fee'){
+        this.showFeeModal();
+        console.log('fee');
+        this.state.fromFiltersScreen.min=10000;
+        console.log(this.state.fromFiltersScreen);
+      }
+      if(mykey=='fee'){
+        console.log('fee');
+        this.state.fromFiltersScreen.max=100000;
+        console.log(this.state.fromFiltersScreen);
+      }
+
+      console.log(this.state.fromFiltersScreen);
+      // this.state.fromFiltersScreen[mykey]='Karachi';
+      // this.addNewFiltersIn(mykey);
+      
+      // newFiltersAdded.discipline='Computer Science';
+      // console.log('Button Pressed',newFiltersAdded);
+
+      // if(item.title == "Discipline"){
+      //   //
+      // }else if (item.title == "City") {
+      //   this.showCityModal();
+      // }else if (item.title == "Ranking") {
+      //   this.SortByRanking();
+      // }else if (item.title == "Admissions") {
+      //   this.SortByAdmission(item);
+      // }else if (item.title == "Status") {
+      //   this.SortByStatus();
+      // }else if (item.title == "Fee") {
+      //   this.showFeeModal();
+      // }else if (item.title == "Merit") {
+      //   //
+      // }
+  }
+
+  addNewFiltersIn(item){
+      console.log('New Added Filter is = ',item);
+      // console.log('from Advance Filters -- Screen is =',this.state.fromFiltersScreen)
+      // this.setState({universities:[],filtersArray:[], norecordfoundtext:'', norecordfoundsubtext:''});
+      
+      if(item=='discipline'){
+        console.log('discipline');
+        var afterFilters = this.state.cloneArray.filter((a) => a.discipline==this.state.fromFiltersScreen.discipline)
+        this.state.cloneArray=afterFilters;
+        this.state.allFilters[0].status=1;
+        // console.log('Check Status of allFilters is = ', this.state.allFilters);
+      }
+      if(item=='city'){
+        console.log('city');
+        var afterFilters = this.state.cloneArray.filter((a) => a.city==this.state.fromFiltersScreen.city)
+        this.state.cloneArray=afterFilters;
+        this.state.allFilters[1].status=1;
+      }
+      if(item=='ranking'){
+        console.log('ranking');
+        var afterFilters = this.state.cloneArray.filter((a) => a.ranking<=Number(this.state.fromFiltersScreen.ranking)).sort((a,b)=>a.ranking - b.ranking)
+        this.state.cloneArray=afterFilters;
+        this.state.allFilters[2].status=1;
+      }
+      if(item=='admissions'){
+        console.log('admissions');
+        var afterFilters = this.state.cloneArray.filter((a) => a.admissions==Number(this.state.fromFiltersScreen.admissions))
+        this.state.cloneArray=afterFilters;
+        this.state.allFilters[3].status=1;
+      }
+      if(item=='status'){
+        console.log('status');
+        var afterFilters = this.state.cloneArray.filter((a) => a.status==Number(this.state.fromFiltersScreen.status))
+        this.state.cloneArray=afterFilters;
+        this.state.allFilters[4].status=1;
+      }
+      if(item=='fee'){
+      // if(item=='min'){
+        console.log('min');
+        var afterFilters = this.state.cloneArray.filter((a) => a.fee>=this.state.fromFiltersScreen.min)
+        this.state.cloneArray=afterFilters;
+        this.state.allFilters[5].status=1;
+      // }
+      // if(item=='max'){
+        console.log('max');
+        var afterFilters = this.state.cloneArray.filter((a) => a.fee<=this.state.fromFiltersScreen.max)
+        this.state.cloneArray=afterFilters;
+        this.state.allFilters[5].status=1;
+      // }
+    }
+      if(item=='merit'){
+        console.log('merit');
+        var afterFilters = this.state.cloneArray.filter((a) => a.merit>=this.state.fromFiltersScreen.merit)
+        this.state.cloneArray=afterFilters;
+        this.state.allFilters[6].status=1;
+      }
+      this.setState({universities:this.state.cloneArray}, function(){
+        console.log('Total CS Records', this.state.universities.length);
+        if(this.state.universities.length==0){
+          this.setState({
+            norecordfoundtext:'No Results Found', 
+            norecordfoundsubtext:'We cannot find any item matching your search.',});
+        }else{
+          // console.log('Length is not zero');
+          this.setState({
+            norecordfoundtext:'', 
+            norecordfoundsubtext:'',});
+        }
+      });
+
+    var finalFiltersArray=[];
+    var keyValue=-1;
+    for (var KEYS in this.state.fromFiltersScreen){
+      keyValue++;
+      var filterObject = {
+        [KEYS]:this.state.fromFiltersScreen[KEYS],
+        title:KEYS,
+        value:this.state.fromFiltersScreen[KEYS],
+        key:keyValue
+      }
+      finalFiltersArray.push(filterObject);
+    }
+    if(finalFiltersArray.length){
+      // Add Last Object Clear All Filters
+      keyValue++;
+      var filterObject = {
+        title:'Clear All',
+        key:keyValue
+      }
+      finalFiltersArray.push(filterObject);
+    }
+    this.setState({finalFiltersArray:finalFiltersArray},()=>{
+      // console.log('Final Filters Array is === ',this.state.finalFiltersArray.length);
+    })
+    this.setState({activityindicator:false});
+
+  }
+
   render() {
     const render_txt=(item)=>{
       switch(item.title){
@@ -1090,8 +1298,8 @@ export default class Universities extends Component {
       }
     }
 
-    // console.log(this.state.universities)
       if(this.state.norecordfoundtext.length!='' && this.state.norecordfoundsubtext.length!='' && this.state.universities.length==0){
+        // console.log('Return is Zero')
         return (
           <SafeAreaView style={styles.container}>
           <View style={styles.header} elevation={5}>
@@ -1108,79 +1316,13 @@ export default class Universities extends Component {
                 renderItem={({ item }) => (
                   <View key={item.key} style={styles.singleFilter}>
                     {/* onPress={() => { this.setState({ show: true }) }} */}
-                    <TouchableOpacity style={styles.filter} onPress={() => {
-                      if (item.title == "Admission") {
-                        this.SortByAdmission(item);
-                      }else if (item.title == "Fee") {
-                        this.showFeeModal();
-                      }else if (item.title == "Ranking") {
-                        this.SortByRanking();
-                      }else if (item.title == "Location") {
-                        this.showCityModal();
-                      }else if (item.title == "Status") {
-                        this.SortByStatus();
-                      }
-                    }
-                    }>
+                    <TouchableOpacity style={styles.filter} onPress={()=>this.SortByFunction(item)}>
                       <Text>{item.title}</Text>
                     </TouchableOpacity>
                   </View>
                 )}
               />
           </View>
-          
-          {this.state.finalFiltersArray.length?
-          <View style={styles.appliedfiltersWrapper}>
-              {/* <TouchableOpacity style={styles.filter} onPress={() => this.props.navigation.navigate("AdvanceFilter")}>
-                <Text>Filters</Text>
-              </TouchableOpacity> */}
-              <FlatList
-                horizontal={true}
-                showsHorizontalScrollIndicator={false}
-                data={this.state.finalFiltersArray}
-                renderItem={({ item }) => (
-                  <View key={item.key} style={styles.singleFilter}>
-                    {/* onPress={() => { this.setState({ show: true }) }} */}
-                    <TouchableOpacity style={styles.appliedfilters} onPress={
-                      () => {
-                      if (item.title == "Clear All") {
-                        this.clearAllFilters(item);
-                      }
-                    }
-                    }>
-                      <Text style={{color:'white', fontSize:16, fontWeight:'bold', marginRight:10}}>
-                        {/* {item.title.charAt(0).toUpperCase() + item.title.slice(1)}: {item.value} */}
-                        {render_txt(item)}
-                      </Text>
-                    </TouchableOpacity>
-                    
-                {(item.title=="Clear All")?(null):
-                  <TouchableOpacity style={{
-                      // ...StyleSheet.absoluteFillObject,
-                      // alignSelf: 'flex-end',
-                      // marginTop: -5,
-                      // position: 'absolute',
-                      position: 'absolute',
-                      right:0,
-                      }}
-                      onPress={() => {
-                          console.log(item.title);
-                          this.deleteFilters(item);
-                        }
-                      }
-                      >
-                    <Image
-                      style={{width: 22, height: 22}}
-                      source={require("../../../assets/images/cross.png")}
-                    />
-                  </TouchableOpacity>
-                    }
-                    
-                  </View>
-                )}
-              />
-          </View>
-        :(null)}
           
             {this.state.activityindicator?
             (<View style={[styles.horizontal]}>
@@ -1199,6 +1341,7 @@ export default class Universities extends Component {
           </SafeAreaView>
         )
       }else{
+        // console.log('Return is Not Zero')
         return (
           <SafeAreaView style={styles.container}>
           <View style={styles.header} elevation={5}>
@@ -1215,20 +1358,7 @@ export default class Universities extends Component {
                 renderItem={({ item }) => (
                   <View key={item.key} style={styles.singleFilter}>
                     {/* onPress={() => { this.setState({ show: true }) }} */}
-                    <TouchableOpacity style={styles.filter} onPress={() => {
-                      if (item.title == "Admission") {
-                        this.SortByAdmission(item);
-                      }else if (item.title == "Fee") {
-                        this.showFeeModal();
-                      }else if (item.title == "Ranking") {
-                        this.SortByRanking();
-                      }else if (item.title == "Location") {
-                        this.showCityModal();
-                      }else if (item.title == "Status") {
-                        this.SortByStatus();
-                      }
-                    }
-                    }>
+                    <TouchableOpacity style={(item.status==1)?styles.filterapplied:styles.filternotapplied} onPress={() => this.SortByFunction(item)}>
                       <Text>{item.title}</Text>
                     </TouchableOpacity>
                   </View>
@@ -1271,7 +1401,7 @@ export default class Universities extends Component {
                       right:0,
                       }}
                       onPress={() => {
-                          console.log('Console ',item.title);
+                          // console.log('Console ',item.title);
                           this.deleteFilters(item);
                         }
                       }
@@ -1288,7 +1418,7 @@ export default class Universities extends Component {
               />
           </View>
         :(null)}
-          
+
             {this.state.activityindicator?
             (<View style={[styles.horizontal]}>
               <ActivityIndicator size="large" />
@@ -1317,16 +1447,16 @@ export default class Universities extends Component {
                           <Text style={[styles.universityDetailText, styles.usiversityName]}>{item.title}</Text>
                           <Text style={styles.universityDetailText}>Status: {item.status?'Public':'Private'}</Text>
                           <Text style={styles.universityDetailText}>Fee: {item.fee}</Text>
-                          <Text style={styles.universityDetailText}>Ranking: { item.ranking === 100000 ? "N/A": item.ranking } </Text>
+                          {/* <Text style={styles.universityDetailText}>Ranking: { item.ranking === 100000 ? "N/A": item.ranking } </Text> */}
                           <Text style={styles.universityDetailText}>Admission: {item.admissions?'Open':'Closed'}</Text>
-                          <Text style={styles.universityDetailText}>Merit: {item.merit}</Text>
+                          {/* <Text style={styles.universityDetailText}>Merit: {item.merit}</Text> */}
                           <View style={styles.locAndPhoneWrapper}>
                           <Text style={styles.universityDetailText}>Location: {item.city}</Text>
                             {/* <Text style={styles.phone}>Phone</Text> */}
                           </View>
-                          <Text style={[styles.universityDetailText, styles.DeadlineText]}>Deadline : {item.deadline}</Text>
+                          {/* <Text style={[styles.universityDetailText, styles.DeadlineText]}>Deadline : {item.deadline}</Text> */}
     
-                          <View style={{}}>
+                          {/* <View style={{}}>
                               <TouchableOpacity onPress={() => this.email(item)} style={{flex:0.5}}>
                               <Text style={styles.linksStyles}>Email: {item.info}</Text>
                               </TouchableOpacity>
@@ -1336,7 +1466,7 @@ export default class Universities extends Component {
                               <TouchableOpacity style={{flex:0.5}} onPress={() => this.dialCall(item)}>
                               <Text style={styles.linksStyles}>Phone: {item.contact}</Text>
                               </TouchableOpacity>
-                           </View>
+                           </View> */}
     
                         </View>
                       </View>

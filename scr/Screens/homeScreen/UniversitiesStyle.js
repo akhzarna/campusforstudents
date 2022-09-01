@@ -5,7 +5,8 @@ const styles = StyleSheet.create({
         justifyContent:"flex-start",
         alignItems:"center",
         height:"100%",
-        width:"100%"
+        width:"100%",
+        // backgroundColor:'grey'
     },
     header:{
         flex:0.05,
@@ -13,7 +14,8 @@ const styles = StyleSheet.create({
         justifyContent:'center',
         alignItems:  "center",
         borderWidth:0.1 ,
-        padding:15     
+        padding:15,
+        // backgroundColor:'grey'    
     },
     headerTxt:{
         fontSize:20,
@@ -33,7 +35,17 @@ const styles = StyleSheet.create({
         justifyContent:"center",
         alignItems:"center",
         height:"100%",
-        width:"100%"
+        width:"100%",
+        // backgroundColor:'green'
+    },
+    appliedfiltersWrapper:{
+        flex: 0.1,
+        flexDirection:"row",
+        justifyContent:"center",
+        alignItems:"center",
+        height:"100%",
+        width:"100%",
+        // backgroundColor:'green'
     },
     singleFilter:{
         flex:0.3,
@@ -42,6 +54,27 @@ const styles = StyleSheet.create({
         // width:100,
     },
     filter:{
+        alignItems: "center",
+        backgroundColor: "#DDDDDD",
+        padding: 10,
+        borderRadius:5,
+        width:100,
+        marginLeft:5,
+        marginRight:5,
+    },
+    filterapplied:{
+        alignItems: "center",
+        backgroundColor: "#DDDDDD",
+        padding: 10,
+        borderRadius:5,
+        width:100,
+        marginLeft:5,
+        marginRight:5,
+        borderWidth: 2,
+        borderColor: "#F75656",
+        // borderRadius: 50,
+    },
+    filternotapplied:{
         alignItems: "center",
         backgroundColor: "#DDDDDD",
         padding: 10,
@@ -134,6 +167,16 @@ const styles = StyleSheet.create({
         marginLeft:15,
         marginBottom:10,
         marginTop:5
+    },
+    picker: {
+        // height: "12%",
+        borderWidth: 1,
+        marginTop: 20,
+        // width: "85%",
+        // flex: 0.50,
+        justifyContent: 'center',
+        // alignContent:'center'
+        // backgroundColor:'grey'
     },
 });
 

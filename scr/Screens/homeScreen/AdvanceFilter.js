@@ -5,6 +5,7 @@ import CityModal from './CityModal';
 import styles from './AdvanceFilterStyle'
 import constStyle from '../../Constants/ConstantStyle'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+// import { LogBox } from 'react-native';
 
 // Status:'Public':'Private'
 // Admission:'Open':'Closed'
@@ -91,6 +92,10 @@ export default class AdvanceFilter extends Component {
                 })
             }
   
+    componentDidMount(){
+        // LogBox.ignoreLogs(['VirtualizedLists should never be nested']);
+    }
+
   render() {
     // console.log("selectedState",this.selectedState)
     const render_text=()=>{
@@ -124,14 +129,21 @@ export default class AdvanceFilter extends Component {
         <Picker.Item label="Computer Science" value="Computer Science" />
       </Picker>
     </View>
+    
     {/* City  Modal: */}
     <View style={styles.picker}>
         <TouchableOpacity style={{flex:1.0, justifyContent:'center', marginLeft:10}} onPress={() => this.setState({ showCityModal: true })}>
-        {/* <View style={styles.cityPicker}> */}
+          {(this.state.city=='Select City')? 
           <Text style={{ 
             color: "#c14643",
-            }}> {render_text()} </Text>
-        {/* </View> */}
+            fontSize:16,
+            }}> {render_text()} 
+            </Text>: 
+          <Text style={{ 
+            color: "black",
+            fontSize:16,
+            }}> {render_text()} 
+          </Text>}
       </TouchableOpacity>
     </View>
 
@@ -179,25 +191,27 @@ export default class AdvanceFilter extends Component {
  <CityModal show={this.state.showCityModal} update={this.updateState} sortCity={this.SortByCity} />
 
 <View style={styles.inputFieldsWrapper}>
-  <Text style={styles.inputFieldSectionText}>Tution Fee (Enter your budget for complete degree)</Text>
-  <View style={styles.inputFeilds}>
+  <View style={styles.viewForMinMaxInputFields}>
+    <Text style={styles.textTuition}> Tuition Fee (Enter your budget for complete degree)</Text>
+      <TextInput
+        style={styles.inputFieldLeft}
+        placeholder="Minimum"
+        placeholderTextColor="black"
+        onChangeText={(value) => this.setState({ min: value })}
+        value={this.state.min}
+      />
+      <TextInput
+        style={styles.inputFieldRight}
+        placeholder="Maximum"
+        placeholderTextColor="black"
+        onChangeText={(value) => this.setState({ max: value })}
+        value={this.state.max}
+      />
+  </View>
+  <View style={styles.viewForMeritInputFields}>
+    <Text style={styles.textMerit}> Merit in % </Text>
     <TextInput
-      style={styles.inputFeild}
-      placeholder="Minimum"
-      placeholderTextColor="black"
-      onChangeText={(value) => this.setState({ min: value })}
-      value={this.state.min}
-    />
-    <TextInput
-      style={styles.inputFeild}
-      placeholder="Maximum"
-      placeholderTextColor="black"
-      onChangeText={(value) => this.setState({ max: value })}
-      value={this.state.max}
-
-    />
-    <TextInput
-      style={styles.inputFeild}
+      style={styles.inputFieldMerit}
       placeholder="%"
       placeholderTextColor="black"
       onChangeText={(value) => this.setState({ merit: value })}
@@ -219,7 +233,6 @@ export default class AdvanceFilter extends Component {
 </View>        
 
 </KeyboardAwareScrollView>
-
 
     )
   }

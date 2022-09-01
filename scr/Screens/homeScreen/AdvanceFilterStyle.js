@@ -82,29 +82,72 @@ const styles = StyleSheet.create({
         justifyContent: 'center' ,
         // backgroundColor:'grey'
     },
-    inputFieldSectionText: {
-        padding: 20,
+    textTuition: {
+        marginTop:20,
+        // marginLeft:30,
         fontSize: 14,
         textAlign: 'justify',
-        fontWeight: "500"
+        fontWeight:'500',
     },
-    inputFeilds: {
-        marginBottom:3,
+    textMerit: {
+        // marginTop:20,
+        marginLeft:30,
+        fontSize: 14,
+        // textAlign: 'justify',
+        fontWeight:'500',
+    },
+    viewForMinMaxInputFields: {
+        marginBottom:20,
         flexDirection: "row",
-        flexWrap: "wrap"
-        ,  borderBottomWidth:0.5
+        flexWrap: "wrap",
+        justifyContent:'center',
+        alignItems:'center'
+        // borderBottomWidth:0.5
     },
-    inputFeild: {
+    viewForMeritInputFields:{
+        // marginLeft:30,
+        // marginRight:0,
+        flexDirection: "row",
+        flexWrap: "wrap",
+        // justifyContent:'center',
+        alignItems:'center'
+        // borderBottomWidth:0.5
+    },
+    inputFieldLeft: {
         height: 40,
         width: "40%",
-        margin: 15,
-        marginTop: 10,
+        // margin: 1,
+        marginTop: 5,
+        marginRight:10,
         borderWidth: 2,
         padding: 10,
         borderRadius: 10,
         color: "black",
         fontSize: 16,
-      
+    },
+    inputFieldRight: {
+        height: 40,
+        width: "40%",
+        // margin: 1,
+        marginTop: 5,
+        marginLeft:10,
+        borderWidth: 2,
+        padding: 10,
+        borderRadius: 10,
+        color: "black",
+        fontSize: 16,
+    },
+    inputFieldMerit: {
+        height: 40,
+        width: "40%",
+        // margin: 1,
+        marginTop: 5,
+        marginLeft:10,
+        borderWidth: 2,
+        padding: 10,
+        borderRadius: 10,
+        color: "black",
+        fontSize: 16,
     },
     citypicker:{
         marginTop:-10
