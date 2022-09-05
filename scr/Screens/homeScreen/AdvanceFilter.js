@@ -1,4 +1,4 @@
-import { Text, View, SafeAreaView, TextInput, TouchableOpacity, ScrollView, } from 'react-native'
+import { Text, View, SafeAreaView, TextInput, TouchableOpacity, ScrollView, Alert} from 'react-native'
 import React, { Component } from 'react'
 import { Picker } from '@react-native-picker/picker';
 import CityModal from './CityModal';
@@ -74,7 +74,11 @@ export default class AdvanceFilter extends Component {
     }
     console.log("filters are = " , filters);
     // this.props.navigation.pop();
-    this.props.navigation.navigate('Universities',{ filters: filters, fromAdvanceFilters:1});
+    if(Number(this.state.min)<=Number(this.state.max)){
+      this.props.navigation.navigate('Universities',{ filters: filters, fromAdvanceFilters:1});
+    }else{
+      Alert.alert('Fee Min value should be less than max value');
+    }
   }
 
   setStateToItsOriginalPosition=()=>{

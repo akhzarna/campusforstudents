@@ -3,7 +3,13 @@ import React, { Component } from 'react'
 import styles from './UniversitiesStyle';
 import Separator from '../../Components/Separator';
 import FeeModal from '../filterModalScreens/FeeModal';
-import CityModal from "./CityModal"
+import CityModal from "./CityModal";
+import MeritModal from "./MeritModal";
+import RankingModal from "./RankingModal";
+import DisciplineModal from "./DisciplineModal";
+import AdmissionsModal from "./AdmissionsModal";
+import StatusModal from "./StatusModal";
+
 import database from '@react-native-firebase/database';
 // import { firebase } from '@react-native-firebase/database';
 import firestore from "@react-native-firebase/firestore"
@@ -16,6 +22,12 @@ export default class Universities extends Component {
     this.updatesState = this.updatesState.bind(this)
     this.SortByFee = this.SortByFee.bind(this)
     this.SortByCity = this.SortByCity.bind(this)
+    this.SortByMerit = this.SortByMerit.bind(this)
+    this.SortByRanking = this.SortByRanking.bind(this)
+    this.SortByDiscipline = this.SortByDiscipline.bind(this)
+    this.SortByAdmissions = this.SortByAdmissions.bind(this)
+    this.SortByStatus = this.SortByStatus.bind(this)
+
     this.state = {
       studylevel: "Select the study level",
       discipline: "Select discipline",
@@ -28,7 +40,12 @@ export default class Universities extends Component {
       merit: '',
       activityindicator: true,
       showFeeModal: false,
+      showMeritModal: false,
       showCityModal: false,
+      showRankingModal: false,
+      showDisciplineModal: false,
+      showAdmissionsModal: false,
+      showStatusModal: false,
       filtersArray: [],
       universities: [],
       firestoreData: [],
@@ -724,7 +741,7 @@ export default class Universities extends Component {
     // this.ApplyAllFilters();
       // To call function on pop()
     
-    // console.log('Did Mount');
+    console.log('Did Mount');
     if(!this.props.route.params.fromAdvanceFilters){
       // console.log('1- Not from Advance Filter');
       this.firstFetchAllRecords();
@@ -737,6 +754,10 @@ export default class Universities extends Component {
       if(this.props.route.params.fromAdvanceFilters){
         // console.log('2- Always Call or Not fromAdvanceFilters');
         // this.ApplyAllFilters();
+        // console.log('addListener');
+        // console.log(this.state.fromFiltersScreen);
+        // console.log(this.props.route.params.filters);
+        this.state.fromFiltersScreen=this.props.route.params.filters
         this.firstFetchAllRecords();
       }
     });
@@ -768,6 +789,7 @@ export default class Universities extends Component {
   ApplyAllFilters(){
     if(this.props.route.params.fromAdvanceFilters==1){
       console.log('from Advance Filters -- Screen is =',this.state.fromFiltersScreen)
+      console.log('from Advance Filters -- Screen is =',this.props.route.params.filters)
       this.props.route.params.fromAdvanceFilters=0;
       this.setState({universities:[],filtersArray:[], norecordfoundtext:'', norecordfoundsubtext:''});
       // this.setState({filtersArray:[]});
@@ -925,36 +947,90 @@ export default class Universities extends Component {
   }
 
   SortByFee(min, max) {
-    this.setState({universities: this.state.filtersArray.filter((item)=> item.fee>=min && item.fee<=max).sort((a,b)=>a.fee - b.fee) }, function(){
-      if(this.state.universities.length==0){
-        this.setState({
-          norecordfoundtext:'No Results Found', 
-          norecordfoundsubtext:'We cannot find any item matching your search.',});
-      }else{
-        this.setState({
-          norecordfoundtext:'', 
-          norecordfoundsubtext:'',});
-      }
-    })
+    console.log(min);
+    console.log(max);
+    this.state.fromFiltersScreen.min=min;
+    this.addNewFiltersIn('min');
+    this.state.fromFiltersScreen.max=max;
+    this.addNewFiltersIn('max');
+
+    // this.setState({universities: this.state.filtersArray.filter((item)=> item.fee>=min && item.fee<=max).sort((a,b)=>a.fee - b.fee) }, function(){
+    //   if(this.state.universities.length==0){
+    //     this.setState({
+    //       norecordfoundtext:'No Results Found', 
+    //       norecordfoundsubtext:'We cannot find any item matching your search.',});
+    //   }else{
+    //     this.setState({
+    //       norecordfoundtext:'', 
+    //       norecordfoundsubtext:'',});
+    //   }
+    // })
+
     this.setState({ showFeeModal: false })
   }
 
-  SortByRanking() {
-    this.setState({universities: this.state.filtersArray.sort((a, b) => a.ranking - b.ranking) }, function(){
-      if(this.state.universities.length==0){
-        this.setState({
-          norecordfoundtext:'No Results Found', 
-          norecordfoundsubtext:'We cannot find any item matching your search.',});
-      }else{
-        this.setState({
-          norecordfoundtext:'', 
-          norecordfoundsubtext:'',});
-      }
-    })
+  SortByRanking(ranking) {
+    console.log(ranking);
+    this.state.fromFiltersScreen.ranking=ranking;
+    this.addNewFiltersIn('ranking');
+
+    // this.setState({universities: this.state.filtersArray.sort((a, b) => a.ranking - b.ranking) }, function(){
+    //   if(this.state.universities.length==0){
+    //     this.setState({
+    //       norecordfoundtext:'No Results Found', 
+    //       norecordfoundsubtext:'We cannot find any item matching your search.',});
+    //   }else{
+    //     this.setState({
+    //       norecordfoundtext:'', 
+    //       norecordfoundsubtext:'',});
+    //   }
+    // })
+    this.setState({ showRankingModal: false })
+  }
+
+  SortByDiscipline(discipline) {
+    console.log(discipline);
+    this.state.fromFiltersScreen.discipline=discipline;
+    this.addNewFiltersIn('discipline');
+
+    // this.setState({universities: this.state.filtersArray.sort((a, b) => a.ranking - b.ranking) }, function(){
+    //   if(this.state.universities.length==0){
+    //     this.setState({
+    //       norecordfoundtext:'No Results Found', 
+    //       norecordfoundsubtext:'We cannot find any item matching your search.',});
+    //   }else{
+    //     this.setState({
+    //       norecordfoundtext:'', 
+    //       norecordfoundsubtext:'',});
+    //   }
+    // })
+    this.setState({ showDisciplineModal: false })
+  }
+
+  SortByAdmissions(admissions) {
+    console.log('admissions');
+    this.state.fromFiltersScreen.admissions=admissions;
+    this.addNewFiltersIn('admissions');
+
+    // this.setState({universities: this.state.filtersArray.sort((a, b) => a.ranking - b.ranking) }, function(){
+    //   if(this.state.universities.length==0){
+    //     this.setState({
+    //       norecordfoundtext:'No Results Found', 
+    //       norecordfoundsubtext:'We cannot find any item matching your search.',});
+    //   }else{
+    //     this.setState({
+    //       norecordfoundtext:'', 
+    //       norecordfoundsubtext:'',});
+    //   }
+    // })
+    this.setState({ showAdmissionsModal: false })
   }
 
   SortByCity(cityName) {
     console.log(cityName);
+    this.state.fromFiltersScreen.city=cityName;
+    this.addNewFiltersIn('city');
+
     // this.setState({universities: this.state.filtersArray.filter((a) => a.city==cityName) }, function(){
     //   if(this.state.universities.length==0){
     //     this.setState({
@@ -969,9 +1045,56 @@ export default class Universities extends Component {
     this.setState({ showCityModal: false });
   }
 
+  SortByMerit(merit) {
+    console.log('merit call ho raha hai', merit);
+    this.state.fromFiltersScreen.merit=merit;
+    this.addNewFiltersIn('merit');
+
+    // this.setState({universities: this.state.filtersArray.filter((item)=> item.fee>=min && item.fee<=max).sort((a,b)=>a.fee - b.fee) }, function(){
+    //   if(this.state.universities.length==0){
+    //     this.setState({
+    //       norecordfoundtext:'No Results Found', 
+    //       norecordfoundsubtext:'We cannot find any item matching your search.',});
+    //   }else{
+    //     this.setState({
+    //       norecordfoundtext:'', 
+    //       norecordfoundsubtext:'',});
+    //   }
+    // })
+    this.setState({ showMeritModal: false })
+  }
+
+  SortByStatus(status){
+    console.log('merit call ho raha hai', status);
+    this.state.fromFiltersScreen.status=status;
+    this.addNewFiltersIn('status');
+
+    // this.setState({universities: this.state.filtersArray.sort((a, b) => b.status - a.status) }, function(){
+    //   if(this.state.universities.length==0){
+    //     this.setState({
+    //       norecordfoundtext:'No Results Found', 
+    //       norecordfoundsubtext:'We cannot find any item matching your search.',});
+    //   }else{
+    //     this.setState({
+    //       norecordfoundtext:'', 
+    //       norecordfoundsubtext:'',});
+    //   }
+    // })
+    this.setState({ showStatusModal: false })
+  }
+
   updatesState() {
     this.setState({ showCityModal: false })
     this.setState({ showFeeModal: false })
+    this.setState({ showMeritModal: false })
+    this.setState({ showRankingModal: false })
+    this.setState({ showDisciplineModal: false })
+    this.setState({ showAdmissionsModal: false })
+    this.setState({ showStatusModal: false })
+  }
+
+  showMeritModal() {
+    this.setState({ showMeritModal: true })
   }
 
   showFeeModal() {
@@ -982,18 +1105,20 @@ export default class Universities extends Component {
     this.setState({ showCityModal: true })
   }
 
-  SortByStatus(){
-      this.setState({universities: this.state.filtersArray.sort((a, b) => b.status - a.status) }, function(){
-        if(this.state.universities.length==0){
-          this.setState({
-            norecordfoundtext:'No Results Found', 
-            norecordfoundsubtext:'We cannot find any item matching your search.',});
-        }else{
-          this.setState({
-            norecordfoundtext:'', 
-            norecordfoundsubtext:'',});
-        }
-      })
+  showRankingModal() {
+    this.setState({ showRankingModal: true })
+  }
+
+  showDisciplineModal() {
+    this.setState({ showDisciplineModal: true })
+  }
+
+  showAdmissionsModal() {
+    this.setState({ showAdmissionsModal: true })
+  }
+
+  showStatusModal() {
+    this.setState({ showStatusModal: true })
   }
 
   loadMore=()=>{
@@ -1126,18 +1251,23 @@ export default class Universities extends Component {
       console.log('Button Pressed',item);
       var mykey = this.smallFirstLetter(item.title);
       if(mykey=='discipline'){
-        this.state.fromFiltersScreen[mykey]='Computer Science';
+        // this.state.fromFiltersScreen[mykey]='Computer Science';
+        this.showDisciplineModal();
       }else if(mykey=='city'){
         this.showCityModal();
         // this.state.fromFiltersScreen[mykey]='Karachi';
       }else if(mykey=='ranking'){
-        this.state.fromFiltersScreen[mykey]='100';
+        // this.state.fromFiltersScreen[mykey]='100';
+        this.showRankingModal();
       }else if(mykey=='admissions'){
-        this.state.fromFiltersScreen[mykey]='1';
+        this.showAdmissionsModal();
+        // this.state.fromFiltersScreen[mykey]='1';
       }else if(mykey=='status'){
-        this.state.fromFiltersScreen[mykey]='1';
+        this.showStatusModal();
+        // this.state.fromFiltersScreen[mykey]='1';
       }else if(mykey=='merit'){
         this.state.fromFiltersScreen[mykey]=50;
+        this.showMeritModal();
       }
 
       if(mykey=='fee'){
@@ -1153,9 +1283,9 @@ export default class Universities extends Component {
       }
 
       console.log(this.state.fromFiltersScreen);
-      // this.state.fromFiltersScreen[mykey]='Karachi';
-      // this.addNewFiltersIn(mykey);
       
+      // this.addNewFiltersIn(mykey);
+
       // newFiltersAdded.discipline='Computer Science';
       // console.log('Button Pressed',newFiltersAdded);
 
@@ -1212,20 +1342,20 @@ export default class Universities extends Component {
         this.state.cloneArray=afterFilters;
         this.state.allFilters[4].status=1;
       }
-      if(item=='fee'){
-      // if(item=='min'){
+      // if(item=='fee'){
+      if(item=='min'){
         console.log('min');
         var afterFilters = this.state.cloneArray.filter((a) => a.fee>=this.state.fromFiltersScreen.min)
         this.state.cloneArray=afterFilters;
         this.state.allFilters[5].status=1;
-      // }
-      // if(item=='max'){
+      }
+      if(item=='max'){
         console.log('max');
         var afterFilters = this.state.cloneArray.filter((a) => a.fee<=this.state.fromFiltersScreen.max)
         this.state.cloneArray=afterFilters;
         this.state.allFilters[5].status=1;
-      // }
-    }
+      }
+    // }
       if(item=='merit'){
         console.log('merit');
         var afterFilters = this.state.cloneArray.filter((a) => a.merit>=this.state.fromFiltersScreen.merit)
@@ -1338,6 +1468,11 @@ export default class Universities extends Component {
 
             <FeeModal show={this.state.showFeeModal} update={this.updatesState} sortFilter={this.SortByFee} />
             <CityModal show={this.state.showCityModal} update={this.updatesState} sortCity={this.SortByCity} />
+            <MeritModal show={this.state.showMeritModal} update={this.updatesState} sortFilter={this.SortByMerit} />
+            <RankingModal show={this.state.showRankingModal} update={this.updatesState} sortFilter={this.SortByRanking} />
+            <DisciplineModal show={this.state.showDisciplineModal} update={this.updatesState} sortFilter={this.SortByDiscipline} />
+            <AdmissionsModal show={this.state.showAdmissionsModal} update={this.updatesState} sortFilter={this.SortByAdmissions} />
+            <StatusModal show={this.state.showStatusModal} update={this.updatesState} sortFilter={this.SortByStatus} />
           </SafeAreaView>
         )
       }else{
@@ -1476,8 +1611,15 @@ export default class Universities extends Component {
               // ItemSeparatorComponent={() => <Separator />}
               />
             </View>
+
             <FeeModal show={this.state.showFeeModal} update={this.updatesState} sortFilter={this.SortByFee} />
             <CityModal show={this.state.showCityModal} update={this.updatesState} sortCity={this.SortByCity} />
+            <MeritModal show={this.state.showMeritModal} update={this.updatesState} sortFilter={this.SortByMerit} />
+            <RankingModal show={this.state.showRankingModal} update={this.updatesState} sortFilter={this.SortByRanking} />
+            <DisciplineModal show={this.state.showDisciplineModal} update={this.updatesState} sortFilter={this.SortByDiscipline} />
+            <AdmissionsModal show={this.state.showAdmissionsModal} update={this.updatesState} sortFilter={this.SortByAdmissions} />
+            <StatusModal show={this.state.showStatusModal} update={this.updatesState} sortFilter={this.SortByStatus} />
+
           </SafeAreaView>
         )
       }

@@ -123,13 +123,11 @@ export default class Home extends Component {
       filters.max=this.state.max;
     }
     console.log("filters are = " , filters);
-    // console.log("max is" , filters);
-
-    // this.setState(
-    //     {filters:filters}
-    //   );
-    this.props.navigation.navigate('Universities', {filters:filters, fromHomeScreen:true});
-    
+    if(Number(this.state.min)<=Number(this.state.max)){
+      this.props.navigation.navigate('Universities', {filters:filters, fromHomeScreen:true});
+    }else{
+      Alert.alert('Fee Min value should be less than max value');
+    }
   }
 
   
