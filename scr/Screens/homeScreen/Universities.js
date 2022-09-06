@@ -9,6 +9,7 @@ import RankingModal from "./RankingModal";
 import DisciplineModal from "./DisciplineModal";
 import AdmissionsModal from "./AdmissionsModal";
 import StatusModal from "./StatusModal";
+import Global from "./Global.js";
 
 import database from '@react-native-firebase/database';
 // import { firebase } from '@react-native-firebase/database';
@@ -50,7 +51,7 @@ export default class Universities extends Component {
       universities: [],
       firestoreData: [],
       cloneArray:[],
-      fromFiltersScreen:this.props.route.params.filters,
+      // fromFiltersScreen:this.props.route.params.filters,
       allFilters: [
         {
           title: "Discipline",
@@ -741,30 +742,36 @@ export default class Universities extends Component {
     // this.ApplyAllFilters();
       // To call function on pop()
     
-    console.log('Did Mount');
-    if(!this.props.route.params.fromAdvanceFilters){
-      // console.log('1- Not from Advance Filter');
-      this.firstFetchAllRecords();
-    }
+    // Old Logic
 
+    // if(!this.props.route.params.fromAdvanceFilters){
+    //   this.firstFetchAllRecords();
+    // }
+
+    // this.focusListener = this.props.navigation.addListener('focus', () => {
+    //   console.log(' -- Always Call or Not -- ');
+    //   this.setState({norecordfoundtext:'', norecordfoundsubtext:''});
+    //   if(this.props.route.params.fromAdvanceFilters){       
+    //     this.state.fromFiltersScreen=this.props.route.params.filters
+    //     this.firstFetchAllRecords();
+    //   }
+    // });
+
+    console.log('Global',global.filters);
     this.focusListener = this.props.navigation.addListener('focus', () => {
-      // this.firstFetchAllRecords();
-      // console.log('Always Call or Not');
+      console.log(' -- Always Call or Not -- ');
       this.setState({norecordfoundtext:'', norecordfoundsubtext:''});
-      if(this.props.route.params.fromAdvanceFilters){
-        // console.log('2- Always Call or Not fromAdvanceFilters');
-        // this.ApplyAllFilters();
-        // console.log('addListener');
-        // console.log(this.state.fromFiltersScreen);
-        // console.log(this.props.route.params.filters);
-        this.state.fromFiltersScreen=this.props.route.params.filters
+      if(this.props.route.params.fromAdvanceFilters || this.props.route.params.fromHomeScreen){       
+        this.props.route.params.fromAdvanceFilters=0;
+        this.props.route.params.fromHomeScreen=0;
         this.firstFetchAllRecords();
       }
     });
   }
 
   componentWillUnmount() {
-    this.focusListener();
+    console.log('componentWillUnmount');
+    // this.focusListener();
   }
 
   // ApplyFiltersofHomeScreen(){
@@ -781,65 +788,66 @@ export default class Universities extends Component {
       .on('value', snapshot => {
       this.setState({universities: snapshot.val(), filtersArray: snapshot.val() }, function () {
         this.state.cloneArray = this.state.universities;
+        this.state.deepCloneArray = this.state.universities;
         this.ApplyAllFilters();
       });
     });
   }
 
   ApplyAllFilters(){
-    if(this.props.route.params.fromAdvanceFilters==1){
-      console.log('from Advance Filters -- Screen is =',this.state.fromFiltersScreen)
-      console.log('from Advance Filters -- Screen is =',this.props.route.params.filters)
-      this.props.route.params.fromAdvanceFilters=0;
-      this.setState({universities:[],filtersArray:[], norecordfoundtext:'', norecordfoundsubtext:''});
+    // if(this.props.route.params.fromAdvanceFilters==1){
+      // console.log('from Advance Filters -- Screen is =',this.state.fromFiltersScreen)
+      // console.log('from Advance Filters -- Screen is =',this.props.route.params.filters)
+      // this.props.route.params.fromAdvanceFilters=0;
       // this.setState({filtersArray:[]});
       // this.firstFetchAllRecords();
       // var allFilters = this.props.route.params.filters;
-      if(this.state.fromFiltersScreen.hasOwnProperty('discipline')){
-        var afterFilters = this.state.cloneArray.filter((a) => a.discipline==this.state.fromFiltersScreen.discipline)
+      this.setState({universities:[],filtersArray:[], norecordfoundtext:'', norecordfoundsubtext:''});
+      if(global.filters.hasOwnProperty('discipline')){
+        var afterFilters = this.state.cloneArray.filter((a) => a.discipline==global.filters.discipline)
         this.state.cloneArray=afterFilters;
         this.state.allFilters[0].status=1;
         // console.log('Check Status of allFilters is = ', this.state.allFilters);
       }
-      if(this.state.fromFiltersScreen.hasOwnProperty('city')){
+      if(global.filters.hasOwnProperty('city')){
         // console.log('city');
-        var afterFilters = this.state.cloneArray.filter((a) => a.city==this.state.fromFiltersScreen.city)
+        var afterFilters = this.state.cloneArray.filter((a) => a.city==global.filters.city)
         this.state.cloneArray=afterFilters;
         this.state.allFilters[1].status=1;
       }
-      if(this.state.fromFiltersScreen.hasOwnProperty('ranking')){
+      if(global.filters.hasOwnProperty('ranking')){
         // console.log('ranking');
-        var afterFilters = this.state.cloneArray.filter((a) => a.ranking<=Number(this.state.fromFiltersScreen.ranking)).sort((a,b)=>a.ranking - b.ranking)
+        var afterFilters = this.state.cloneArray.filter((a) => a.ranking<=Number(global.filters.ranking)).sort((a,b)=>a.ranking - b.ranking)
         this.state.cloneArray=afterFilters;
         this.state.allFilters[2].status=1;
       }
-      if(this.state.fromFiltersScreen.hasOwnProperty('admissions')){
+      if(global.filters.hasOwnProperty('admissions')){
         // console.log('admissions');
-        var afterFilters = this.state.cloneArray.filter((a) => a.admissions==Number(this.state.fromFiltersScreen.admissions))
+        var afterFilters = this.state.cloneArray.filter((a) => a.admissions==Number(global.filters.admissions))
         this.state.cloneArray=afterFilters;
         this.state.allFilters[3].status=1;
       }
-      if(this.state.fromFiltersScreen.hasOwnProperty('status')){
+      if(global.filters.hasOwnProperty('status')){
         // console.log('status');
-        var afterFilters = this.state.cloneArray.filter((a) => a.status==Number(this.state.fromFiltersScreen.status))
+        var afterFilters = this.state.cloneArray.filter((a) => a.status==Number(global.filters.status))
         this.state.cloneArray=afterFilters;
         this.state.allFilters[4].status=1;
       }
-      if(this.state.fromFiltersScreen.hasOwnProperty('min')){
+      if(global.filters.hasOwnProperty('min')){
         // console.log('min');
-        var afterFilters = this.state.cloneArray.filter((a) => a.fee>=this.state.fromFiltersScreen.min)
+        var afterFilters = this.state.cloneArray.filter((a) => a.fee>=global.filters.min)
         this.state.cloneArray=afterFilters;
         this.state.allFilters[5].status=1;
       }
-      if(this.state.fromFiltersScreen.hasOwnProperty('max')){
+      if(global.filters.hasOwnProperty('max')){
         // console.log('max');
-        var afterFilters = this.state.cloneArray.filter((a) => a.fee<=this.state.fromFiltersScreen.max)
+        var afterFilters = this.state.cloneArray.filter((a) => a.fee<=global.filters.max)
         this.state.cloneArray=afterFilters;
         this.state.allFilters[5].status=1;
       }
-      if(this.state.fromFiltersScreen.hasOwnProperty('merit')){
+      if(global.filters.hasOwnProperty('merit')){
         // console.log('merit');
-        var afterFilters = this.state.cloneArray.filter((a) => a.merit>=this.state.fromFiltersScreen.merit)
+        var afterFilters = this.state.cloneArray.filter((a) => a.merit>=global.filters.merit)
         this.state.cloneArray=afterFilters;
         this.state.allFilters[6].status=1;
       }
@@ -856,48 +864,50 @@ export default class Universities extends Component {
             norecordfoundsubtext:'',});
         }
       });
-    }else{
+
+
+    // }else{
       // console.log('from Home Screen is =',this.props.route.params.filters)
       // var allFilters = this.props.route.params.filters;
-      if(this.state.fromFiltersScreen.hasOwnProperty('city')){
-        var afterFilters = this.state.cloneArray.filter((a) => a.city==this.state.fromFiltersScreen.city)
-        this.state.cloneArray=afterFilters;
-      }
-      if(this.state.fromFiltersScreen.hasOwnProperty('discipline')){
-        var afterFilters = this.state.cloneArray.filter((a) => a.discipline==this.state.fromFiltersScreen.discipline)
-        this.state.cloneArray=afterFilters;
-      }
-      if(this.state.fromFiltersScreen.hasOwnProperty('min')){
-        var afterFilters = this.state.cloneArray.filter((a) => a.fee>=this.state.fromFiltersScreen.min)
-        this.state.cloneArray=afterFilters;
-      }
-      if(this.state.fromFiltersScreen.hasOwnProperty('max')){
-        var afterFilters = this.state.cloneArray.filter((a) => a.fee<=this.state.fromFiltersScreen.max)
-        this.state.cloneArray=afterFilters;
-          // console.log('clone Array is =', this.state.cloneArray.length);
-      }
-      this.setState({universities:this.state.cloneArray}, function(){
-        console.log('Total CS Records', this.state.universities.length);
-        if(this.state.universities.length==0){
-          this.setState({
-            norecordfoundtext:'No Results Found', 
-            norecordfoundsubtext:'We cannot find any item matching your search.',});
-        }else{
-          this.setState({
-            norecordfoundtext:'', 
-            norecordfoundsubtext:'',});
-        }
-      });
-    }
+      // if(this.state.fromFiltersScreen.hasOwnProperty('city')){
+      //   var afterFilters = this.state.cloneArray.filter((a) => a.city==this.state.fromFiltersScreen.city)
+      //   this.state.cloneArray=afterFilters;
+      // }
+      // if(this.state.fromFiltersScreen.hasOwnProperty('discipline')){
+      //   var afterFilters = this.state.cloneArray.filter((a) => a.discipline==this.state.fromFiltersScreen.discipline)
+      //   this.state.cloneArray=afterFilters;
+      // }
+      // if(this.state.fromFiltersScreen.hasOwnProperty('min')){
+      //   var afterFilters = this.state.cloneArray.filter((a) => a.fee>=this.state.fromFiltersScreen.min)
+      //   this.state.cloneArray=afterFilters;
+      // }
+      // if(this.state.fromFiltersScreen.hasOwnProperty('max')){
+      //   var afterFilters = this.state.cloneArray.filter((a) => a.fee<=this.state.fromFiltersScreen.max)
+      //   this.state.cloneArray=afterFilters;
+      //     // console.log('clone Array is =', this.state.cloneArray.length);
+      // }
+      // this.setState({universities:this.state.cloneArray}, function(){
+      //   console.log('Total CS Records', this.state.universities.length);
+      //   if(this.state.universities.length==0){
+      //     this.setState({
+      //       norecordfoundtext:'No Results Found', 
+      //       norecordfoundsubtext:'We cannot find any item matching your search.',});
+      //   }else{
+      //     this.setState({
+      //       norecordfoundtext:'', 
+      //       norecordfoundsubtext:'',});
+      //   }
+      // });
+    // }
 
     var finalFiltersArray=[];
     var keyValue=-1;
-    for (var KEYS in this.state.fromFiltersScreen){
+    for (var KEYS in global.filters){
       keyValue++;
       var filterObject = {
-        [KEYS]:this.state.fromFiltersScreen[KEYS],
+        [KEYS]:global.filters[KEYS],
         title:KEYS,
-        value:this.state.fromFiltersScreen[KEYS],
+        value:global.filters[KEYS],
         key:keyValue
       }
       finalFiltersArray.push(filterObject);
@@ -912,7 +922,15 @@ export default class Universities extends Component {
       finalFiltersArray.push(filterObject);
     }
     this.setState({finalFiltersArray:finalFiltersArray},()=>{
-      // console.log('Final Filters Array is === ',this.state.finalFiltersArray.length);
+      // Change Value of Upper Filter Array
+      // if(Object.keys(global.filters).length === 0){
+        console.log('check')
+        let allFiltersCloneArray = this.state.allFilters.map(element=>
+          element.status===1 ? {...element, status:-1} : element
+        );
+        this.state.allFilters=allFiltersCloneArray
+      // }
+
     })
     this.setState({activityindicator:false});
   }
@@ -949,9 +967,9 @@ export default class Universities extends Component {
   SortByFee(min, max) {
     console.log(min);
     console.log(max);
-    this.state.fromFiltersScreen.min=min;
+    global.filters.min=min;
     this.addNewFiltersIn('min');
-    this.state.fromFiltersScreen.max=max;
+    global.filters.max=max;
     this.addNewFiltersIn('max');
 
     // this.setState({universities: this.state.filtersArray.filter((item)=> item.fee>=min && item.fee<=max).sort((a,b)=>a.fee - b.fee) }, function(){
@@ -971,7 +989,7 @@ export default class Universities extends Component {
 
   SortByRanking(ranking) {
     console.log(ranking);
-    this.state.fromFiltersScreen.ranking=ranking;
+    global.filters.ranking=ranking;
     this.addNewFiltersIn('ranking');
 
     // this.setState({universities: this.state.filtersArray.sort((a, b) => a.ranking - b.ranking) }, function(){
@@ -990,7 +1008,7 @@ export default class Universities extends Component {
 
   SortByDiscipline(discipline) {
     console.log(discipline);
-    this.state.fromFiltersScreen.discipline=discipline;
+    global.filters.discipline=discipline;
     this.addNewFiltersIn('discipline');
 
     // this.setState({universities: this.state.filtersArray.sort((a, b) => a.ranking - b.ranking) }, function(){
@@ -1009,7 +1027,7 @@ export default class Universities extends Component {
 
   SortByAdmissions(admissions) {
     console.log('admissions');
-    this.state.fromFiltersScreen.admissions=admissions;
+    global.filters.admissions=admissions;
     this.addNewFiltersIn('admissions');
 
     // this.setState({universities: this.state.filtersArray.sort((a, b) => a.ranking - b.ranking) }, function(){
@@ -1028,7 +1046,7 @@ export default class Universities extends Component {
 
   SortByCity(cityName) {
     console.log(cityName);
-    this.state.fromFiltersScreen.city=cityName;
+    global.filters.city=cityName;
     this.addNewFiltersIn('city');
 
     // this.setState({universities: this.state.filtersArray.filter((a) => a.city==cityName) }, function(){
@@ -1047,7 +1065,7 @@ export default class Universities extends Component {
 
   SortByMerit(merit) {
     console.log('merit call ho raha hai', merit);
-    this.state.fromFiltersScreen.merit=merit;
+    global.filters.merit=merit;
     this.addNewFiltersIn('merit');
 
     // this.setState({universities: this.state.filtersArray.filter((item)=> item.fee>=min && item.fee<=max).sort((a,b)=>a.fee - b.fee) }, function(){
@@ -1066,7 +1084,7 @@ export default class Universities extends Component {
 
   SortByStatus(status){
     console.log('merit call ho raha hai', status);
-    this.state.fromFiltersScreen.status=status;
+    global.filters.status=status;
     this.addNewFiltersIn('status');
 
     // this.setState({universities: this.state.filtersArray.sort((a, b) => b.status - a.status) }, function(){
@@ -1147,6 +1165,7 @@ export default class Universities extends Component {
   }
 
   ApplyNewFilters(item){
+    console.log('is this called ??');
     this.setState({ finalFiltersArray: this.state.finalFiltersArray.filter((a) => a!=item)}, function(){
       if(this.state.finalFiltersArray.length==1){
         this.setState({finalFiltersArray:[]});
@@ -1154,7 +1173,7 @@ export default class Universities extends Component {
     });
     this.setState({universities:[], filtersArray:[], norecordfoundtext:'', norecordfoundsubtext:''});
     // this.firstFetchAllRecords();
-    var allFilters = this.state.fromFiltersScreen;
+    var allFilters = global.filters;
     delete allFilters[item.title];
 
     if(allFilters.hasOwnProperty('discipline')){
@@ -1196,7 +1215,7 @@ export default class Universities extends Component {
      let allFiltersCloneArray = this.state.allFilters.map(element=>
       element.title===this.capitalizeFirstLetter(item.title) ? {...element, status:-1} : element
     );
-    // console.log('this.state.allFilters',allFiltersCloneArray);
+    console.log('allFilters setState');
     this.setState({allFilters:allFiltersCloneArray,activityindicator:false});
   }
 
@@ -1212,7 +1231,8 @@ export default class Universities extends Component {
   }
 
   clearAllFilters(item){
-    // console.log('Clear all Filters = ',item);
+    global.filters={}
+    console.log('Clear all Filters = ',item);
     // console.log(item.title);
     let allFiltersCloneArray = this.state.allFilters.map(element=>
       element.status===1 ? {...element, status:-1} : element
@@ -1221,9 +1241,10 @@ export default class Universities extends Component {
     
     database()
       .ref('/zeeshan_listing/')
-      //.limitToFirst(10)
+      // .limitToFirst(10)
       .on('value', snapshot => {
       this.setState({universities: snapshot.val(), filtersArray: snapshot.val() }, function () {
+        console.log('allFilters setState');
         this.setState({allFilters:allFiltersCloneArray, activityindicator:false});
       });
     });
@@ -1237,7 +1258,8 @@ export default class Universities extends Component {
       // .limitToFirst(10)
       .on('value', snapshot => {
       this.setState({universities: snapshot.val(), filtersArray: snapshot.val()}, function () {
-        this.state.cloneArray = this.state.universities;
+        this.state.cloneArray = this.state.universities
+        this.state.deepCloneArray = this.state.universities
         this.ApplyNewFilters(item);
       });
     });
@@ -1251,38 +1273,38 @@ export default class Universities extends Component {
       console.log('Button Pressed',item);
       var mykey = this.smallFirstLetter(item.title);
       if(mykey=='discipline'){
-        // this.state.fromFiltersScreen[mykey]='Computer Science';
+        // global.filters[mykey]='Computer Science';
         this.showDisciplineModal();
       }else if(mykey=='city'){
         this.showCityModal();
-        // this.state.fromFiltersScreen[mykey]='Karachi';
+        // global.filters[mykey]='Karachi';
       }else if(mykey=='ranking'){
-        // this.state.fromFiltersScreen[mykey]='100';
+        // global.filters[mykey]='100';
         this.showRankingModal();
       }else if(mykey=='admissions'){
         this.showAdmissionsModal();
-        // this.state.fromFiltersScreen[mykey]='1';
+        // global.filters[mykey]='1';
       }else if(mykey=='status'){
         this.showStatusModal();
-        // this.state.fromFiltersScreen[mykey]='1';
+        // global.filters[mykey]='1';
       }else if(mykey=='merit'){
-        this.state.fromFiltersScreen[mykey]=50;
+        global.filters[mykey]=50;
         this.showMeritModal();
       }
 
       if(mykey=='fee'){
         this.showFeeModal();
         console.log('fee');
-        this.state.fromFiltersScreen.min=10000;
-        console.log(this.state.fromFiltersScreen);
+        global.filters.min=10000;
+        console.log(global.filters);
       }
       if(mykey=='fee'){
         console.log('fee');
-        this.state.fromFiltersScreen.max=100000;
-        console.log(this.state.fromFiltersScreen);
+        global.filters.max=100000;
+        // console.log(global.filters);
       }
 
-      console.log(this.state.fromFiltersScreen);
+      console.log(global.filters);
       
       // this.addNewFiltersIn(mykey);
 
@@ -1307,62 +1329,62 @@ export default class Universities extends Component {
   }
 
   addNewFiltersIn(item){
-      console.log('New Added Filter is = ',item);
-      // console.log('from Advance Filters -- Screen is =',this.state.fromFiltersScreen)
-      // this.setState({universities:[],filtersArray:[], norecordfoundtext:'', norecordfoundsubtext:''});
-      
-      if(item=='discipline'){
-        console.log('discipline');
-        var afterFilters = this.state.cloneArray.filter((a) => a.discipline==this.state.fromFiltersScreen.discipline)
+      console.log('item is ==',item);
+      console.log('Clone Array Length is = ',this.state.cloneArray.length);      
+      console.log('global.filters',global.filters);
+      // global.filters.hasOwnProperty
+      this.state.cloneArray = this.state.deepCloneArray
+      if(global.filters.hasOwnProperty('discipline')){
+        // console.log('discipline');
+        var afterFilters = this.state.cloneArray.filter((a) => a.discipline==global.filters.discipline)
         this.state.cloneArray=afterFilters;
         this.state.allFilters[0].status=1;
-        // console.log('Check Status of allFilters is = ', this.state.allFilters);
       }
-      if(item=='city'){
-        console.log('city');
-        var afterFilters = this.state.cloneArray.filter((a) => a.city==this.state.fromFiltersScreen.city)
+      if(global.filters.hasOwnProperty('city')){
+        // console.log('city');
+        var afterFilters = this.state.cloneArray.filter((a) => a.city==global.filters.city)
         this.state.cloneArray=afterFilters;
         this.state.allFilters[1].status=1;
       }
-      if(item=='ranking'){
-        console.log('ranking');
-        var afterFilters = this.state.cloneArray.filter((a) => a.ranking<=Number(this.state.fromFiltersScreen.ranking)).sort((a,b)=>a.ranking - b.ranking)
+      if(global.filters.hasOwnProperty('ranking')){
+        // console.log('ranking');
+        var afterFilters = this.state.cloneArray.filter((a) => a.ranking<=Number(global.filters.ranking)).sort((a,b)=>a.ranking - b.ranking)
         this.state.cloneArray=afterFilters;
         this.state.allFilters[2].status=1;
       }
-      if(item=='admissions'){
-        console.log('admissions');
-        var afterFilters = this.state.cloneArray.filter((a) => a.admissions==Number(this.state.fromFiltersScreen.admissions))
+      if(global.filters.hasOwnProperty('admissions')){
+        // console.log('admissions');
+        var afterFilters = this.state.cloneArray.filter((a) => a.admissions==Number(global.filters.admissions))
         this.state.cloneArray=afterFilters;
         this.state.allFilters[3].status=1;
       }
-      if(item=='status'){
-        console.log('status');
-        var afterFilters = this.state.cloneArray.filter((a) => a.status==Number(this.state.fromFiltersScreen.status))
+      if(global.filters.hasOwnProperty('status')){
+        // console.log('status');
+        var afterFilters = this.state.cloneArray.filter((a) => a.status==Number(global.filters.status))
         this.state.cloneArray=afterFilters;
         this.state.allFilters[4].status=1;
       }
       // if(item=='fee'){
-      if(item=='min'){
-        console.log('min');
-        var afterFilters = this.state.cloneArray.filter((a) => a.fee>=this.state.fromFiltersScreen.min)
+      if(global.filters.hasOwnProperty('min')){
+        // console.log('min');
+        var afterFilters = this.state.cloneArray.filter((a) => a.fee>=global.filters.min)
         this.state.cloneArray=afterFilters;
         this.state.allFilters[5].status=1;
       }
-      if(item=='max'){
-        console.log('max');
-        var afterFilters = this.state.cloneArray.filter((a) => a.fee<=this.state.fromFiltersScreen.max)
+      if(global.filters.hasOwnProperty('max')){
+        // console.log('max');
+        var afterFilters = this.state.cloneArray.filter((a) => a.fee<=global.filters.max)
         this.state.cloneArray=afterFilters;
         this.state.allFilters[5].status=1;
       }
     // }
-      if(item=='merit'){
-        console.log('merit');
-        var afterFilters = this.state.cloneArray.filter((a) => a.merit>=this.state.fromFiltersScreen.merit)
+      if(global.filters.hasOwnProperty('merit')){
+        // console.log('merit');
+        var afterFilters = this.state.cloneArray.filter((a) => a.merit>=global.filters.merit)
         this.state.cloneArray=afterFilters;
         this.state.allFilters[6].status=1;
       }
-      this.setState({universities:this.state.cloneArray}, function(){
+      this.setState({universities:afterFilters}, function(){
         console.log('Total CS Records', this.state.universities.length);
         if(this.state.universities.length==0){
           this.setState({
@@ -1378,12 +1400,12 @@ export default class Universities extends Component {
 
     var finalFiltersArray=[];
     var keyValue=-1;
-    for (var KEYS in this.state.fromFiltersScreen){
+    for (var KEYS in global.filters){
       keyValue++;
       var filterObject = {
-        [KEYS]:this.state.fromFiltersScreen[KEYS],
+        [KEYS]:global.filters[KEYS],
         title:KEYS,
-        value:this.state.fromFiltersScreen[KEYS],
+        value:global.filters[KEYS],
         key:keyValue
       }
       finalFiltersArray.push(filterObject);

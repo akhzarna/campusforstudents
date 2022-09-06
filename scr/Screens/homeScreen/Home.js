@@ -108,29 +108,27 @@ export default class Home extends Component {
   
 
   ApplyFilters=()=>{
-    var filters =  {}
+    global.filters =  {}
     if(this.state.discipline!='Select discipline'){
       console.log("Idhar are = " , this.state.discipline);
-      filters.discipline=this.state.discipline;
+      global.filters.discipline=this.state.discipline;
     }
     if(this.state.city!=''){
-      filters.city=this.state.city;
+      global.filters.city=this.state.city;
     }
     if(this.state.min!=''){
-      filters.min=this.state.min;
+      global.filters.min=this.state.min;
     }
     if(this.state.max!=''){
-      filters.max=this.state.max;
+      global.filters.max=this.state.max;
     }
-    console.log("filters are = " , filters);
+    console.log("filters are = " , global.filters);
     if(Number(this.state.min)<=Number(this.state.max)){
-      this.props.navigation.navigate('Universities', {filters:filters, fromHomeScreen:true});
+      this.props.navigation.navigate('Universities', {filters:global.filters, fromHomeScreen:1});
     }else{
       Alert.alert('Fee Min value should be less than max value');
     }
   }
-
-  
   
 
   render() {  

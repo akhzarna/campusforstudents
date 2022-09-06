@@ -54,6 +54,8 @@ export default class SingleUniversity extends Component {
       //   console.log('Detail Data is ::: ', snapshot.val());
       //   this.setState({university:snapshot.val()});
       // });
+
+      console.log('Global',global.title);
   }
   
   dialCall = (number) => {

@@ -17,14 +17,14 @@ export default class AdvanceFilter extends Component {
     this.SortByCity = this.SortByCity.bind(this)
     this.state = {
       studylevel: "Select the study level",
-      discipline: "Select discipline",
-      ranking: "Select Ranking",
-      city: "Select City",
-      status: "Status",
-      admissions: "Admissions",
-      min: '',
-      max: '',
-      merit: '',
+      discipline: global.filters.discipline? global.filters.discipline: "Select discipline",
+      ranking: global.filters.ranking? global.filters.ranking: "Select Ranking",
+      city: global.filters.city? global.filters.city:"Select City",
+      status: global.filters.status? global.filters.status:"Status",
+      admissions: global.filters.admissions? global.filters.admissions:"Admissions",
+      min: global.filters.min? global.filters.min:'',
+      max: global.filters.max? global.filters.max:'',
+      merit: global.filters.merit? global.filters.merit:'',
       showCityModal:false,
     }
   }
@@ -44,38 +44,38 @@ export default class AdvanceFilter extends Component {
   // }
 
   ApplyFilters = () =>{ 
-    var filters =  {}
+    // var filters =  {}
     // if(this.state.level!="Select the study level"){
     //   filters.level=this.state.level;
     // }
     if(this.state.discipline!="Select discipline"){
-      filters.discipline=this.state.discipline;
+      global.filters.discipline=this.state.discipline;
     }
     if(this.state.ranking!="Select Ranking"){
-      filters.ranking=this.state.ranking;
+      global.filters.ranking=this.state.ranking;
     }
     if(this.state.city!="Select City"){
-      filters.city=this.state.city;
+      global.filters.city=this.state.city;
     }
     if(this.state.admissions!="Admissions"){
-      filters.admissions=this.state.admissions;
+      global.filters.admissions=this.state.admissions;
     }
     if(this.state.status!= "Status"){
-      filters.status=this.state.status;
+      global.filters.status=this.state.status;
     }
     if(this.state.min!=''){
-      filters.min=this.state.min;
+      global.filters.min=this.state.min;
     }
     if(this.state.max!=''){
-      filters.max=this.state.max;
+      global.filters.max=this.state.max;
     }
     if(this.state.merit!=''){
-      filters.merit=this.state.merit;
+      global.filters.merit=this.state.merit;
     }
-    console.log("filters are = " , filters);
+    console.log("filters are = " , global.filters);
     // this.props.navigation.pop();
     if(Number(this.state.min)<=Number(this.state.max)){
-      this.props.navigation.navigate('Universities',{ filters: filters, fromAdvanceFilters:1});
+      this.props.navigation.navigate('Universities',{ filters: global.filters, fromAdvanceFilters:1});
     }else{
       Alert.alert('Fee Min value should be less than max value');
     }
@@ -93,11 +93,14 @@ export default class AdvanceFilter extends Component {
                 min: '',
                 max: '',
                 merit: '',
+                },()=>{
+                  global.filters={}
                 })
             }
   
     componentDidMount(){
         // LogBox.ignoreLogs(['VirtualizedLists should never be nested']);
+        console.log('All filters are = ',global.filters);
     }
 
   render() {
