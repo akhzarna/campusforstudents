@@ -164,7 +164,7 @@ export default class CityModal extends Component {
                                     renderItem={
                                         ({ item }) =>
                                         <View style={{flex:1.0}}>
-                                            <TouchableOpacity onPress={() => this.props.sortFilter(item.title)}>
+                                            <TouchableOpacity onPress={() => this.props.sortCity(item.title)}>
                                             <Text style={[style.cityNames,style.ml10]}>{item.title}</Text>
                                             </TouchableOpacity>
                                         </View>

@@ -78,7 +78,6 @@ export default class SingleUniversity extends Component {
 
 
   render() {
-    
     return (
       <ScrollView style={styles.container}>
             {/* header image */}
@@ -88,7 +87,7 @@ export default class SingleUniversity extends Component {
              source={require('../../../assets/images/uni1.jpg')}
            /> */}
            <Image
-            style={{height:"100%",width:"100%"}}
+            style={{height:"100%",width:"100%", resizeMode:'contain'}}
             source={{ uri: `${this.props.route.params.obj.logo}` }}
            />
        </View>
@@ -131,7 +130,7 @@ export default class SingleUniversity extends Component {
             <View style={styles.verticalSeperator}></View>
             <View style={styles.detail}>
               <Text style={styles.detailText1}>Admission</Text>
-              <Text style={[styles.detailText2,styles.greenColor]}>{this.props.route.params.obj.admissions?'Open':'Closed'}</Text>
+              <Text style={this.props.route.params.obj.admissions?styles.greenColorDeadline:styles.redColorDeadline}>{this.props.route.params.obj.admissions?'Open':'Closed'}</Text>
             </View>
           </View>
 
@@ -160,7 +159,14 @@ export default class SingleUniversity extends Component {
               </View>
               <View style={styles.linkTextWrapper}>
                 <TouchableOpacity >
-                  <Text onPress={() => Linking.openURL('google.navigation:q=100+101')} style={styles.linksStyles}>See On Map</Text>
+                  <Text onPress={() => {
+
+                    // Linking.openURL('google.navigation:q=100+101')
+                    var myUrl = 'https://www.google.com/maps/search/?api=1&query='+this.props.route.params.obj.title+' '+this.props.route.params.obj.city
+                    console.log('muURL is =',myUrl)
+                    Linking.openURL(myUrl)
+                  }
+                    } style={styles.linksStyles}>See On Map</Text>
                 </TouchableOpacity>
               </View>
             </View>
@@ -173,7 +179,7 @@ export default class SingleUniversity extends Component {
             <View style={styles.detailLinksWrapper}>
               <View style={styles.linkIconWrapper}>
               <Image
-                style={{height:"100%",width:"100%",resizeMode: "center"}}
+                style={{height:"100%",width:"100%",resizeMode: "contain"}}
                 source={require('../../../assets/images/website.png')}
               />
               </View>
@@ -198,7 +204,7 @@ export default class SingleUniversity extends Component {
               </View>
               <View style={styles.linkTextWrapper}>
                 <TouchableOpacity>
-                  <Text style={{color:"red",fontSize:16}}> Deadline:  {this.props.route.params.obj.deadline} </Text>
+                  <Text style={this.props.route.params.obj.admissions?styles.greenColorDeadline:styles.redColorDeadline}> Deadline: {this.props.route.params.obj.deadline} </Text>
                 </TouchableOpacity>
               </View>
             </View>

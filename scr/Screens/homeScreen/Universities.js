@@ -965,13 +965,23 @@ export default class Universities extends Component {
   }
 
   SortByFee(min, max) {
-    console.log(min);
-    console.log(max);
-    global.filters.min=min;
-    this.addNewFiltersIn('min');
-    global.filters.max=max;
-    this.addNewFiltersIn('max');
+    
+    console.log('globals is ?', global.filters);
 
+    console.log('Is this ?', min);
+    console.log('Is this ?', max);
+
+    if(min.length){
+      console.log('min main aya ?',min);
+      global.filters.min=min;
+      this.addNewFiltersIn('min');
+    }
+    if(max.length){
+      console.log('max main aya ?',max);
+      global.filters.max=max;
+      this.addNewFiltersIn('max');
+    }
+    // console.log(max);
     // this.setState({universities: this.state.filtersArray.filter((item)=> item.fee>=min && item.fee<=max).sort((a,b)=>a.fee - b.fee) }, function(){
     //   if(this.state.universities.length==0){
     //     this.setState({
@@ -1294,13 +1304,13 @@ export default class Universities extends Component {
 
       if(mykey=='fee'){
         this.showFeeModal();
-        console.log('fee');
-        global.filters.min=10000;
+        // console.log('fee');
+        // global.filters.min='';
         console.log(global.filters);
       }
       if(mykey=='fee'){
-        console.log('fee');
-        global.filters.max=100000;
+        // console.log('fee');
+        // global.filters.max='';
         // console.log(global.filters);
       }
 
@@ -1366,13 +1376,13 @@ export default class Universities extends Component {
       }
       // if(item=='fee'){
       if(global.filters.hasOwnProperty('min')){
-        // console.log('min');
+        console.log('min');
         var afterFilters = this.state.cloneArray.filter((a) => a.fee>=global.filters.min)
         this.state.cloneArray=afterFilters;
         this.state.allFilters[5].status=1;
       }
       if(global.filters.hasOwnProperty('max')){
-        // console.log('max');
+        console.log('max');
         var afterFilters = this.state.cloneArray.filter((a) => a.fee<=global.filters.max)
         this.state.cloneArray=afterFilters;
         this.state.allFilters[5].status=1;

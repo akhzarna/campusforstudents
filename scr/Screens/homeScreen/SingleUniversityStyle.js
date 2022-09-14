@@ -10,6 +10,7 @@ const styles = StyleSheet.create({
         justifyContent:"center",
         alignItems:"center",
         height:200,
+        backgroundColor:'black'
     },
 
 
@@ -47,12 +48,20 @@ const styles = StyleSheet.create({
         fontSize:12,
         fontWeight:"300",
     },
-    detailText2:{
+    redColorAdmissions:{
         fontSize:14,
-        fontWeight:"400",
         color:"red"
     },
-    greenColor:{
+    greenColorAdmissions:{
+        fontSize:14,
+        color:"green"
+    },
+    redColorDeadline:{
+        fontSize:16,
+        color:"red"
+    },
+    greenColorDeadline:{
+        fontSize:16,
         color:"green"
     },
     verticalSeperator:{

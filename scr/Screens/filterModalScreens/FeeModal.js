@@ -6,8 +6,8 @@ const popAction = StackActions.pop();
 
 export default class FeeModal extends Component {
     state = {
-        min: 0,
-        max: 0
+        min: '',
+        max: ''
     }
 
     componentDidMount() {
@@ -26,17 +26,26 @@ export default class FeeModal extends Component {
                         <Text style={[styles.txtStyle]}>Sort By:</Text>
                         <View style={styles.inputFieldWrapper}>
                             <Text style={styles.txtStyle}>From:</Text>
-                            <TextInput style={styles.inputStyle} placeholder='Minimum' value={this.state.min.toString()} onChangeText={(value) => this.setState({ min: value })} />
+                            <TextInput style={styles.inputStyle} 
+                              keyboardType = 'number-pad'
+                              placeholder='Minimum' value={this.state.min.toString()} onChangeText={(value) => this.setState({ min: value })} />
                             <Text style={styles.txtStyle}>To:</Text>
-                            <TextInput style={styles.inputStyle} placeholder='Maximum' value={this.state.max.toString()} onChangeText={(value) => this.setState({ max: value })} />
+                            <TextInput style={styles.inputStyle} 
+                              keyboardType = 'number-pad'
+                            placeholder='Maximum' value={this.state.max.toString()} onChangeText={(value) => this.setState({ max: value })} />
                         </View>
                         <TouchableOpacity
                             onPress={() => {
-
-                                if(Number(this.state.min)<=Number(this.state.max)){
-                                    this.props.sortFilter(this.state.min, this.state.max)
-                                }else{
-                                    Alert.alert('Fee Min value should be less than max value');
+                                console.log('Min Val ==',this.state.min);
+                                console.log('Max Val ==',this.state.max);
+                                if(this.state.min.length || this.state.max.length){
+                                    if(Number(this.state.min)<=Number(this.state.max)){
+                                        this.props.sortFilter(this.state.min, this.state.max)
+                                    }else{
+                                        Alert.alert('Fee Min value should be less than max value');
+                                      }
+                                  }else{
+                                    Alert.alert('Please enter some values');
                                   }
                                 }
                             }

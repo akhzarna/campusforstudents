@@ -203,6 +203,7 @@ export default class AdvanceFilter extends Component {
       <TextInput
         style={styles.inputFieldLeft}
         placeholder="Minimum"
+        keyboardType = 'number-pad'
         placeholderTextColor="black"
         onChangeText={(value) => this.setState({ min: value })}
         value={this.state.min}
@@ -210,6 +211,7 @@ export default class AdvanceFilter extends Component {
       <TextInput
         style={styles.inputFieldRight}
         placeholder="Maximum"
+        keyboardType = 'number-pad'
         placeholderTextColor="black"
         onChangeText={(value) => this.setState({ max: value })}
         value={this.state.max}
@@ -220,6 +222,7 @@ export default class AdvanceFilter extends Component {
     <TextInput
       style={styles.inputFieldMerit}
       placeholder="%"
+      keyboardType = 'number-pad'
       placeholderTextColor="black"
       onChangeText={(value) => this.setState({ merit: value })}
       value={this.state.merit}
