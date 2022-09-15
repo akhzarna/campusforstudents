@@ -8,7 +8,7 @@ const popAction = StackActions.pop();
 
 export default class AdmissionsModal extends Component {
     state = {
-        checked: 'first',
+        checked: '',
         value: '',
       };
     
@@ -30,7 +30,7 @@ export default class AdmissionsModal extends Component {
         <Text style={{fontSize:20,fontWeight:"bold",marginLeft:10}}>Admissions:</Text>
         <RadioButton.Item label="Open" 
           value="first"
-          status={checked === 'first' ? 'checked' : 'unchecked'}
+          status={global.filters.admissions === '1' ? 'checked' : 'unchecked'}
           onPress={() => { 
             this.setState({ checked: 'first', value: '1'}, ()=>{
               this.props.sortFilter(this.state.value);
@@ -40,7 +40,7 @@ export default class AdmissionsModal extends Component {
 
         <RadioButton.Item label="Closed" 
           value="first"
-          status={checked === 'second' ? 'checked' : 'unchecked'}
+          status={global.filters.admissions === '0' ? 'checked' : 'unchecked'}
           onPress={() => { 
             this.setState({ checked: 'second', value: '0'}, ()=>{
               this.props.sortFilter(this.state.value);

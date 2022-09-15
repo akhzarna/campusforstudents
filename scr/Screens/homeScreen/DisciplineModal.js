@@ -8,12 +8,13 @@ const popAction = StackActions.pop();
 
 export default class DisciplineModal extends Component {
     state = {
-        checked: 'first',
+        checked: '',
         value: '',
       };
     
     componentDidMount() {
-        this.setState({ ruinPerformance: true });
+        console.log('Did Mount is global.filters.discipline',global.filters.discipline);
+        this.setState({ ruinPerformance: true,  checked: global.filters.discipline? global.filters.discipline: ''});
     }
     
     render() {
@@ -30,7 +31,7 @@ export default class DisciplineModal extends Component {
         <Text style={{fontSize:20,fontWeight:"bold",marginLeft:10}}>Select Discipline:</Text>
         <RadioButton.Item label="Computer Science" 
           value="first"
-          status={checked === 'first' ? 'checked' : 'unchecked'}
+          status={global.filters.discipline? 'checked': 'unchecked'}
           onPress={() => { 
             this.setState({ checked: 'first', value: 'Computer Science'}, ()=>{
               this.props.sortFilter(this.state.value);
@@ -44,42 +45,3 @@ export default class DisciplineModal extends Component {
         )
     }
 }
-
-
-// import React, { Component,useState } from "react";
-// import { styles } from './RankingModalStyle'
-// import { StackActions } from "@react-navigation/native"
-// import { Text, View,StyleSheet,Modal} from 'react-native';
-// import { Provider ,Appbar,RadioButton} from 'react-native-paper';
-
-// const RankingModal = () => {
-// //   const popAction = StackActions.pop();
-//   const [value, setValue] = React.useState('first');
-//   const [modalVisible, setModalVisible] = useState(false);
-  
-  
-//   return (        
-    
-//     <Modal transparent={true} visible={this.props.showRankingModal}>
-//         <Provider>
-//         <View style={styles.mainbox}>
-//             <Text style={styles.title}>Select Universities Ranking</Text>
-//             <RadioButton.Group onValueChange={value => setValue(value)} value={value}>
-//                 <RadioButton.Item label="First item" value="first" />
-//                 <RadioButton.Item label="Second item" value="second" />
-//                 <RadioButton.Item label="Third item" value="third" />
-//             </RadioButton.Group>
-//         </View>
-//     </Provider>
-//     </Modal>
-    
-   
-//   );
-// };
-
-
-// export default RankingModal;
-
-
-
-
