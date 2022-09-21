@@ -1,6 +1,6 @@
 import { Text, View, Modal, TextInput, TouchableOpacity, Image } from 'react-native'
 import React, { Component } from 'react'
-import { styles } from './RankingModalStyle'
+import { style } from './DisciplineModalStyle'
 import { StackActions } from "@react-navigation/native"
 import { Provider ,Appbar,RadioButton} from 'react-native-paper';
 
@@ -18,14 +18,14 @@ export default class DisciplineModal extends Component {
     }
     
     render() {
-        const { checked } = this.state;
+        // const { checked } = this.state;
         return ( 
         <Modal transparent={true} visible={this.props.show} >
-          <View style={styles.container}>
-            <View style={styles.subContainer}>            
+          <View style={style.container}>
+            <View style={style.subContainer}>            
           <TouchableOpacity  onPress={this.props.update}
-              style={styles.cancelImgStyle}>
-            <Image style={styles.cancelImg} source={require("../../../assets/images/cancel.png")} />
+              style={style.cancelImgStyle}>
+            <Image style={style.cancelImg} source={require("../../../assets/images/cancelcross.png")} />
           </TouchableOpacity>
             <View>
         <Text style={{fontSize:20,fontWeight:"bold",marginLeft:10}}>Select Discipline:</Text>

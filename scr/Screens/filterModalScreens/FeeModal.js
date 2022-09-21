@@ -1,6 +1,6 @@
 import { Text, View, Modal, TextInput, TouchableOpacity, Image, Alert } from 'react-native'
 import React, { Component } from 'react'
-import { styles } from './FeeModalStyle'
+import { style } from './FeeModalStyle'
 import { StackActions } from "@react-navigation/native"
 const popAction = StackActions.pop();
 
@@ -13,31 +13,32 @@ export default class FeeModal extends Component {
     componentDidMount() {
         this.setState({ ruinPerformance: true });
     }
-    render() {
 
+    render() {
         return (
             <Modal transparent={true} visible={this.props.show} >
-                <View style={styles.container}>
-                    <View style={styles.subContainer}>
+                <View style={style.container}>
+                    <View style={style.subContainer}>
                         <TouchableOpacity onPress={this.props.update}
-                            style={styles.cancelImgStyle}>
-                            <Image style={styles.cancelImg} source={require("../../../assets/images/cancelcross.png")} />
+                            style={style.cancelImgStyle}>
+                            <Image style={style.cancelImg} source={require("../../../assets/images/cancelcross.png")} />
                         </TouchableOpacity>
-                        <Text style={[styles.txtStyle]}>Sort By:</Text>
-                        <View style={styles.inputFieldWrapper}>
-                            <Text style={styles.txtStyle}>From:</Text>
-                            <TextInput style={styles.inputStyle} 
+                        <Text style={[style.txtStyle]}>Sort By:</Text>
+                        <View style={style.inputFieldWrapper}>
+                            <Text style={style.txtStyle}>From:</Text>
+                            <TextInput style={style.inputStyle} 
                               keyboardType = 'number-pad'
                               placeholder='Minimum' value={this.state.min.toString()} onChangeText={(value) => this.setState({ min: value })} />
-                            <Text style={styles.txtStyle}>To:</Text>
-                            <TextInput style={styles.inputStyle} 
+                            <Text style={style.txtStyle}>To:</Text>
+                            <TextInput style={style.inputStyle} 
                               keyboardType = 'number-pad'
                             placeholder='Maximum' value={this.state.max.toString()} onChangeText={(value) => this.setState({ max: value })} />
                         </View>
                         <TouchableOpacity
+                            style={style.ApplyBtn} 
                             onPress={() => {
-                                console.log('Min Val ==',this.state.min);
-                                console.log('Max Val ==',this.state.max);
+                                // console.log('Min Val ==',this.state.min);
+                                // console.log('Max Val ==',this.state.max);
                                 if(this.state.min.length || this.state.max.length){
                                     if(Number(this.state.min)<=Number(this.state.max)){
                                         this.props.sortFilter(this.state.min, this.state.max)
@@ -49,7 +50,7 @@ export default class FeeModal extends Component {
                                   }
                                 }
                             }
-                            style={styles.ApplyBtn} >
+                            >
                             <Text style={{ color: "white", fontSize: 18 }}>Apply Filter</Text>
                         </TouchableOpacity>
                     </View>

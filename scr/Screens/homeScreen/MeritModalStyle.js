@@ -1,21 +1,20 @@
 import { StyleSheet } from "react-native"
 
-export const styles = StyleSheet.create({
+export const style = StyleSheet.create({
     container: {
         backgroundColor: "#000000aa",
         flex: 1,
         justifyContent: "flex-end",
     },
-
     subContainer: {
         backgroundColor: "#ffffff",
         flex: 0.40,
         borderTopLeftRadius: 20,
         borderTopRightRadius: 20,
-        alignItems: "center",
-        justifyContent: "center"
-    }
-    , inputFieldWrapper: {
+        // alignItems: "center",
+        // justifyContent: "center"
+    }, 
+    inputFieldWrapper: {
         width: "100%",
         flex: 0.60, 
         // justifyContent: "space-evenly",
@@ -36,35 +35,34 @@ export const styles = StyleSheet.create({
         color: "black",
         fontSize: 16,
     },
-    
     ApplyBtn: {
         backgroundColor: "red",
         paddingHorizontal: 20,
         paddingVertical: 10,
+        alignItems:'center',
+        justifyContent:'center',
+        alignSelf:'center',
         color: "white",
-        textAlign: "center",
+        // textAlign: "center",
         borderRadius: 10,
         marginTop: 5,
-    }, 
+        marginBottom: 25,
+        width:140,
+        height:50
+    },
     txtStyle: {
         fontSize: 18,
     },
-    cancelImg: {
-        height: 40,
-        marginLeft: "75%",
-        width: 50
-    }
-
-    // cancelImg: {
-    //     width: "70%",
-    //     height: 40,
-    //     backgroundColor: "black",
-    //     marginRight: "15%",
-    //     marginTop: 20,
-    //     borderRadius: 50,
-
-    // },
-
-   
-
+    cancelImgStyle:{
+        // backgroundColor:"red",
+        alignItems:'flex-end'
+    },
+    cancelImg:{
+        height:30, 
+        width:30,
+        margin:5, 
+        backgroundColor:"#F5F5F5",
+        // backgroundColor:"green",
+        borderRadius:50, 
+    },
 });

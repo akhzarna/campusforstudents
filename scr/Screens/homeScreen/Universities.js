@@ -86,618 +86,6 @@ export default class Universities extends Component {
       finalFiltersArray:[],
       norecordfoundtext:'',
       norecordfoundsubtext:'',
-      // allUniversitiesDummyData : [
-      //     {
-      //       "admissions": 1,
-      //       "city": "Lahore",
-      //       "contact": "(051) 9252860",
-      //       "country": "Pakistan",
-      //       "deadline": "18-06-2022",
-      //       "degree": "MBBS",
-      //       "discipline": "Medical",
-      //       "fee": 42620,
-      //       "id": "pk0",
-      //       "info": "info@mite.edu.pk",
-      //       "key": 0,
-      //       "logo": "https://www.fuuastisb.edu.pk/images/logonew.png",
-      //       "map": {
-      //         "address": "Islamabad",
-      //         "lat": 72.060284,
-      //         "location": "Islamabad",
-      //         "long": 34.66865,
-      //         "placeid": ""
-      //       },
-      //       "menu": [
-      //         {
-      //           "key": 0,
-      //           "title": "Major",
-      //           "url": "https://firebasestorage.googleapis.com/v0/b/campusfinder-6c74d.appspot.com/o/university_listing%2Fdownload%20(1).jpeg?alt=media&token=5339f81e-2e01-4460-bc48-d00888d984eb"
-      //         },
-      //         {
-      //           "key": 1,
-      //           "title": "Scholarships",
-      //           "url": "https://firebasestorage.googleapis.com/v0/b/campusfinder-6c74d.appspot.com/o/university_listing%2Fdownload%20(1).jpeg?alt=media&token=5339f81e-2e01-4460-bc48-d00888d984eb"
-      //         },
-      //         {
-      //           "key": 2,
-      //           "title": "Merit Calculator",
-      //           "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
-      //         },
-      //         {
-      //           "key": 3,
-      //           "title": "Closing Merit",
-      //           "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
-      //         },
-      //         {
-      //           "key": 4,
-      //           "title": "Reviews",
-      //           "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
-      //         },
-      //         {
-      //           "key": 5,
-      //           "title": "Status",
-      //           "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
-      //         }
-      //       ],
-      //       "merit": 92,
-      //       "province": "Sindh",
-      //       "ranking": 47,
-      //       "status": 1,
-      //       "title": "Federal Urdu University of Arts, Sciences & Technology",
-      //       "type": "University",
-      //       "url": "https://firebasestorage.googleapis.com/v0/b/campusfinder-6c74d.appspot.com/o/university_listing%2Fdownload%20(1).jpeg?alt=media&token=5339f81e-2e01-4460-bc48-d00888d984eb",
-      //       "web": "http://www.uom.edu.pk/"
-      //     },
-      //     {
-      //       "admissions": 1,
-      //       "city": "Islamabad",
-      //       "contact": "(042) 99200572",
-      //       "country": "Pakistan",
-      //       "deadline": "18-06-2022",
-      //       "degree": "MBBS",
-      //       "discipline": "Medical",
-      //       "fee": 42620,
-      //       "id": "pk0",
-      //       "info": "info@mite.edu.pk",
-      //       "key": 1,
-      //       "logo": "https://fjmu.punjab.gov.pk/sites/fjmu.punjab.gov.pk/themes/bootstrap/logo.png",
-      //       "map": {
-      //         "address": "Karachi",
-      //         "lat": 72.060284,
-      //         "location": "Karachi",
-      //         "long": 34.66865,
-      //         "placeid": ""
-      //       },
-      //       "menu": [
-      //         {
-      //           "key": 0,
-      //           "title": "Major",
-      //           "url": "https://firebasestorage.googleapis.com/v0/b/campusfinder-6c74d.appspot.com/o/university_listing%2Fdownload%20(1).jpeg?alt=media&token=5339f81e-2e01-4460-bc48-d00888d984eb"
-      //         },
-      //         {
-      //           "key": 1,
-      //           "title": "Scholarships",
-      //           "url": "https://firebasestorage.googleapis.com/v0/b/campusfinder-6c74d.appspot.com/o/university_listing%2Fdownload%20(1).jpeg?alt=media&token=5339f81e-2e01-4460-bc48-d00888d984eb"
-      //         },
-      //         {
-      //           "key": 2,
-      //           "title": "Merit Calculator",
-      //           "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
-      //         },
-      //         {
-      //           "key": 3,
-      //           "title": "Closing Merit",
-      //           "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
-      //         },
-      //         {
-      //           "key": 4,
-      //           "title": "Reviews",
-      //           "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
-      //         },
-      //         {
-      //           "key": 5,
-      //           "title": "Status",
-      //           "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
-      //         }
-      //       ],
-      //       "merit": 92,
-      //       "province": "Sindh",
-      //       "ranking": 82,
-      //       "status": 1,
-      //       "title": "Fatima Jinnah Medical University, Lahore",
-      //       "type": "University",
-      //       "url": "https://firebasestorage.googleapis.com/v0/b/campusfinder-6c74d.appspot.com/o/university_listing%2Fdownload%20(1).jpeg?alt=media&token=5339f81e-2e01-4460-bc48-d00888d984eb",
-      //       "web": "http://www.uom.edu.pk/"
-      //     },
-      //     {
-      //       "admissions": 0,
-      //       "city": "Karachi",
-      //       "contact": "(021) 99231195",
-      //       "country": "Pakistan",
-      //       "deadline": "18-06-2022",
-      //       "degree": "BS (CS)",
-      //       "discipline": "Computer Science",
-      //       "fee": 60000,
-      //       "id": "pk0",
-      //       "info": "info@mite.edu.pk",
-      //       "key": 2,
-      //       "logo": "https://www.emaan.edu.pk/wp-content/uploads/2022/01/Eman-Logo-04-01-400x69.png",
-      //       "map": {
-      //         "address": "Karachi",
-      //         "lat": 72.060284,
-      //         "location": "Karachi",
-      //         "long": 34.66865,
-      //         "placeid": ""
-      //       },
-      //       "menu": [
-      //         {
-      //           "key": 0,
-      //           "title": "Major",
-      //           "url": "https://firebasestorage.googleapis.com/v0/b/campusfinder-6c74d.appspot.com/o/university_listing%2Fdownload%20(1).jpeg?alt=media&token=5339f81e-2e01-4460-bc48-d00888d984eb"
-      //         },
-      //         {
-      //           "key": 1,
-      //           "title": "Scholarships",
-      //           "url": "https://firebasestorage.googleapis.com/v0/b/campusfinder-6c74d.appspot.com/o/university_listing%2Fdownload%20(1).jpeg?alt=media&token=5339f81e-2e01-4460-bc48-d00888d984eb"
-      //         },
-      //         {
-      //           "key": 2,
-      //           "title": "Merit Calculator",
-      //           "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
-      //         },
-      //         {
-      //           "key": 3,
-      //           "title": "Closing Merit",
-      //           "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
-      //         },
-      //         {
-      //           "key": 4,
-      //           "title": "Reviews",
-      //           "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
-      //         },
-      //         {
-      //           "key": 5,
-      //           "title": "Status",
-      //           "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
-      //         }
-      //       ],
-      //       "merit": 50,
-      //       "province": "Sindh",
-      //       "ranking": 100000,
-      //       "status": 1,
-      //       "title": "Emaan Institute of Management & Sciences, Karachi",
-      //       "type": "University",
-      //       "url": "https://firebasestorage.googleapis.com/v0/b/campusfinder-6c74d.appspot.com/o/university_listing%2Fdownload%20(1).jpeg?alt=media&token=5339f81e-2e01-4460-bc48-d00888d984eb",
-      //       "web": "http://www.uom.edu.pk/"
-      //     },
-      //     {
-      //       "admissions": 1,
-      //       "city": "Islamabad",
-      //       "contact": "(021) 99231195",
-      //       "country": "Pakistan",
-      //       "deadline": "20-08-2022",
-      //       "degree": "BS (CS)",
-      //       "discipline": "Computer Science",
-      //       "fee": 16000,
-      //       "id": "pk0",
-      //       "info": "info@mite.edu.pk",
-      //       "key": 3,
-      //       "logo": "https://duet.edu.pk/wp-content/uploads/2016/04/duet_logo.png",
-      //       "map": {
-      //         "address": "Karachi",
-      //         "lat": 72.060284,
-      //         "location": "Karachi",
-      //         "long": 34.66865,
-      //         "placeid": ""
-      //       },
-      //       "menu": [
-      //         {
-      //           "key": 0,
-      //           "title": "Major",
-      //           "url": "https://firebasestorage.googleapis.com/v0/b/campusfinder-6c74d.appspot.com/o/university_listing%2Fdownload%20(1).jpeg?alt=media&token=5339f81e-2e01-4460-bc48-d00888d984eb"
-      //         },
-      //         {
-      //           "key": 1,
-      //           "title": "Scholarships",
-      //           "url": "https://firebasestorage.googleapis.com/v0/b/campusfinder-6c74d.appspot.com/o/university_listing%2Fdownload%20(1).jpeg?alt=media&token=5339f81e-2e01-4460-bc48-d00888d984eb"
-      //         },
-      //         {
-      //           "key": 2,
-      //           "title": "Merit Calculator",
-      //           "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
-      //         },
-      //         {
-      //           "key": 3,
-      //           "title": "Closing Merit",
-      //           "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
-      //         },
-      //         {
-      //           "key": 4,
-      //           "title": "Reviews",
-      //           "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
-      //         },
-      //         {
-      //           "key": 5,
-      //           "title": "Status",
-      //           "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
-      //         }
-      //       ],
-      //       "merit": 50,
-      //       "province": "Sindh",
-      //       "ranking": 90,
-      //       "status": 1,
-      //       "title": "Dawood University of Engineering & Technology",
-      //       "type": "University",
-      //       "url": "https://firebasestorage.googleapis.com/v0/b/campusfinder-6c74d.appspot.com/o/university_listing%2Fdownload%20(1).jpeg?alt=media&token=5339f81e-2e01-4460-bc48-d00888d984eb",
-      //       "web": "http://www.uom.edu.pk/"
-      //     },
-      //     {
-      //       "admissions": 0,
-      //       "city": "Lahore",
-      //       "contact": "(021) 34688333",
-      //       "country": "Pakistan",
-      //       "deadline": "15-07-2022",
-      //       "degree": "BS (CS)",
-      //       "discipline": "Computer Science",
-      //       "fee": 40000,
-      //       "id": "pk0",
-      //       "info": "info@mite.edu.pk",
-      //       "key": 4,
-      //       "logo": "https://dadabhoy.edu.pk/wp-content/uploads/2019/05/logo_2.png",
-      //       "map": {
-      //         "address": "Karachi",
-      //         "lat": 72.060284,
-      //         "location": "Karachi",
-      //         "long": 34.66865,
-      //         "placeid": ""
-      //       },
-      //       "menu": [
-      //         {
-      //           "key": 0,
-      //           "title": "Major",
-      //           "url": "https://firebasestorage.googleapis.com/v0/b/campusfinder-6c74d.appspot.com/o/university_listing%2Fdownload%20(1).jpeg?alt=media&token=5339f81e-2e01-4460-bc48-d00888d984eb"
-      //         },
-      //         {
-      //           "key": 1,
-      //           "title": "Scholarships",
-      //           "url": "https://firebasestorage.googleapis.com/v0/b/campusfinder-6c74d.appspot.com/o/university_listing%2Fdownload%20(1).jpeg?alt=media&token=5339f81e-2e01-4460-bc48-d00888d984eb"
-      //         },
-      //         {
-      //           "key": 2,
-      //           "title": "Merit Calculator",
-      //           "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
-      //         },
-      //         {
-      //           "key": 3,
-      //           "title": "Closing Merit",
-      //           "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
-      //         },
-      //         {
-      //           "key": 4,
-      //           "title": "Reviews",
-      //           "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
-      //         },
-      //         {
-      //           "key": 5,
-      //           "title": "Status",
-      //           "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
-      //         }
-      //       ],
-      //       "merit": 50,
-      //       "province": "Sindh",
-      //       "ranking": 120,
-      //       "status": 0,
-      //       "title": "Dadabhoy institute of higher education",
-      //       "type": "University",
-      //       "url": "https://firebasestorage.googleapis.com/v0/b/campusfinder-6c74d.appspot.com/o/university_listing%2Fdownload%20(1).jpeg?alt=media&token=5339f81e-2e01-4460-bc48-d00888d984eb",
-      //       "web": "http://www.uom.edu.pk/"
-      //     },
-      //     {
-      //       "admissions": 0,
-      //       "city": "Karachi",
-      //       "contact": "(021) 111 113 847",
-      //       "country": "Pakistan",
-      //       "deadline": "15-07-2022",
-      //       "degree": "BS (CS)",
-      //       "discipline": "Medical",
-      //       "fee": 134710,
-      //       "id": "pk0",
-      //       "info": "info@mite.edu.pk",
-      //       "key": 5,
-      //       "logo": "https://www.duhs.edu.pk/new/wp-content/uploads/2020/08/logo-400x90.png",
-      //       "map": {
-      //         "address": "Karachi",
-      //         "lat": 72.060284,
-      //         "location": "Karachi",
-      //         "long": 34.66865,
-      //         "placeid": ""
-      //       },
-      //       "menu": [
-      //         {
-      //           "key": 0,
-      //           "title": "Major",
-      //           "url": "https://firebasestorage.googleapis.com/v0/b/campusfinder-6c74d.appspot.com/o/university_listing%2Fdownload%20(1).jpeg?alt=media&token=5339f81e-2e01-4460-bc48-d00888d984eb"
-      //         },
-      //         {
-      //           "key": 1,
-      //           "title": "Scholarships",
-      //           "url": "https://firebasestorage.googleapis.com/v0/b/campusfinder-6c74d.appspot.com/o/university_listing%2Fdownload%20(1).jpeg?alt=media&token=5339f81e-2e01-4460-bc48-d00888d984eb"
-      //         },
-      //         {
-      //           "key": 2,
-      //           "title": "Merit Calculator",
-      //           "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
-      //         },
-      //         {
-      //           "key": 3,
-      //           "title": "Closing Merit",
-      //           "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
-      //         },
-      //         {
-      //           "key": 4,
-      //           "title": "Reviews",
-      //           "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
-      //         },
-      //         {
-      //           "key": 5,
-      //           "title": "Status",
-      //           "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
-      //         }
-      //       ],
-      //       "merit": 60,
-      //       "province": "Sindh",
-      //       "ranking": 23,
-      //       "status": 1,
-      //       "title": "DOW University of Health Sciences",
-      //       "type": "University",
-      //       "url": "https://firebasestorage.googleapis.com/v0/b/campusfinder-6c74d.appspot.com/o/university_listing%2Fdownload%20(1).jpeg?alt=media&token=5339f81e-2e01-4460-bc48-d00888d984eb",
-      //       "web": "http://www.uom.edu.pk/"
-      //     },
-      //     {
-      //       "admissions": 1,
-      //       "city": "Karachi",
-      //       "contact": "(021) 35244851",
-      //       "country": "Pakistan",
-      //       "deadline": "07-08-2022",
-      //       "degree": "BS (CS)",
-      //       "discipline": "Computer Science",
-      //       "fee": 104550,
-      //       "id": "pk0",
-      //       "info": "info@mite.edu.pk",
-      //       "key": 6,
-      //       "logo": "http://www.dsu.edu.pk/wp-content/uploads/2019/03/logo.png",
-      //       "map": {
-      //         "address": "Karachi",
-      //         "lat": 72.060284,
-      //         "location": "Karachi",
-      //         "long": 34.66865,
-      //         "placeid": ""
-      //       },
-      //       "menu": [
-      //         {
-      //           "key": 0,
-      //           "title": "Major",
-      //           "url": "https://firebasestorage.googleapis.com/v0/b/campusfinder-6c74d.appspot.com/o/university_listing%2Fdownload%20(1).jpeg?alt=media&token=5339f81e-2e01-4460-bc48-d00888d984eb"
-      //         },
-      //         {
-      //           "key": 1,
-      //           "title": "Scholarships",
-      //           "url": "https://firebasestorage.googleapis.com/v0/b/campusfinder-6c74d.appspot.com/o/university_listing%2Fdownload%20(1).jpeg?alt=media&token=5339f81e-2e01-4460-bc48-d00888d984eb"
-      //         },
-      //         {
-      //           "key": 2,
-      //           "title": "Merit Calculator",
-      //           "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
-      //         },
-      //         {
-      //           "key": 3,
-      //           "title": "Closing Merit",
-      //           "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
-      //         },
-      //         {
-      //           "key": 4,
-      //           "title": "Reviews",
-      //           "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
-      //         },
-      //         {
-      //           "key": 5,
-      //           "title": "Status",
-      //           "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
-      //         }
-      //       ],
-      //       "merit": 50,
-      //       "province": "Sindh",
-      //       "ranking": 101,
-      //       "status": 0,
-      //       "title": "DHA Suffa University",
-      //       "type": "University",
-      //       "url": "https://firebasestorage.googleapis.com/v0/b/campusfinder-6c74d.appspot.com/o/university_listing%2Fdownload%20(1).jpeg?alt=media&token=5339f81e-2e01-4460-bc48-d00888d984eb",
-      //       "web": "http://www.uom.edu.pk/"
-      //     },
-      //     {
-      //       "admissions": 0,
-      //       "city": "Karachi",
-      //       "contact": "+92 21 34615357-9",
-      //       "country": "Pakistan",
-      //       "deadline": "01-08-2022",
-      //       "degree": "BS (CS)",
-      //       "discipline": "MBA",
-      //       "fee": 51000,
-      //       "id": "pk0",
-      //       "info": "info@mite.edu.pk",
-      //       "key": 7,
-      //       "logo": "https://www.commecsinstitute.edu.pk/Content/Images/Header/Header.jpg",
-      //       "map": {
-      //         "address": "Karachi",
-      //         "lat": 72.060284,
-      //         "location": "Karachi",
-      //         "long": 34.66865,
-      //         "placeid": ""
-      //       },
-      //       "menu": [
-      //         {
-      //           "key": 0,
-      //           "title": "Major",
-      //           "url": "https://firebasestorage.googleapis.com/v0/b/campusfinder-6c74d.appspot.com/o/university_listing%2Fdownload%20(1).jpeg?alt=media&token=5339f81e-2e01-4460-bc48-d00888d984eb"
-      //         },
-      //         {
-      //           "key": 1,
-      //           "title": "Scholarships",
-      //           "url": "https://firebasestorage.googleapis.com/v0/b/campusfinder-6c74d.appspot.com/o/university_listing%2Fdownload%20(1).jpeg?alt=media&token=5339f81e-2e01-4460-bc48-d00888d984eb"
-      //         },
-      //         {
-      //           "key": 2,
-      //           "title": "Merit Calculator",
-      //           "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
-      //         },
-      //         {
-      //           "key": 3,
-      //           "title": "Closing Merit",
-      //           "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
-      //         },
-      //         {
-      //           "key": 4,
-      //           "title": "Reviews",
-      //           "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
-      //         },
-      //         {
-      //           "key": 5,
-      //           "title": "Status",
-      //           "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
-      //         }
-      //       ],
-      //       "merit": 50,
-      //       "province": "Sindh",
-      //       "ranking": 172,
-      //       "status": 1,
-      //       "title": "Commecs Institute of Business & Emerging Sciences",
-      //       "type": "University",
-      //       "url": "https://firebasestorage.googleapis.com/v0/b/campusfinder-6c74d.appspot.com/o/university_listing%2Fdownload%20(1).jpeg?alt=media&token=5339f81e-2e01-4460-bc48-d00888d984eb",
-      //       "web": "http://www.uom.edu.pk/"
-      //     },
-      //     {
-      //       "admissions": 0,
-      //       "city": "Karachi",
-      //       "contact": "(091)2609501",
-      //       "country": "Pakistan",
-      //       "deadline": "01-08-2022",
-      //       "degree": "BS (CS)",
-      //       "discipline": "Computer Science",
-      //       "fee": 160000,
-      //       "id": "pk0",
-      //       "info": "info@mite.edu.pk",
-      //       "key": 8,
-      //       "logo": "https://cityuniversity.edu.pk/wp-content/uploads/2021/06/cusit-logo-white-300x62.png",
-      //       "map": {
-      //         "address": "Peshawar",
-      //         "lat": 72.060284,
-      //         "location": "Peshawar",
-      //         "long": 34.66865,
-      //         "placeid": ""
-      //       },
-      //       "menu": [
-      //         {
-      //           "key": 0,
-      //           "title": "Major",
-      //           "url": "https://firebasestorage.googleapis.com/v0/b/campusfinder-6c74d.appspot.com/o/university_listing%2Fdownload%20(1).jpeg?alt=media&token=5339f81e-2e01-4460-bc48-d00888d984eb"
-      //         },
-      //         {
-      //           "key": 1,
-      //           "title": "Scholarships",
-      //           "url": "https://firebasestorage.googleapis.com/v0/b/campusfinder-6c74d.appspot.com/o/university_listing%2Fdownload%20(1).jpeg?alt=media&token=5339f81e-2e01-4460-bc48-d00888d984eb"
-      //         },
-      //         {
-      //           "key": 2,
-      //           "title": "Merit Calculator",
-      //           "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
-      //         },
-      //         {
-      //           "key": 3,
-      //           "title": "Closing Merit",
-      //           "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
-      //         },
-      //         {
-      //           "key": 4,
-      //           "title": "Reviews",
-      //           "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
-      //         },
-      //         {
-      //           "key": 5,
-      //           "title": "Status",
-      //           "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
-      //         }
-      //       ],
-      //       "merit": 50,
-      //       "province": "Sindh",
-      //       "ranking": 68,
-      //       "status": 0,
-      //       "title": "City University of Science and Information Technology",
-      //       "type": "University",
-      //       "url": "https://firebasestorage.googleapis.com/v0/b/campusfinder-6c74d.appspot.com/o/university_listing%2Fdownload%20(1).jpeg?alt=media&token=5339f81e-2e01-4460-bc48-d00888d984eb",
-      //       "web": "http://www.uom.edu.pk/"
-      //     },
-      //     {
-      //       "admissions": 1,
-      //       "city": "Karachi",
-      //       "contact": "+92-51-111-555-666​​​​​​​​​",
-      //       "country": "Pakistan",
-      //       "deadline": "01-08-2022",
-      //       "degree": "BS (CS)",
-      //       "discipline": "Computer Science",
-      //       "fee": 90000,
-      //       "id": "pk0",
-      //       "info": "info@mite.edu.pk",
-      //       "key": 9,
-      //       "logo": "https://cust.edu.pk/static/uploads/2018/05/CUSTblack.png",
-      //       "map": {
-      //         "address": "Islamabad",
-      //         "lat": 72.060284,
-      //         "location": "Islamabad",
-      //         "long": 34.66865,
-      //         "placeid": ""
-      //       },
-      //       "menu": [
-      //         {
-      //           "key": 0,
-      //           "title": "Major",
-      //           "url": "https://firebasestorage.googleapis.com/v0/b/campusfinder-6c74d.appspot.com/o/university_listing%2Fdownload%20(1).jpeg?alt=media&token=5339f81e-2e01-4460-bc48-d00888d984eb"
-      //         },
-      //         {
-      //           "key": 1,
-      //           "title": "Scholarships",
-      //           "url": "https://firebasestorage.googleapis.com/v0/b/campusfinder-6c74d.appspot.com/o/university_listing%2Fdownload%20(1).jpeg?alt=media&token=5339f81e-2e01-4460-bc48-d00888d984eb"
-      //         },
-      //         {
-      //           "key": 2,
-      //           "title": "Merit Calculator",
-      //           "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
-      //         },
-      //         {
-      //           "key": 3,
-      //           "title": "Closing Merit",
-      //           "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
-      //         },
-      //         {
-      //           "key": 4,
-      //           "title": "Reviews",
-      //           "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
-      //         },
-      //         {
-      //           "key": 5,
-      //           "title": "Status",
-      //           "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
-      //         }
-      //       ],
-      //       "merit": 50,
-      //       "province": "Sindh",
-      //       "ranking": 94,
-      //       "status": 0,
-      //       "title": "Capital University of Science & Technology",
-      //       "type": "University",
-      //       "url": "https://firebasestorage.googleapis.com/v0/b/campusfinder-6c74d.appspot.com/o/university_listing%2Fdownload%20(1).jpeg?alt=media&token=5339f81e-2e01-4460-bc48-d00888d984eb",
-      //       "web": "http://www.uom.edu.pk/"
-      //     }
-      // ]
       
     }
   }
@@ -771,20 +159,13 @@ export default class Universities extends Component {
 
   componentWillUnmount() {
     console.log('componentWillUnmount');
-    // this.focusListener();
   }
 
-  // ApplyFiltersofHomeScreen(){
-  //   // this.setState({activityindicator:false});
-  // }
-
   firstFetchAllRecords(){
-    // this.setState({universities:[]});
-    // this.setState({filtersArray:[]});
     this.setState({activityindicator:true});
     database()
       .ref('/zeeshan_listing/')
-      // .limitToFirst(10)
+      // .limitToFirst(20)
       .on('value', snapshot => {
       this.setState({universities: snapshot.val(), filtersArray: snapshot.val() }, function () {
         this.state.cloneArray = this.state.universities;
@@ -1251,7 +632,7 @@ export default class Universities extends Component {
     
     database()
       .ref('/zeeshan_listing/')
-      // .limitToFirst(10)
+      // .limitToFirst(20)
       .on('value', snapshot => {
       this.setState({universities: snapshot.val(), filtersArray: snapshot.val() }, function () {
         console.log('allFilters setState');
@@ -1265,7 +646,7 @@ export default class Universities extends Component {
     this.setState({activityindicator:true});
     database()
       .ref('/zeeshan_listing/')
-      // .limitToFirst(10)
+      // .limitToFirst(20)
       .on('value', snapshot => {
       this.setState({universities: snapshot.val(), filtersArray: snapshot.val()}, function () {
         this.state.cloneArray = this.state.universities
@@ -1301,7 +682,6 @@ export default class Universities extends Component {
         global.filters[mykey]=50;
         this.showMeritModal();
       }
-
       if(mykey=='fee'){
         this.showFeeModal();
         // console.log('fee');
@@ -1313,14 +693,10 @@ export default class Universities extends Component {
         // global.filters.max='';
         // console.log(global.filters);
       }
-
       console.log(global.filters);
-      
       // this.addNewFiltersIn(mykey);
-
       // newFiltersAdded.discipline='Computer Science';
       // console.log('Button Pressed',newFiltersAdded);
-
       // if(item.title == "Discipline"){
       //   //
       // }else if (item.title == "City") {
@@ -1339,9 +715,9 @@ export default class Universities extends Component {
   }
 
   addNewFiltersIn(item){
-      console.log('item is ==',item);
-      console.log('Clone Array Length is = ',this.state.cloneArray.length);      
-      console.log('global.filters',global.filters);
+      // console.log('item is ==',item);
+      // console.log('Clone Array Length is = ',this.state.cloneArray.length);      
+      // console.log('global.filters',global.filters);
       // global.filters.hasOwnProperty
       this.state.cloneArray = this.state.deepCloneArray
       if(global.filters.hasOwnProperty('discipline')){
@@ -1389,8 +765,8 @@ export default class Universities extends Component {
       }
     // }
       if(global.filters.hasOwnProperty('merit')){
-        // console.log('merit');
-        var afterFilters = this.state.cloneArray.filter((a) => a.merit>=global.filters.merit)
+        console.log('yes merit');
+        var afterFilters = this.state.cloneArray.filter((a) => Number(a.merit)>=Number(global.filters.merit))
         this.state.cloneArray=afterFilters;
         this.state.allFilters[6].status=1;
       }
@@ -1484,8 +860,58 @@ export default class Universities extends Component {
                   </View>
                 )}
               />
+
           </View>
           
+          {this.state.finalFiltersArray.length?
+          <View style={styles.appliedfiltersWrapper}>
+              {/* <TouchableOpacity style={styles.filter} onPress={() => this.props.navigation.navigate("AdvanceFilter")}>
+                <Text>Filters</Text>
+              </TouchableOpacity> */}
+              <FlatList
+                horizontal={true}
+                showsHorizontalScrollIndicator={false}
+                data={this.state.finalFiltersArray}
+                renderItem={({ item }) => (
+                  <View key={item.key} style={styles.singleFilter}>
+                    {/* onPress={() => { this.setState({ show: true }) }} */}
+                    <TouchableOpacity style={styles.appliedfilters} onPress={
+                      () => {
+                      if (item.title == "Clear All") {
+                        this.clearAllFilters(item);
+                      }
+                    }
+                    }>
+                      <Text style={{color:'white', fontSize:14, fontWeight:'bold', marginRight:10}}>
+                        {/* {item.title.charAt(0).toUpperCase() + item.title.slice(1)}: {item.value} */}
+                        {render_txt(item)}
+                      </Text>
+                    </TouchableOpacity>
+                    
+                    {(item.title=="Clear All")?(null):
+                    <TouchableOpacity style={{
+                      position: 'absolute',
+                      right:0,
+                      }}
+                      onPress={() => {
+                          // console.log('Console ',item.title);
+                          this.deleteFilters(item);
+                        }
+                      }
+                      >
+                    <Image
+                      style={{width: 22, height: 22}}
+                      source={require("../../../assets/images/cross.png")}
+                    />
+                </TouchableOpacity>
+                    }
+                    
+                  </View>
+                )}
+              />
+          </View>
+        :(null)}
+
             {this.state.activityindicator?
             (<View style={[styles.horizontal]}>
               <ActivityIndicator size="large" />
@@ -1552,7 +978,7 @@ export default class Universities extends Component {
                       }
                     }
                     }>
-                      <Text style={{color:'white', fontSize:16, fontWeight:'bold', marginRight:10}}>
+                      <Text style={{color:'white', fontSize:14, fontWeight:'bold', marginRight:10}}>
                         {/* {item.title.charAt(0).toUpperCase() + item.title.slice(1)}: {item.value} */}
                         {render_txt(item)}
                       </Text>
@@ -1560,10 +986,6 @@ export default class Universities extends Component {
                     
                     {(item.title=="Clear All")?(null):
                     <TouchableOpacity style={{
-                      // ...StyleSheet.absoluteFillObject,
-                      // alignSelf: 'flex-end',
-                      // marginTop: -5,
-                      // position: 'absolute',
                       position: 'absolute',
                       right:0,
                       }}
@@ -1643,7 +1065,6 @@ export default class Universities extends Component {
               // ItemSeparatorComponent={() => <Separator />}
               />
             </View>
-
             <FeeModal show={this.state.showFeeModal} update={this.updatesState} sortFilter={this.SortByFee} />
             <CityModal show={this.state.showCityModal} update={this.updatesState} sortCity={this.SortByCity} />
             <MeritModal show={this.state.showMeritModal} update={this.updatesState} sortFilter={this.SortByMerit} />
@@ -1651,7 +1072,6 @@ export default class Universities extends Component {
             <DisciplineModal show={this.state.showDisciplineModal} update={this.updatesState} sortFilter={this.SortByDiscipline} />
             <AdmissionsModal show={this.state.showAdmissionsModal} update={this.updatesState} sortFilter={this.SortByAdmissions} />
             <StatusModal show={this.state.showStatusModal} update={this.updatesState} sortFilter={this.SortByStatus} />
-
           </SafeAreaView>
         )
       }

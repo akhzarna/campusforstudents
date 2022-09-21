@@ -106,7 +106,7 @@ export default class CityModal extends Component {
                                     <Text style={style.heading} >Search City</Text>
                                     <TouchableOpacity onPress={this.props.update}
                                         style={style.cancelImgStyle}>
-                                        <Image style={style.cancelImg} source={require("../../../assets/images/cancel.png")} />
+                                        <Image style={style.cancelImg} source={require("../../../assets/images/cancelcross.png")} />
                                     </TouchableOpacity>
                                 </View>
                                 {/* <Text style={style.currentCity}>Current:Lahore</Text> */}

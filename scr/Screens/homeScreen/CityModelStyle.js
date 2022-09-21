@@ -1,6 +1,5 @@
 import { StyleSheet } from "react-native"
 
-
 export const style = StyleSheet.create({
     container: {
         backgroundColor: "#000000aa",
@@ -14,19 +13,21 @@ export const style = StyleSheet.create({
         marginLeft:10,
     },
     title:{
-        flex:1, flexDirection:"row" , alignItems:"center" , justifyContent:"space-between"
+        flex:1, 
+        flexDirection:"row", 
+        alignItems:"center", 
+        justifyContent:"space-between"
+    },
+    cancelImgStyle:{
+        alignItems:'flex-end'
     },
     cancelImg:{
         height:30, 
         width:30,
         margin:5, 
         backgroundColor:"#F5F5F5",
+        // backgroundColor:"green",
         borderRadius:50, 
-    },
-    cancelImgStyle:{
-        margin:5,
-        width:40,
-        height:40,
     },
     modelContainer: {
         backgroundColor: "#ffffff",
@@ -45,14 +46,12 @@ export const style = StyleSheet.create({
         fontSize: 19,
         fontSize:22,
         fontWeight:"bold",
-        
     },
     currentCity: {
         marginLeft: 10,
         marginVertical:2,
-
-        color: "green"
-        ,fontSize:18
+        color: "green",
+        fontSize:18
     },
     searchBar: {
         width: "90%",
@@ -62,7 +61,6 @@ export const style = StyleSheet.create({
         borderRadius: 20,
         marginBottom:5
     },
-
     popularCities:{
         flex:0.32,
         justifyContent:"center",
@@ -76,9 +74,9 @@ export const style = StyleSheet.create({
         borderRadius:50,
     },
     cityNames:{
-    marginTop:6,
-    color:"black",
-    fontSize:16,
+        marginTop:6,
+        color:"black",
+        fontSize:16,
     },
     cityNameContainer:{
         flex:1.0,
