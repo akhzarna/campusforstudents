@@ -3,9 +3,7 @@ import { View, TextInput,ReadMore, TouchableOpacity, Text, Image, ScrollView, Im
 import React, { Component } from 'react'
 import { style } from './HomeStyle';
 import CityModal from './CityModal';
-import database from '@react-native-firebase/database';
-import Universities from './Universities';
-import firestore from "@react-native-firebase/firestore"
+
 import styles from './UniversitiesStyle';
 import { ActivityIndicator } from 'react-native';
 
@@ -34,6 +32,253 @@ const storage = new Storage({
     // we'll talk about the details later.
   }
 });
+
+var dummy = [
+    {
+      "admissions": 1,
+      "city": "Islamabad",
+      "contact": "(051) 9252860",
+      "country": "Pakistan",
+      "deadline": "18-06-2022",
+      "degree": "MBBS",
+      "discipline": "Medical",
+      "fee": 42620,
+      "id": "pk0",
+      "info": "info@mite.edu.pk",
+      "key": 0,
+      "logo": "https://www.fuuastisb.edu.pk/images/logonew.png",
+      "map": {
+        "address": " M3XC+79J, Kuri Model Village, Mozah Mohrian, 5B, near Bahria Enclave Road, G 7/1 G-7, Islamabad, Islamabad Capital Territory",
+        "lat": 72.060284,
+        "location": "Islamabad",
+        "long": 34.66865,
+        "placeid": ""
+      },
+      "menu": [
+        {
+          "key": 0,
+          "title": "Major",
+          "url": "https://firebasestorage.googleapis.com/v0/b/campusfinder-6c74d.appspot.com/o/university_listing%2Fdownload%20(1).jpeg?alt=media&token=5339f81e-2e01-4460-bc48-d00888d984eb"
+        },
+        {
+          "key": 1,
+          "title": "Scholarships",
+          "url": "https://firebasestorage.googleapis.com/v0/b/campusfinder-6c74d.appspot.com/o/university_listing%2Fdownload%20(1).jpeg?alt=media&token=5339f81e-2e01-4460-bc48-d00888d984eb"
+        },
+        {
+          "key": 2,
+          "title": "Merit Calculator",
+          "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+        },
+        {
+          "key": 3,
+          "title": "Closing Merit",
+          "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+        },
+        {
+          "key": 4,
+          "title": "Reviews",
+          "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+        },
+        {
+          "key": 5,
+          "title": "Status",
+          "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+        }
+      ],
+      "merit": 92,
+      "province": "Punjab",
+      "ranking": 47,
+      "status": 1,
+      "title": "Federal Urdu University of Arts, Sciences & Technology, Islamabad",
+      "type": "University",
+      "url": "https://firebasestorage.googleapis.com/v0/b/campusfinder-6c74d.appspot.com/o/university_listing%2Fdownload%20(1).jpeg?alt=media&token=5339f81e-2e01-4460-bc48-d00888d984eb",
+      "web": "http://www.uom.edu.pk/"
+    },
+    {
+      "admissions": 1,
+      "city": "Lahore",
+      "contact": "(042) 99200572",
+      "country": "Pakistan",
+      "deadline": "18-06-2022",
+      "degree": "MBBS",
+      "discipline": "Medical",
+      "fee": 42620,
+      "id": "pk0",
+      "info": "info@mite.edu.pk",
+      "key": 1,
+      "logo": "https://fjmu.punjab.gov.pk/sites/fjmu.punjab.gov.pk/themes/bootstrap/logo.png",
+      "map": {
+        "address": "Queen's Road, Mozang Chungi, Lahore, Punjab 54000",
+        "lat": 72.060284,
+        "location": "Lahore",
+        "long": 34.66865,
+        "placeid": ""
+      },
+      "menu": [
+        {
+          "key": 0,
+          "title": "Major",
+          "url": "https://firebasestorage.googleapis.com/v0/b/campusfinder-6c74d.appspot.com/o/university_listing%2Fdownload%20(1).jpeg?alt=media&token=5339f81e-2e01-4460-bc48-d00888d984eb"
+        },
+        {
+          "key": 1,
+          "title": "Scholarships",
+          "url": "https://firebasestorage.googleapis.com/v0/b/campusfinder-6c74d.appspot.com/o/university_listing%2Fdownload%20(1).jpeg?alt=media&token=5339f81e-2e01-4460-bc48-d00888d984eb"
+        },
+        {
+          "key": 2,
+          "title": "Merit Calculator",
+          "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+        },
+        {
+          "key": 3,
+          "title": "Closing Merit",
+          "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+        },
+        {
+          "key": 4,
+          "title": "Reviews",
+          "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+        },
+        {
+          "key": 5,
+          "title": "Status",
+          "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+        }
+      ],
+      "merit": 92,
+      "province": "Punjab",
+      "ranking": 82,
+      "status": 1,
+      "title": "Fatima Jinnah Medical University, Lahore",
+      "type": "University",
+      "url": "https://firebasestorage.googleapis.com/v0/b/campusfinder-6c74d.appspot.com/o/university_listing%2Fdownload%20(1).jpeg?alt=media&token=5339f81e-2e01-4460-bc48-d00888d984eb",
+      "web": "http://www.uom.edu.pk/"
+    },
+    {
+      "admissions": 0,
+      "city": "Karachi",
+      "contact": "(021) 99231195",
+      "country": "Pakistan",
+      "deadline": "18-06-2022",
+      "degree": "BS (CS)",
+      "discipline": "Computer Science",
+      "fee": 60000,
+      "id": "pk0",
+      "info": "info@mite.edu.pk",
+      "key": 2,
+      "logo": "https://www.emaan.edu.pk/wp-content/uploads/2022/01/Eman-Logo-04-01-400x69.png",
+      "map": {
+        "address": "Plot # A-2, Sector 28 Suparco Rd, Gulzar-e-Hijri Bilawal Shah Noorani Goth Gulzar E Hijri Scheme 33, Karachi, Sindh 75330",
+        "lat": 72.060284,
+        "location": "Karachi",
+        "long": 34.66865,
+        "placeid": ""
+      },
+      "menu": [
+        {
+          "key": 0,
+          "title": "Major",
+          "url": "https://firebasestorage.googleapis.com/v0/b/campusfinder-6c74d.appspot.com/o/university_listing%2Fdownload%20(1).jpeg?alt=media&token=5339f81e-2e01-4460-bc48-d00888d984eb"
+        },
+        {
+          "key": 1,
+          "title": "Scholarships",
+          "url": "https://firebasestorage.googleapis.com/v0/b/campusfinder-6c74d.appspot.com/o/university_listing%2Fdownload%20(1).jpeg?alt=media&token=5339f81e-2e01-4460-bc48-d00888d984eb"
+        },
+        {
+          "key": 2,
+          "title": "Merit Calculator",
+          "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+        },
+        {
+          "key": 3,
+          "title": "Closing Merit",
+          "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+        },
+        {
+          "key": 4,
+          "title": "Reviews",
+          "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+        },
+        {
+          "key": 5,
+          "title": "Status",
+          "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+        }
+      ],
+      "merit": 50,
+      "province": "Sindh",
+      "ranking": 100000,
+      "status": 1,
+      "title": "Emaan Institute of Management & Sciences, Karachi",
+      "type": "University",
+      "url": "https://firebasestorage.googleapis.com/v0/b/campusfinder-6c74d.appspot.com/o/university_listing%2Fdownload%20(1).jpeg?alt=media&token=5339f81e-2e01-4460-bc48-d00888d984eb",
+      "web": "http://www.uom.edu.pk/"
+    },
+    {
+      "admissions": 1,
+      "city": "Karachi",
+      "contact": "(021) 99231195",
+      "country": "Pakistan",
+      "deadline": "20-08-2022",
+      "degree": "BS (CS)",
+      "discipline": "Computer Science",
+      "fee": 16000,
+      "id": "pk0",
+      "info": "info@mite.edu.pk",
+      "key": 3,
+      "logo": "https://duet.edu.pk/wp-content/uploads/2016/04/duet_logo.png",
+      "map": {
+        "address": "V2HX+F34, New M. A. Jinnah Rd, Jamshed Quarters Muslimabad, Karachi, Karachi City, Sindh 74800",
+        "lat": 72.060284,
+        "location": "Karachi",
+        "long": 34.66865,
+        "placeid": ""
+      },
+      "menu": [
+        {
+          "key": 0,
+          "title": "Major",
+          "url": "https://firebasestorage.googleapis.com/v0/b/campusfinder-6c74d.appspot.com/o/university_listing%2Fdownload%20(1).jpeg?alt=media&token=5339f81e-2e01-4460-bc48-d00888d984eb"
+        },
+        {
+          "key": 1,
+          "title": "Scholarships",
+          "url": "https://firebasestorage.googleapis.com/v0/b/campusfinder-6c74d.appspot.com/o/university_listing%2Fdownload%20(1).jpeg?alt=media&token=5339f81e-2e01-4460-bc48-d00888d984eb"
+        },
+        {
+          "key": 2,
+          "title": "Merit Calculator",
+          "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+        },
+        {
+          "key": 3,
+          "title": "Closing Merit",
+          "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+        },
+        {
+          "key": 4,
+          "title": "Reviews",
+          "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+        },
+        {
+          "key": 5,
+          "title": "Status",
+          "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+        }
+      ],
+      "merit": 50,
+      "province": "Sindh",
+      "ranking": 90,
+      "status": 1,
+      "title": "Dawood University Of Engineering & Technology Karachi",
+      "type": "University",
+      "url": "https://firebasestorage.googleapis.com/v0/b/campusfinder-6c74d.appspot.com/o/university_listing%2Fdownload%20(1).jpeg?alt=media&token=5339f81e-2e01-4460-bc48-d00888d984eb",
+      "web": "http://www.uom.edu.pk/"
+    }
+]
 
 export default class Home extends Component {
   constructor(props) {
@@ -84,26 +329,29 @@ export default class Home extends Component {
   });
 
     this.setState({activityindicator:true});
-    database()
-    .ref('/university_recommendations/')
-    .on('value', snapshot => {
-      console.log('User data: ', snapshot.val().length);
-      this.setState({ universities: snapshot.val() });
-      this.setState({ filter: this.state.universities });
-      this.setState({activityindicator:false});
-    });
     
-    
-    var newArr = [];
-    firestore()
-      .collection('universities').get().then(querySnapshot => {
-        querySnapshot.forEach(documentSnapshot => {
-          newArr.push(documentSnapshot.data())
-        })
-      }).then(testing => {
-        this.setState({ firestoreData: newArr });
-        // console.log(this.state.firestoreData);
+   
+
+      this.setState({ 
+        universities: dummy, 
+        filter: dummy, 
+        activityindicator:false 
       })
+   
+    
+    
+    // Firestore Code
+    // var newArr = [];
+    // firestore()
+    //   .collection('universities').get().then(querySnapshot => {
+    //     querySnapshot.forEach(documentSnapshot => {
+    //       newArr.push(documentSnapshot.data())
+    //     })
+    //   }).then(testing => {
+    //     this.setState({ firestoreData: newArr });
+    //     // console.log(this.state.firestoreData);
+    //   })
+
   }
   
 

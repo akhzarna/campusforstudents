@@ -11,11 +11,1902 @@ import AdmissionsModal from "./AdmissionsModal";
 import StatusModal from "./StatusModal";
 import Global from "./Global.js";
 
-import database from '@react-native-firebase/database';
-// import { firebase } from '@react-native-firebase/database';
-import firestore from "@react-native-firebase/firestore"
-import { DocumentSnapshot, QuerySnapshot } from '@firebase/firestore';
 import { Linking } from 'react-native';
+
+var dummy = [
+  {
+    "admissions": 1,
+    "city": "Islamabad",
+    "contact": "(051) 9252860",
+    "country": "Pakistan",
+    "deadline": "18-06-2022",
+    "degree": "MBBS",
+    "discipline": "Medical",
+    "fee": 42620,
+    "id": "pk0",
+    "info": "info@mite.edu.pk",
+    "key": 0,
+    "logo": "https://www.fuuastisb.edu.pk/images/logonew.png",
+    "map": {
+      "address": " M3XC+79J, Kuri Model Village, Mozah Mohrian, 5B, near Bahria Enclave Road, G 7/1 G-7, Islamabad, Islamabad Capital Territory",
+      "lat": 72.060284,
+      "location": "Islamabad",
+      "long": 34.66865,
+      "placeid": ""
+    },
+    "menu": [
+      {
+        "key": 0,
+        "title": "Major",
+        "url": "https://firebasestorage.googleapis.com/v0/b/campusfinder-6c74d.appspot.com/o/university_listing%2Fdownload%20(1).jpeg?alt=media&token=5339f81e-2e01-4460-bc48-d00888d984eb"
+      },
+      {
+        "key": 1,
+        "title": "Scholarships",
+        "url": "https://firebasestorage.googleapis.com/v0/b/campusfinder-6c74d.appspot.com/o/university_listing%2Fdownload%20(1).jpeg?alt=media&token=5339f81e-2e01-4460-bc48-d00888d984eb"
+      },
+      {
+        "key": 2,
+        "title": "Merit Calculator",
+        "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+      },
+      {
+        "key": 3,
+        "title": "Closing Merit",
+        "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+      },
+      {
+        "key": 4,
+        "title": "Reviews",
+        "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+      },
+      {
+        "key": 5,
+        "title": "Status",
+        "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+      }
+    ],
+    "merit": 92,
+    "province": "Punjab",
+    "ranking": 47,
+    "status": 1,
+    "title": "Federal Urdu University of Arts, Sciences & Technology, Islamabad",
+    "type": "University",
+    "url": "https://firebasestorage.googleapis.com/v0/b/campusfinder-6c74d.appspot.com/o/university_listing%2Fdownload%20(1).jpeg?alt=media&token=5339f81e-2e01-4460-bc48-d00888d984eb",
+    "web": "http://www.uom.edu.pk/"
+  },
+  {
+    "admissions": 1,
+    "city": "Lahore",
+    "contact": "(042) 99200572",
+    "country": "Pakistan",
+    "deadline": "18-06-2022",
+    "degree": "MBBS",
+    "discipline": "Medical",
+    "fee": 42620,
+    "id": "pk0",
+    "info": "info@mite.edu.pk",
+    "key": 1,
+    "logo": "https://fjmu.punjab.gov.pk/sites/fjmu.punjab.gov.pk/themes/bootstrap/logo.png",
+    "map": {
+      "address": "Queen's Road, Mozang Chungi, Lahore, Punjab 54000",
+      "lat": 72.060284,
+      "location": "Lahore",
+      "long": 34.66865,
+      "placeid": ""
+    },
+    "menu": [
+      {
+        "key": 0,
+        "title": "Major",
+        "url": "https://firebasestorage.googleapis.com/v0/b/campusfinder-6c74d.appspot.com/o/university_listing%2Fdownload%20(1).jpeg?alt=media&token=5339f81e-2e01-4460-bc48-d00888d984eb"
+      },
+      {
+        "key": 1,
+        "title": "Scholarships",
+        "url": "https://firebasestorage.googleapis.com/v0/b/campusfinder-6c74d.appspot.com/o/university_listing%2Fdownload%20(1).jpeg?alt=media&token=5339f81e-2e01-4460-bc48-d00888d984eb"
+      },
+      {
+        "key": 2,
+        "title": "Merit Calculator",
+        "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+      },
+      {
+        "key": 3,
+        "title": "Closing Merit",
+        "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+      },
+      {
+        "key": 4,
+        "title": "Reviews",
+        "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+      },
+      {
+        "key": 5,
+        "title": "Status",
+        "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+      }
+    ],
+    "merit": 92,
+    "province": "Punjab",
+    "ranking": 82,
+    "status": 1,
+    "title": "Fatima Jinnah Medical University, Lahore",
+    "type": "University",
+    "url": "https://firebasestorage.googleapis.com/v0/b/campusfinder-6c74d.appspot.com/o/university_listing%2Fdownload%20(1).jpeg?alt=media&token=5339f81e-2e01-4460-bc48-d00888d984eb",
+    "web": "http://www.uom.edu.pk/"
+  },
+  {
+    "admissions": 0,
+    "city": "Karachi",
+    "contact": "(021) 99231195",
+    "country": "Pakistan",
+    "deadline": "18-06-2022",
+    "degree": "BS (CS)",
+    "discipline": "Computer Science",
+    "fee": 60000,
+    "id": "pk0",
+    "info": "info@mite.edu.pk",
+    "key": 2,
+    "logo": "https://www.emaan.edu.pk/wp-content/uploads/2022/01/Eman-Logo-04-01-400x69.png",
+    "map": {
+      "address": "Plot # A-2, Sector 28 Suparco Rd, Gulzar-e-Hijri Bilawal Shah Noorani Goth Gulzar E Hijri Scheme 33, Karachi, Sindh 75330",
+      "lat": 72.060284,
+      "location": "Karachi",
+      "long": 34.66865,
+      "placeid": ""
+    },
+    "menu": [
+      {
+        "key": 0,
+        "title": "Major",
+        "url": "https://firebasestorage.googleapis.com/v0/b/campusfinder-6c74d.appspot.com/o/university_listing%2Fdownload%20(1).jpeg?alt=media&token=5339f81e-2e01-4460-bc48-d00888d984eb"
+      },
+      {
+        "key": 1,
+        "title": "Scholarships",
+        "url": "https://firebasestorage.googleapis.com/v0/b/campusfinder-6c74d.appspot.com/o/university_listing%2Fdownload%20(1).jpeg?alt=media&token=5339f81e-2e01-4460-bc48-d00888d984eb"
+      },
+      {
+        "key": 2,
+        "title": "Merit Calculator",
+        "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+      },
+      {
+        "key": 3,
+        "title": "Closing Merit",
+        "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+      },
+      {
+        "key": 4,
+        "title": "Reviews",
+        "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+      },
+      {
+        "key": 5,
+        "title": "Status",
+        "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+      }
+    ],
+    "merit": 50,
+    "province": "Sindh",
+    "ranking": 100000,
+    "status": 1,
+    "title": "Emaan Institute of Management & Sciences, Karachi",
+    "type": "University",
+    "url": "https://firebasestorage.googleapis.com/v0/b/campusfinder-6c74d.appspot.com/o/university_listing%2Fdownload%20(1).jpeg?alt=media&token=5339f81e-2e01-4460-bc48-d00888d984eb",
+    "web": "http://www.uom.edu.pk/"
+  },
+  {
+    "admissions": 1,
+    "city": "Karachi",
+    "contact": "(021) 99231195",
+    "country": "Pakistan",
+    "deadline": "20-08-2022",
+    "degree": "BS (CS)",
+    "discipline": "Computer Science",
+    "fee": 16000,
+    "id": "pk0",
+    "info": "info@mite.edu.pk",
+    "key": 3,
+    "logo": "https://duet.edu.pk/wp-content/uploads/2016/04/duet_logo.png",
+    "map": {
+      "address": "V2HX+F34, New M. A. Jinnah Rd, Jamshed Quarters Muslimabad, Karachi, Karachi City, Sindh 74800",
+      "lat": 72.060284,
+      "location": "Karachi",
+      "long": 34.66865,
+      "placeid": ""
+    },
+    "menu": [
+      {
+        "key": 0,
+        "title": "Major",
+        "url": "https://firebasestorage.googleapis.com/v0/b/campusfinder-6c74d.appspot.com/o/university_listing%2Fdownload%20(1).jpeg?alt=media&token=5339f81e-2e01-4460-bc48-d00888d984eb"
+      },
+      {
+        "key": 1,
+        "title": "Scholarships",
+        "url": "https://firebasestorage.googleapis.com/v0/b/campusfinder-6c74d.appspot.com/o/university_listing%2Fdownload%20(1).jpeg?alt=media&token=5339f81e-2e01-4460-bc48-d00888d984eb"
+      },
+      {
+        "key": 2,
+        "title": "Merit Calculator",
+        "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+      },
+      {
+        "key": 3,
+        "title": "Closing Merit",
+        "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+      },
+      {
+        "key": 4,
+        "title": "Reviews",
+        "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+      },
+      {
+        "key": 5,
+        "title": "Status",
+        "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+      }
+    ],
+    "merit": 50,
+    "province": "Sindh",
+    "ranking": 90,
+    "status": 1,
+    "title": "Dawood University Of Engineering & Technology Karachi",
+    "type": "University",
+    "url": "https://firebasestorage.googleapis.com/v0/b/campusfinder-6c74d.appspot.com/o/university_listing%2Fdownload%20(1).jpeg?alt=media&token=5339f81e-2e01-4460-bc48-d00888d984eb",
+    "web": "http://www.uom.edu.pk/"
+  },
+  {
+    "admissions": 0,
+    "city": "Karachi",
+    "contact": "(021) 34688333",
+    "country": "Pakistan",
+    "deadline": "15-07-2022",
+    "degree": "BS (CS)",
+    "discipline": "Computer Science",
+    "fee": 40000,
+    "id": "pk0",
+    "info": "info@mite.edu.pk",
+    "key": 4,
+    "logo": "https://dadabhoy.edu.pk/wp-content/uploads/2019/05/logo_2.png",
+    "map": {
+      "address": "MVRF+J2X, Bunder Rd, Sukkur, Sindh",
+      "lat": 72.060284,
+      "location": "Karachi",
+      "long": 34.66865,
+      "placeid": ""
+    },
+    "menu": [
+      {
+        "key": 0,
+        "title": "Major",
+        "url": "https://firebasestorage.googleapis.com/v0/b/campusfinder-6c74d.appspot.com/o/university_listing%2Fdownload%20(1).jpeg?alt=media&token=5339f81e-2e01-4460-bc48-d00888d984eb"
+      },
+      {
+        "key": 1,
+        "title": "Scholarships",
+        "url": "https://firebasestorage.googleapis.com/v0/b/campusfinder-6c74d.appspot.com/o/university_listing%2Fdownload%20(1).jpeg?alt=media&token=5339f81e-2e01-4460-bc48-d00888d984eb"
+      },
+      {
+        "key": 2,
+        "title": "Merit Calculator",
+        "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+      },
+      {
+        "key": 3,
+        "title": "Closing Merit",
+        "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+      },
+      {
+        "key": 4,
+        "title": "Reviews",
+        "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+      },
+      {
+        "key": 5,
+        "title": "Status",
+        "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+      }
+    ],
+    "merit": 50,
+    "province": "Sindh",
+    "ranking": 120,
+    "status": 0,
+    "title": "Dadabhoy Institute of Higher Education",
+    "type": "University",
+    "url": "https://firebasestorage.googleapis.com/v0/b/campusfinder-6c74d.appspot.com/o/university_listing%2Fdownload%20(1).jpeg?alt=media&token=5339f81e-2e01-4460-bc48-d00888d984eb",
+    "web": "http://www.uom.edu.pk/"
+  },
+  {
+    "admissions": 0,
+    "city": "Karachi",
+    "contact": "(021) 111 113 847",
+    "country": "Pakistan",
+    "deadline": "15-07-2022",
+    "degree": "BS (CS)",
+    "discipline": "Medical",
+    "fee": 134710,
+    "id": "pk0",
+    "info": "info@mite.edu.pk",
+    "key": 5,
+    "logo": "https://www.duhs.edu.pk/new/wp-content/uploads/2020/08/logo-400x90.png",
+    "map": {
+      "address": "Mission Rd, New Labour Colony Nanakwara, Karachi, Karachi City, Sindh 74200",
+      "lat": 72.060284,
+      "location": "Karachi",
+      "long": 34.66865,
+      "placeid": ""
+    },
+    "menu": [
+      {
+        "key": 0,
+        "title": "Major",
+        "url": "https://firebasestorage.googleapis.com/v0/b/campusfinder-6c74d.appspot.com/o/university_listing%2Fdownload%20(1).jpeg?alt=media&token=5339f81e-2e01-4460-bc48-d00888d984eb"
+      },
+      {
+        "key": 1,
+        "title": "Scholarships",
+        "url": "https://firebasestorage.googleapis.com/v0/b/campusfinder-6c74d.appspot.com/o/university_listing%2Fdownload%20(1).jpeg?alt=media&token=5339f81e-2e01-4460-bc48-d00888d984eb"
+      },
+      {
+        "key": 2,
+        "title": "Merit Calculator",
+        "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+      },
+      {
+        "key": 3,
+        "title": "Closing Merit",
+        "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+      },
+      {
+        "key": 4,
+        "title": "Reviews",
+        "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+      },
+      {
+        "key": 5,
+        "title": "Status",
+        "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+      }
+    ],
+    "merit": 60,
+    "province": "Sindh",
+    "ranking": 23,
+    "status": 1,
+    "title": "Dow University of Health Sciences (DUHS)",
+    "type": "University",
+    "url": "https://firebasestorage.googleapis.com/v0/b/campusfinder-6c74d.appspot.com/o/university_listing%2Fdownload%20(1).jpeg?alt=media&token=5339f81e-2e01-4460-bc48-d00888d984eb",
+    "web": "http://www.uom.edu.pk/"
+  },
+  {
+    "admissions": 1,
+    "city": "Karachi",
+    "contact": "(021) 35244851",
+    "country": "Pakistan",
+    "deadline": "07-08-2022",
+    "degree": "BS (CS)",
+    "discipline": "Computer Science",
+    "fee": 104550,
+    "id": "pk0",
+    "info": "info@mite.edu.pk",
+    "key": 6,
+    "logo": "http://www.dsu.edu.pk/wp-content/uploads/2019/03/logo.png",
+    "map": {
+      "address": "Ph-VII، DG-78, Off Khayaban-e-Tufail، Ext، Phase 7 Ext Karachi, Karachi City, Sindh 75500",
+      "lat": 72.060284,
+      "location": "Karachi",
+      "long": 34.66865,
+      "placeid": ""
+    },
+    "menu": [
+      {
+        "key": 0,
+        "title": "Major",
+        "url": "https://firebasestorage.googleapis.com/v0/b/campusfinder-6c74d.appspot.com/o/university_listing%2Fdownload%20(1).jpeg?alt=media&token=5339f81e-2e01-4460-bc48-d00888d984eb"
+      },
+      {
+        "key": 1,
+        "title": "Scholarships",
+        "url": "https://firebasestorage.googleapis.com/v0/b/campusfinder-6c74d.appspot.com/o/university_listing%2Fdownload%20(1).jpeg?alt=media&token=5339f81e-2e01-4460-bc48-d00888d984eb"
+      },
+      {
+        "key": 2,
+        "title": "Merit Calculator",
+        "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+      },
+      {
+        "key": 3,
+        "title": "Closing Merit",
+        "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+      },
+      {
+        "key": 4,
+        "title": "Reviews",
+        "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+      },
+      {
+        "key": 5,
+        "title": "Status",
+        "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+      }
+    ],
+    "merit": 50,
+    "province": "Sindh",
+    "ranking": 101,
+    "status": 0,
+    "title": "DHA Suffa University",
+    "type": "University",
+    "url": "https://firebasestorage.googleapis.com/v0/b/campusfinder-6c74d.appspot.com/o/university_listing%2Fdownload%20(1).jpeg?alt=media&token=5339f81e-2e01-4460-bc48-d00888d984eb",
+    "web": "http://www.uom.edu.pk/"
+  },
+  {
+    "admissions": 0,
+    "city": "Karachi",
+    "contact": "+92 21 34615357-9",
+    "country": "Pakistan",
+    "deadline": "01-08-2022",
+    "degree": "BS (CS)",
+    "discipline": "MBA",
+    "fee": 51000,
+    "id": "pk0",
+    "info": "info@mite.edu.pk",
+    "key": 7,
+    "logo": "https://www.commecsinstitute.edu.pk/Content/Images/Header/Header.jpg",
+    "map": {
+      "address": "Gulistan-e-Jauhar - Malir Cantt Rd, Block 13 Gulistan-e-Johar, Karachi, Karachi City, Sindh 75420",
+      "lat": 72.060284,
+      "location": "Karachi",
+      "long": 34.66865,
+      "placeid": ""
+    },
+    "menu": [
+      {
+        "key": 0,
+        "title": "Major",
+        "url": "https://firebasestorage.googleapis.com/v0/b/campusfinder-6c74d.appspot.com/o/university_listing%2Fdownload%20(1).jpeg?alt=media&token=5339f81e-2e01-4460-bc48-d00888d984eb"
+      },
+      {
+        "key": 1,
+        "title": "Scholarships",
+        "url": "https://firebasestorage.googleapis.com/v0/b/campusfinder-6c74d.appspot.com/o/university_listing%2Fdownload%20(1).jpeg?alt=media&token=5339f81e-2e01-4460-bc48-d00888d984eb"
+      },
+      {
+        "key": 2,
+        "title": "Merit Calculator",
+        "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+      },
+      {
+        "key": 3,
+        "title": "Closing Merit",
+        "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+      },
+      {
+        "key": 4,
+        "title": "Reviews",
+        "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+      },
+      {
+        "key": 5,
+        "title": "Status",
+        "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+      }
+    ],
+    "merit": 50,
+    "province": "Sindh",
+    "ranking": 172,
+    "status": 1,
+    "title": "Commecs Institute of Business & Emerging Sciences",
+    "type": "University",
+    "url": "https://firebasestorage.googleapis.com/v0/b/campusfinder-6c74d.appspot.com/o/university_listing%2Fdownload%20(1).jpeg?alt=media&token=5339f81e-2e01-4460-bc48-d00888d984eb",
+    "web": "http://www.uom.edu.pk/"
+  },
+  {
+    "admissions": 0,
+    "city": "Peshawar",
+    "contact": "(091)2609501",
+    "country": "Pakistan",
+    "deadline": "01-08-2022",
+    "degree": "BS (CS)",
+    "discipline": "Computer Science",
+    "fee": 160000,
+    "id": "pk0",
+    "info": "info@mite.edu.pk",
+    "key": 8,
+    "logo": "https://cityuniversity.edu.pk/wp-content/uploads/2021/06/cusit-logo-white-300x62.png",
+    "map": {
+      "address": "Dalazak Rd, Pakha Ghulam, Peshawar, Khyber Pakhtunkhwa",
+      "lat": 72.060284,
+      "location": "Peshawar",
+      "long": 34.66865,
+      "placeid": ""
+    },
+    "menu": [
+      {
+        "key": 0,
+        "title": "Major",
+        "url": "https://firebasestorage.googleapis.com/v0/b/campusfinder-6c74d.appspot.com/o/university_listing%2Fdownload%20(1).jpeg?alt=media&token=5339f81e-2e01-4460-bc48-d00888d984eb"
+      },
+      {
+        "key": 1,
+        "title": "Scholarships",
+        "url": "https://firebasestorage.googleapis.com/v0/b/campusfinder-6c74d.appspot.com/o/university_listing%2Fdownload%20(1).jpeg?alt=media&token=5339f81e-2e01-4460-bc48-d00888d984eb"
+      },
+      {
+        "key": 2,
+        "title": "Merit Calculator",
+        "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+      },
+      {
+        "key": 3,
+        "title": "Closing Merit",
+        "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+      },
+      {
+        "key": 4,
+        "title": "Reviews",
+        "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+      },
+      {
+        "key": 5,
+        "title": "Status",
+        "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+      }
+    ],
+    "merit": 50,
+    "province": "KPK",
+    "ranking": 68,
+    "status": 0,
+    "title": "City University of Science and Information Technology",
+    "type": "University",
+    "url": "https://firebasestorage.googleapis.com/v0/b/campusfinder-6c74d.appspot.com/o/university_listing%2Fdownload%20(1).jpeg?alt=media&token=5339f81e-2e01-4460-bc48-d00888d984eb",
+    "web": "http://www.uom.edu.pk/"
+  },
+  {
+    "admissions": 1,
+    "city": "Islamabad",
+    "contact": "+92-51-111-555-666​​​​​​​​​",
+    "country": "Pakistan",
+    "deadline": "01-08-2022",
+    "degree": "BS (CS)",
+    "discipline": "Computer Science",
+    "fee": 90000,
+    "id": "pk0",
+    "info": "info@mite.edu.pk",
+    "key": 9,
+    "logo": "https://cust.edu.pk/static/uploads/2018/05/CUSTblack.png",
+    "map": {
+      "address": " Islamabad Expressway, Kahuta، Road Zone-V Sihala, Islamabad, Islamabad Capital Territory",
+      "lat": 72.060284,
+      "location": "Islamabad",
+      "long": 34.66865,
+      "placeid": ""
+    },
+    "menu": [
+      {
+        "key": 0,
+        "title": "Major",
+        "url": "https://firebasestorage.googleapis.com/v0/b/campusfinder-6c74d.appspot.com/o/university_listing%2Fdownload%20(1).jpeg?alt=media&token=5339f81e-2e01-4460-bc48-d00888d984eb"
+      },
+      {
+        "key": 1,
+        "title": "Scholarships",
+        "url": "https://firebasestorage.googleapis.com/v0/b/campusfinder-6c74d.appspot.com/o/university_listing%2Fdownload%20(1).jpeg?alt=media&token=5339f81e-2e01-4460-bc48-d00888d984eb"
+      },
+      {
+        "key": 2,
+        "title": "Merit Calculator",
+        "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+      },
+      {
+        "key": 3,
+        "title": "Closing Merit",
+        "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+      },
+      {
+        "key": 4,
+        "title": "Reviews",
+        "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+      },
+      {
+        "key": 5,
+        "title": "Status",
+        "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+      }
+    ],
+    "merit": 50,
+    "province": "Punjab",
+    "ranking": 94,
+    "status": 0,
+    "title": "Capital University of Science & Technology",
+    "type": "University",
+    "url": "https://firebasestorage.googleapis.com/v0/b/campusfinder-6c74d.appspot.com/o/university_listing%2Fdownload%20(1).jpeg?alt=media&token=5339f81e-2e01-4460-bc48-d00888d984eb",
+    "web": "http://www.uom.edu.pk/"
+  },
+  {
+    "admissions": 1,
+    "city": "Lahore",
+    "contact": "042-38100156​​​​​​​​​",
+    "country": "Pakistan",
+    "deadline": "01-08-2022",
+    "degree": "BS (CS)",
+    "discipline": "Computer Science",
+    "fee": 282500,
+    "id": "pk0",
+    "info": "info@mite.edu.pk",
+    "key": 10,
+    "logo": "https://www.bnu.edu.pk/bnu/Portals/0/bnuLogo.png",
+    "map": {
+      "address": "13 Km Off Thokar Niazbeg، Raiwand Rd, Beacon House Society, Lahore, Punjab 53700",
+      "lat": 72.060284,
+      "location": "Lahore",
+      "long": 34.66865,
+      "placeid": ""
+    },
+    "menu": [
+      {
+        "key": 0,
+        "title": "Major",
+        "url": "https://firebasestorage.googleapis.com/v0/b/campusfinder-6c74d.appspot.com/o/university_listing%2Fdownload%20(1).jpeg?alt=media&token=5339f81e-2e01-4460-bc48-d00888d984eb"
+      },
+      {
+        "key": 1,
+        "title": "Scholarships",
+        "url": "https://firebasestorage.googleapis.com/v0/b/campusfinder-6c74d.appspot.com/o/university_listing%2Fdownload%20(1).jpeg?alt=media&token=5339f81e-2e01-4460-bc48-d00888d984eb"
+      },
+      {
+        "key": 2,
+        "title": "Merit Calculator",
+        "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+      },
+      {
+        "key": 3,
+        "title": "Closing Merit",
+        "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+      },
+      {
+        "key": 4,
+        "title": "Reviews",
+        "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+      },
+      {
+        "key": 5,
+        "title": "Status",
+        "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+      }
+    ],
+    "merit": 50,
+    "province": "Punjab",
+    "ranking": 81,
+    "status": 0,
+    "title": "Beaconhouse National University",
+    "type": "University",
+    "url": "https://firebasestorage.googleapis.com/v0/b/campusfinder-6c74d.appspot.com/o/university_listing%2Fdownload%20(1).jpeg?alt=media&token=5339f81e-2e01-4460-bc48-d00888d984eb",
+    "web": "http://www.uom.edu.pk/"
+  },
+  {
+    "admissions": 0,
+    "city": "Karachi",
+    "contact": " (092-21)34410293​​​​​​​​​​",
+    "country": "Pakistan",
+    "deadline": "01-02-2022",
+    "degree": "BS (CS)",
+    "discipline": "Computer Science",
+    "fee": 177500,
+    "id": "pk0",
+    "info": "info@mite.edu.pk",
+    "key": 11,
+    "logo": "http://baqai.edu.pk/images/header.jpg",
+    "map": {
+      "address": "Karachi",
+      "lat": 72.060284,
+      "location": "Karachi",
+      "long": 34.66865,
+      "placeid": ""
+    },
+    "menu": [
+      {
+        "key": 0,
+        "title": "Major",
+        "url": "https://firebasestorage.googleapis.com/v0/b/campusfinder-6c74d.appspot.com/o/university_listing%2Fdownload%20(1).jpeg?alt=media&token=5339f81e-2e01-4460-bc48-d00888d984eb"
+      },
+      {
+        "key": 1,
+        "title": "Scholarships",
+        "url": "https://firebasestorage.googleapis.com/v0/b/campusfinder-6c74d.appspot.com/o/university_listing%2Fdownload%20(1).jpeg?alt=media&token=5339f81e-2e01-4460-bc48-d00888d984eb"
+      },
+      {
+        "key": 2,
+        "title": "Merit Calculator",
+        "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+      },
+      {
+        "key": 3,
+        "title": "Closing Merit",
+        "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+      },
+      {
+        "key": 4,
+        "title": "Reviews",
+        "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+      },
+      {
+        "key": 5,
+        "title": "Status",
+        "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+      }
+    ],
+    "merit": 60,
+    "province": "Sindh",
+    "ranking": 98,
+    "status": 0,
+    "title": "Baqai Medical University",
+    "type": "University",
+    "url": "https://firebasestorage.googleapis.com/v0/b/campusfinder-6c74d.appspot.com/o/university_listing%2Fdownload%20(1).jpeg?alt=media&token=5339f81e-2e01-4460-bc48-d00888d984eb",
+    "web": "http://www.uom.edu.pk/"
+  },
+  {
+    "admissions": 1,
+    "city": "Quetta",
+    "contact": " +92 (81) 111-717-111​",
+    "country": "Pakistan",
+    "deadline": "19-08-2022",
+    "degree": "BS (CS)",
+    "discipline": "Computer Science",
+    "fee": 77000,
+    "id": "pk0",
+    "info": "info@mite.edu.pk",
+    "key": 12,
+    "logo": "https://www.buitms.edu.pk/Content/img/logo101.png",
+    "map": {
+      "address": "Airport Road، Baleli Road, Quetta, 87300",
+      "lat": 72.060284,
+      "location": "Balochistan",
+      "long": 34.66865,
+      "placeid": ""
+    },
+    "menu": [
+      {
+        "key": 0,
+        "title": "Major",
+        "url": "https://firebasestorage.googleapis.com/v0/b/campusfinder-6c74d.appspot.com/o/university_listing%2Fdownload%20(1).jpeg?alt=media&token=5339f81e-2e01-4460-bc48-d00888d984eb"
+      },
+      {
+        "key": 1,
+        "title": "Scholarships",
+        "url": "https://firebasestorage.googleapis.com/v0/b/campusfinder-6c74d.appspot.com/o/university_listing%2Fdownload%20(1).jpeg?alt=media&token=5339f81e-2e01-4460-bc48-d00888d984eb"
+      },
+      {
+        "key": 2,
+        "title": "Merit Calculator",
+        "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+      },
+      {
+        "key": 3,
+        "title": "Closing Merit",
+        "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+      },
+      {
+        "key": 4,
+        "title": "Reviews",
+        "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+      },
+      {
+        "key": 5,
+        "title": "Status",
+        "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+      }
+    ],
+    "merit": 60,
+    "province": "Balochistan",
+    "ranking": 145,
+    "status": 1,
+    "title": "Balochistan University of Information Technology, Engineering & Management Sciences (BUITEMS)",
+    "type": "University",
+    "url": "https://firebasestorage.googleapis.com/v0/b/campusfinder-6c74d.appspot.com/o/university_listing%2Fdownload%20(1).jpeg?alt=media&token=5339f81e-2e01-4460-bc48-d00888d984eb",
+    "web": "http://www.uom.edu.pk/"
+  },
+  {
+    "admissions": 1,
+    "city": "khuzdar",
+    "contact": " +92 848 412834​​​​​​​​​​",
+    "country": "Pakistan",
+    "deadline": "31-08-2022",
+    "degree": "BS (CS)",
+    "discipline": "Computer Science",
+    "fee": 16000,
+    "id": "pk0",
+    "info": "info@mite.edu.pk",
+    "key": 13,
+    "logo": "https://www.buetk.edu.pk/wp-content/uploads/2021/12/Logo-1.png",
+    "map": {
+      "address": "BUETK Cafe، Khuzdar, Balochistan 98100",
+      "lat": 72.060284,
+      "location": "Balochistan",
+      "long": 34.66865,
+      "placeid": ""
+    },
+    "menu": [
+      {
+        "key": 0,
+        "title": "Major",
+        "url": "https://firebasestorage.googleapis.com/v0/b/campusfinder-6c74d.appspot.com/o/university_listing%2Fdownload%20(1).jpeg?alt=media&token=5339f81e-2e01-4460-bc48-d00888d984eb"
+      },
+      {
+        "key": 1,
+        "title": "Scholarships",
+        "url": "https://firebasestorage.googleapis.com/v0/b/campusfinder-6c74d.appspot.com/o/university_listing%2Fdownload%20(1).jpeg?alt=media&token=5339f81e-2e01-4460-bc48-d00888d984eb"
+      },
+      {
+        "key": 2,
+        "title": "Merit Calculator",
+        "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+      },
+      {
+        "key": 3,
+        "title": "Closing Merit",
+        "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+      },
+      {
+        "key": 4,
+        "title": "Reviews",
+        "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+      },
+      {
+        "key": 5,
+        "title": "Status",
+        "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+      }
+    ],
+    "merit": 60,
+    "province": "Balochistan",
+    "ranking": 145,
+    "status": 1,
+    "title": "Balochistan University of Engineering & Technology",
+    "type": "University",
+    "url": "https://firebasestorage.googleapis.com/v0/b/campusfinder-6c74d.appspot.com/o/university_listing%2Fdownload%20(1).jpeg?alt=media&token=5339f81e-2e01-4460-bc48-d00888d984eb",
+    "web": "http://www.uom.edu.pk/"
+  },
+  {
+    "admissions": 0,
+    "city": "Karachi",
+    "contact": "091-6540116​​​​​​​​​​",
+    "country": "Pakistan",
+    "deadline": "01-02-2022",
+    "degree": "BS (CS)",
+    "discipline": "Computer Science",
+    "fee": 32530,
+    "id": "pk0",
+    "info": "info@mite.edu.pk",
+    "key": 14,
+    "logo": "https://bkuc.edu.pk/public/images/top_banner1.png",
+    "map": {
+      "address": "Bacha Khan College, Peshawar, Charsadda, Khyber",
+      "lat": 72.060284,
+      "location": "Charsadda",
+      "long": 34.66865,
+      "placeid": ""
+    },
+    "menu": [
+      {
+        "key": 0,
+        "title": "Major",
+        "url": "https://firebasestorage.googleapis.com/v0/b/campusfinder-6c74d.appspot.com/o/university_listing%2Fdownload%20(1).jpeg?alt=media&token=5339f81e-2e01-4460-bc48-d00888d984eb"
+      },
+      {
+        "key": 1,
+        "title": "Scholarships",
+        "url": "https://firebasestorage.googleapis.com/v0/b/campusfinder-6c74d.appspot.com/o/university_listing%2Fdownload%20(1).jpeg?alt=media&token=5339f81e-2e01-4460-bc48-d00888d984eb"
+      },
+      {
+        "key": 2,
+        "title": "Merit Calculator",
+        "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+      },
+      {
+        "key": 3,
+        "title": "Closing Merit",
+        "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+      },
+      {
+        "key": 4,
+        "title": "Reviews",
+        "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+      },
+      {
+        "key": 5,
+        "title": "Status",
+        "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+      }
+    ],
+    "merit": 50,
+    "province": "KPK",
+    "ranking": 114,
+    "status": 1,
+    "title": "Bacha khan University",
+    "type": "University",
+    "url": "https://firebasestorage.googleapis.com/v0/b/campusfinder-6c74d.appspot.com/o/university_listing%2Fdownload%20(1).jpeg?alt=media&token=5339f81e-2e01-4460-bc48-d00888d984eb",
+    "web": "http://www.uom.edu.pk/"
+  },
+  
+  {
+    "admissions": 1,
+    "city": "Peshawar",
+    "contact": "(+92) 911 111 2812 8",
+    "country": "Pakistan",
+    "deadline": "2-8-2022",
+    "degree": "BS (CS)",
+    "discipline": "Computer Science",
+    "fee": 120000,
+    "id": "pk47",
+    "info": "admission.pwr@nu.edu.pk",
+    "key": 93,
+    "logo": "http://lhr.nu.edu.pk/static/campus/Images/logo.PNG",
+    "map": {
+      "address": "160 Industrial Estate,Hayatabad, Peshawar, Pakistan.",
+      "lat": "74.2126341",
+      "location": "Peshawar",
+      "long": "31.4027185",
+      "placeid": "N/A"
+    },
+    "menu": [
+      {
+        "key": 0,
+        "title": "Major",
+        "url": "https://firebasestorage.googleapis.com/v0/b/campusfinder-6c74d.appspot.com/o/university_listing%2Fdownload%20(1).jpeg?alt=media&token=5339f81e-2e01-4460-bc48-d00888d984eb"
+      },
+      {
+        "key": 1,
+        "title": "Scholarships",
+        "url": "https://firebasestorage.googleapis.com/v0/b/campusfinder-6c74d.appspot.com/o/university_listing%2Fdownload%20(1).jpeg?alt=media&token=5339f81e-2e01-4460-bc48-d00888d984eb"
+      },
+      {
+        "key": 2,
+        "title": "Merit Calculator",
+        "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+      },
+      {
+        "key": 3,
+        "title": "Closing Merit",
+        "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+      },
+      {
+        "key": 4,
+        "title": "Reviews",
+        "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+      },
+      {
+        "key": 5,
+        "title": "Status",
+        "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+      }
+    ],
+    "merit": 60,
+    "province": "KPK",
+    "ranking": 93,
+    "status": 0,
+    "title": "National University of Computer & Emerging Sciences (FAST) Peshawar Campus",
+    "type": "University",
+    "url": "http://pwr.nu.edu.pk/",
+    "web": "http://pwr.nu.edu.pk/"
+  },
+  {
+    "admissions": 1,
+    "city": "Karachi",
+    "contact": "(+92-213) 410-0541-6",
+    "country": "Pakistan",
+    "deadline": "1-7-2022",
+    "degree": "BS (CS)",
+    "discipline": "Computer Science",
+    "fee": 120000,
+    "id": "pk47",
+    "info": "admissions.khi@nu.edu.pk",
+    "key": 94,
+    "logo": "http://lhr.nu.edu.pk/static/campus/Images/logo.PNG",
+    "map": {
+      "address": "St-4 Sector 17-D On National Highway Karachi, Pakistan.",
+      "lat": "74.2126341",
+      "location": "Karachi",
+      "long": "31.4027185",
+      "placeid": "N/A"
+    },
+    "menu": [
+      {
+        "key": 0,
+        "title": "Major",
+        "url": "https://firebasestorage.googleapis.com/v0/b/campusfinder-6c74d.appspot.com/o/university_listing%2Fdownload%20(1).jpeg?alt=media&token=5339f81e-2e01-4460-bc48-d00888d984eb"
+      },
+      {
+        "key": 1,
+        "title": "Scholarships",
+        "url": "https://firebasestorage.googleapis.com/v0/b/campusfinder-6c74d.appspot.com/o/university_listing%2Fdownload%20(1).jpeg?alt=media&token=5339f81e-2e01-4460-bc48-d00888d984eb"
+      },
+      {
+        "key": 2,
+        "title": "Merit Calculator",
+        "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+      },
+      {
+        "key": 3,
+        "title": "Closing Merit",
+        "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+      },
+      {
+        "key": 4,
+        "title": "Reviews",
+        "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+      },
+      {
+        "key": 5,
+        "title": "Status",
+        "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+      }
+    ],
+    "merit": 60,
+    "province": "Sindh",
+    "ranking": 93,
+    "status": 0,
+    "title": "National University of Computer & Emerging Sciences (FAST) Karachi Campus",
+    "type": "University",
+    "url": "https://khi.nu.edu.pk/",
+    "web": "https://khi.nu.edu.pk/"
+  },
+  {
+    "admissions": 1,
+    "city": "Faisalabad",
+    "contact": "(041) 111 128 128",
+    "country": "Pakistan",
+    "deadline": "1-7-2022",
+    "degree": "BS (SE)",
+    "discipline": "Computer Science",
+    "fee": 128000,
+    "id": "pk47",
+    "info": "admissions.cfd@nu.edu.pk",
+    "key": 95,
+    "logo": "http://lhr.nu.edu.pk/static/campus/Images/logo.PNG",
+    "map": {
+      "address": "FAST-NU, FAST Square, 9 Km from Faisalabad Motorway Interchange towards Chiniot",
+      "lat": "74.2126341",
+      "location": "Chiniot",
+      "long": "31.4027185",
+      "placeid": "N/A"
+    },
+    "menu": [
+      {
+        "key": 0,
+        "title": "Major",
+        "url": "https://firebasestorage.googleapis.com/v0/b/campusfinder-6c74d.appspot.com/o/university_listing%2Fdownload%20(1).jpeg?alt=media&token=5339f81e-2e01-4460-bc48-d00888d984eb"
+      },
+      {
+        "key": 1,
+        "title": "Scholarships",
+        "url": "https://firebasestorage.googleapis.com/v0/b/campusfinder-6c74d.appspot.com/o/university_listing%2Fdownload%20(1).jpeg?alt=media&token=5339f81e-2e01-4460-bc48-d00888d984eb"
+      },
+      {
+        "key": 2,
+        "title": "Merit Calculator",
+        "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+      },
+      {
+        "key": 3,
+        "title": "Closing Merit",
+        "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+      },
+      {
+        "key": 4,
+        "title": "Reviews",
+        "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+      },
+      {
+        "key": 5,
+        "title": "Status",
+        "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+      }
+    ],
+    "merit": 60,
+    "province": "Punjab",
+    "ranking": 93,
+    "status": 0,
+    "title": "FAST-NU, FAST Square, 9 Km from Faisalabad Motorway Interchange towards Chiniot",
+    "type": "University",
+    "url": "https://cfd.nu.edu.pk/",
+    "web": "https://cfd.nu.edu.pk/"
+  },
+  {
+    "admissions": 1,
+    "city": "Lahore",
+    "contact": "(042) 111 128 128",
+    "country": "Pakistan",
+    "deadline": "1-7-2022",
+    "degree": "BS (SE)",
+    "discipline": "Computer Science",
+    "fee": 136000,
+    "id": "pk47",
+    "info": "admissions@lhr.nu.edu.pk",
+    "key": 96,
+    "logo": "http://lhr.nu.edu.pk/static/campus/Images/logo.PNG",
+    "map": {
+      "address": "Block-B, Faisal Town, Lahore.",
+      "lat": "74.2126341",
+      "location": "Lahore",
+      "long": "31.4027185",
+      "placeid": "N/A"
+    },
+    "menu": [
+      {
+        "key": 0,
+        "title": "Major",
+        "url": "https://firebasestorage.googleapis.com/v0/b/campusfinder-6c74d.appspot.com/o/university_listing%2Fdownload%20(1).jpeg?alt=media&token=5339f81e-2e01-4460-bc48-d00888d984eb"
+      },
+      {
+        "key": 1,
+        "title": "Scholarships",
+        "url": "https://firebasestorage.googleapis.com/v0/b/campusfinder-6c74d.appspot.com/o/university_listing%2Fdownload%20(1).jpeg?alt=media&token=5339f81e-2e01-4460-bc48-d00888d984eb"
+      },
+      {
+        "key": 2,
+        "title": "Merit Calculator",
+        "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+      },
+      {
+        "key": 3,
+        "title": "Closing Merit",
+        "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+      },
+      {
+        "key": 4,
+        "title": "Reviews",
+        "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+      },
+      {
+        "key": 5,
+        "title": "Status",
+        "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+      }
+    ],
+    "merit": 60,
+    "province": "Punjab",
+    "ranking": 93,
+    "status": 0,
+    "title": "National University of Computer & Emerging Sciences (FAST) Lahore Campus",
+    "type": "University",
+    "url": "http://lhr.nu.edu.pk/",
+    "web": "http://lhr.nu.edu.pk/"
+  },
+  {
+    "admissions": 1,
+    "city": "Islamabad",
+    "contact": "(051) 111 128 128",
+    "country": "Pakistan",
+    "deadline": "1-7-2022",
+    "degree": "BS (SE)",
+    "discipline": "Computer Science",
+    "fee": 136000,
+    "id": "pk47",
+    "info": "admissions.isb@nu.edu.pk",
+    "key": 97,
+    "logo": "http://lhr.nu.edu.pk/static/campus/Images/logo.PNG",
+    "map": {
+      "address": "FAST-House Rohtas Road, G-9/4 Islamabad - 44000",
+      "lat": "74.2126341",
+      "location": "Islamabad",
+      "long": "31.4027185",
+      "placeid": "N/A"
+    },
+    "menu": [
+      {
+        "key": 0,
+        "title": "Major",
+        "url": "https://firebasestorage.googleapis.com/v0/b/campusfinder-6c74d.appspot.com/o/university_listing%2Fdownload%20(1).jpeg?alt=media&token=5339f81e-2e01-4460-bc48-d00888d984eb"
+      },
+      {
+        "key": 1,
+        "title": "Scholarships",
+        "url": "https://firebasestorage.googleapis.com/v0/b/campusfinder-6c74d.appspot.com/o/university_listing%2Fdownload%20(1).jpeg?alt=media&token=5339f81e-2e01-4460-bc48-d00888d984eb"
+      },
+      {
+        "key": 2,
+        "title": "Merit Calculator",
+        "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+      },
+      {
+        "key": 3,
+        "title": "Closing Merit",
+        "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+      },
+      {
+        "key": 4,
+        "title": "Reviews",
+        "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+      },
+      {
+        "key": 5,
+        "title": "Status",
+        "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+      }
+    ],
+    "merit": 60,
+    "province": "Federal",
+    "ranking": 93,
+    "status": 0,
+    "title": "National University of Computer & Emerging Sciences (FAST) Islamabad",
+    "type": "University",
+    "url": "http://isb.nu.edu.pk/",
+    "web": "http://isb.nu.edu.pk/"
+  },
+  {
+    "admissions": 0,
+    "city": "Karachi",
+    "contact": "(021) 111 111 487",
+    "country": "Pakistan",
+    "deadline": "30-7-2022",
+    "degree": "BS (CS)",
+    "discipline": "Computer Science",
+    "fee": 26325,
+    "id": "pk47",
+    "info": "info@ivs.edu.pk",
+    "key": 98,
+    "logo": "https://www.indusvalley.edu.pk/new/public/front/images/svg/logo-black.svg",
+    "map": {
+      "address": "33rd St، Scheme 5، Block 2 Clifton, Karachi, 75600",
+      "lat": "74.2126341",
+      "location": "Karachi",
+      "long": "31.4027185",
+      "placeid": "N/A"
+    },
+    "menu": [
+      {
+        "key": 0,
+        "title": "Major",
+        "url": "https://firebasestorage.googleapis.com/v0/b/campusfinder-6c74d.appspot.com/o/university_listing%2Fdownload%20(1).jpeg?alt=media&token=5339f81e-2e01-4460-bc48-d00888d984eb"
+      },
+      {
+        "key": 1,
+        "title": "Scholarships",
+        "url": "https://firebasestorage.googleapis.com/v0/b/campusfinder-6c74d.appspot.com/o/university_listing%2Fdownload%20(1).jpeg?alt=media&token=5339f81e-2e01-4460-bc48-d00888d984eb"
+      },
+      {
+        "key": 2,
+        "title": "Merit Calculator",
+        "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+      },
+      {
+        "key": 3,
+        "title": "Closing Merit",
+        "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+      },
+      {
+        "key": 4,
+        "title": "Reviews",
+        "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+      },
+      {
+        "key": 5,
+        "title": "Status",
+        "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+      }
+    ],
+    "merit": 50,
+    "province": "Sindh",
+    "ranking": 115,
+    "status": 0,
+    "title": "Indus Valley School of Art & Architecture",
+    "type": "University",
+    "url": "https://www.indusvalley.edu.pk/home",
+    "web": "https://www.indusvalley.edu.pk/home"
+  },
+  {
+    "admissions": 0,
+    "city": "Karachi",
+    "contact": "(021) 34801430",
+    "country": "Pakistan",
+    "deadline": "29-7-2022",
+    "degree": "BS (CS)",
+    "discipline": "Computer Science",
+    "fee": 14250,
+    "id": "pk47",
+    "info": "admission@indus.edu.pk",
+    "key": 99,
+    "logo": "https://www.indus.edu.pk/logo.png",
+    "map": {
+      "address": "ST-2D, Block-17, Gulshan-e-Iqbal, Adjacent to، National Stadium Rd, National Stadium Colony, Karachi, Karachi City, Sindh",
+      "lat": "74.2126341",
+      "location": "Karachi",
+      "long": "31.4027185",
+      "placeid": "N/A"
+    },
+    "menu": [
+      {
+        "key": 0,
+        "title": "Major",
+        "url": "https://firebasestorage.googleapis.com/v0/b/campusfinder-6c74d.appspot.com/o/university_listing%2Fdownload%20(1).jpeg?alt=media&token=5339f81e-2e01-4460-bc48-d00888d984eb"
+      },
+      {
+        "key": 1,
+        "title": "Scholarships",
+        "url": "https://firebasestorage.googleapis.com/v0/b/campusfinder-6c74d.appspot.com/o/university_listing%2Fdownload%20(1).jpeg?alt=media&token=5339f81e-2e01-4460-bc48-d00888d984eb"
+      },
+      {
+        "key": 2,
+        "title": "Merit Calculator",
+        "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+      },
+      {
+        "key": 3,
+        "title": "Closing Merit",
+        "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+      },
+      {
+        "key": 4,
+        "title": "Reviews",
+        "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+      },
+      {
+        "key": 5,
+        "title": "Status",
+        "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+      }
+    ],
+    "merit": 50,
+    "province": "Sindh",
+    "ranking": 92,
+    "status": 0,
+    "title": "Indus University",
+    "type": "University",
+    "url": "https://www.indus.edu.pk/",
+    "web": "https://www.indus.edu.pk/"
+  },
+  {
+    "admissions": 0,
+    "city": "Lahore",
+    "contact": "(042) 99046061",
+    "country": "Pakistan",
+    "deadline": "25-7-2022",
+    "degree": "BS (CS)",
+    "discipline": "Computer Science",
+    "fee": 106500,
+    "id": "pk47",
+    "info": "admission@itu.edu.pk",
+    "key": 100,
+    "logo": "https://itu.edu.pk/wp-content/themes/itu/images/itu_logo.png",
+    "map": {
+      "address": "6th Floor، ARFA Tower, Ferozepur Rd, Nishtar Town, Lahore, Punjab",
+      "lat": "74.2126341",
+      "location": "Lahore",
+      "long": "31.4027185",
+      "placeid": "N/A"
+    },
+    "menu": [
+      {
+        "key": 0,
+        "title": "Major",
+        "url": "https://firebasestorage.googleapis.com/v0/b/campusfinder-6c74d.appspot.com/o/university_listing%2Fdownload%20(1).jpeg?alt=media&token=5339f81e-2e01-4460-bc48-d00888d984eb"
+      },
+      {
+        "key": 1,
+        "title": "Scholarships",
+        "url": "https://firebasestorage.googleapis.com/v0/b/campusfinder-6c74d.appspot.com/o/university_listing%2Fdownload%20(1).jpeg?alt=media&token=5339f81e-2e01-4460-bc48-d00888d984eb"
+      },
+      {
+        "key": 2,
+        "title": "Merit Calculator",
+        "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+      },
+      {
+        "key": 3,
+        "title": "Closing Merit",
+        "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+      },
+      {
+        "key": 4,
+        "title": "Reviews",
+        "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+      },
+      {
+        "key": 5,
+        "title": "Status",
+        "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+      }
+    ],
+    "merit": 50,
+    "province": "Punjab",
+    "ranking": 22,
+    "status": 1,
+    "title": "Information Technology University, Lahore",
+    "type": "University",
+    "url": "https://itu.edu.pk/",
+    "web": "https://itu.edu.pk/"
+  },
+  {
+    "admissions": 1,
+    "city": "Lahore",
+    "contact": "(042) 32590040",
+    "country": "Pakistan",
+    "deadline": "23-8-2022",
+    "degree": "BS (CS)",
+    "discipline": "Computer Science",
+    "fee": 31250,
+    "id": "pk47",
+    "info": "info@iac.edu.pk",
+    "key": 101,
+    "logo": "https://iac.edu.pk/assets/images/Website-logo1.png",
+    "map": {
+      "address": "7.5Km from thokar niaz baig next to Govt. technical College, main Raiwind Rd, Bhobtian, Lahore, Punjab",
+      "lat": "74.2126341",
+      "location": "Lahore",
+      "long": "31.4027185",
+      "placeid": "N/A"
+    },
+    "menu": [
+      {
+        "key": 0,
+        "title": "Major",
+        "url": "https://firebasestorage.googleapis.com/v0/b/campusfinder-6c74d.appspot.com/o/university_listing%2Fdownload%20(1).jpeg?alt=media&token=5339f81e-2e01-4460-bc48-d00888d984eb"
+      },
+      {
+        "key": 1,
+        "title": "Scholarships",
+        "url": "https://firebasestorage.googleapis.com/v0/b/campusfinder-6c74d.appspot.com/o/university_listing%2Fdownload%20(1).jpeg?alt=media&token=5339f81e-2e01-4460-bc48-d00888d984eb"
+      },
+      {
+        "key": 2,
+        "title": "Merit Calculator",
+        "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+      },
+      {
+        "key": 3,
+        "title": "Closing Merit",
+        "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+      },
+      {
+        "key": 4,
+        "title": "Reviews",
+        "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+      },
+      {
+        "key": 5,
+        "title": "Status",
+        "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+      }
+    ],
+    "merit": 50,
+    "province": "Punjab",
+    "ranking": 7,
+    "status": 0,
+    "title": "Institute for Art and Culture",
+    "type": "University",
+    "url": "https://www.iac.edu.pk/",
+    "web": "https://www.iac.edu.pk/"
+  },
+  {
+    "admissions": 0,
+    "city": "Karachi",
+    "contact": "(021) 111 002 004",
+    "country": "Pakistan",
+    "deadline": "23-8-2022",
+    "degree": "BBA (Honors)",
+    "discipline": "Business Administration",
+    "fee": 27250,
+    "id": "pk47",
+    "info": "enquiries@institutebm.org.za",
+    "key": 102,
+    "logo": "https://www.iobm.edu.pk/assets/images/logo-mob.png",
+    "map": {
+      "address": "Korangi Creek, Karachi, Karachi City, Sindh 75190",
+      "lat": "74.2126341",
+      "location": "Karachi",
+      "long": "31.4027185",
+      "placeid": "N/A"
+    },
+    "menu": [
+      {
+        "key": 0,
+        "title": "Major",
+        "url": "https://firebasestorage.googleapis.com/v0/b/campusfinder-6c74d.appspot.com/o/university_listing%2Fdownload%20(1).jpeg?alt=media&token=5339f81e-2e01-4460-bc48-d00888d984eb"
+      },
+      {
+        "key": 1,
+        "title": "Scholarships",
+        "url": "https://firebasestorage.googleapis.com/v0/b/campusfinder-6c74d.appspot.com/o/university_listing%2Fdownload%20(1).jpeg?alt=media&token=5339f81e-2e01-4460-bc48-d00888d984eb"
+      },
+      {
+        "key": 2,
+        "title": "Merit Calculator",
+        "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+      },
+      {
+        "key": 3,
+        "title": "Closing Merit",
+        "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+      },
+      {
+        "key": 4,
+        "title": "Reviews",
+        "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+      },
+      {
+        "key": 5,
+        "title": "Status",
+        "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+      }
+    ],
+    "merit": 50,
+    "province": "Sindh",
+    "ranking": 25,
+    "status": 1,
+    "title": "Institute of Business Administration",
+    "type": "University",
+    "url": "https://www.iobm.edu.pk/",
+    "web": "https://www.iobm.edu.pk/"
+  },
+  {
+    "admissions": 0,
+    "city": "Karachi",
+    "contact": "(021) 111 002 004",
+    "country": "Pakistan",
+    "deadline": "28-7-2022",
+    "degree": "BS (CS)",
+    "discipline": "Computer Science",
+    "fee": 118750,
+    "id": "pk47",
+    "info": "enquiries@institutebm.org.za",
+    "key": 103,
+    "logo": "https://www.iobm.edu.pk/assets/images/logo-mob.png",
+    "map": {
+      "address": "Korangi Creek, Karachi, Karachi City, Sindh 75190",
+      "lat": "74.2126341",
+      "location": "Karachi",
+      "long": "31.4027185",
+      "placeid": "N/A"
+    },
+    "menu": [
+      {
+        "key": 0,
+        "title": "Major",
+        "url": "https://firebasestorage.googleapis.com/v0/b/campusfinder-6c74d.appspot.com/o/university_listing%2Fdownload%20(1).jpeg?alt=media&token=5339f81e-2e01-4460-bc48-d00888d984eb"
+      },
+      {
+        "key": 1,
+        "title": "Scholarships",
+        "url": "https://firebasestorage.googleapis.com/v0/b/campusfinder-6c74d.appspot.com/o/university_listing%2Fdownload%20(1).jpeg?alt=media&token=5339f81e-2e01-4460-bc48-d00888d984eb"
+      },
+      {
+        "key": 2,
+        "title": "Merit Calculator",
+        "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+      },
+      {
+        "key": 3,
+        "title": "Closing Merit",
+        "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+      },
+      {
+        "key": 4,
+        "title": "Reviews",
+        "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+      },
+      {
+        "key": 5,
+        "title": "Status",
+        "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+      }
+    ],
+    "merit": 50,
+    "province": "Sindh",
+    "ranking": 116,
+    "status": 0,
+    "title": "Institute of Business Management",
+    "type": "University",
+    "url": "https://www.iobm.edu.pk/",
+    "web": "https://www.iobm.edu.pk/"
+  },
+  {
+    "admissions": 0,
+    "city": "Lahore",
+    "contact": "(042) 111 191 938",
+    "country": "Pakistan",
+    "deadline": "29-3-2022",
+    "degree": "BS (CS)",
+    "discipline": "Computer Science",
+    "fee": 75956,
+    "id": "pk47",
+    "info": "info@pakaims.edu.pk",
+    "key": 104,
+    "logo": "https://pakaims.edu.pk/wp-content/uploads/elementor/thumbs/IMS-Logo-blue-p5erw9sn5fpttnm8zowjyzv3e9ksit10h9cg1ikmy0.png",
+    "map": {
+      "address": "23، Block E 3 Gulberg III, Lahore, Punjab 54660",
+      "lat": "74.2126341",
+      "location": "Lahore",
+      "long": "31.4027185",
+      "placeid": "N/A"
+    },
+    "menu": [
+      {
+        "key": 0,
+        "title": "Major",
+        "url": "https://firebasestorage.googleapis.com/v0/b/campusfinder-6c74d.appspot.com/o/university_listing%2Fdownload%20(1).jpeg?alt=media&token=5339f81e-2e01-4460-bc48-d00888d984eb"
+      },
+      {
+        "key": 1,
+        "title": "Scholarships",
+        "url": "https://firebasestorage.googleapis.com/v0/b/campusfinder-6c74d.appspot.com/o/university_listing%2Fdownload%20(1).jpeg?alt=media&token=5339f81e-2e01-4460-bc48-d00888d984eb"
+      },
+      {
+        "key": 2,
+        "title": "Merit Calculator",
+        "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+      },
+      {
+        "key": 3,
+        "title": "Closing Merit",
+        "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+      },
+      {
+        "key": 4,
+        "title": "Reviews",
+        "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+      },
+      {
+        "key": 5,
+        "title": "Status",
+        "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+      }
+    ],
+    "merit": 50,
+    "province": "Punjab",
+    "ranking": 156,
+    "status": 1,
+    "title": "Institute of Management Sciences",
+    "type": "University",
+    "url": "https://pakaims.edu.pk/",
+    "web": "https://pakaims.edu.pk/"
+  },
+  {
+    "admissions": 1,
+    "city": "Lahore",
+    "contact": "042 111-707-808",
+    "country": "Pakistan",
+    "deadline": "17-07-2022",
+    "degree": "BS (CS)",
+    "discipline": "Computer Science",
+    "fee": 65875,
+    "id": "pk47",
+    "info": "karachi@preston.edu.pk",
+    "key": 189,
+    "logo": "http://preston.edu.pk/images/logo.png",
+    "map": {
+      "address": "G86H+JC3, Service Rd, Abu Bakar Block Garden Town, Lahore, Punjab",
+      "lat": "74.2126341",
+      "location": "Lahore",
+      "long": "31.4027185",
+      "placeid": "N/A"
+    },
+    "menu": [
+      {
+        "key": 0,
+        "title": "Major",
+        "url": "https://firebasestorage.googleapis.com/v0/b/campusfinder-6c74d.appspot.com/o/university_listing%2Fdownload%20(1).jpeg?alt=media&token=5339f81e-2e01-4460-bc48-d00888d984eb"
+      },
+      {
+        "key": 1,
+        "title": "Scholarships",
+        "url": "https://firebasestorage.googleapis.com/v0/b/campusfinder-6c74d.appspot.com/o/university_listing%2Fdownload%20(1).jpeg?alt=media&token=5339f81e-2e01-4460-bc48-d00888d984eb"
+      },
+      {
+        "key": 2,
+        "title": "Merit Calculator",
+        "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+      },
+      {
+        "key": 3,
+        "title": "Closing Merit",
+        "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+      },
+      {
+        "key": 4,
+        "title": "Reviews",
+        "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+      },
+      {
+        "key": 5,
+        "title": "Status",
+        "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+      }
+    ],
+    "merit": 50,
+    "province": "Punjab",
+    "ranking": 63,
+    "status": 0,
+    "title": "Preston University, Lahore",
+    "type": "University",
+    "url": "http://preston.edu.pk/",
+    "web": "http://preston.edu.pk/"
+  },
+  {
+    "admissions": 1,
+    "city": "Karachi",
+    "contact": "021-111-707-808",
+    "country": "Pakistan",
+    "deadline": "17-07-2022",
+    "degree": "BS (CS)",
+    "discipline": "Computer Science",
+    "fee": 65875,
+    "id": "pk47",
+    "info": "lahore@preston.edu.pk",
+    "key": 190,
+    "logo": "http://preston.edu.pk/images/logo.png",
+    "map": {
+      "address": "Main Campus 15، Shahrah-e-Faisal Rd, Bangalore Town Darwaish Colony, Karachi, Karachi City, Sindh 75350",
+      "lat": "74.2126341",
+      "location": "Karachi",
+      "long": "31.4027185",
+      "placeid": "N/A"
+    },
+    "menu": [
+      {
+        "key": 0,
+        "title": "Major",
+        "url": "https://firebasestorage.googleapis.com/v0/b/campusfinder-6c74d.appspot.com/o/university_listing%2Fdownload%20(1).jpeg?alt=media&token=5339f81e-2e01-4460-bc48-d00888d984eb"
+      },
+      {
+        "key": 1,
+        "title": "Scholarships",
+        "url": "https://firebasestorage.googleapis.com/v0/b/campusfinder-6c74d.appspot.com/o/university_listing%2Fdownload%20(1).jpeg?alt=media&token=5339f81e-2e01-4460-bc48-d00888d984eb"
+      },
+      {
+        "key": 2,
+        "title": "Merit Calculator",
+        "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+      },
+      {
+        "key": 3,
+        "title": "Closing Merit",
+        "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+      },
+      {
+        "key": 4,
+        "title": "Reviews",
+        "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+      },
+      {
+        "key": 5,
+        "title": "Status",
+        "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+      }
+    ],
+    "merit": 50,
+    "province": "Sindh",
+    "ranking": 63,
+    "status": 0,
+    "title": "Preston University, Karachi",
+    "type": "University",
+    "url": "http://preston.edu.pk/",
+    "web": "http://preston.edu.pk/"
+  },
+  {
+    "admissions": 0,
+    "city": "Lahore",
+    "contact": "0092 42 9933 2438",
+    "country": "Pakistan",
+    "deadline": "17-07-2022",
+    "degree": "BS Electrical Technology",
+    "discipline": "Electrical",
+    "fee": 65875,
+    "id": "pk47",
+    "info": "info@ptut.edu.pk",
+    "key": 191,
+    "logo": "https://ptut.edu.pk/wp-content/uploads/2018/02/PTUT-1.jpg",
+    "map": {
+      "address": "Near Green Town Police station, Township, Lahore, Pakistan",
+      "lat": "74.2126341",
+      "location": "Lahore",
+      "long": "31.4027185",
+      "placeid": "N/A"
+    },
+    "menu": [
+      {
+        "key": 0,
+        "title": "Major",
+        "url": "https://firebasestorage.googleapis.com/v0/b/campusfinder-6c74d.appspot.com/o/university_listing%2Fdownload%20(1).jpeg?alt=media&token=5339f81e-2e01-4460-bc48-d00888d984eb"
+      },
+      {
+        "key": 1,
+        "title": "Scholarships",
+        "url": "https://firebasestorage.googleapis.com/v0/b/campusfinder-6c74d.appspot.com/o/university_listing%2Fdownload%20(1).jpeg?alt=media&token=5339f81e-2e01-4460-bc48-d00888d984eb"
+      },
+      {
+        "key": 2,
+        "title": "Merit Calculator",
+        "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+      },
+      {
+        "key": 3,
+        "title": "Closing Merit",
+        "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+      },
+      {
+        "key": 4,
+        "title": "Reviews",
+        "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+      },
+      {
+        "key": 5,
+        "title": "Status",
+        "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+      }
+    ],
+    "merit": 70,
+    "province": "Punjab",
+    "ranking": 63,
+    "status": 1,
+    "title": "Punjab Tianjin University of Technology, Lahore",
+    "type": "University",
+    "url": "https://ptut.edu.pk/",
+    "web": "https://ptut.edu.pk/"
+  },
+  {
+    "admissions": 1,
+    "city": "Mandi Bahauddin",
+    "contact": "(0546) 553216",
+    "country": "Pakistan",
+    "deadline": "19-09-2022",
+    "degree": "BS (SE)",
+    "discipline": "Computer Science",
+    "fee": 57000,
+    "id": "pk47",
+    "info": "registrar@putrasul.edu.pk",
+    "key": 192,
+    "logo": "https://www.putrasul.edu.pk/wp-content/uploads/2021/08/PUT-Logo_with_side_text__transparent_background.png",
+    "map": {
+      "address": "13-km Mandi Bahauddin - Sarai Alamgir Rd, Rasul, Mandi Bahauddin, Punjab",
+      "lat": "74.2126341",
+      "location": "Mandi Bahauddin",
+      "long": "31.4027185",
+      "placeid": "N/A"
+    },
+    "menu": [
+      {
+        "key": 0,
+        "title": "Major",
+        "url": "https://firebasestorage.googleapis.com/v0/b/campusfinder-6c74d.appspot.com/o/university_listing%2Fdownload%20(1).jpeg?alt=media&token=5339f81e-2e01-4460-bc48-d00888d984eb"
+      },
+      {
+        "key": 1,
+        "title": "Scholarships",
+        "url": "https://firebasestorage.googleapis.com/v0/b/campusfinder-6c74d.appspot.com/o/university_listing%2Fdownload%20(1).jpeg?alt=media&token=5339f81e-2e01-4460-bc48-d00888d984eb"
+      },
+      {
+        "key": 2,
+        "title": "Merit Calculator",
+        "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+      },
+      {
+        "key": 3,
+        "title": "Closing Merit",
+        "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+      },
+      {
+        "key": 4,
+        "title": "Reviews",
+        "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+      },
+      {
+        "key": 5,
+        "title": "Status",
+        "url": "https://image.shutterstock.com/image-vector/sample-stamp-grunge-texture-vector-260nw-1389188336.jpg"
+      }
+    ],
+    "merit": 50,
+    "province": "Punjab",
+    "ranking": 63,
+    "status": 1,
+    "title": "Punjab University of Technology, Rasul-Mandi Bahauddin",
+    "type": "University",
+    "url": "https://www.putrasul.edu.pk/",
+    "web": "https://www.putrasul.edu.pk/"
+  }
+]
 
 export default class Universities extends Component {
   constructor(props) {
@@ -86,7 +1977,6 @@ export default class Universities extends Component {
       finalFiltersArray:[],
       norecordfoundtext:'',
       norecordfoundsubtext:'',
-      
     }
   }
 
@@ -99,14 +1989,7 @@ export default class Universities extends Component {
   // }
 
   componentDidMount() {
-    // database()
-    // // .ref('/university_listing/')
-    // // limitToFirst(3)
-    // // testing
-    // .ref('/zeeshan_listing/')
-    //  .on('value', snapshot => {
-    //    this.setAllValues(snapshot.val());
-    //  });
+   
 
     // var newArr = [];
     // firestore()
@@ -163,16 +2046,16 @@ export default class Universities extends Component {
 
   firstFetchAllRecords(){
     this.setState({activityindicator:true});
-    database()
-      .ref('/zeeshan_listing/')
-      // .limitToFirst(20)
-      .on('value', snapshot => {
-      this.setState({universities: snapshot.val(), filtersArray: snapshot.val() }, function () {
+    
+    
+    
+
+      this.setState({universities: dummy, filtersArray: dummy }, function () {
         this.state.cloneArray = this.state.universities;
         this.state.deepCloneArray = this.state.universities;
         this.ApplyAllFilters();
       });
-    });
+
   }
 
   ApplyAllFilters(){
@@ -531,15 +2414,7 @@ export default class Universities extends Component {
   }
 
   loadMore=()=>{
-    // console.log('loadMore', this.state.universities.length);
-    // database()
-    //   .ref('/zeeshan_listing/').limitToFirst(this.state.universities.length+10)
-    //   .on('value', snapshot => {
-    //     console.log('loadMore data: ', snapshot.val().length);
-    //     this.setState({universities: snapshot.val() });
-    //     this.setState({filtersArray: this.state.universities });
-    //     this.setState({activityindicator:false});
-    //   });
+  
   }
 
   dialCall = (item) => {
@@ -629,31 +2504,25 @@ export default class Universities extends Component {
       element.status===1 ? {...element, status:-1} : element
     );
     this.setState({finalFiltersArray:[], activityindicator:true});
-    
-    database()
-      .ref('/zeeshan_listing/')
-      // .limitToFirst(20)
-      .on('value', snapshot => {
-      this.setState({universities: snapshot.val(), filtersArray: snapshot.val() }, function () {
+      
+        this.setState({universities: dummy, filtersArray: dummy }, function () {
         console.log('allFilters setState');
         this.setState({allFilters:allFiltersCloneArray, activityindicator:false});
       });
-    });
+
   }
 
   deleteFilters(item){
     // console.log('Delete Filters');
     this.setState({activityindicator:true});
-    database()
-      .ref('/zeeshan_listing/')
-      // .limitToFirst(20)
-      .on('value', snapshot => {
+   
+
       this.setState({universities: snapshot.val(), filtersArray: snapshot.val()}, function () {
         this.state.cloneArray = this.state.universities
         this.state.deepCloneArray = this.state.universities
         this.ApplyNewFilters(item);
       });
-    });
+
   }
   
   smallFirstLetter(string) {

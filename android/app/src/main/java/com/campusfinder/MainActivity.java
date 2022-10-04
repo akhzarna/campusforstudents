@@ -1,4 +1,4 @@
-package com.campusfinder;
+package com.lettechnologies.campusfinder;
 
 import com.facebook.react.ReactActivity;
 

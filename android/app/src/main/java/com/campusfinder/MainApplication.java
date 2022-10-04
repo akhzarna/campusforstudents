@@ -1,4 +1,4 @@
-package com.campusfinder;
+package com.lettechnologies.campusfinder;
 
 import android.app.Application;
 import android.content.Context;
